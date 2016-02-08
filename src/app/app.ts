@@ -35,38 +35,7 @@ import {Profile} from './profile/profile';
       background-color: lightgray;
     }
   `],
-  template: `
-    <header>
-      <nav>
-        <h1><a [routerLink]=" ['Index'] ">{{ name }}</a></h1>
-        <ul>
-          <li router-active>
-            <a [routerLink]=" ['Deployments'] ">My Deployments</a>
-          </li>
-          <li router-active>
-            <a [routerLink]=" ['Repository'] ">Repository</a>
-          </li>
-          <li router-active>
-            <a [routerLink]=" ['About'] ">About</a>
-          </li>
-          <li router-active>
-            <a [routerLink]=" ['Profile'] ">My Profile</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-
-    <footer>
-      TSI Cloud Portal by <a [href]="url">@EMBL-TSI</a>
-      <div>
-        <img [src]="emblebiLogo" width="10%">
-      </div>
-    </footer>
-  `
+  template: require('./app.html')
 })
 @RouteConfig([
   { path: '/', component: Home, name: 'Index' },

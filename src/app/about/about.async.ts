@@ -10,7 +10,8 @@ console.log('About component loaded asynchronously');
 
 @Component({
   selector: 'about',
-  template: '<p>Developed by the TSI group</p>'
+  styles: [ require('./about.css') ],
+  template: require('./about.html')
 })
 export class About {
   constructor() {
