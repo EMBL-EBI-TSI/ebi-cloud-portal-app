@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/14</span>
+        <span class='fraction'>16/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>2/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/14</span>
+        <span class='fraction'>16/17</span>
       </div>
     </div>
   </div>
@@ -75,7 +75,16 @@
 30
 31
 32
-33</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+33
+34
+35
+36
+37
+38
+39</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -87,6 +96,8 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -103,6 +114,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -112,6 +124,9 @@ var router_1 = require('angular2/router');
 var common_1 = require('angular2/common');
 var router_active_1 = require('./directives/router-active');
 var home_1 = require('./home/home');
+var repository_1 = require('./repository/repository');
+var deployments_1 = require('./deployments/deployments');
+var profile_1 = require('./profile/profile');
 var App = (function () {
     function App() {
         this.emblebiLogo = 'assets/img/embl-ebi-logo.png';
@@ -125,12 +140,15 @@ var App = (function () {
             directives: router_1.ROUTER_DIRECTIVES.concat([router_active_1.RouterActive]),
             pipes: [],
             styles: ["\n    nav ul {\n      display: inline;\n      list-style-type: none;\n      margin: 0;\n      padding: 0;\n      width: 60px;\n    }\n    nav li {\n      display: inline;\n    }\n    nav li.active {\n      background-color: lightgray;\n    }\n  "],
-            template: "\n    &lt;header&gt;\n      &lt;nav&gt;\n        &lt;h1&gt;{{ name }}&lt;/h1&gt;\n        &lt;ul&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['Index'] \"&gt;Index&lt;/a&gt;\n          &lt;/li&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['Home'] \"&gt;Home&lt;/a&gt;\n          &lt;/li&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['About'] \"&gt;About&lt;/a&gt;\n          &lt;/li&gt;\n        &lt;/ul&gt;\n      &lt;/nav&gt;\n    &lt;/header&gt;\n\n    &lt;main&gt;\n      &lt;router-outlet&gt;&lt;/router-outlet&gt;\n    &lt;/main&gt;\n\n    &lt;footer&gt;\n      TSI Cloud Portal by &lt;a [href]=\"url\"&gt;@EMBL-TSI&lt;/a&gt;\n      &lt;div&gt;\n        &lt;img [src]=\"emblebiLogo\" width=\"10%\"&gt;\n      &lt;/div&gt;\n    &lt;/footer&gt;\n  "
+            template: "\n    &lt;header&gt;\n      &lt;nav&gt;\n        &lt;h1&gt;{{ name }}&lt;/h1&gt;\n        &lt;ul&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['Index'] \"&gt;Index&lt;/a&gt;\n          &lt;/li&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['Home'] \"&gt;Home&lt;/a&gt;\n          &lt;/li&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['Repository'] \"&gt;Repository&lt;/a&gt;\n          &lt;/li&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['Deployments'] \"&gt;My Deployments&lt;/a&gt;\n          &lt;/li&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['About'] \"&gt;About&lt;/a&gt;\n          &lt;/li&gt;\n          &lt;li router-active&gt;\n            &lt;a [routerLink]=\" ['Profile'] \"&gt;My Profile&lt;/a&gt;\n          &lt;/li&gt;\n        &lt;/ul&gt;\n      &lt;/nav&gt;\n    &lt;/header&gt;\n\n    &lt;main&gt;\n      &lt;router-outlet&gt;&lt;/router-outlet&gt;\n    &lt;/main&gt;\n\n    &lt;footer&gt;\n      TSI Cloud Portal by &lt;a [href]=\"url\"&gt;@EMBL-TSI&lt;/a&gt;\n      &lt;div&gt;\n        &lt;img [src]=\"emblebiLogo\" width=\"10%\"&gt;\n      &lt;/div&gt;\n    &lt;/footer&gt;\n  "
         }),
         router_1.RouteConfig([
             { path: '/', component: home_1.Home, name: 'Index' },
             { path: '/home', component: home_1.Home, name: 'Home' },
+            { path: '/repository', component: repository_1.Repository, name: 'Repository' },
+            { path: '/deployments', component: deployments_1.Deployments, name: 'Deployments' },
             { path: '/about', loader: <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return require('./about/about')('About'); </span>}, name: 'About' },
+            { path: '/profile', component: profile_1.Profile, name: 'Profile' },
             { path: '/**', redirectTo: ['Index'] }
         ]), 
         __metadata('design:paramtypes', [])
@@ -145,7 +163,7 @@ exports.App = App;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 08 2016 13:10:09 GMT+0000 (GMT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 08 2016 14:06:22 GMT+0000 (GMT)
 </div>
 </div>
 <script src="../prettify.js"></script>

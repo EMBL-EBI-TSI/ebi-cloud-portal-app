@@ -8,6 +8,8 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/home';
 import {Repository} from './repository/repository';
+import {Deployments} from './deployments/deployments';
+import {Profile} from './profile/profile';
 
 /*
  * App Component
@@ -36,19 +38,19 @@ import {Repository} from './repository/repository';
   template: `
     <header>
       <nav>
-        <h1>{{ name }}</h1>
+        <h1><a [routerLink]=" ['Index'] ">{{ name }}</a></h1>
         <ul>
           <li router-active>
-            <a [routerLink]=" ['Index'] ">Index</a>
-          </li>
-          <li router-active>
-            <a [routerLink]=" ['Home'] ">Home</a>
+            <a [routerLink]=" ['Deployments'] ">My Deployments</a>
           </li>
           <li router-active>
             <a [routerLink]=" ['Repository'] ">Repository</a>
           </li>
           <li router-active>
             <a [routerLink]=" ['About'] ">About</a>
+          </li>
+          <li router-active>
+            <a [routerLink]=" ['Profile'] ">My Profile</a>
           </li>
         </ul>
       </nav>
@@ -70,8 +72,10 @@ import {Repository} from './repository/repository';
   { path: '/', component: Home, name: 'Index' },
   { path: '/home', component: Home, name: 'Home' },
   { path: '/repository', component: Repository, name: 'Repository' },
+  { path: '/deployments', component: Deployments, name: 'Deployments' },
   // Async load a component using Webpack's require with es6-promise-loader
   { path: '/about', loader: () => require('./about/about')('About'), name: 'About' },
+  { path: '/profile', component: Profile, name: 'Profile' },
   { path: '/**', redirectTo: ['Index'] }
 ])
 export class App {
@@ -82,12 +86,3 @@ export class App {
 
   }
 }
-
-/*
- * Please review the https://github.com/AngularClass/angular2-examples/ repo for
- * more angular app examples that you may copy/paste
- * (The examples may not be updated as quickly. Please open an issue on github for us to update it)
- * For help or questions please contact us at @AngularClass on twitter
- * or our chat on Slack at https://AngularClass.com/slack-join
- * or via chat on Gitter at https://gitter.im/AngularClass/angular2-webpack-starter
- */

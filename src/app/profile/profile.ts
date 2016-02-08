@@ -3,14 +3,14 @@ import {FORM_DIRECTIVES} from 'angular2/common';
 
 
 @Component({
-  selector: 'repository',
+  selector: 'profile',
   providers: [ ],
   directives: [ ],
   pipes: [ ],
-  styles: [ require('./repository.css') ],
-  template: require('./repository.html')
+  styles: [ require('./profile.css') ],
+  template: require('./profile.html')
 })
-export class Repository {
+export class Profile {
   // Set our default values
   data = { value: '' };
   // TypeScript public modifiers
@@ -19,7 +19,7 @@ export class Repository {
   }
 
   ngOnInit() {
-    console.log('hello `Repository` component');
+    console.log('hello *Profile* component');
   }
 
 }
