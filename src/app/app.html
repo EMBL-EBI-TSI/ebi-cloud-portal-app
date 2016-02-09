@@ -14,23 +14,26 @@
     
     <!-- local-title -->
     <div class="grid_12 alpha" id="local-title">
-      <h1><a [routerLink]=" ['Index'] ">{{ name }}</a></h1>
+      <h1><a [routerLink]=" ['Home'] ">{{ name }}</a></h1>
     </div>
 
     <!-- Local nav -->
     <nav>
       <ul class="grid_24" id="local-nav">
-        <li router-active class="grid_4">
-          <a [routerLink]=" ['Deployments'] ">My Deployments</a>
+        <li *ngIf="auth.isAuth()" router-active class="grid_4">
+          <a [routerLink]=" ['Deployments'] ">Current Deployments</a>
+        </li>
+        <li *ngIf="auth.isAuth()" router-active class="grid_4">
+          <a [routerLink]=" ['Repository'] ">Appliance Repository</a>
         </li>
         <li router-active class="grid_4">
-          <a [routerLink]=" ['Repository'] ">Repository</a>
+          <a [routerLink]=" ['About'] ">About the Portal</a>
         </li>
-        <li router-active class="grid_4">
-          <a [routerLink]=" ['About'] ">About</a>
+        <li *ngIf="!auth.isAuth()" router-active class="menu-2596 menu-login functional " id="login">
+          <a [routerLink]=" ['Login'] ">Login</a>
         </li>
-        <li class="menu-2596 menu-login functional " id="login">
-          <a [routerLink]=" ['Profile'] ">Login</a>
+        <li *ngIf="auth.isAuth()" router-active class="menu-2596 menu-logout functional " id="logout">
+          <a [routerLink]=" ['Logout'] ">Logout, {{ auth.getUser() }}</a>
         </li>
       </ul>
     </nav>
@@ -41,7 +44,7 @@
 
 <main>
 <div id="content" role="main" class="grid_24 clearfix">
-  <router-outlet></router-outlet>
+  <loggedin-router-outlet></loggedin-router-outlet>
 </div>
 </main>
 

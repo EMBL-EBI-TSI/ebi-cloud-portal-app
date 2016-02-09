@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for app/home/home.ts</title>
+    <title>Code coverage report for app/login/login.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">app/home/</a> home.ts
+      <a href="../../index.html">all files</a> / <a href="index.html">app/login/</a> login.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">52.94% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/13</span>
+        <span class='fraction'>9/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">52.94% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/13</span>
+        <span class='fraction'>9/17</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -74,23 +74,31 @@
 29
 30
 31
-32</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+32
+33
+34
+35
+36</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -106,35 +114,39 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var core_1 = require('angular2/core');
-var common_1 = require('angular2/common');
-var title_1 = require('./services/title');
-var x_large_1 = require('./directives/x-large');
-var Home = (function () {
-    function Home(title) {
-        this.title = title;
-        this.data = { value: '' };
+var authentication_1 = require('./services/authentication');
+var Login = (function () {
+<span class="fstat-no" title="function not covered" >    function Login(auth) {</span>
+<span class="cstat-no" title="statement not covered" >        this.data = { value: '' };</span>
+<span class="cstat-no" title="statement not covered" >        this.auth = auth;</span>
     }
-    Home.prototype.ngOnInit = function () {
-        console.log('hello `Home` component');
+    Login.prototype.login = <span class="fstat-no" title="function not covered" >function (event, username, password) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
+<span class="cstat-no" title="statement not covered" >        event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        this.auth.login(username, password).then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            _this.router.parent.navigate('/home');</span>
+        })
+            .catch(<span class="fstat-no" title="function not covered" >function (error) {</span>
+<span class="cstat-no" title="statement not covered" >            alert(error);</span>
+        });
     };
-    Home = __decorate([
+    Login.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('hello *Login* component');</span>
+    };
+    Login = __decorate([
         core_1.Component({
-            selector: 'home',
+            selector: 'login',
             providers: [
-                title_1.Title
+                authentication_1.Authentication
             ],
-            directives: common_1.FORM_DIRECTIVES.concat([
-                x_large_1.XLarge
-            ]),
-            pipes: [],
-            styles: [require('./home.css')],
-            template: require('./home.html')
+            styles: [require('./login.css')],
+            template: require('./login.html')
         }), 
-        __metadata('design:paramtypes', [title_1.Title])
-    ], Home);
-    return Home;
+        __metadata('design:paramtypes', [authentication_1.Authentication])
+    ], Login);
+    return Login;
 })();
-exports.Home = Home;
+exports.Login = Login;
 &nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
