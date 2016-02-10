@@ -22,12 +22,12 @@ export class Authentication {
   login(username, password) {
 
     var headers = new Headers();
-    headers.append('Authorization', "Basic " + btoa(username + ":" + password));
+    headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8080/account/' + username, 
+      'http://localhost:8080/account/' + username,
       {
         headers: headers
       }
@@ -49,8 +49,8 @@ export class Authentication {
   }
 
   setCredentials(userData, username, password) {
-    console.log("User data is %O", userData);
-    if(userData) {
+    console.log('User data is %O', userData);
+    if (userData) {
       localStorage.setItem('username', username);
       localStorage.setItem('password', password);
       this.currentUser = username;

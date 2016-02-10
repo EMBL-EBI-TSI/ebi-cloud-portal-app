@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.12% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/17</span>
+        <span class='fraction'>22/22</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.12% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>16/17</span>
+        <span class='fraction'>22/22</span>
       </div>
     </div>
   </div>
@@ -81,7 +81,14 @@
 36
 37
 38
-39</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+39
+40
+41
+42
+43
+44
+45
+46</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -94,6 +101,12 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,7 +122,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,13 +136,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var common_1 = require('angular2/common');
+var logged_in_outlet_1 = require('./directives/logged-in-outlet');
 var router_active_1 = require('./directives/router-active');
 var home_1 = require('./home/home');
+var about_1 = require('./about/about');
 var repository_1 = require('./repository/repository');
 var deployments_1 = require('./deployments/deployments');
 var login_1 = require('./login/login');
+var logout_1 = require('./login/logout');
+var profile_1 = require('./profile/profile');
+var authentication_1 = require('./services/authentication/authentication');
 var App = (function () {
-    function App() {
+    function App(auth) {
+        this.auth = auth;
         this.emblebiLogo = 'assets/img/embl-ebi-logo.png';
         this.name = 'TSI Cloud Portal';
         this.url = 'https://github.com/EMBL-EBI-TSI';
@@ -136,10 +156,9 @@ var App = (function () {
     App = __decorate([
         core_1.Component({
             selector: 'app',
-            providers: common_1.FORM_PROVIDERS.slice(),
-            directives: router_1.ROUTER_DIRECTIVES.concat([router_active_1.RouterActive]),
+            providers: common_1.FORM_PROVIDERS.concat([authentication_1.Authentication]),
+            directives: router_1.ROUTER_DIRECTIVES.concat([router_active_1.RouterActive, logged_in_outlet_1.LoggedInRouterOutlet]),
             pipes: [],
-            styles: ["\n    nav ul {\n      display: inline;\n      list-style-type: none;\n      margin: 0;\n      padding: 0;\n      width: 60px;\n    }\n    nav li {\n      display: inline;\n    }\n    nav li.active {\n      background-color: lightgray;\n    }\n  "],
             template: require('./app.html')
         }),
         router_1.RouteConfig([
@@ -147,11 +166,13 @@ var App = (function () {
             { path: '/home', component: home_1.Home, name: 'Home' },
             { path: '/repository', component: repository_1.Repository, name: 'Repository' },
             { path: '/deployments', component: deployments_1.Deployments, name: 'Deployments' },
-            { path: '/about', loader: <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return require('./about/about')('About'); </span>}, name: 'About' },
+            { path: '/about', component: about_1.About, name: 'About' },
             { path: '/login', component: login_1.Login, name: 'Login' },
+            { path: '/logout', component: logout_1.Logout, name: 'Logout' },
+            { path: '/profile', component: profile_1.Profile, name: 'Profile' },
             { path: '/**', redirectTo: ['Index'] }
         ]), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [authentication_1.Authentication])
     ], App);
     return App;
 })();
@@ -163,7 +184,7 @@ exports.App = App;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 09 2016 11:27:41 GMT+0000 (GMT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 10 2016 14:11:34 GMT+0000 (GMT)
 </div>
 </div>
 <script src="../prettify.js"></script>

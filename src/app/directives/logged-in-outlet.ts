@@ -1,6 +1,6 @@
 import {Directive, Attribute, ElementRef, DynamicComponentLoader} from 'angular2/core';
 import {Router, RouterOutlet, ComponentInstruction} from 'angular2/router';
-import {Login} from './login/login';
+import {Login} from '../login/login';
 
 @Directive({
   selector: 'loggedin-router-outlet'
@@ -20,18 +20,19 @@ export class LoggedInRouterOutlet extends RouterOutlet {
       'deployments': false,
       'repository': false,
       'home': false,
-      'about': true
+      'about': true,
+      'profile': true
     };
   }
 
   activate(instruction: ComponentInstruction) {
     var url = instruction.urlPath;
-    console.log("Url is " + url);
-    console.log("Username is " + localStorage.getItem('username'));
+    console.log('Url is ' + url);
+    console.log('Username is ' + localStorage.getItem('username'));
     if (url) {
       if (!this.publicRoutes[url] && !localStorage.getItem('username')) {
         // todo: redirect to Login, may be there a better way?
-        console.log("Trying to redirect to login from " + url);
+        console.log('Trying to redirect to login from ' + url);
         instruction.urlPath = 'login';
         instruction.componentType = Login;
       }

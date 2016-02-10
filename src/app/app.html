@@ -20,20 +20,23 @@
     <!-- Local nav -->
     <nav>
       <ul class="grid_24" id="local-nav">
-        <li *ngIf="auth.isAuth()" router-active class="grid_4">
-          <a [routerLink]=" ['Deployments'] ">Current Deployments</a>
+        <li *ngIf="auth.isAuth()" router-active class="first">
+          <a [routerLink]="['Deployments']" class="icon icon-functional">Current Deployments</a>
         </li>
-        <li *ngIf="auth.isAuth()" router-active class="grid_4">
-          <a [routerLink]=" ['Repository'] ">Appliance Repository</a>
+        <li *ngIf="auth.isAuth()" router-active>
+          <a [routerLink]="['Repository']" class="icon icon-functional">Appliance Repository</a>
         </li>
-        <li router-active class="grid_4">
-          <a [routerLink]=" ['About'] ">About the Portal</a>
+        <li router-active class="last">
+          <a [routerLink]="['About']" class="icon icon-functional">About the Portal</a>
         </li>
-        <li *ngIf="!auth.isAuth()" router-active class="menu-2596 menu-login functional " id="login">
-          <a [routerLink]=" ['Login'] ">Login</a>
+        <li *ngIf="!auth.isAuth()" router-active class="functional">
+          <a [routerLink]="['Login']" class="icon icon-functional" data-icon="l">Login</a>
         </li>
-        <li *ngIf="auth.isAuth()" router-active class="menu-2596 menu-logout functional " id="logout">
-          <a [routerLink]=" ['Logout'] ">Logout, {{ auth.getUser() }}</a>
+        <li *ngIf="auth.isAuth()" router-active class="functional">
+          <a [routerLink]="['Logout']" class="icon icon-functional" data-icon="l">Logout</a>
+        </li>
+        <li *ngIf="auth.isAuth()" router-active class="functional last">
+          <a [routerLink]="['Profile']" class="icon icon-generic">{{ auth.getUser() }} account</a>
         </li>
       </ul>
     </nav>
