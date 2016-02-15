@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.5% </span>
+        <span class="strong">44% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/16</span>
+        <span class='fraction'>11/25</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">14.29% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/4</span>
+        <span class='fraction'>1/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.5% </span>
+        <span class="strong">44% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/16</span>
+        <span class='fraction'>11/25</span>
       </div>
     </div>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -74,7 +74,22 @@
 29
 30
 31
-32</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -86,11 +101,24 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,16 +135,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
-var authentication_1 = require('../services/authentication/authentication');
+var account_1 = require('../services/account/account');
+var credentials_1 = require('../services/credentials/credentials');
 var Login = (function () {
-<span class="fstat-no" title="function not covered" >    function Login(router, auth) {</span>
+<span class="fstat-no" title="function not covered" >    function Login(router, account, credentials) {</span>
 <span class="cstat-no" title="statement not covered" >        this.router = router;</span>
-<span class="cstat-no" title="statement not covered" >        this.auth = null;</span>
-<span class="cstat-no" title="statement not covered" >        this.auth = auth;</span>
+<span class="cstat-no" title="statement not covered" >        this.account = account;</span>
+<span class="cstat-no" title="statement not covered" >        this.credentials = credentials;</span>
     }
     Login.prototype.login = <span class="fstat-no" title="function not covered" >function (event, username, password) {</span>
+<span class="cstat-no" title="statement not covered" >        var _this = this;</span>
 <span class="cstat-no" title="statement not covered" >        event.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >        this.auth.login(username, password);</span>
+<span class="cstat-no" title="statement not covered" >        this.credentials.setCredentials(username, password);</span>
+<span class="cstat-no" title="statement not covered" >        this.account.getAccount(this.credentials)</span>
+            .subscribe(<span class="fstat-no" title="function not covered" >function (data) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log('User data is %O', data);</span>
+<span class="cstat-no" title="statement not covered" >            _this.router.parent.navigateByUrl('/home');</span>
+        }, <span class="fstat-no" title="function not covered" >function (err) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log(err);</span>
+<span class="cstat-no" title="statement not covered" >            _this.credentials.clearCredentials();</span>
+<span class="cstat-no" title="statement not covered" >            _this.router.parent.navigateByUrl('/login');</span>
+        }, <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >            console.log('Authentication Complete');</span>
+        });
     };
     Login.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
 <span class="cstat-no" title="statement not covered" >        console.log('hello *Login* component');</span>
@@ -125,12 +166,13 @@ var Login = (function () {
         core_1.Component({
             selector: 'login',
             providers: [
-                authentication_1.Authentication
+                account_1.Account,
+                credentials_1.Credentials
             ],
             styles: [require('./login.css')],
             template: require('./login.html')
         }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_1.Authentication])
+        __metadata('design:paramtypes', [router_1.Router, account_1.Account, credentials_1.Credentials])
     ], Login);
     return Login;
 })();
@@ -142,7 +184,7 @@ exports.Login = Login;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 10 2016 14:11:34 GMT+0000 (GMT)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 15 2016 10:40:10 GMT+0000 (GMT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

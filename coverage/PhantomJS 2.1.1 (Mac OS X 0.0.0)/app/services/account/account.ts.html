@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for app/login/logout.ts</title>
+    <title>Code coverage report for app/services/account/account.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../index.html">all files</a> / <a href="index.html">app/login/</a> logout.ts
+      <a href="../../../index.html">all files</a> / <a href="index.html">app/services/account/</a> account.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.29% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/14</span>
+        <span class='fraction'>9/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">25% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/3</span>
+        <span class='fraction'>1/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.29% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/14</span>
+        <span class='fraction'>9/18</span>
       </div>
     </div>
   </div>
@@ -70,8 +70,7 @@
 25
 26
 27
-28
-29</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+28</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -83,15 +82,14 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -100,32 +98,31 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var core_1 = require('angular2/core');
+var http_1 = require('angular2/http');
 var router_1 = require('angular2/router');
-var authentication_1 = require('../services/authentication/authentication');
-var Logout = (function () {
-<span class="fstat-no" title="function not covered" >    function Logout(router, auth) {</span>
+var Account = (function () {
+<span class="fstat-no" title="function not covered" >    function Account(router, http) {</span>
 <span class="cstat-no" title="statement not covered" >        this.router = router;</span>
-<span class="cstat-no" title="statement not covered" >        this.auth = null;</span>
-<span class="cstat-no" title="statement not covered" >        this.auth = auth;</span>
+<span class="cstat-no" title="statement not covered" >        this.http = http;</span>
+<span class="cstat-no" title="statement not covered" >        this.credentials = null;</span>
     }
-    Logout.prototype.ngOnInit = <span class="fstat-no" title="function not covered" >function () {</span>
-<span class="cstat-no" title="statement not covered" >        console.log('hello *Login* component');</span>
-<span class="cstat-no" title="statement not covered" >        this.auth.logout();</span>
+    Account.prototype.getAccount = <span class="fstat-no" title="function not covered" >function (credentials) {</span>
+<span class="cstat-no" title="statement not covered" >        var headers = new http_1.Headers();</span>
+<span class="cstat-no" title="statement not covered" >        headers.append('Authorization', 'Basic ' + btoa(credentials.getUsername() + ':' + credentials.getPassword()));</span>
+<span class="cstat-no" title="statement not covered" >        headers.append('Accept', 'application/json');</span>
+<span class="cstat-no" title="statement not covered" >        headers.append('Content-Type', 'application/json');</span>
+<span class="cstat-no" title="statement not covered" >        return this.http.get('http://localhost:8080/account/' + credentials.getUsername(), {</span>
+            headers: headers
+        })
+            .map(<span class="fstat-no" title="function not covered" >function (res) {</span> <span class="cstat-no" title="statement not covered" >return res.json(); </span>});
     };
-    Logout = __decorate([
-        core_1.Component({
-            selector: 'logout',
-            providers: [
-                authentication_1.Authentication
-            ],
-            styles: [require('./login.css')],
-            template: require('./logout.html')
-        }), 
-        __metadata('design:paramtypes', [router_1.Router, authentication_1.Authentication])
-    ], Logout);
-    return Logout;
+    Account = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
+    ], Account);
+    return Account;
 })();
-exports.Logout = Logout;
+exports.Account = Account;
 &nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -136,7 +133,7 @@ exports.Logout = Logout;
   generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 15 2016 10:40:10 GMT+0000 (GMT)
 </div>
 </div>
-<script src="../../prettify.js"></script>
+<script src="../../../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -144,6 +141,6 @@ window.onload = function () {
         }
 };
 </script>
-<script src="../../sorter.js"></script>
+<script src="../../../sorter.js"></script>
 </body>
 </html>

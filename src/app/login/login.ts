@@ -1,14 +1,17 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {Authentication} from '../services/authentication/authentication';
+import {Account} from '../services/account/account';
+import {Credentials} from '../services/credentials/credentials';
+
 
 @Component({
 
   selector: 'login',
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
-    Authentication
+      Account, 
+      Credentials
   ],
   // Our list of styles in our component. We may add more to compose many styles together
   styles: [ require('./login.css') ],
@@ -16,16 +19,31 @@ import {Authentication} from '../services/authentication/authentication';
   template: require('./login.html')
 })
 export class Login {
-  // Set our default values
-  auth = null;
 
-  constructor(public router: Router, auth: Authentication) {
-    this.auth = auth;
+
+  constructor(public router: Router, public account: Account, public credentials: Credentials) {
+
   }
 
   login(event, username, password) {
     event.preventDefault();
-    this.auth.login(username, password);
+
+    this.credentials.setCredentials(username, password);
+    this.account.getAccount(this.credentials)
+        .subscribe(
+        data => {
+            console.log('User data is %O', data);
+            this.router.parent.navigateByUrl('/home');
+        },
+        err => {
+            console.log(err);
+            this.credentials.clearCredentials();
+            this.router.parent.navigateByUrl('/login');
+        },
+        () => {
+            console.log('Authentication Complete');
+        }
+        );
   }
 
   ngOnInit() {
