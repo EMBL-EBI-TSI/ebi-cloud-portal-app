@@ -1,3 +1,18 @@
-<section>
-	<h2>Current active deployments</h2>
+<section *ngIf="deploymentsData">
+	
+	<h2>Deployments for user {{ credentials.getUsername() }}</h2>
+	<br>
+	<div *ngFor="#deployment of deploymentsData._embedded.deploymentResourceList">
+		<h3>{{ deployment.reference }}</h3>
+		<h4>{{ deployment.providerId }}</h4>
+		<h4>{{ deployment.accessIp }}</h4>
+		<form>
+			<input type="text" [(ngModel)]="deployment.reference" class="form-control" readonly hidden>
+	    <span class="input-group-btn">
+	      <button class="btn" (click)="destroyDeployment(deployment.reference)" class="submit">Destroy</button>
+	    </span>
+    </form>
+    <br>
+	</div>
+
 </section>
