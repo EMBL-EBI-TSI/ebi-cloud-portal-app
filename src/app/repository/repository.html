@@ -1,3 +1,18 @@
-<section>
+<section *ngIf="repositoryData">
+	
 	<h2>Appliances repository</h2>
+	<br>
+	<div *ngFor="#application of repositoryData._embedded.applicationResourceList">
+		<h3>{{ application.name }}</h3>
+		<h4>{{ application.repoUri }}</h4>
+		<form>
+			<input type="text" [(ngModel)]="application.name" class="form-control" readonly hidden>
+	    <input type="text" [(ngModel)]="application.repoUri" class="form-control" readonly hidden>
+	    <span class="input-group-btn">
+	      <button class="btn" (click)="addDeployment($index)" class="submit">Deploy</button>
+	    </span>
+    </form>
+    <br>
+	</div>
+
 </section>
