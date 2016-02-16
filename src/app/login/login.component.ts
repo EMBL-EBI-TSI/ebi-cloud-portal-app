@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {Account} from '../services/account/account.service';
-import {Credentials} from '../services/credentials/credentials.service';
+import { AccountService } from '../services/account/account.service';
+import { CredentialService } from '../services/credential/credential.service';
 
 
 @Component({
@@ -10,8 +10,8 @@ import {Credentials} from '../services/credentials/credentials.service';
   selector: 'login',
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
-      Account, 
-      Credentials
+    AccountService, 
+    CredentialService
   ],
   // Our list of styles in our component. We may add more to compose many styles together
   styles: [require('./login.component.css')],
@@ -21,15 +21,15 @@ import {Credentials} from '../services/credentials/credentials.service';
 export class Login {
 
 
-  constructor(public router: Router, public account: Account, public credentials: Credentials) {
+  constructor(public router: Router, public accountService: AccountService, public credentialService: CredentialService) {
 
   }
 
   login(event, username, password) {
     event.preventDefault();
 
-    this.credentials.setCredentials(username, password);
-    this.account.getAccount(this.credentials)
+    this.credentialService.setCredentials(username, password);
+    this.accountService.getAccount(this.credentialService)
         .subscribe(
         data => {
             console.log('User data is %O', data);
@@ -37,7 +37,7 @@ export class Login {
         },
         err => {
             console.log(err);
-            this.credentials.clearCredentials();
+            this.credentialService.clearCredentials();
             this.router.parent.navigateByUrl('/login');
         },
         () => {

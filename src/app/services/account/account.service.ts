@@ -2,10 +2,11 @@ import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 import {Router} from 'angular2/router';
 
-import {Credentials} from '../credentials/credentials.service';
+import { CredentialService } from '../credential/credential.service';
+import { Account } from './account';
 
 @Injectable()
-export class Account {
+export class AccountService {
 
   credentials = null;
 
@@ -14,21 +15,22 @@ export class Account {
   }
 
 
-  getAccount(credentials: Credentials) {
-    console.log('Getting account for user ' + credentials.getUsername());
+  getAccount(credentialService: CredentialService) {
+
+    console.log('Getting account for user ' + credentialService.getUsername());
     
     var headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentials.getUsername() + ':' + credentials.getPassword()));
+    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8080/account/' + credentials.getUsername(),
+      'http://localhost:8080/account/' + credentialService.getUsername(),
       {
         headers: headers
       }
     )
-    .map(res => res.json());
+    .map(res => <Account> res.json());
     
   }
 

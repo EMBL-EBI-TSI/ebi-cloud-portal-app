@@ -2,14 +2,14 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 
-import {Application} from '../services/application/application.service';
-import {Credentials} from '../services/credentials/credentials.service';
+import { ApplicationService } from '../services/application/application.service';
+import { CredentialService } from '../services/credential/credential.service';
 
 @Component({
   selector: 'repository',
   providers: [
-      Application,
-      Credentials
+      ApplicationService,
+      CredentialService
   ],
   directives: [ ],
   pipes: [ ],
@@ -22,13 +22,13 @@ export class Repository {
   applications = {};
 
   // TypeScript public modifiers
-  constructor(public router: Router, public application: Application, public credentials: Credentials) {
+  constructor(public router: Router, public applicationService: ApplicationService, public credentialService: CredentialService) {
     this.applications = null;
   }
 
   ngOnInit() {
     console.log('hello `Repository` component');
-    this.application.getAll(this.credentials)
+    this.applicationService.getAll(this.credentialService)
         .subscribe(
           applications => {
               console.log('Applications data is %O', applications);
@@ -36,7 +36,7 @@ export class Repository {
           },
           error => {
               console.log(error);
-              this.credentials.clearCredentials();
+              this.credentialService.clearCredentials();
               this.router.parent.navigateByUrl('/login');
           },
           () => {

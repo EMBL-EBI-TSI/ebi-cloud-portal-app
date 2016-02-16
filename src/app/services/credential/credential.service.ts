@@ -1,7 +1,7 @@
 import {Injectable} from 'angular2/core';
 
 @Injectable()
-export class Credentials {
+export class CredentialService {
 
 
   constructor() {

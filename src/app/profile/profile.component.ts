@@ -1,38 +1,37 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {Account} from '../services/account/account.service';
-import {Credentials} from '../services/credentials/credentials.service';
+import { AccountService } from '../services/account/account.service';
+import { CredentialService } from '../services/credential/credential.service';
 
 @Component({
   selector: 'profile',
   providers: [
-    Account,
-    Credentials
+    AccountService,
+    CredentialService
   ],
   styles: [require('./profile.component.css')],
   template: require('./profile.component.html')
 })
 export class Profile {
-ser = null;
 
-  profileData = {};
+  account = {};
 
-  constructor(public router: Router, public account: Account, public credentials: Credentials) {
-    this.profileData = null;
+  constructor(public router: Router, public accountService: AccountService, public credentialService: CredentialService) {
+    this.account = null;
   }
 
   ngOnInit() {
     console.log('hello *Profile* component');
-    this.account.getAccount(this.credentials)
+    this.accountService.getAccount(this.credentialService)
       .subscribe(
-        data => {
-          console.log('User data is %O', data);
-          this.profileData = data;
+        account => {
+          console.log('User data is %O', account);
+          this.account = account;
         },
         err => {
           console.log(err);
-          this.credentials.clearCredentials();
+          this.credentialService.clearCredentials();
           this.router.parent.navigateByUrl('/login');
         },
         () => {

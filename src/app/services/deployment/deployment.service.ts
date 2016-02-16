@@ -2,10 +2,11 @@ import {Injectable} from 'angular2/core';
 import {Http, Headers} from 'angular2/http';
 import {Router} from 'angular2/router';
 
-import {Credentials} from '../credentials/credentials.service';
+import { Deployment } from './deployment';
+import { CredentialService } from '../credential/credential.service';
 
 @Injectable()
-export class Deployment {
+export class DeploymentService {
 
   credentials = null;
 
@@ -14,11 +15,11 @@ export class Deployment {
   }
 
 
-  getAll(credentials: Credentials) {
-    console.log('Getting all deployments for user ' + credentials.getUsername());
+  getAll(credentialService: CredentialService) {
+    console.log('Getting all deployments for user ' + credentialService.getUsername());
     
     var headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentials.getUsername() + ':' + credentials.getPassword()));
+    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -32,11 +33,11 @@ export class Deployment {
     
   }
 
-  getById(credentials: Credentials, applicationId: string) {
-      console.log('Getting application ' + applicationId + ' for user ' + credentials.getUsername());
+  getById(credentialService: CredentialService, applicationId: string) {
+    console.log('Getting application ' + applicationId + ' for user ' + credentialService.getUsername());
 
       var headers = new Headers();
-      headers.append('Authorization', 'Basic ' + btoa(credentials.getUsername() + ':' + credentials.getPassword()));
+      headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
       headers.append('Accept', 'application/json');
       headers.append('Content-Type', 'application/json');
 
@@ -46,7 +47,7 @@ export class Deployment {
               headers: headers
           }
       )
-          .map(res => res.json());
+        .map(res => <Deployment> res.json());
 
   }
 
