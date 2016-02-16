@@ -36,19 +36,23 @@ export class DeploymentService {
   getById(credentialService: CredentialService, applicationId: string) {
     console.log('Getting application ' + applicationId + ' for user ' + credentialService.getUsername());
 
-      var headers = new Headers();
-      headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
-      headers.append('Accept', 'application/json');
-      headers.append('Content-Type', 'application/json');
+    var headers = new Headers();
+    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
 
-      return this.http.get(
-          'http://localhost:8080/deployment/' + applicationId,
-          {
-              headers: headers
-          }
-      )
-        .map(res => <Deployment> res.json());
+    return this.http.get(
+        'http://localhost:8080/deployment/' + applicationId,
+        {
+            headers: headers
+        }
+    )
+      .map(res => <Deployment> res.json());
 
+  }
+
+  add(credentialService: CredentialService) {
+    console.log('Deploying application for user ' + credentialService.getUsername());
   }
 
 }

@@ -1,18 +1,27 @@
 <section *ngIf="applications">
-	
-<!-- 	<h2>Appliances repository</h2>
-	<br> -->
-	<div *ngFor="#application of applications">
-		<h3>{{ application.name }}</h3>
-		<h4>{{ application.repoUri }}</h4>
-		<form>
-			<input type="text" [(ngModel)]="application.name" class="form-control" readonly hidden>
-	    <input type="text" [(ngModel)]="application.repoUri" class="form-control" readonly hidden>
-	    <span class="input-group-btn">
-	      <button class="btn" (click)="addDeployment($index)" class="submit">Deploy</button>
-	    </span>
-    </form>
-    <br>
+<div class="grid_24">
+
+	<div class="grid_16 alpha">
+		<div *ngFor="#application of applications">
+			<h3>{{ application.name }}</h3>
+			<h4>{{ application.repoUri }}</h4>
+			<form>
+				<input type="text" [(ngModel)]="application.name" class="form-control" readonly hidden>
+		    <input type="text" [(ngModel)]="application.repoUri" class="form-control" readonly hidden>
+		    <span class="input-group-btn">
+		      <button class="btn" (click)="addDeployment($index)" class="submit">Deploy</button>
+		    </span>
+	    </form>
+	    <br>
+		</div>
 	</div>
+
+	<div class="grid_8 omega">
+		<h3>Add new application</h3>
+
+		<application-form></application-form>
+	</div>
+
+</div>
 
 </section>

@@ -51,4 +51,9 @@ export class ApplicationService {
 
   }
 
+  add(repoUri: string) {
+    console.log("[ApplicationService] Adding repo at " + repoUri);
+
+  }
+
 }
