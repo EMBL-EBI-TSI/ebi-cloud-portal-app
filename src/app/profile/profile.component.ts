@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {Account} from '../services/account/account';
-import {Credentials} from '../services/credentials/credentials';
+import {Account} from '../services/account/account.service';
+import {Credentials} from '../services/credentials/credentials.service';
 
 @Component({
   selector: 'profile',
@@ -10,8 +10,8 @@ import {Credentials} from '../services/credentials/credentials';
     Account,
     Credentials
   ],
-  styles: [ require('./profile.css') ],
-  template: require('./profile.html')
+  styles: [require('./profile.component.css')],
+  template: require('./profile.component.html')
 })
 export class Profile {
 ser = null;

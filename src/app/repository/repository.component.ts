@@ -2,8 +2,8 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 
-import {Application} from '../services/application/application';
-import {Credentials} from '../services/credentials/credentials';
+import {Application} from '../services/application/application.service';
+import {Credentials} from '../services/credentials/credentials.service';
 
 @Component({
   selector: 'repository',
@@ -13,8 +13,8 @@ import {Credentials} from '../services/credentials/credentials';
   ],
   directives: [ ],
   pipes: [ ],
-  styles: [ require('./repository.css') ],
-  template: require('./repository.html')
+  styles: [require('./repository.component.css')],
+  template: require('./repository.component.html')
 })
 export class Repository {
   // Set our default values
@@ -29,18 +29,18 @@ export class Repository {
     console.log('hello `Repository` component');
     this.application.getAll(this.credentials)
         .subscribe(
-        data => {
-            console.log('Applications data is %O', data);
-            this.repositoryData = data;
-        },
-        err => {
-            console.log(err);
-            this.credentials.clearCredentials();
-            this.router.parent.navigateByUrl('/login');
-        },
-        () => {
-            console.log('Account data retrieval complete');
-        }
+          applications => {
+              console.log('Applications data is %O', applications);
+              this.repositoryData = applications;
+          },
+          error => {
+              console.log(error);
+              this.credentials.clearCredentials();
+              this.router.parent.navigateByUrl('/login');
+          },
+          () => {
+              console.log('Account data retrieval complete');
+          }
         );
   }
 

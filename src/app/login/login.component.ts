@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import {Account} from '../services/account/account';
-import {Credentials} from '../services/credentials/credentials';
+import {Account} from '../services/account/account.service';
+import {Credentials} from '../services/credentials/credentials.service';
 
 
 @Component({
@@ -14,9 +14,9 @@ import {Credentials} from '../services/credentials/credentials';
       Credentials
   ],
   // Our list of styles in our component. We may add more to compose many styles together
-  styles: [ require('./login.css') ],
+  styles: [require('./login.component.css')],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require('./login.html')
+  template: require('./login.component.html')
 })
 export class Login {
 

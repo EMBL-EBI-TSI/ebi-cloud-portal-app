@@ -13,9 +13,9 @@ import {MockBackend} from 'angular2/http/testing';
 
 
 // Load the implementations that should be tested
-import {Repository} from './repository';
+import {Deployments} from './deployments.component';
 
-describe('Repository', () => {
+describe('Deployments', () => {
   // provide our implementations or mocks to the dependency injector
   beforeEachProviders(() => [
     BaseRequestOptions,
@@ -27,18 +27,18 @@ describe('Repository', () => {
       deps: [MockBackend, BaseRequestOptions]
     }),
 
-    Repository
+    Deployments
   ]);
 
-  it('should have default data', inject([ Repository ], (repository) => {
-    expect(repository.data).toEqual({ value: '' });
+  it('should have default data', inject([ Deployments ], (deployments) => {
+    expect(deployments.data).toEqual({ value: '' });
   }));
 
-  it('should log ngOnInit', inject([ Repository ], (repository) => {
+  it('should log ngOnInit', inject([ Deployments ], (deployments) => {
     spyOn(console, 'log');
     expect(console.log).not.toHaveBeenCalled();
 
-    repository.ngOnInit();
+    deployments.ngOnInit();
     expect(console.log).toHaveBeenCalled();
   }));
 

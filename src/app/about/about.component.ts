@@ -3,8 +3,8 @@ import {Component} from 'angular2/core';
 
 @Component({
   selector: 'about',
-  styles: [ require('./about.css') ],
-  template: require('./about.html')
+  styles: [require('./about.component.css')],
+  template: require('./about.component.html')
 })
 export class About {
   constructor() {

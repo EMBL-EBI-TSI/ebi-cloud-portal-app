@@ -2,14 +2,14 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 
-import {Deployment} from '../services/deployment/deployment';
-import {Credentials} from '../services/credentials/credentials';
+import {Deployment} from '../services/deployment/deployment.service';
+import {Credentials} from '../services/credentials/credentials.service';
 
 @Component({
   selector: 'deployments',
   providers: [ Deployment, Credentials ],
-  styles: [ require('./deployments.css') ],
-  template: require('./deployments.html')
+  styles: [ require('./deployments.component.css') ],
+  template: require('./deployments.component.html')
 })
 export class Deployments {
   // Set our default values

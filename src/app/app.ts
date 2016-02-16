@@ -8,12 +8,12 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {LoggedInRouterOutlet} from './directives/logged-in-outlet';
 import {RouterActive} from './directives/router-active';
 import {Home} from './home/home';
-import {About} from './about/about';
-import {Repository} from './repository/repository';
-import {Deployments} from './deployments/deployments';
-import {Login} from './login/login';
-import {Logout} from './login/logout';
-import {Profile} from './profile/profile';
+import {About} from './about/about.component';
+import {Repository} from './repository/repository.component';
+import {Deployments} from './deployments/deployments.component';
+import {Login} from './login/login.component';
+import {Logout} from './login/logout.component';
+import {Profile} from './profile/profile.component';
 import {Authentication} from './services/authentication/authentication';
 
 /*

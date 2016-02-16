@@ -11,9 +11,9 @@ import {Authentication} from '../services/authentication/authentication';
     Authentication
   ],
   // Our list of styles in our component. We may add more to compose many styles together
-  styles: [ require('./login.css') ],
+  styles: [require('./login.component.css')],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require('./logout.html')
+  template: require('./logout.component.html')
 
 })
 export class Logout {
