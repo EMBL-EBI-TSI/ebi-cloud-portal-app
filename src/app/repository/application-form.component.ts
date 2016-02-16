@@ -28,7 +28,7 @@ export class ApplicationForm {
 		}
 
 		addApplication(event) {
-						event.preventDefault();
+			event.preventDefault();
 			console.log("[ApplicationForm] adding " + this.applicationForm.value.repoUri);
 			this.applicationService.add(this.applicationForm.value.repoUri);
 		}
