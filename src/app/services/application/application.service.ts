@@ -1,6 +1,6 @@
-import {Injectable} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
-import {Router} from 'angular2/router';
+import { Injectable } from 'angular2/core';
+import { Http, Headers, RequestOptions } from 'angular2/http';
+import { Router } from 'angular2/router';
 
 import { Application } from './application';
 import { CredentialService } from '../credential/credential.service';
@@ -16,9 +16,9 @@ export class ApplicationService {
 
 
   getAll(credentialService: CredentialService) {
-    console.log('Getting all applications for user ' + credentialService.getUsername());
+    console.log('[ApplicationService] Getting all applications for user ' + credentialService.getUsername());
     
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
@@ -34,26 +34,36 @@ export class ApplicationService {
   }
 
   getById(credentialService: CredentialService, applicationId: string) {
-    console.log('Getting application ' + applicationId + ' for user ' + credentialService.getUsername());
+    console.log('[ApplicationService] Getting application ' + applicationId + ' for user ' + credentialService.getUsername());
 
-      var headers = new Headers();
-      headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
-      headers.append('Accept', 'application/json');
-      headers.append('Content-Type', 'application/json');
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
 
-      return this.http.get(
-          'http://localhost:8080/application/' + applicationId,
-          {
-              headers: headers
-          }
-      )
-          .map(res => <Application> res.json());
+    return this.http.get(
+        'http://localhost:8080/application/' + applicationId,
+        {
+            headers: headers
+        }
+    )
+        .map(res => <Application> res.json());
 
   }
 
-  add(repoUri: string) {
-    console.log("[ApplicationService] Adding repo at " + repoUri);
+  add(credentialService: CredentialService, repoUri: string) {
+    console.log('[ApplicationService] Adding repo at ' + repoUri);
 
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+
+    let body = JSON.stringify({ repoUri });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post('http://localhost:8080/application/', body, options)
+      .map(res => <Application> res.json());
   }
 
 }

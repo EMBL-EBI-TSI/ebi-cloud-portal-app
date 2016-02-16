@@ -30,7 +30,14 @@ export class ApplicationForm {
 		addApplication(event) {
 			event.preventDefault();
 			console.log("[ApplicationForm] adding " + this.applicationForm.value.repoUri);
-			this.applicationService.add(this.applicationForm.value.repoUri);
+			this.applicationService.add(this.credentialService, this.applicationForm.value.repoUri).subscribe(
+				application  => {
+
+				},
+				error => {
+					console.log(error);
+				}
+			);
 		}
 
 }
