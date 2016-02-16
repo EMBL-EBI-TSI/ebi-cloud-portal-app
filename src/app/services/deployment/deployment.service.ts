@@ -28,7 +28,7 @@ export class Deployment {
         headers: headers
       }
     )
-    .map(res => res.json());
+      .map(res => <Deployment[]> res.json()._embedded.deploymentResourceList);
     
   }
 

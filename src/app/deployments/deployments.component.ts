@@ -13,30 +13,30 @@ import {Credentials} from '../services/credentials/credentials.service';
 })
 export class Deployments {
   // Set our default values
-    deploymentsData = {};
+  deployments = {};
 
-    // TypeScript public modifiers
-    constructor(public router: Router, public deployment: Deployment, public credentials: Credentials) {
-        this.deploymentsData = null;
+  // TypeScript public modifiers
+  constructor(public router: Router, public deployment: Deployment, public credentials: Credentials) {
+    this.deployments = null;
 
-    }
+  }
 
   ngOnInit() {
     console.log('hello `Deployments` component');
     this.deployment.getAll(this.credentials)
         .subscribe(
-        data => {
-            console.log('Deployments data is %O', data);
-            this.deploymentsData = data;
-        },
-        err => {
-            console.log(err);
-            this.credentials.clearCredentials();
-            this.router.parent.navigateByUrl('/login');
-        },
-        () => {
-            console.log('Deployment data retrieval complete');
-        }
+          deployments => {
+            console.log('Deployments data is %O', deployments);
+              this.deployments = deployments;
+          },
+          err => {
+              console.log(err);
+              this.credentials.clearCredentials();
+              this.router.parent.navigateByUrl('/login');
+          },
+          () => {
+              console.log('Deployment data retrieval complete');
+          }
         );
   }
 

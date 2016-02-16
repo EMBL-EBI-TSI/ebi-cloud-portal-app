@@ -1,8 +1,8 @@
-<section *ngIf="deploymentsData">
+<section *ngIf="deployments">
 	
 	<h2>Deployments for user {{ credentials.getUsername() }}</h2>
 	<br>
-	<div *ngFor="#deployment of deploymentsData._embedded.deploymentResourceList">
+	<div *ngFor="#deployment of deployments">
 		<h3>{{ deployment.reference }}</h3>
 		<h4>{{ deployment.providerId }}</h4>
 		<h4>{{ deployment.accessIp }}</h4>
