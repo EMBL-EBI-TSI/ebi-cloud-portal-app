@@ -17,12 +17,13 @@ import {Credentials} from '../services/credentials/credentials.service';
   template: require('./repository.component.html')
 })
 export class Repository {
+
   // Set our default values
-  repositoryData = { };
+  applications = {};
 
   // TypeScript public modifiers
   constructor(public router: Router, public application: Application, public credentials: Credentials) {
-      this.repositoryData = null;
+    this.applications = null;
   }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class Repository {
         .subscribe(
           applications => {
               console.log('Applications data is %O', applications);
-              this.repositoryData = applications;
+              this.applications = applications;
           },
           error => {
               console.log(error);

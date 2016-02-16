@@ -28,7 +28,7 @@ export class Application {
         headers: headers
       }
     )
-    .map(res => res.json());
+      .map(res => <Application[]>res.json()._embedded.applicationResourceList);
     
   }
 
