@@ -1,12 +1,15 @@
-import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
-import {Router} from 'angular2/router';
+import { Component } from 'angular2/core';
+import { FORM_DIRECTIVES, CORE_DIRECTIVES } from 'angular2/common';
+import { Router } from 'angular2/router';
+import { Alert } from 'ng2-bootstrap';
 
+import { ApplicationDeployer } from './application-deployer';
 import { Application } from '../../services/application/application';
 import { ApplicationService } from '../../services/application/application.service';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 import { CredentialService } from '../../services/credential/credential.service';
 import { AddApplicationForm } from './add-application-form.component';
+
 
 @Component({
   selector: 'repository',
@@ -15,7 +18,7 @@ import { AddApplicationForm } from './add-application-form.component';
     DeploymentService,
     CredentialService
   ],
-  directives: [ AddApplicationForm ],
+  directives: [Alert, AddApplicationForm, CORE_DIRECTIVES],
   pipes: [ ],
   styles: [require('./repository.component.css')],
   template: require('./repository.component.html')
@@ -23,7 +26,7 @@ import { AddApplicationForm } from './add-application-form.component';
 export class Repository {
 
   // Set our default values
-  applications = {};
+  applicationDeployers: ApplicationDeployer[];
 
   // TypeScript public modifiers
   constructor(
@@ -32,7 +35,7 @@ export class Repository {
     public deploymentService: DeploymentService,
     public credentialService: CredentialService)
   {
-    this.applications = null;
+    this.applicationDeployers = [];
   }
 
   ngOnInit() {
@@ -41,7 +44,7 @@ export class Repository {
         .subscribe(
           applications => {
               console.log('Applications data is %O', applications);
-              this.applications = applications;
+              this.applicationDeployers = applications.map(app => <ApplicationDeployer>app);
           },
           error => {
               console.log(error);
@@ -54,10 +57,11 @@ export class Repository {
         );
   }
 
-  deployApplication(event, application: Application) {
+  deployApplication(event, applicationDeployer: ApplicationDeployer) {
     event.preventDefault();
-    console.log("[Repository] Adding deployment for application from " + application.repoUri);
-    this.deploymentService.add(this.credentialService, application).subscribe(
+    applicationDeployer.deploying = true;
+    console.log("[Repository] Adding deployment for application from " + applicationDeployer.repoUri);
+    this.deploymentService.add(this.credentialService, applicationDeployer).subscribe(
       deployment  => {
         this.router.navigateByUrl('/deployments');
       },

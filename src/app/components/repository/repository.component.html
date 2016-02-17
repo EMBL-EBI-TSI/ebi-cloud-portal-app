@@ -1,15 +1,18 @@
-<section *ngIf="applications">
+<section *ngIf="applicationDeployers">
 <div class="grid_24">
 
 	<div class="grid_16 alpha">
-		<div *ngFor="#application of applications">
-			<h3>{{ application.name }}</h3>
-			<h4>{{ application.repoUri }}</h4>
+		<div *ngFor="#applicationDeployer of applicationDeployers">
+			<h3>{{ applicationDeployer.name }}</h3>
+			<h4>{{ applicationDeployer.repoUri }}</h4>
+			<alert *ngIf="applicationDeployer.deploying" [type]="warning" dismissible="false">
+  			The application is now deploying...
+			</alert>
 			<form>
-				<input type="text" [(ngModel)]="application.name" class="form-control" readonly hidden>
-		    <input type="text" [(ngModel)]="application.repoUri" class="form-control" readonly hidden>
+				<input type="text" [(ngModel)]="applicationDeployer.name" class="form-control" readonly hidden>
+		    <input type="text" [(ngModel)]="applicationDeployer.repoUri" class="form-control" readonly hidden>
 		    <span class="input-group-btn">
-		      <button class="btn" (click)="deployApplication($event, application)" class="submit" class="icon icon-functional" data-icon="}">Deploy</button>
+		      <button class="btn" (click)="deployApplication($event, applicationDeployer)" class="submit" class="icon icon-functional" data-icon="}">Deploy</button>
 		    </span>
 	    </form>
 	    <br>
