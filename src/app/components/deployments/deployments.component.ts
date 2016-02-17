@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 
+import { Deployment } from '../../services/deployment/deployment';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 import { CredentialService } from '../../services/credential/credential.service';
 
@@ -22,26 +23,43 @@ export class Deployments {
   }
 
   ngOnInit() {
-    console.log('hello `Deployments` component');
+    console.log('[Deployments] on init');
+    this.getAllDeployments();
+  }
+
+  destroyDeployment(event, deployment: Deployment) {
+    console.log('[Deployments] destroying application with reference ' + deployment.reference);
+    this.deploymentService.delete(this.credentialService, deployment).subscribe(
+      res => {
+        console.log('[Deployments] got response %O', res);
+        this.getAllDeployments();
+      },
+      err => {
+        console.log('[Deployments] error: ' + err);
+        this.credentialService.clearCredentials();
+        this.router.navigateByUrl('/login');
+      },
+      () => {
+        console.log('[Deployments] Deployment data retrieval complete');
+      }
+    );
+  }
+
+  private getAllDeployments() {
     this.deploymentService.getAll(this.credentialService)
-        .subscribe(
-          deployments => {
-            console.log('Deployments data is %O', deployments);
-              this.deployments = deployments;
-          },
-          err => {
-              console.log(err);
-              this.credentialService.clearCredentials();
-              this.router.parent.navigateByUrl('/login');
-          },
-          () => {
-              console.log('Deployment data retrieval complete');
-          }
-        );
+      .subscribe(
+      deployments => {
+        console.log('[Deployments] Deployments data is %O', deployments);
+        this.deployments = deployments;
+      },
+      err => {
+        console.log('[Deployments] error ' + err);
+        this.credentialService.clearCredentials();
+        this.router.parent.navigateByUrl('/login');
+      },
+      () => {
+        console.log('[Deployments] deployment data retrieval complete');
+      }
+      );
   }
-
-  destroyDeployment(reference: string) {
-      console.log("Destroying deployment " + reference);
-  }
-
 }

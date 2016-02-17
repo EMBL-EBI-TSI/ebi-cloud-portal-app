@@ -54,7 +54,7 @@ export class Repository {
         );
   }
 
-  addDeployment(event, application: Application) {
+  deployApplication(event, application: Application) {
     event.preventDefault();
     console.log("[Repository] Adding deployment for application from " + application.repoUri);
     this.deploymentService.add(this.credentialService, application).subscribe(
