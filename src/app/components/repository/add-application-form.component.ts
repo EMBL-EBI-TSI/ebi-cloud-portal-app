@@ -2,16 +2,16 @@ import {Component} from 'angular2/core';
 import {NgForm, FormBuilder, Validators, ControlGroup} from 'angular2/common';
 import {Router} from 'angular2/router';
 
-import { ApplicationService } from '../services/application/application.service';
-import { CredentialService } from '../services/credential/credential.service';
+import { ApplicationService } from '../../services/application/application.service';
+import { CredentialService } from '../../services/credential/credential.service';
 
 
 @Component({
-		selector: 'application-form',
+		selector: 'add-application-form',
 		providers: [ ApplicationService, CredentialService ],
-		template: require('./application-form.component.html')
+		template: require('./add-application-form.component.html')
 })
-export class ApplicationForm {
+export class AddApplicationForm {
 
 		applicationForm: ControlGroup;
 

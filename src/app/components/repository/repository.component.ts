@@ -2,10 +2,10 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 
-import { ApplicationService } from '../services/application/application.service';
-import { DeploymentService } from '../services/deployment/deployment.service';
-import { CredentialService } from '../services/credential/credential.service';
-import { ApplicationForm } from './application-form.component';
+import { ApplicationService } from '../../services/application/application.service';
+import { DeploymentService } from '../../services/deployment/deployment.service';
+import { CredentialService } from '../../services/credential/credential.service';
+import { AddApplicationForm } from './add-application-form.component';
 
 @Component({
   selector: 'repository',
@@ -14,7 +14,7 @@ import { ApplicationForm } from './application-form.component';
     DeploymentService,
     CredentialService
   ],
-  directives: [ ApplicationForm ],
+  directives: [ AddApplicationForm ],
   pipes: [ ],
   styles: [require('./repository.component.css')],
   template: require('./repository.component.html')
@@ -53,9 +53,9 @@ export class Repository {
         );
   }
 
-  addDeployment( i: number) {
+  addDeployment( repoUri: repoUri) {
     console.log("Adding deployment for application " + i);
-    this.deploymentService.add(this.credentialService);
+    this.deploymentService.add(this.credentialService, repoUri);
   }
 
 

@@ -7,13 +7,12 @@ import {FORM_PROVIDERS} from 'angular2/common';
 
 import {LoggedInRouterOutlet} from './directives/logged-in-outlet';
 import {RouterActive} from './directives/router-active';
-import {Home} from './home/home';
-import {About} from './about/about.component';
-import {Repository} from './repository/repository.component';
-import {Deployments} from './deployments/deployments.component';
-import {Login} from './login/login.component';
-import {Logout} from './login/logout.component';
-import {Profile} from './profile/profile.component';
+import {About} from './components/about/about.component';
+import {Repository} from './components/repository/repository.component';
+import {Deployments} from './components/deployments/deployments.component';
+import {Login} from './components/login/login.component';
+import {Logout} from './components/login/logout.component';
+import {Profile} from './components/profile/profile.component';
 import {Authentication} from './services/authentication/authentication';
 
 /*
@@ -28,15 +27,14 @@ import {Authentication} from './services/authentication/authentication';
   template: require('./app.html')
 })
 @RouteConfig([
-  { path: '/', component: Home, name: 'Index' },
-  { path: '/home', component: Home, name: 'Home' },
+  { path: '/', component: Deployments, name: 'Deployments' },
   { path: '/repository', component: Repository, name: 'Repository' },
   { path: '/deployments', component: Deployments, name: 'Deployments' },
   { path: '/about', component: About, name: 'About' },
   { path: '/login', component: Login, name: 'Login' },
   { path: '/logout', component: Logout, name: 'Logout' },
   { path: '/profile', component: Profile, name: 'Profile' },
-  { path: '/**', redirectTo: ['Index'] }
+  { path: '/**', redirectTo: ['Deployments'] }
 ])
 export class App {
   emblebiLogo = 'assets/img/embl-ebi-logo.png';

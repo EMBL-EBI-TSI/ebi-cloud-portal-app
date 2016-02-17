@@ -1,6 +1,6 @@
 import {Directive, Attribute, ElementRef, DynamicComponentLoader} from 'angular2/core';
 import {Router, RouterOutlet, ComponentInstruction} from 'angular2/router';
-import {Login} from '../login/login.component';
+import {Login} from '../components/login/login.component';
 
 @Directive({
   selector: 'loggedin-router-outlet'

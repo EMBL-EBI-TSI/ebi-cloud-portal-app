@@ -1,8 +1,8 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
-import { AccountService } from '../services/account/account.service';
-import { CredentialService } from '../services/credential/credential.service';
+import { AccountService } from '../../services/account/account.service';
+import { CredentialService } from '../../services/credential/credential.service';
 
 
 @Component({

@@ -2,8 +2,8 @@ import {Component} from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 
-import { DeploymentService } from '../services/deployment/deployment.service';
-import { CredentialService } from '../services/credential/credential.service';
+import { DeploymentService } from '../../services/deployment/deployment.service';
+import { CredentialService } from '../../services/credential/credential.service';
 
 @Component({
   selector: 'deployments',
