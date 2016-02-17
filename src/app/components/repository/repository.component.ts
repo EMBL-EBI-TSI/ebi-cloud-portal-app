@@ -1,7 +1,6 @@
 import { Component } from 'angular2/core';
 import { FORM_DIRECTIVES, CORE_DIRECTIVES } from 'angular2/common';
 import { Router } from 'angular2/router';
-import { Alert } from 'ng2-bootstrap';
 
 import { ApplicationDeployer } from './application-deployer';
 import { Application } from '../../services/application/application';
@@ -18,7 +17,7 @@ import { AddApplicationForm } from './add-application-form.component';
     DeploymentService,
     CredentialService
   ],
-  directives: [Alert, AddApplicationForm, CORE_DIRECTIVES],
+  directives: [ AddApplicationForm, CORE_DIRECTIVES],
   pipes: [ ],
   styles: [require('./repository.component.css')],
   template: require('./repository.component.html')

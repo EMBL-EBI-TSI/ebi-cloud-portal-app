@@ -8,4 +8,3 @@
 /// <reference path="main/ambient/webpack/webpack.d.ts" />
 /// <reference path="main/ambient/zone.js/zone.js.d.ts" />
 /// <reference path="main/definitions/es6-promise/es6-promise.d.ts" />
-/// <reference path="main/definitions/moment/moment.d.ts" />

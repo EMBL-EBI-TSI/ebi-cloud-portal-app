@@ -5,10 +5,8 @@
 		<div *ngFor="#applicationDeployer of applicationDeployers">
 			<h3>{{ applicationDeployer.name }}</h3>
 			<h4>{{ applicationDeployer.repoUri }}</h4>
-			<alert *ngIf="applicationDeployer.deploying" [type]="warning" dismissible="false">
-  			The application is now deploying...
-			</alert>
-			<form>
+			<p *ngIf="applicationDeployer.deploying">The application is now deploying ...</p>
+			<form *ngIf="!applicationDeployer.deploying">
 				<input type="text" [(ngModel)]="applicationDeployer.name" class="form-control" readonly hidden>
 		    <input type="text" [(ngModel)]="applicationDeployer.repoUri" class="form-control" readonly hidden>
 		    <span class="input-group-btn">
