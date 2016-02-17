@@ -13,8 +13,8 @@
   <div id="local-masthead" class="masthead grid_24 nomenu">
     
     <!-- local-title -->
-    <div class="grid_12 alpha" id="local-title">
-      <h1><a [routerLink]=" ['Home'] ">{{ name }}</a></h1>
+    <div class="grid_16 alpha" id="local-title">
+      <h1 class="icon icon-generic" data-icon="&gt;"><a [routerLink]=" ['Home'] " >{{ name }}</a></h1>
     </div>
 
     <!-- Local nav -->
@@ -29,14 +29,14 @@
         <li router-active class="last">
           <a [routerLink]="['About']" class="icon icon-functional">About the Portal</a>
         </li>
-        <li *ngIf="!auth.isAuth()" router-active class="functional">
+        <li *ngIf="!auth.isAuth()" router-active class="functional last">
           <a [routerLink]="['Login']" class="icon icon-functional" data-icon="l">Login</a>
         </li>
-        <li *ngIf="auth.isAuth()" router-active class="functional">
+        <li *ngIf="auth.isAuth()" router-active class="functional last">
           <a [routerLink]="['Logout']" class="icon icon-functional" data-icon="l">Logout</a>
         </li>
-        <li *ngIf="auth.isAuth()" router-active class="functional last">
-          <a [routerLink]="['Profile']" class="icon icon-generic">{{ auth.getUser() }} account</a>
+        <li *ngIf="auth.isAuth()" router-active class="functional">
+          <a [routerLink]="['Profile']" class="icon icon-generic" data-icon="M">{{ auth.getUser() }} account</a>
         </li>
       </ul>
     </nav>

@@ -8,9 +8,7 @@
 		<h4>{{ deployment.accessIp }}</h4>
 		<form>
 			<input type="text" [(ngModel)]="deployment.reference" class="form-control" readonly hidden>
-	    <span class="input-group-btn">
-	      <button class="btn" (click)="destroyDeployment(deployment.reference)" class="submit">Destroy</button>
-	    </span>
+      <button class="btn" (click)="destroyDeployment(deployment.reference)" class="submit" class="icon icon-functional" data-icon="d">Destroy</button>
     </form>
     <br>
 	</div>
