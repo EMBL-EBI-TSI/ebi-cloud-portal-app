@@ -1,9 +1,10 @@
-import {Injectable} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
-import {Router} from 'angular2/router';
+import { Injectable } from 'angular2/core';
+import { Http, Headers, RequestOptions } from 'angular2/http';
+import { Router } from 'angular2/router';
 
 import { Deployment } from './deployment';
 import { CredentialService } from '../credential/credential.service';
+import { Application } from '../application/application';
 
 @Injectable()
 export class DeploymentService {
@@ -16,7 +17,7 @@ export class DeploymentService {
 
 
   getAll(credentialService: CredentialService) {
-    console.log('Getting all deployments for user ' + credentialService.getUsername());
+    console.log('[DeploymentService] Getting all deployments for user ' + credentialService.getUsername());
     
     var headers = new Headers();
     headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
@@ -33,26 +34,20 @@ export class DeploymentService {
     
   }
 
-  getById(credentialService: CredentialService, applicationId: string) {
-    console.log('Getting application ' + applicationId + ' for user ' + credentialService.getUsername());
+  add(credentialService: CredentialService, application: Application) {
+    console.log('[DeploymentService] Deploying application from repo ' 
+      + application.repoUri + ' for user ' + credentialService.getUsername());
 
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
-    return this.http.get(
-        'http://localhost:8080/deployment/' + applicationId,
-        {
-            headers: headers
-        }
-    )
-      .map(res => <Deployment> res.json());
+    let body = JSON.stringify({ application });
+    let options = new RequestOptions({ headers: headers });
 
-  }
-
-  add(credentialService: CredentialService) {
-    console.log('Deploying application for user ' + credentialService.getUsername());
+    return this.http.post('http://localhost:8080/deployment/', body, options)
+      .map(res => <Deployment>res.json());
   }
 
 }
