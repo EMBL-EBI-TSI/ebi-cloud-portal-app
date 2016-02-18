@@ -1,12 +1,13 @@
-<section *ngIf="deployments">
-	<h3 *ngIf="deployments.length==0">No deployments for user {{ credentialService.getUsername() }} yet</h3>
-	<div *ngFor="#deployment of deployments">
-		<h3>{{ deployment.reference }}</h3>
-		<h4>{{ deployment.providerId }}</h4>
-		<h4>{{ deployment.accessIp }}</h4>
-		<form>
-			<input type="text" [(ngModel)]="deployment.reference" class="form-control" readonly hidden>
-      <button class="btn" (click)="destroyDeployment($event, deployment)" class="submit" class="icon icon-functional" data-icon="d">Destroy</button>
+<section *ngIf="deploymentInstances">
+	<h3 *ngIf="deploymentInstances.length==0">No deployments for user {{ credentialService.getUsername() }} yet</h3>
+	<div *ngFor="#deploymentInstance of deploymentInstances">
+		<h3>{{ deploymentInstance.reference }}</h3>
+		<h5>Provider ID: {{ deploymentInstance.providerId }}</h5>
+		<h5>Access IP: {{ deploymentInstance.accessIp }}</h5>
+		<div *ngIf="deploymentInstance.destroying" class="loader-icon"></div>
+		<form *ngIf="!deploymentInstance.destroying">
+			<input type="text" [(ngModel)]="deploymentInstance.reference" class="form-control" readonly hidden>
+      <button class="btn" (click)="destroyDeployment($event, deploymentInstance)" class="submit" class="icon icon-functional" data-icon="d">Destroy</button>
     </form>
     <br>
 	</div>
