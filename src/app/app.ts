@@ -1,19 +1,18 @@
 /*
  * Angular 2 decorators and services
  */
-import {Component} from 'angular2/core';
+import { Component, OnInit } from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
 
 import {LoggedInRouterOutlet} from './directives/logged-in-outlet';
 import {RouterActive} from './directives/router-active';
+import {LoggedVisible} from './directives/logged-visible';
 import {About} from './components/about/about.component';
 import {Repository} from './components/repository/repository.component';
 import {Deployments} from './components/deployments/deployments.component';
 import {Login} from './components/login/login.component';
-import {Logout} from './components/login/logout.component';
 import {Profile} from './components/profile/profile.component';
-import {Authentication} from './services/authentication/authentication';
 import { CredentialService } from './services/credential/credential.service';
 
 /*
@@ -22,8 +21,8 @@ import { CredentialService } from './services/credential/credential.service';
  */
 @Component({
   selector: 'app',
-  providers: [...FORM_PROVIDERS, Authentication, CredentialService ],
-  directives: [...ROUTER_DIRECTIVES, RouterActive, LoggedInRouterOutlet ],
+  providers: [...FORM_PROVIDERS, CredentialService ],
+  directives: [...ROUTER_DIRECTIVES, RouterActive, LoggedVisible, LoggedInRouterOutlet ],
   pipes: [],
   template: require('./app.html')
 })
@@ -33,7 +32,6 @@ import { CredentialService } from './services/credential/credential.service';
   { path: '/deployments', component: Deployments, name: 'Deployments' },
   { path: '/about', component: About, name: 'About' },
   { path: '/login', component: Login, name: 'Login' },
-  { path: '/logout', component: Logout, name: 'Logout' },
   { path: '/profile', component: Profile, name: 'Profile' },
   { path: '/**', redirectTo: ['Deployments'] }
 ])
@@ -42,7 +40,15 @@ export class App {
   name = 'TSI Cloud Portal';
   url = 'https://github.com/EMBL-EBI-TSI';
 
-  constructor(public credentialService: CredentialService) {
+  constructor(public credentialService: CredentialService, public router: Router) {
+
+  }
+
+
+  logOut(event) {
+    event.preventDefault();
+    this.credentialService.clearCredentials();
+    this.router.navigateByUrl('/login');
   }
 
 }

@@ -33,7 +33,7 @@ export class Login {
         .subscribe(
         data => {
             console.log('User data is %O', data);
-            this.router.parent.navigateByUrl('/');
+            this.router.parent.navigateByUrl('/deployments');
         },
         err => {
             console.log(err);

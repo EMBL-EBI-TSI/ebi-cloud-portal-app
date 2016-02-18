@@ -14,9 +14,10 @@ import {RootRouter} from 'angular2/src/router/router';
 import {Router, Location, ROUTER_PROVIDERS, ROUTER_PRIMARY_COMPONENT} from 'angular2/router';
 import {RouteRegistry} from 'angular2/src/router/route_registry';
 
+import { CredentialService } from './services/credential/credential.service';
+
 // Load the implementations that should be tested
 import {App} from './app';
-import {Authentication} from './services/authentication/authentication';
 
 describe('App', () => {
   // provide our implementations or mocks to the dependency injector
@@ -31,11 +32,11 @@ describe('App', () => {
     }),
 
     provide(Location, { useClass: SpyLocation }),
-    provide(ROUTER_PRIMARY_COMPONENT, { useValue: Authentication }),
+    provide(ROUTER_PRIMARY_COMPONENT, { useValue: CredentialService }),
     RouteRegistry,
     provide(Router, { useClass: RootRouter }),
 
-    Authentication,
+    CredentialService,
     App
   ]);
 
