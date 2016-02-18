@@ -7,7 +7,6 @@ import {FORM_PROVIDERS} from 'angular2/common';
 
 import {LoggedInRouterOutlet} from './directives/logged-in-outlet';
 import {RouterActive} from './directives/router-active';
-import {LoggedVisible} from './directives/logged-visible';
 import {About} from './components/about/about.component';
 import {Repository} from './components/repository/repository.component';
 import {Deployments} from './components/deployments/deployments.component';
@@ -22,7 +21,7 @@ import { CredentialService } from './services/credential/credential.service';
 @Component({
   selector: 'app',
   providers: [...FORM_PROVIDERS, CredentialService ],
-  directives: [...ROUTER_DIRECTIVES, RouterActive, LoggedVisible, LoggedInRouterOutlet ],
+  directives: [...ROUTER_DIRECTIVES, RouterActive, LoggedInRouterOutlet ],
   pipes: [],
   template: require('./app.html')
 })
