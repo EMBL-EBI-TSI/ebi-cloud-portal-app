@@ -14,6 +14,7 @@ import {Login} from './components/login/login.component';
 import {Logout} from './components/login/logout.component';
 import {Profile} from './components/profile/profile.component';
 import {Authentication} from './services/authentication/authentication';
+import { CredentialService } from './services/credential/credential.service';
 
 /*
  * App Component
@@ -21,7 +22,7 @@ import {Authentication} from './services/authentication/authentication';
  */
 @Component({
   selector: 'app',
-  providers: [...FORM_PROVIDERS, Authentication ],
+  providers: [...FORM_PROVIDERS, Authentication, CredentialService ],
   directives: [...ROUTER_DIRECTIVES, RouterActive, LoggedInRouterOutlet ],
   pipes: [],
   template: require('./app.html')
@@ -41,7 +42,7 @@ export class App {
   name = 'TSI Cloud Portal';
   url = 'https://github.com/EMBL-EBI-TSI';
 
-  constructor(public auth: Authentication) {
+  constructor(public credentialService: CredentialService) {
   }
 
 }

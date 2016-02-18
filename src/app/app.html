@@ -20,23 +20,23 @@
     <!-- Local nav -->
     <nav>
       <ul class="grid_24" id="local-nav">
-        <li *ngIf="auth.isAuth()" router-active class="first">
+        <li *ngIf="credentialService.getUsername()" router-active logged-visible class="first">
           <a [routerLink]="['Deployments']" class="icon icon-functional">Current Deployments</a>
         </li>
-        <li *ngIf="auth.isAuth()" router-active>
+        <li *ngIf="credentialService.getUsername()" router-active>
           <a [routerLink]="['Repository']" class="icon icon-functional">Application Repository</a>
         </li>
         <li router-active class="last">
           <a [routerLink]="['About']" class="icon icon-functional">About the Portal</a>
         </li>
-        <li *ngIf="!auth.isAuth()" router-active class="functional last">
+        <li *ngIf="!credentialService.getUsername()" router-active class="functional last">
           <a [routerLink]="['Login']" class="icon icon-functional" data-icon="l">Login</a>
         </li>
-        <li *ngIf="auth.isAuth()" router-active class="functional last">
+        <li *ngIf="credentialService.getUsername()" router-active class="functional last">
           <a [routerLink]="['Logout']" class="icon icon-functional" data-icon="l">Logout</a>
         </li>
-        <li *ngIf="auth.isAuth()" router-active class="functional">
-          <a [routerLink]="['Profile']" class="icon icon-generic" data-icon="M">{{ auth.getUser() }} account</a>
+        <li *ngIf="credentialService.getUsername()" router-active class="functional">
+          <a [routerLink]="['Profile']" class="icon icon-generic" data-icon="M">{{ credentialService.getUsername() }} account</a>
         </li>
       </ul>
     </nav>

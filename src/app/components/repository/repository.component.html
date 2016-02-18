@@ -4,7 +4,7 @@
 	<div class="grid_16 alpha">
 		<div *ngFor="#applicationDeployer of applicationDeployers">
 			<h3>{{ applicationDeployer.name }}</h3>
-			<h4>{{ applicationDeployer.repoUri }}</h4>
+			<h5>{{ applicationDeployer.repoUri }}</h5>
 			<div *ngIf="applicationDeployer.deploying" class="loader-icon"></div>
 			<form *ngIf="!applicationDeployer.deploying">
 				<input type="text" [(ngModel)]="applicationDeployer.name" class="form-control" readonly hidden>
