@@ -1,0 +1,40 @@
+<section *ngIf="volumeDeployers">
+<div class="grid_24">
+
+	<div class="grid_16 alpha">
+		<div *ngFor="#volumeDeployer of volumeDeployers">
+			<h3>{{ volumeDeployer.name }}</h3>
+			<p>{{ volumeDeployer.repoUri }}</p>
+			<div *ngIf="volumeDeployer.deploying" class="loader-icon"></div>
+			<form *ngIf="!volumeDeployer.deploying">
+				<input type="text" [(ngModel)]="volumeDeployer.name" class="form-control" readonly hidden>
+		    <input type="text" [(ngModel)]="volumeDeployer.repoUri" class="form-control" readonly hidden>
+	      <button (click)="deployVolume($event, volumeDeployer)" class="icon icon-functional" data-icon="}">Destroy</button>
+	    </form>
+	    <br>
+		</div>
+	</div>
+
+	<div class="grid_8 alpha">
+		<h3>Available volume setups</h3>
+		<add-volume-setup-form></add-volume-setup-form>
+		<br>
+		<div *ngFor="#volumeDeployer of volumeDeployers">
+			<h4>{{ volumeDeployer.name }}</h4>
+			<p>{{ volumeDeployer.repoUri }}</p>
+			<div *ngIf="volumeDeployer.deploying" class="loader-icon"></div>
+			<form *ngIf="!volumeDeployer.deploying">
+				<input type="text" [(ngModel)]="volumeDeployer.name" class="form-control" readonly hidden>
+		    <input type="text" [(ngModel)]="volumeDeployer.repoUri" class="form-control" readonly hidden>
+	      <button (click)="deployVolume($event, volumeDeployer)" class="icon icon-functional" data-icon="}">Deploy</button>
+	    </form>
+	    <br>
+		</div>
+
+	</div>
+
+
+
+</div>
+
+</section>

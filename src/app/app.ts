@@ -9,6 +9,7 @@ import {LoggedInRouterOutlet} from './directives/logged-in-outlet';
 import {RouterActive} from './directives/router-active';
 import {About} from './components/about/about.component';
 import {Repository} from './components/repository/repository.component';
+import {Volumes} from './components/volumes/volumes.component';
 import {Deployments} from './components/deployments/deployments.component';
 import {Login} from './components/login/login.component';
 import {Profile} from './components/profile/profile.component';
@@ -28,6 +29,7 @@ import { CredentialService } from './services/credential/credential.service';
 @RouteConfig([
   { path: '/', component: Deployments, name: 'Deployments' },
   { path: '/repository', component: Repository, name: 'Repository' },
+  { path: '/volumes', component: Volumes, name: 'Volumes' },
   { path: '/deployments', component: Deployments, name: 'Deployments' },
   { path: '/about', component: About, name: 'About' },
   { path: '/login', component: Login, name: 'Login' },

@@ -1,0 +1,4 @@
+<form [ngFormModel]="volumeSetupForm" (submit)="addVolumeSetup($event)">
+    <input ngControl="repoUri" type="url" placeholder="Repository URI">
+  <button type="submit">Add</button>
+</form>
