@@ -4,7 +4,7 @@
 	<div class="grid_16 alpha">
 		<div *ngFor="#volumeDeployer of volumeDeployers">
 			<h3>{{ volumeDeployer.name }}</h3>
-			<p>{{ volumeDeployer.repoUri }}</p>
+			<p>URI: {{ volumeDeployer.repoUri }}</p>
 			<div *ngIf="volumeDeployer.deploying" class="loader-icon"></div>
 			<form *ngIf="!volumeDeployer.deploying">
 				<input type="text" [(ngModel)]="volumeDeployer.name" class="form-control" readonly hidden>
@@ -21,7 +21,7 @@
 		<br>
 		<div *ngFor="#volumeDeployer of volumeDeployers">
 			<h4>{{ volumeDeployer.name }}</h4>
-			<p>{{ volumeDeployer.repoUri }}</p>
+			<p>URI: {{ volumeDeployer.repoUri }}</p>
 			<div *ngIf="volumeDeployer.deploying" class="loader-icon"></div>
 			<form *ngIf="!volumeDeployer.deploying">
 				<input type="text" [(ngModel)]="volumeDeployer.name" class="form-control" readonly hidden>
