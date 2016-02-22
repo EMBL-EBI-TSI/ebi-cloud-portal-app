@@ -3,8 +3,8 @@ import { FORM_DIRECTIVES, CORE_DIRECTIVES } from 'angular2/common';
 import { Router } from 'angular2/router';
 
 import { VolumeDeployer } from './volume-deployer';
-import { Application } from '../../services/application/application';
-import { ApplicationService } from '../../services/application/application.service';
+import { VolumeSetup } from '../../services/volume-setup/volume-setup';
+import { VolumeSetupService } from '../../services/volume-setup/volume-setup.service';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 import { CredentialService } from '../../services/credential/credential.service';
 import { AddVolumeSetupForm } from './add-volume-setup-form.component';
@@ -13,7 +13,7 @@ import { AddVolumeSetupForm } from './add-volume-setup-form.component';
 @Component({
   selector: 'volumes',
   providers: [
-    ApplicationService,
+    VolumeSetupService,
     DeploymentService,
     CredentialService
   ],
@@ -30,7 +30,7 @@ export class Volumes {
   // TypeScript public modifiers
   constructor(
     public router: Router,
-    public applicationService: ApplicationService,
+    public volumeSetupService: VolumeSetupService,
     public deploymentService: DeploymentService,
     public credentialService: CredentialService)
   {
@@ -39,11 +39,11 @@ export class Volumes {
 
   ngOnInit() {
     console.log('[Volumes] on init');
-    this.applicationService.getAll(this.credentialService)
+    this.volumeSetupService.getAll(this.credentialService)
         .subscribe(
-          volumes => {
-              console.log('Volume setup data is %O', volumes);
-              this.volumeDeployers = volumes.map(app => <VolumeDeployer>app);
+          volumeSetups => {
+              console.log('Volume setup data is %O', volumeSetups);
+              this.volumeDeployers = volumeSetups.map(app => <VolumeDeployer>app);
           },
           error => {
               console.log(error);
