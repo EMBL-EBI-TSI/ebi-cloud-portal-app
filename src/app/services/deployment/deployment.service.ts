@@ -18,10 +18,12 @@ export class DeploymentService {
 
 
   getAll(credentialService: CredentialService) {
-    console.log('[DeploymentService] Getting all deployments for user ' + credentialService.getUsername());
-    
+    console.log('[DeploymentService] Getting all deployments for user '
+        + credentialService.getUsername());
+
     var headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -33,15 +35,16 @@ export class DeploymentService {
     )
     .map(res => this.processResult(res))
     .catch(this.handleError);
-    
+
   }
 
   add(credentialService: CredentialService, application: Application) {
-    console.log('[DeploymentService] Deploying application with repo ' 
+    console.log('[DeploymentService] Deploying application with repo '
       + application.repoUri + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -57,7 +60,8 @@ export class DeploymentService {
       + deployment.reference + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -74,8 +78,8 @@ export class DeploymentService {
     } else {
       return [];
     }
-    
   }
+
   private handleError(error: Response) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console

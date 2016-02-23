@@ -18,7 +18,10 @@ export class Deployments {
   deploymentInstances: DeploymentInstance[];
 
   // TypeScript public modifiers
-  constructor(public router: Router, public deploymentService: DeploymentService, public credentialService: CredentialService) {
+  constructor(
+      public router: Router,
+      public deploymentService: DeploymentService,
+      public credentialService: CredentialService) {
     this.deploymentInstances = [];
 
   }
@@ -30,7 +33,8 @@ export class Deployments {
 
   destroyDeployment(event, deploymentInstance: DeploymentInstance) {
     event.preventDefault();
-    console.log('[Deployments] destroying application with reference ' + deploymentInstance.reference);
+    console.log('[Deployments] destroying application with reference '
+        + deploymentInstance.reference);
     deploymentInstance.destroying = true;
     this.deploymentService.delete(this.credentialService, deploymentInstance).subscribe(
       res => {
@@ -53,7 +57,9 @@ export class Deployments {
       .subscribe(
         deployments => {
           console.log('[Deployments] Deployments data is %O', deployments);
-          this.deploymentInstances = deployments.map( deployment => <DeploymentInstance> deployment);
+          this.deploymentInstances = deployments.map(
+              deployment => <DeploymentInstance> deployment
+          );
         },
         err => {
           console.log('[Deployments] error ' + err);

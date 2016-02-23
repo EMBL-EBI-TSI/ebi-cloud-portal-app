@@ -16,10 +16,12 @@ export class VolumeSetupService {
 
 
   getAll(credentialService: CredentialService) {
-    console.log('[VolumeSetupService] Getting all volume setups for user ' + credentialService.getUsername());
-    
+    console.log('[VolumeSetupService] Getting all volume setups for user '
+        + credentialService.getUsername());
+
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -30,14 +32,16 @@ export class VolumeSetupService {
       }
     )
       .map(res => <VolumeSetup[]>res.json()._embedded.volumeSetupResourceList);
-    
+
   }
 
   getById(credentialService: CredentialService, volumeSetupId: string) {
-    console.log('[VolumeSetupService] Getting volume setup ' + volumeSetupId + ' for user ' + credentialService.getUsername());
+    console.log('[VolumeSetupService] Getting volume setup ' + volumeSetupId
+        + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -55,7 +59,8 @@ export class VolumeSetupService {
     console.log('[VolumeSetupService] Adding repo at ' + repoUri);
 
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 

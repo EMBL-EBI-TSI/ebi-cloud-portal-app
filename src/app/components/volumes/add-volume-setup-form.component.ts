@@ -22,23 +22,24 @@ export class AddVolumeSetupForm {
 			public credentialService: CredentialService) {
 
 				this.volumeSetupForm = fb.group({
-				repoUri: ["", Validators.required]
+				repoUri: ['', Validators.required]
 			});
 
 		}
 
 		addVolumeSetup(event) {
 			event.preventDefault();
-			console.log("[VolumeSetupForm] adding " + this.volumeSetupForm.value.repoUri);
-			this.applicationService.add(this.credentialService, this.volumeSetupForm.value.repoUri).subscribe(
-				application  => {
-					this.router.navigateByUrl('/volumes');
-				},
-				error => {
-					console.log(error);
-					this.router.navigateByUrl('/login');
-				}
-			);
+			console.log('[VolumeSetupForm] adding ' + this.volumeSetupForm.value.repoUri);
+			this.applicationService.add(this.credentialService, this.volumeSetupForm.value.repoUri)
+				.subscribe(
+					application  => {
+						this.router.navigateByUrl('/volumes');
+					},
+					error => {
+						console.log(error);
+						this.router.navigateByUrl('/login');
+					}
+				);
 		}
 
 }

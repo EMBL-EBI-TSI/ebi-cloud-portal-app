@@ -22,23 +22,24 @@ export class AddApplicationForm {
 			public credentialService: CredentialService) {
 
 			this.applicationForm = fb.group({
-				repoUri: ["", Validators.required]
+				repoUri: ['', Validators.required]
 			});
 
 		}
 
 		addApplication(event) {
 			event.preventDefault();
-			console.log("[ApplicationForm] adding " + this.applicationForm.value.repoUri);
-			this.applicationService.add(this.credentialService, this.applicationForm.value.repoUri).subscribe(
-				application  => {
-					this.router.navigateByUrl('/repository');
-				},
-				error => {
-					console.log(error);
-					this.router.navigateByUrl('/login');
-				}
-			);
+			console.log('[ApplicationForm] adding ' + this.applicationForm.value.repoUri);
+			this.applicationService.add(this.credentialService, this.applicationForm.value.repoUri)
+				.subscribe(
+					application  => {
+						this.router.navigateByUrl('/repository');
+					},
+					error => {
+						console.log(error);
+						this.router.navigateByUrl('/login');
+					}
+				);
 		}
 
 }

@@ -17,7 +17,10 @@ export class Profile {
 
   account = {};
 
-  constructor(public router: Router, public accountService: AccountService, public credentialService: CredentialService) {
+  constructor(
+      public router: Router,
+      public accountService: AccountService,
+      public credentialService: CredentialService) {
     this.account = null;
   }
 

@@ -10,7 +10,7 @@ import { CredentialService } from '../../services/credential/credential.service'
   selector: 'login',
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
-    AccountService, 
+    AccountService,
     CredentialService
   ],
   // Our list of styles in our component. We may add more to compose many styles together
@@ -21,7 +21,10 @@ import { CredentialService } from '../../services/credential/credential.service'
 export class Login {
 
 
-  constructor(public router: Router, public accountService: AccountService, public credentialService: CredentialService) {
+  constructor(
+        public router: Router,
+        public accountService: AccountService,
+        public credentialService: CredentialService) {
 
   }
 

@@ -16,10 +16,12 @@ export class ApplicationService {
 
 
   getAll(credentialService: CredentialService) {
-    console.log('[ApplicationService] Getting all applications for user ' + credentialService.getUsername());
-    
+    console.log('[ApplicationService] Getting all applications for user '
+        + credentialService.getUsername());
+
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -30,14 +32,15 @@ export class ApplicationService {
       }
     )
       .map(res => <Application[]>res.json()._embedded.applicationResourceList);
-    
   }
 
   getById(credentialService: CredentialService, applicationId: string) {
-    console.log('[ApplicationService] Getting application ' + applicationId + ' for user ' + credentialService.getUsername());
+    console.log('[ApplicationService] Getting application ' + applicationId
+        + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -55,7 +58,8 @@ export class ApplicationService {
     console.log('[ApplicationService] Adding repo at ' + repoUri);
 
     let headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 

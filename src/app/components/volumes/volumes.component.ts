@@ -29,11 +29,10 @@ export class Volumes {
 
   // TypeScript public modifiers
   constructor(
-    public router: Router,
-    public volumeSetupService: VolumeSetupService,
-    public deploymentService: DeploymentService,
-    public credentialService: CredentialService)
-  {
+      public router: Router,
+      public volumeSetupService: VolumeSetupService,
+      public deploymentService: DeploymentService,
+      public credentialService: CredentialService) {
     this.volumeDeployers = [];
   }
 
@@ -59,7 +58,7 @@ export class Volumes {
   deployVolume(event, volumeDeployer: VolumeDeployer) {
     event.preventDefault();
     volumeDeployer.deploying = true;
-    console.log("[Volumes] Adding deployment for volume from " + volumeDeployer.repoUri);
+    console.log('[Volumes] Adding deployment for volume from ' + volumeDeployer.repoUri);
     this.deploymentService.add(this.credentialService, volumeDeployer).subscribe(
       deployment  => {
         this.router.navigateByUrl('/volumes');

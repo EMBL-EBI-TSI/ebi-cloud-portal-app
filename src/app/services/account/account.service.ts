@@ -18,9 +18,10 @@ export class AccountService {
   getAccount(credentialService: CredentialService) {
 
     console.log('Getting account for user ' + credentialService.getUsername());
-    
+
     var headers = new Headers();
-    headers.append('Authorization', 'Basic ' + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -31,7 +32,7 @@ export class AccountService {
       }
     )
     .map(res => <Account> res.json());
-    
+
   }
 
 

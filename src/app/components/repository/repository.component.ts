@@ -32,8 +32,7 @@ export class Repository {
     public router: Router,
     public applicationService: ApplicationService,
     public deploymentService: DeploymentService,
-    public credentialService: CredentialService)
-  {
+    public credentialService: CredentialService) {
     this.applicationDeployers = [];
   }
 
@@ -59,7 +58,8 @@ export class Repository {
   deployApplication(event, applicationDeployer: ApplicationDeployer) {
     event.preventDefault();
     applicationDeployer.deploying = true;
-    console.log("[Repository] Adding deployment for application from " + applicationDeployer.repoUri);
+    console.log('[Repository] Adding deployment for application from '
+        + applicationDeployer.repoUri);
     this.deploymentService.add(this.credentialService, applicationDeployer).subscribe(
       deployment  => {
         this.router.navigateByUrl('/deployments');

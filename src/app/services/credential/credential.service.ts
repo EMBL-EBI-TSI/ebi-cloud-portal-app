@@ -20,7 +20,6 @@ export class CredentialService {
 
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
-    
   }
 
   clearCredentials() {
