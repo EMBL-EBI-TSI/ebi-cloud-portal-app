@@ -11,7 +11,7 @@ This project is using [Webpack and Angular 2 starter](https://github.com/Angular
 git clone --depth 1 https://github.com/EMBL-EBI-TSI/tsi-cloud-portal-app.git
 
 # change directory to our repo
-cd angular2-webpack-starter
+cd tsi-cloud-portal-app
 
 # install the repo with npm
 npm install
