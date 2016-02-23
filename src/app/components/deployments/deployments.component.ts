@@ -47,7 +47,7 @@ export class Deployments {
         this.router.navigateByUrl('/login');
       },
       () => {
-        console.log('[Deployments] Deployment data retrieval complete');
+        console.log('[Deployments] Deployment data deletion complete');
       }
     );
   }

@@ -1,14 +1,14 @@
 import { Injectable } from 'angular2/core';
 import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 import { Router } from 'angular2/router';
-import {Observable}     from 'rxjs/Observable';
+import { Observable }     from 'rxjs/Observable';
 
-import { Deployment } from './deployment';
+import { VolumeInstance } from './volume-instance';
 import { CredentialService } from '../credential/credential.service';
-import { Application } from '../application/application';
+import { VolumeSetup } from '../volume-setup/volume-setup';
 
 @Injectable()
-export class DeploymentService {
+export class VolumeInstanceService {
 
   credentials = null;
 
@@ -18,7 +18,7 @@ export class DeploymentService {
 
 
   getAll(credentialService: CredentialService) {
-    console.log('[DeploymentService] Getting all deployments for user '
+    console.log('[VolumeInstanceService] Getting all volume instnaces for user '
         + credentialService.getUsername());
 
     var headers = new Headers();
@@ -28,7 +28,7 @@ export class DeploymentService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8080/deployment/',
+      'http://localhost:8080/volumeinstance/',
       {
         headers: headers
       }
@@ -38,9 +38,9 @@ export class DeploymentService {
 
   }
 
-  add(credentialService: CredentialService, application: Application) {
-    console.log('[DeploymentService] Deploying application with repo '
-      + application.repoUri + ' for user ' + credentialService.getUsername());
+  add(credentialService: CredentialService, volumeSetup: VolumeSetup) {
+    console.log('[VolumeInstanceService] Deploying volume with repo '
+      + volumeSetup.repoUri + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic '
@@ -48,16 +48,16 @@ export class DeploymentService {
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
-    let body = JSON.stringify({ application });
+    let body = JSON.stringify({ volumeSetup });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://localhost:8080/deployment/', body, options)
-      .map(res => <Deployment>res.json());
+    return this.http.post('http://localhost:8080/volumeinstance/', body, options)
+      .map(res => <VolumeInstance>res.json());
   }
 
-  delete(credentialService: CredentialService, deployment: Deployment) {
-    console.log('[DeploymentService] deleting application with ref '
-      + deployment.reference + ' for user ' + credentialService.getUsername());
+  delete(credentialService: CredentialService, volumeInstance: VolumeInstance) {
+    console.log('[VolumeInstanceService] deleting volume instnace with ref '
+      + volumeInstance.reference + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic '
@@ -67,14 +67,14 @@ export class DeploymentService {
 
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete('http://localhost:8080/deployment/' + deployment.reference, options)
+    return this.http.delete('http://localhost:8080/volumeinstance/' + volumeInstance.reference, options)
       .map(res => res.status);
   }
 
   private processResult(res: Response) {
     let jsonRes = res.json();
     if (jsonRes._embedded) {
-      return <Deployment[]>jsonRes._embedded.deploymentResourceList;
+      return <VolumeInstance[]>jsonRes._embedded.volumeInstanceResourceList;
     } else {
       return [];
     }
@@ -83,7 +83,7 @@ export class DeploymentService {
   private handleError(error: Response) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
-      console.error('[DeploymentService] error ' + error);
+    console.error('[VolumeInstanceService] error ' + error);
     return Observable.throw(error.json().error || 'Server error');
   }
 }
