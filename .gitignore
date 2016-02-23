@@ -3,3 +3,6 @@
 node_modules/
 typings/
 coverage/
+dist/
+src/**/*.js
+src/**/*.js.map
