@@ -1,5 +1,6 @@
 import {
   it,
+  xit,
   inject,
   injectAsync,
   describe,
@@ -30,11 +31,11 @@ describe('Repository', () => {
     Repository
   ]);
 
-  it('should have default data', inject([ Repository ], (repository) => {
+  xit('should have default data', inject([ Repository ], (repository) => {
     expect(repository.data).toEqual({ value: '' });
   }));
 
-  it('should log ngOnInit', inject([ Repository ], (repository) => {
+  xit('should log ngOnInit', inject([ Repository ], (repository) => {
     spyOn(console, 'log');
     expect(console.log).not.toHaveBeenCalled();
 
