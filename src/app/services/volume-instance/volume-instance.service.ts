@@ -67,7 +67,9 @@ export class VolumeInstanceService {
 
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete('http://localhost:8080/volumeinstance/' + volumeInstance.reference, options)
+    return this.http.delete(
+        'http://localhost:8080/volumeinstance/' + volumeInstance.reference,
+        options)
       .map(res => res.status);
   }
 

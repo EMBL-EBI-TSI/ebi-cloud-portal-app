@@ -102,7 +102,7 @@ export class Volumes {
       .subscribe(
       volumeInstances => {
         console.log('Volume instance data is %O', volumeInstances);
-        this.volumeInstanceDeployments = 
+        this.volumeInstanceDeployments =
           volumeInstances.map(vol => <VolumeInstanceDeployment>vol);
       },
       error => {
