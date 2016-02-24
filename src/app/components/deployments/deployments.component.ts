@@ -28,7 +28,7 @@ export class Deployments {
 
   ngOnInit() {
     console.log('[Deployments] on init');
-    this.getAllDeployments();
+    this._updateDeployments();
   }
 
   destroyDeployment(event, deploymentInstance: DeploymentInstance) {
@@ -39,7 +39,7 @@ export class Deployments {
     this.deploymentService.delete(this.credentialService, deploymentInstance).subscribe(
       res => {
         console.log('[Deployments] got response %O', res);
-        this.getAllDeployments();
+        this._updateDeployments();
       },
       err => {
         console.log('[Deployments] error: ' + err);
@@ -52,7 +52,7 @@ export class Deployments {
     );
   }
 
-  private getAllDeployments() {
+  private _updateDeployments() {
     this.deploymentService.getAll(this.credentialService)
       .subscribe(
         deployments => {

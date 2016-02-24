@@ -34,8 +34,8 @@ export class ApplicationService {
       .map(res => <Application[]>res.json()._embedded.applicationResourceList);
   }
 
-  getById(credentialService: CredentialService, applicationId: string) {
-    console.log('[ApplicationService] Getting application ' + applicationId
+  get(credentialService: CredentialService, application: Application) {
+      console.log('[ApplicationService] Getting application ' + application.name
         + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
@@ -45,7 +45,7 @@ export class ApplicationService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-        'http://localhost:8080/application/' + applicationId,
+        'http://localhost:8080/application/' + application.name,
         {
             headers: headers
         }
@@ -55,7 +55,7 @@ export class ApplicationService {
   }
 
   add(credentialService: CredentialService, repoUri: string) {
-    console.log('[ApplicationService] Adding repo at ' + repoUri);
+    console.log('[ApplicationService] Adding application from repo at ' + repoUri);
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic '
@@ -68,6 +68,22 @@ export class ApplicationService {
 
     return this.http.post('http://localhost:8080/application/', body, options)
       .map(res => <Application> res.json());
+  }
+
+  delete(credentialService: CredentialService, application: Application) {
+      console.log('[ApplicationService] removing application  '
+          + application.name + ' for user ' + credentialService.getUsername());
+
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic '
+        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete('http://localhost:8080/application/' + application.name, options)
+        .map(res => res.status);
   }
 
 }

@@ -5,11 +5,12 @@
 		<div *ngFor="#applicationDeployer of applicationDeployers">
 			<h3>{{ applicationDeployer.name }}</h3>
 			<h5>{{ applicationDeployer.repoUri }}</h5>
-			<div *ngIf="applicationDeployer.deploying" class="loader-icon"></div>
-			<form *ngIf="!applicationDeployer.deploying">
+			<div *ngIf="applicationDeployer.deploying || applicationDeployer.destroying" class="loader-icon"></div>
+			<form *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying ">
 				<input type="text" [(ngModel)]="applicationDeployer.name" class="form-control" readonly hidden>
 		    <input type="text" [(ngModel)]="applicationDeployer.repoUri" class="form-control" readonly hidden>
 	      <button (click)="deployApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="}">Deploy</button>
+	      <button (click)="removeApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="d">Remove</button>
 	    </form>
 	    <br>
 		</div>
