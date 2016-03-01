@@ -5,6 +5,8 @@ import { Router } from 'angular2/router';
 import { ApplicationDeployer } from './application-deployer';
 import { Application } from '../../services/application/application';
 import { ApplicationService } from '../../services/application/application.service';
+import { VolumeInstance } from '../../services/volume-instance/volume-instance';
+import { VolumeInstanceService } from '../../services/volume-instance/volume-instance.service';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 import { CredentialService } from '../../services/credential/credential.service';
 import { AddApplicationForm } from './add-application-form.component';
@@ -14,6 +16,7 @@ import { AddApplicationForm } from './add-application-form.component';
   selector: 'repository',
   providers: [
     ApplicationService,
+    VolumeInstanceService,
     DeploymentService,
     CredentialService
   ],
@@ -26,18 +29,20 @@ export class Repository {
 
   // Set our default values
   applicationDeployers: ApplicationDeployer[];
+  volumeInstances: VolumeInstance[];
 
   // TypeScript public modifiers
   constructor(
     public router: Router,
     public applicationService: ApplicationService,
+    public volumeInstanceService: VolumeInstanceService,
     public deploymentService: DeploymentService,
     public credentialService: CredentialService) {
     this.applicationDeployers = [];
   }
 
   ngOnInit() {
-    console.log('[Repository] on init');
+    console.log('[Repository] on init.');
     this._updateRepository();
   }
 
@@ -79,6 +84,12 @@ export class Repository {
       );
   }
 
+  selectVolume(event, applicationDeployer, volumeInstanceReference) {
+    event.preventDefault();
+    console.log('[Repository] attaching volume ' + volumeInstanceReference + ' to application ' + applicationDeployer.name);
+    applicationDeployer.attachedVolumeReference = volumeInstanceReference;
+  }
+
   _updateRepository() {
     this.applicationService.getAll(this.credentialService)
       .subscribe(
@@ -95,6 +106,23 @@ export class Repository {
           console.log('[Repository] Account data retrieval complete');
       }
     );
+
+    this.volumeInstanceService.getAll(this.credentialService)
+      .subscribe(
+      volumeInstances => {
+        console.log('[Repository] Volume instance data is %O', volumeInstances);
+        this.volumeInstances =
+          volumeInstances.map(vol => <VolumeInstance>vol);
+      },
+      error => {
+        console.log(error);
+        this.credentialService.clearCredentials();
+        this.router.parent.navigateByUrl('/login');
+      },
+      () => {
+        console.log('[Repository] Volume instance data retrieval complete');
+      }
+      );
   }
 
 }

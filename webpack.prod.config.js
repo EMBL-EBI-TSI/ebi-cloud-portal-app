@@ -22,7 +22,7 @@ var HOST = process.env.HOST || 'localhost';
 var PORT = process.env.PORT || 8080;
 
 var metadata = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
+  title: 'TSI Cloud Portal by @EMBL-EBI-TSI',
   baseUrl: '/',
   host: HOST,
   port: PORT,
