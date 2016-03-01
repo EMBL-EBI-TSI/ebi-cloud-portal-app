@@ -2,6 +2,8 @@
 <div class="grid_24">
 
 	<div class="grid_16 alpha">
+		<h3 *ngIf="applicationDeployers.length==0">No application registered yet</h3>
+	
 		<div *ngFor="#applicationDeployer of applicationDeployers">
 			<form>
 				<input type="text" [(ngModel)]="applicationDeployer.name" class="form-control" readonly hidden>

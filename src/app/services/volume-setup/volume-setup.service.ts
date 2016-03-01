@@ -1,6 +1,7 @@
 import { Injectable } from 'angular2/core';
-import { Http, Headers, RequestOptions } from 'angular2/http';
+import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 import { Router } from 'angular2/router';
+import { Observable }     from 'rxjs/Observable';
 
 import { VolumeSetup } from './volume-setup';
 import { CredentialService } from '../credential/credential.service';
@@ -31,8 +32,8 @@ export class VolumeSetupService {
         headers: headers
       }
     )
-      .map(res => <VolumeSetup[]>res.json()._embedded.volumeSetupResourceList);
-
+    .map(res => this.processResult(res))
+    .catch(this.handleError);
   }
 
   getById(credentialService: CredentialService, volumeSetupId: string) {
@@ -69,6 +70,22 @@ export class VolumeSetupService {
 
     return this.http.post('http://localhost:8080/volumesetup/', body, options)
       .map(res => <VolumeSetup> res.json());
+  }
+
+  private processResult(res: Response) {
+    let jsonRes = res.json();
+    if (jsonRes._embedded) {
+      return <VolumeSetup[]>jsonRes._embedded.volumeSetupResourceList;
+    } else {
+      return [];
+    }
+  }
+
+  private handleError(error: Response) {
+    // in a real world app, we may send the server to some remote logging infrastructure
+    // instead of just logging it to the console
+    console.error('[VolumeSetupService] error ' + error);
+    return Observable.throw(error.json().error || 'Server error');
   }
 
 }

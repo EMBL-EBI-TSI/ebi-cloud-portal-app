@@ -56,9 +56,7 @@ export class DeploymentService {
           "repoUri" : application.repoUri,
           "name" : application.name
         },
-        "volumeInstance": {
-          "reference" : volumeReference
-        } 
+        "volumeInstanceReference" : volumeReference
       }
     );
     console.log('[DeploymentService] body is ' + body);
