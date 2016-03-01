@@ -1,7 +1,7 @@
 import { Injectable } from 'angular2/core';
 import { Http, Headers, RequestOptions, Response } from 'angular2/http';
 import { Router } from 'angular2/router';
-import {Observable}     from 'rxjs/Observable';
+import { Observable }     from 'rxjs/Observable';
 
 import { Deployment } from './deployment';
 import { CredentialService } from '../credential/credential.service';
@@ -38,9 +38,11 @@ export class DeploymentService {
 
   }
 
-  add(credentialService: CredentialService, application: Application) {
+  add(credentialService: CredentialService, application: Application, volumeReference: string) {
     console.log('[DeploymentService] Deploying application with repo '
-      + application.repoUri + ' for user ' + credentialService.getUsername());
+      + application.repoUri 
+      + ' for user ' + credentialService.getUsername()
+      + ' and attached volume ' + volumeReference);
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic '
@@ -48,7 +50,18 @@ export class DeploymentService {
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
-    let body = JSON.stringify({ application });
+    let body = JSON.stringify(
+      { 
+        "application": {
+          "repoUri" : application.repoUri,
+          "name" : application.name
+        },
+        "volumeInstance": {
+          "reference" : volumeReference
+        } 
+      }
+    );
+    console.log('[DeploymentService] body is ' + body);
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post('http://localhost:8080/deployment/', body, options)

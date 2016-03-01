@@ -51,7 +51,11 @@ export class Repository {
     applicationDeployer.deploying = true;
     console.log('[Repository] Adding deployment for application from '
         + applicationDeployer.repoUri);
-    this.deploymentService.add(this.credentialService, applicationDeployer).subscribe(
+    this.deploymentService.add(
+        this.credentialService, 
+        applicationDeployer, 
+        applicationDeployer.attachedVolumeReference
+    ).subscribe(
       deployment  => {
         this.router.navigateByUrl('/deployments');
       },

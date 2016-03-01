@@ -3,27 +3,29 @@
 
 	<div class="grid_16 alpha">
 		<div *ngFor="#applicationDeployer of applicationDeployers">
-			
-			<div *ngIf="applicationDeployer.deploying || applicationDeployer.destroying" class="loader-icon"></div>
-
-			<form *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying ">
+			<form>
 				<input type="text" [(ngModel)]="applicationDeployer.name" class="form-control" readonly hidden>
 		    <input type="text" [(ngModel)]="applicationDeployer.repoUri" class="form-control" readonly hidden>
 		    
 		    <div class="grid_24">
 		    	<span class="grid_16 alpha"><h3 >{{ applicationDeployer.name }}</h3></span>
-		    	<span><button style="margin-top:10px" class="grid_8"(click)="removeApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="d">Remove</button></span>
+		    	<span *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying ">
+		    		<button style="margin-top:10px" class="grid_8"(click)="removeApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="d">Remove</button>
+	    		</span>
 	    	</div>
 				<h5>{{ applicationDeployer.repoUri }}</h5>
 
-				<h5>Attach volume 
-			    <select (change)="selectVolume($event, applicationDeployer, $event.target.value)">
-			    	<option value="null">None</option>
-			      <option *ngFor="#volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
-			    </select>
-			  </h5>
-			  <div style="margin-left:10px">
-		    <button (click)="deployApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="}">Deploy</button>
+				<div *ngIf="applicationDeployer.deploying || applicationDeployer.destroying" class="loader-icon"></div>
+				<div *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying ">
+					<h5>Attach volume 
+				    <select (change)="selectVolume($event, applicationDeployer, $event.target.value)">
+				    	<option value="null">None</option>
+				      <option *ngFor="#volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
+				    </select>
+				  </h5>
+				  <div style="margin-left:10px">
+			    <button (click)="deployApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="}">Deploy</button>
+			    </div>
 		    </div>
 	    </form>
 	    <br>
