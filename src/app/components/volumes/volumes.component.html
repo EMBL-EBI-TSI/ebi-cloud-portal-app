@@ -10,7 +10,7 @@
 			<form *ngIf="!volumeInstanceDeployment.destroying">
 				<input type="text" [(ngModel)]="volumeInstanceDeployment.reference" class="form-control" readonly hidden>
 		    <input type="text" [(ngModel)]="volumeInstanceDeployment.providerId" class="form-control" readonly hidden>
-	      <button (click)="destroyVolume($event, volumeInstanceDeployment)" class="icon icon-functional" data-icon="}">Destroy</button>
+	      <button (click)="destroyVolume($event, volumeInstanceDeployment)" class="icon icon-functional" data-icon="d">Destroy</button>
 	    </form>
 	    <br>
 		</div>
@@ -18,16 +18,20 @@
 
 	<div class="grid_8 alpha" *ngIf="volumeDeployers">
 		<h3>Available volume setups</h3>
-		<add-volume-setup-form></add-volume-setup-form>
+		<form [ngFormModel]="volumeSetupForm" (submit)="addVolumeSetup($event)">
+    	<input ngControl="repoUri" type="url" placeholder="Repository URI">
+  		<button type="submit">Add</button>
+		</form>
 		<br>
 		<div *ngFor="#volumeDeployer of volumeDeployers">
 			<h4>{{ volumeDeployer.name }}</h4>
 			<p>URI: {{ volumeDeployer.repoUri }}</p>
-			<div *ngIf="volumeDeployer.deploying" class="loader-icon"></div>
-			<form *ngIf="!volumeDeployer.deploying">
+			<div *ngIf="volumeDeployer.deploying || volumeDeployer.removing" class="loader-icon"></div>
+			<form *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing ">
 				<input type="text" [(ngModel)]="volumeDeployer.name" class="form-control" readonly hidden>
 		    <input type="text" [(ngModel)]="volumeDeployer.repoUri" class="form-control" readonly hidden>
 	      <button (click)="deployVolume($event, volumeDeployer)" class="icon icon-functional" data-icon="}">Deploy</button>
+				<button (click)="removeVolumeSetup($event, volumeDeployer)" class="icon icon-functional" data-icon="d">Remove</button>
 	    </form>
 	    <br>
 		</div>

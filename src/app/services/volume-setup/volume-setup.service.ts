@@ -72,6 +72,22 @@ export class VolumeSetupService {
       .map(res => <VolumeSetup> res.json());
   }
 
+  delete(credentialService: CredentialService, volumeSetup: VolumeSetup) {
+    console.log('[VolumeSetupService] removing application  '
+      + volumeSetup.name + ' for user ' + credentialService.getUsername());
+
+    let headers = new Headers();
+    headers.append('Authorization', 'Basic '
+      + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
+
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete('http://localhost:8080/volumesetup/' + volumeSetup.name, options)
+      .map(res => res.status);
+  }
+
   private processResult(res: Response) {
     let jsonRes = res.json();
     if (jsonRes._embedded) {

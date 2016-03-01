@@ -1,5 +1,6 @@
 import { Component } from 'angular2/core';
 import { FORM_DIRECTIVES, CORE_DIRECTIVES } from 'angular2/common';
+import { NgForm, FormBuilder, Validators, ControlGroup } from 'angular2/common';
 import { Router } from 'angular2/router';
 
 import { ApplicationDeployer } from './application-deployer';
@@ -9,7 +10,6 @@ import { VolumeInstance } from '../../services/volume-instance/volume-instance';
 import { VolumeInstanceService } from '../../services/volume-instance/volume-instance.service';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 import { CredentialService } from '../../services/credential/credential.service';
-import { AddApplicationForm } from './add-application-form.component';
 
 
 @Component({
@@ -20,12 +20,14 @@ import { AddApplicationForm } from './add-application-form.component';
     DeploymentService,
     CredentialService
   ],
-  directives: [ AddApplicationForm, CORE_DIRECTIVES],
+  directives: [ CORE_DIRECTIVES ],
   pipes: [ ],
   styles: [require('./repository.component.css')],
   template: require('./repository.component.html')
 })
 export class Repository {
+
+  applicationForm: ControlGroup;
 
   // Set our default values
   applicationDeployers: ApplicationDeployer[];
@@ -33,11 +35,16 @@ export class Repository {
 
   // TypeScript public modifiers
   constructor(
+    fb: FormBuilder,
     public router: Router,
     public applicationService: ApplicationService,
     public volumeInstanceService: VolumeInstanceService,
     public deploymentService: DeploymentService,
     public credentialService: CredentialService) {
+
+    this.applicationForm = fb.group({
+      repoUri: ['', Validators.required]
+    });
     this.applicationDeployers = [];
   }
 
@@ -64,6 +71,22 @@ export class Repository {
         this.router.navigateByUrl('/login');
       }
     );
+  }
+
+  addApplication(event) {
+    event.preventDefault();
+    console.log('[Repository] adding ' + this.applicationForm.value.repoUri);
+    this.applicationService.add(this.credentialService, this.applicationForm.value.repoUri)
+      .subscribe(
+      application  => {
+        console.log('[Repository] got response %O', application);
+        this._updateRepository();
+      },
+      error => {
+        console.log(error);
+        this.router.navigateByUrl('/login');
+      }
+      );
   }
 
   removeApplication(event, applicationDeployer: ApplicationDeployer) {
