@@ -4,7 +4,8 @@
 	<div class="grid_16 alpha" *ngIf="volumeInstanceDeployments">
 	<h3 *ngIf="volumeInstanceDeployments.length==0">No volume deployments for user {{ credentialService.getUsername() }} yet</h3>
 		<div *ngFor="#volumeInstanceDeployment of volumeInstanceDeployments">
-			<h3>{{ volumeInstanceDeployment.reference }}</h3>
+			<h3>{{ volumeInstanceDeployment.name }}</h3>
+			<h4>{{ volumeInstanceDeployment.reference }}</h4>
 			<p>ID: {{ volumeInstanceDeployment.providerId }}</p>
 			<div *ngIf="volumeInstanceDeployment.destroying" class="loader-icon"></div>
 			<form *ngIf="!volumeInstanceDeployment.destroying">

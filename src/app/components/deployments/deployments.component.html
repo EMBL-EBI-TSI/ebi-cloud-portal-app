@@ -1,9 +1,11 @@
 <section *ngIf="deploymentInstances">
 	<h3 *ngIf="deploymentInstances.length==0">No deployments for user {{ credentialService.getUsername() }} yet</h3>
 	<div *ngFor="#deploymentInstance of deploymentInstances">
-		<h3>{{ deploymentInstance.reference }}</h3>
+		<h3>{{ deploymentInstance.applicationName }}</h3>
+		<h4>{{ deploymentInstance.reference }}</h4>
 		<h5>Provider ID: {{ deploymentInstance.providerId }}</h5>
 		<h5>Access IP: {{ deploymentInstance.accessIp }}</h5>
+		<h5 *ngIf="deploymentInstance.volumeInstanceReference">Attached volume: {{ deploymentInstance.volumeInstanceReference }}</h5>
 		<div *ngIf="deploymentInstance.destroying" class="loader-icon"></div>
 		<form *ngIf="!deploymentInstance.destroying">
 			<input type="text" [(ngModel)]="deploymentInstance.reference" class="form-control" readonly hidden>
