@@ -4,6 +4,7 @@ import { Router } from 'angular2/router';
 import { Observable }     from 'rxjs/Observable';
 
 import { Deployment } from './deployment';
+import { DeploymentStatus } from './deployment-status';
 import { CredentialService } from '../credential/credential.service';
 import { Application } from '../application/application';
 
@@ -81,6 +82,12 @@ export class DeploymentService {
     return this.http.delete('http://localhost:8080/deployment/' + deployment.reference, options)
       .map(res => res.status);
   }
+
+  // pollStatus(deploymentReference: string, interval: number) {
+  //   return Observable.interval(interval).flatMap(
+  //     () => this.http.get('http://localhost:8080/deployment/' + deploymentReference + 'status')
+  //   ).map(res => <DeploymentStatus>res.json())
+  // }
 
   private processResult(res: Response) {
     let jsonRes = res.json();
