@@ -28,7 +28,7 @@ export class VolumeSetupService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + '/volumesetup/',
+      this.config.getApiAddress() + 'volumesetup/',
       {
         headers: headers
       }
@@ -48,7 +48,7 @@ export class VolumeSetupService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + '/volumesetup/' + volumeSetupId,
+      this.config.getApiAddress() + 'volumesetup/' + volumeSetupId,
         {
             headers: headers
         }
@@ -69,7 +69,7 @@ export class VolumeSetupService {
     let body = JSON.stringify({ repoUri });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.config.getApiAddress() + '/volumesetup/', body, options)
+    return this.http.post(this.config.getApiAddress() + 'volumesetup/', body, options)
       .map(res => <VolumeSetup> res.json());
   }
 
