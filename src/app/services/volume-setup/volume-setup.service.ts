@@ -87,7 +87,7 @@ export class VolumeSetupService {
 
     return this.http.delete(
       this.config.getApiAddress()
-      + '/volumesetup/'
+      + 'volumesetup/'
       + volumeSetup.name, options
     ).map(res => res.status);
   }
