@@ -29,7 +29,7 @@ export class VolumeInstanceService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + '/volumeinstance/',
+      this.config.getApiAddress() + 'volumeinstance/',
       {
         headers: headers
       }
@@ -52,7 +52,7 @@ export class VolumeInstanceService {
     let body = JSON.stringify({ volumeSetup });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.config.getApiAddress() + '/volumeinstance/', body, options)
+    return this.http.post(this.config.getApiAddress() + 'volumeinstance/', body, options)
       .map(res => <VolumeInstance>res.json());
   }
 
@@ -69,7 +69,7 @@ export class VolumeInstanceService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.delete(
-      this.config.getApiAddress() + '/volumeinstance/' + volumeInstance.reference,
+      this.config.getApiAddress() + 'volumeinstance/' + volumeInstance.reference,
         options)
       .map(res => res.status);
   }

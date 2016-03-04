@@ -27,7 +27,7 @@ export class AccountService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + '/account/' + credentialService.getUsername(),
+      this.config.getApiAddress() + 'account/' + credentialService.getUsername(),
       {
         headers: headers
       }

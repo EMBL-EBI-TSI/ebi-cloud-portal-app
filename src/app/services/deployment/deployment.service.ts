@@ -30,7 +30,7 @@ export class DeploymentService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + '/deployment/',
+      this.config.getApiAddress() + 'deployment/',
       {
         headers: headers
       }

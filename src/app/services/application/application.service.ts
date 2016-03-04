@@ -28,7 +28,7 @@ export class ApplicationService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + '/application/',
+      this.config.getApiAddress() + 'application/',
       {
         headers: headers
       }
@@ -48,7 +48,7 @@ export class ApplicationService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + '/application/' + application.name,
+      this.config.getApiAddress() + 'application/' + application.name,
       {
           headers: headers
       }
