@@ -5,6 +5,7 @@ import { Observable }     from 'rxjs/Observable';
 
 import { VolumeInstance } from './volume-instance';
 import { CredentialService } from '../credential/credential.service';
+import { ConfigService } from '../config/config.service';
 import { VolumeSetup } from '../volume-setup/volume-setup';
 
 @Injectable()
@@ -12,7 +13,7 @@ export class VolumeInstanceService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http) {
+  constructor(public router: Router, public http: Http, public config: ConfigService) {
 
   }
 
@@ -28,7 +29,7 @@ export class VolumeInstanceService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8080/volumeinstance/',
+      this.config.getApiAddress() + '/volumeinstance/',
       {
         headers: headers
       }
@@ -51,7 +52,7 @@ export class VolumeInstanceService {
     let body = JSON.stringify({ volumeSetup });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://localhost:8080/volumeinstance/', body, options)
+    return this.http.post(this.config.getApiAddress() + '/volumeinstance/', body, options)
       .map(res => <VolumeInstance>res.json());
   }
 
@@ -68,7 +69,7 @@ export class VolumeInstanceService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.delete(
-        'http://localhost:8080/volumeinstance/' + volumeInstance.reference,
+      this.config.getApiAddress() + '/volumeinstance/' + volumeInstance.reference,
         options)
       .map(res => res.status);
   }

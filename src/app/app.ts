@@ -14,6 +14,7 @@ import {Deployments} from './components/deployments/deployments.component';
 import {Login} from './components/login/login.component';
 import {Profile} from './components/profile/profile.component';
 import { CredentialService } from './services/credential/credential.service';
+import { ConfigService } from './services/config/config.service';
 
 /*
  * App Component
@@ -41,7 +42,7 @@ export class App {
   name = 'TSI Cloud Portal';
   url = 'https://github.com/EMBL-EBI-TSI';
 
-  constructor(public credentialService: CredentialService, public router: Router) {
+  constructor(public credentialService: CredentialService, public router: Router, public configService: ConfigService) {
 
   }
 

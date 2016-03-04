@@ -6,13 +6,18 @@ import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
 import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import { Http, HTTP_PROVIDERS } from 'angular2/http';
 import { FORM_PROVIDERS } from 'angular2/common';
+import { ConfigService } from './app/services/config/config.service';
 
 const ENV_PROVIDERS = [];
 
+let activeConfig: ConfigService;
+
 if ('production' === process.env.ENV) {
   enableProdMode();
+  activeConfig = new ConfigService('http://193.62.54.87:8100/');
 } else {
   ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
+  activeConfig = new ConfigService('http://localhost:8080/');
 }
 
 /*
@@ -31,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function main() {
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
     ...FORM_PROVIDERS,
+    provide(ConfigService, { useValue: activeConfig }),
     provide(LocationStrategy, { useClass: HashLocationStrategy })
   ])
   .catch(err => console.error(err));

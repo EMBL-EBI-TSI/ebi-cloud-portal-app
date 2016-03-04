@@ -3,6 +3,7 @@ import {Http, Headers} from 'angular2/http';
 import {Router} from 'angular2/router';
 
 import { CredentialService } from '../credential/credential.service';
+import { ConfigService } from '../config/config.service';
 import { Account } from './account';
 
 @Injectable()
@@ -10,7 +11,7 @@ export class AccountService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http) {
+  constructor(public router: Router, public http: Http, public config: ConfigService) {
 
   }
 
@@ -26,7 +27,7 @@ export class AccountService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8080/account/' + credentialService.getUsername(),
+      this.config.getApiAddress() + '/account/' + credentialService.getUsername(),
       {
         headers: headers
       }

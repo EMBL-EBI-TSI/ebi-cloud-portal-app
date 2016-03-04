@@ -5,13 +5,14 @@ import { Observable }     from 'rxjs/Observable';
 
 import { Application } from './application';
 import { CredentialService } from '../credential/credential.service';
+import { ConfigService } from '../config/config.service';
 
 @Injectable()
 export class ApplicationService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http) {
+  constructor(public router: Router, public http: Http, public config: ConfigService) {
 
   }
 
@@ -27,7 +28,7 @@ export class ApplicationService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8080/application/',
+      this.config.getApiAddress() + '/application/',
       {
         headers: headers
       }
@@ -47,10 +48,10 @@ export class ApplicationService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-        'http://localhost:8080/application/' + application.name,
-        {
-            headers: headers
-        }
+      this.config.getApiAddress() + '/application/' + application.name,
+      {
+          headers: headers
+      }
     )
         .map(res => <Application> res.json());
 
@@ -68,7 +69,7 @@ export class ApplicationService {
     let body = JSON.stringify({ repoUri });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://localhost:8080/application/', body, options)
+    return this.http.post(this.config.getApiAddress() + 'application/', body, options)
       .map(res => <Application> res.json());
   }
 
@@ -84,7 +85,7 @@ export class ApplicationService {
 
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete('http://localhost:8080/application/' + application.name, options)
+    return this.http.delete(this.config.getApiAddress() + 'application/' + application.name, options)
         .map(res => res.status);
   }
 

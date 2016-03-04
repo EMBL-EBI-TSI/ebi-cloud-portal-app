@@ -6,6 +6,7 @@ import { Observable }     from 'rxjs/Observable';
 import { Deployment } from './deployment';
 import { DeploymentStatus } from './deployment-status';
 import { CredentialService } from '../credential/credential.service';
+import { ConfigService } from '../config/config.service';
 import { Application } from '../application/application';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class DeploymentService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http) {
+  constructor( public router: Router, public http: Http, public config: ConfigService ) {
 
   }
 
@@ -29,7 +30,7 @@ export class DeploymentService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      'http://localhost:8080/deployment/',
+      this.config.getApiAddress() + '/deployment/',
       {
         headers: headers
       }
@@ -63,7 +64,7 @@ export class DeploymentService {
     console.log('[DeploymentService] body is ' + body);
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://localhost:8080/deployment/', body, options)
+    return this.http.post(this.config.getApiAddress() + 'deployment/', body, options)
       .map(res => <Deployment>res.json());
   }
 
@@ -79,13 +80,13 @@ export class DeploymentService {
 
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete('http://localhost:8080/deployment/' + deployment.reference, options)
+    return this.http.delete(this.config.getApiAddress() + 'deployment/' + deployment.reference, options)
       .map(res => res.status);
   }
 
   // pollStatus(deploymentReference: string, interval: number) {
   //   return Observable.interval(interval).flatMap(
-  //     () => this.http.get('http://localhost:8080/deployment/' + deploymentReference + 'status')
+  //     () => this.http.get(this.config.getApiAddress() + '/deployment/' + deploymentReference + 'status')
   //   ).map(res => <DeploymentStatus>res.json())
   // }
 
