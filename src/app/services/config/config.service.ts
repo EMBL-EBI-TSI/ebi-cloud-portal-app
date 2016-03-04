@@ -13,6 +13,6 @@ export class ConfigService {
   getApiAddress() {
 		return this.apiAddress;
   }
-  
+
 
 }

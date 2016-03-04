@@ -42,7 +42,7 @@ export class DeploymentService {
 
   add(credentialService: CredentialService, application: Application, volumeReference: string) {
     console.log('[DeploymentService] Deploying application with repo '
-      + application.repoUri 
+      + application.repoUri
       + ' for user ' + credentialService.getUsername()
       + ' and attached volume ' + volumeReference);
 
@@ -53,12 +53,12 @@ export class DeploymentService {
     headers.append('Content-Type', 'application/json');
 
     let body = JSON.stringify(
-      { 
-        "application": {
-          "repoUri" : application.repoUri,
-          "name" : application.name
+      {
+        'application': {
+          'repoUri' : application.repoUri,
+          'name' : application.name
         },
-        "volumeInstanceReference" : volumeReference
+        'volumeInstanceReference' : volumeReference
       }
     );
     console.log('[DeploymentService] body is ' + body);
@@ -80,13 +80,17 @@ export class DeploymentService {
 
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete(this.config.getApiAddress() + 'deployment/' + deployment.reference, options)
+    return this.http.delete(
+      this.config.getApiAddress()
+      + 'deployment/'
+      + deployment.reference, options)
       .map(res => res.status);
   }
 
   // pollStatus(deploymentReference: string, interval: number) {
   //   return Observable.interval(interval).flatMap(
-  //     () => this.http.get(this.config.getApiAddress() + '/deployment/' + deploymentReference + 'status')
+  //     () => this.http.get(this.config.getApiAddress() 
+  // + '/deployment/' + deploymentReference + 'status')
   //   ).map(res => <DeploymentStatus>res.json())
   // }
 

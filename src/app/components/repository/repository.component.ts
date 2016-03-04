@@ -59,8 +59,8 @@ export class Repository {
     console.log('[Repository] Adding deployment for application from '
         + applicationDeployer.repoUri);
     this.deploymentService.add(
-        this.credentialService, 
-        applicationDeployer, 
+        this.credentialService,
+        applicationDeployer,
         applicationDeployer.attachedVolumeReference
     ).subscribe(
       deployment  => {
@@ -113,7 +113,8 @@ export class Repository {
 
   selectVolume(event, applicationDeployer, volumeInstanceReference) {
     event.preventDefault();
-    console.log('[Repository] attaching volume ' + volumeInstanceReference + ' to application ' + applicationDeployer.name);
+    console.log('[Repository] attaching volume ' + volumeInstanceReference
+      + ' to application ' + applicationDeployer.name);
     applicationDeployer.attachedVolumeReference = volumeInstanceReference;
   }
 

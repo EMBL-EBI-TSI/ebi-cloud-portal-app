@@ -15,6 +15,7 @@ import {Router, Location, ROUTER_PROVIDERS, ROUTER_PRIMARY_COMPONENT} from 'angu
 import {RouteRegistry} from 'angular2/src/router/route_registry';
 
 import { CredentialService } from './services/credential/credential.service';
+import { ConfigService } from './services/config/config.service';
 
 // Load the implementations that should be tested
 import {App} from './app';
@@ -35,7 +36,7 @@ describe('App', () => {
     provide(ROUTER_PRIMARY_COMPONENT, { useValue: CredentialService }),
     RouteRegistry,
     provide(Router, { useClass: RootRouter }),
-
+    provide(ConfigService, { useValue: new ConfigService('some_url') }),
     CredentialService,
     App
   ]);

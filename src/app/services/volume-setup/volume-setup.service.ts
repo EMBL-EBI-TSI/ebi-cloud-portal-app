@@ -85,8 +85,11 @@ export class VolumeSetupService {
 
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete(this.config.getApiAddress() + '/volumesetup/' + volumeSetup.name, options)
-      .map(res => res.status);
+    return this.http.delete(
+      this.config.getApiAddress()
+      + '/volumesetup/'
+      + volumeSetup.name, options
+    ).map(res => res.status);
   }
 
   private processResult(res: Response) {

@@ -42,7 +42,8 @@ export class App {
   name = 'TSI Cloud Portal';
   url = 'https://github.com/EMBL-EBI-TSI';
 
-  constructor(public credentialService: CredentialService, public router: Router, public configService: ConfigService) {
+  constructor(public credentialService: CredentialService,
+    public router: Router, public configService: ConfigService) {
 
   }
 
