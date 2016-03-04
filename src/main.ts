@@ -14,7 +14,7 @@ let activeConfig: ConfigService;
 
 if ('production' === process.env.ENV) {
   enableProdMode();
-  activeConfig = new ConfigService('http://193.62.54.87:8100/');
+  activeConfig = new ConfigService('http://193.62.54.66:8080/');
 } else {
   ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
   activeConfig = new ConfigService('http://localhost:8080/');
