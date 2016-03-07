@@ -36,10 +36,10 @@ export class Login {
               console.log('User data is %O', data);
               this.router.parent.navigateByUrl('/deployments');
           },
-          err => {
-              console.log('[Login] error %O: ', err);
+          error => {
+            console.log('[Login] error %O: ', error);
               this.credentialService.clearCredentials();
-              this.errorService.setMessage(err);
+              this.errorService.setMessage(<any>error);
               this.router.parent.navigateByUrl('/error');
           },
           () => {
