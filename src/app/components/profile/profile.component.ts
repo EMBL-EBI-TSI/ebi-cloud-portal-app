@@ -37,7 +37,9 @@ export class Profile {
           console.log(err);
           // this.credentialService.clearCredentials();
           // this.router.parent.navigateByUrl('/login');
-          this.errorService.setMessage('Error while retrieving account data for user ' + this.credentialService.getUsername);
+          this.errorService.setMessage(
+            'Error while retrieving account data for user '
+            + this.credentialService.getUsername);
           this.router.navigateByUrl('/error');
         },
         () => {

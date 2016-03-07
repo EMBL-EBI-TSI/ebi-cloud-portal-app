@@ -16,6 +16,7 @@ import {RouteRegistry} from 'angular2/src/router/route_registry';
 
 import { CredentialService } from './services/credential/credential.service';
 import { ConfigService } from './services/config/config.service';
+import { ErrorService } from './services/error/error.service';
 
 // Load the implementations that should be tested
 import {App} from './app';
@@ -37,6 +38,7 @@ describe('App', () => {
     RouteRegistry,
     provide(Router, { useClass: RootRouter }),
     provide(ConfigService, { useValue: new ConfigService('some_url') }),
+    ErrorService,
     CredentialService,
     App
   ]);

@@ -30,13 +30,13 @@ export class DeploymentService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + 'deployment/',
-      {
-        headers: headers
-      }
-    )
-    .map(res => this.processResult(res))
-    .catch(this.handleError);
+        this.config.getApiAddress() + 'deployment/',
+        {
+          headers: headers
+        }
+      )
+      .map(res => this.processResult(res))
+      .catch(this.handleError);
 
   }
 
@@ -65,7 +65,8 @@ export class DeploymentService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.config.getApiAddress() + 'deployment/', body, options)
-      .map(res => <Deployment>res.json());
+      .map(res => <Deployment>res.json())
+      .catch(this.handleError);
   }
 
   delete(credentialService: CredentialService, deployment: Deployment) {
@@ -81,10 +82,11 @@ export class DeploymentService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.delete(
-      this.config.getApiAddress()
-      + 'deployment/'
-      + deployment.reference, options)
-      .map(res => res.status);
+        this.config.getApiAddress()
+        + 'deployment/'
+        + deployment.reference, options)
+      .map(res => res.status)
+      .catch(this.handleError);
   }
 
   // pollStatus(deploymentReference: string, interval: number) {
@@ -106,7 +108,7 @@ export class DeploymentService {
   private handleError(error: Response) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
-      console.error('[DeploymentService] error ' + error);
+    console.error('[DeploymentService] error ' + error);
     return Observable.throw(error.json().error || 'Server error');
   }
 }

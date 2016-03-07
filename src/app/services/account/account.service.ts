@@ -13,7 +13,8 @@ export class AccountService {
 
   credentials = null;
 
-  constructor( public router: Router, public http: Http, public config: ConfigService, public errorService: ErrorService ) {
+  constructor( public router: Router, public http: Http,
+    public config: ConfigService, public errorService: ErrorService ) {
 
   }
 
@@ -39,8 +40,8 @@ export class AccountService {
 
   }
 
-  private handleError( error: Response ) {
-    return Observable.throw(error.json().error || 'Server error')
+  private handleError( error : Response ) {
+    return Observable.throw(error.json().error || 'Server error');
   }
 
 }
