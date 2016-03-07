@@ -26,24 +26,20 @@ export class Profile {
   }
 
   ngOnInit() {
-    console.log('hello *Profile* component');
+    console.log('[Profile] hello *Profile* component');
     this.accountService.getAccount(this.credentialService)
       .subscribe(
         account => {
-          console.log('User data is %O', account);
+          console.log('[Profile] User data is %O', account);
           this.account = account;
         },
-        err => {
-          console.log(err);
-          // this.credentialService.clearCredentials();
-          // this.router.parent.navigateByUrl('/login');
-          this.errorService.setMessage(
-            'Error while retrieving account data for user '
-            + this.credentialService.getUsername);
-          this.router.navigateByUrl('/error');
+        error => {
+          console.log('[Profile] error %O: ', error);
+          this.errorService.setMessage(<any>error);
+          this.router.parent.navigateByUrl('/error');
         },
         () => {
-          console.log('Account data retrieval complete');
+          console.log('[Profile] Account data retrieval complete');
         }
     );
   }
