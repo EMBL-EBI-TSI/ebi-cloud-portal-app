@@ -134,7 +134,9 @@ export class Repository {
       },
       error => {
         console.log('[Repository] error %O: ', error);
-        this.errorService.setMessage(' Could not get list of applications. ' + <any>error +'.');
+        this.errorService.setMessage(
+          'Could not get list of applications. ' + <any>error + '.'
+          );
         this.router.navigateByUrl('/error');
       },
       () => {
@@ -151,7 +153,9 @@ export class Repository {
       },
       error => {
         console.log('[Repository] error %O: ', error);
-        this.errorService.setMessage(' Could not get list of volume instances. ' + <any>error + '.');
+        this.errorService.setMessage(
+          'Could not get list of volume instances. ' + <any>error + '.'
+          );
         this.router.navigateByUrl('/error');
       },
       () => {
