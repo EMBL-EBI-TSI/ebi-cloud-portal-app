@@ -10,6 +10,7 @@ import { VolumeInstance } from '../../services/volume-instance/volume-instance';
 import { VolumeInstanceService } from '../../services/volume-instance/volume-instance.service';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 import { CredentialService } from '../../services/credential/credential.service';
+import { ErrorService } from '../../services/error/error.service';
 
 
 @Component({
@@ -17,8 +18,7 @@ import { CredentialService } from '../../services/credential/credential.service'
   providers: [
     ApplicationService,
     VolumeInstanceService,
-    DeploymentService,
-    CredentialService
+    DeploymentService
   ],
   directives: [ CORE_DIRECTIVES ],
   pipes: [ ],
@@ -40,7 +40,8 @@ export class Repository {
     public applicationService: ApplicationService,
     public volumeInstanceService: VolumeInstanceService,
     public deploymentService: DeploymentService,
-    public credentialService: CredentialService) {
+    public credentialService: CredentialService,
+    public errorService: ErrorService) {
 
     this.applicationForm = fb.group({
       repoUri: ['', Validators.required]
@@ -67,8 +68,9 @@ export class Repository {
         this.router.navigateByUrl('/deployments');
       },
       error => {
-        console.log(error);
-        this.router.navigateByUrl('/login');
+        console.log('[Repository] error %O: ', error);
+        this.errorService.setMessage('Could not deploy application. ' + <any>error + '.');
+        this.router.navigateByUrl('/error');
       }
     );
   }
@@ -83,8 +85,11 @@ export class Repository {
         this._updateRepository();
       },
       error => {
-        console.log(error);
-        this.router.navigateByUrl('/login');
+        console.log('[Repository] error %O: ', error);
+        this.errorService.setMessage(
+          'Could not add new application to repository. ' + <any>error + '.'
+          );
+        this.router.navigateByUrl('/error');
       }
       );
   }
@@ -96,18 +101,20 @@ export class Repository {
       applicationDeployer.destroying = true;
 
       this.applicationService.delete(this.credentialService, applicationDeployer).subscribe(
-          res => {
-              console.log('[Repository] got response %O', res);
-              this._updateRepository();
-          },
-          err => {
-              console.log('[Repository] error: ' + err);
-              this.credentialService.clearCredentials();
-              this.router.navigateByUrl('/login');
-          },
-          () => {
-              console.log('[Repository] Application data deletion complete');
-          }
+        res => {
+          console.log('[Repository] got response %O', res);
+          this._updateRepository();
+        },
+        error => {
+          console.log('[Repository] error %O: ', error);
+          this.errorService.setMessage(
+            'Could not delete application from repository. ' + <any>error + '.'
+            );
+          this.router.navigateByUrl('/error');
+        },
+        () => {
+          console.log('[Repository] Application data deletion complete');
+        }
       );
   }
 
@@ -126,9 +133,9 @@ export class Repository {
         this.applicationDeployers = applications.map(app => <ApplicationDeployer>app);
       },
       error => {
-        console.log(error);
-        this.credentialService.clearCredentials();
-        this.router.parent.navigateByUrl('/login');
+        console.log('[Repository] error %O: ', error);
+        this.errorService.setMessage(<any>error);
+        this.router.navigateByUrl('/error');
       },
       () => {
           console.log('[Repository] Account data retrieval complete');
@@ -143,9 +150,9 @@ export class Repository {
           volumeInstances.map(vol => <VolumeInstance>vol);
       },
       error => {
-        console.log(error);
-        this.credentialService.clearCredentials();
-        this.router.parent.navigateByUrl('/login');
+        console.log('[Repository] error %O: ', error);
+        this.errorService.setMessage(<any>error);
+        this.router.navigateByUrl('/error');
       },
       () => {
         console.log('[Repository] Volume instance data retrieval complete');

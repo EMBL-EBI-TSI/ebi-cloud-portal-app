@@ -48,12 +48,13 @@ export class ApplicationService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + 'application/' + application.name,
-      {
-          headers: headers
-      }
-    )
-        .map(res => <Application> res.json());
+        this.config.getApiAddress() + 'application/' + application.name,
+        {
+            headers: headers
+        }
+      )
+      .map(res => <Application>res.json())
+      .catch(this.handleError);
 
   }
 
@@ -70,7 +71,8 @@ export class ApplicationService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.config.getApiAddress() + 'application/', body, options)
-      .map(res => <Application> res.json());
+      .map(res => <Application>res.json())
+      .catch(this.handleError);
   }
 
   delete(credentialService: CredentialService, application: Application) {
@@ -89,7 +91,8 @@ export class ApplicationService {
       this.config.getApiAddress()
       + 'application/'
       + application.name, options)
-    .map(res => res.status);
+    .map(res => res.status)
+    .catch(this.handleError);
   }
 
   private processResult(res: Response) {

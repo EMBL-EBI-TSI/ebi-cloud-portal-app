@@ -53,7 +53,8 @@ export class VolumeInstanceService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.config.getApiAddress() + 'volumeinstance/', body, options)
-      .map(res => <VolumeInstance>res.json());
+      .map(res => <VolumeInstance>res.json())
+      .catch(this.handleError);
   }
 
   delete(credentialService: CredentialService, volumeInstance: VolumeInstance) {
@@ -71,7 +72,8 @@ export class VolumeInstanceService {
     return this.http.delete(
       this.config.getApiAddress() + 'volumeinstance/' + volumeInstance.reference,
         options)
-      .map(res => res.status);
+      .map(res => res.status)
+      .catch(this.handleError);
   }
 
   private processResult(res: Response) {

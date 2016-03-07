@@ -38,9 +38,9 @@ export class Login {
           },
           error => {
             console.log('[Login] error %O: ', error);
-              this.credentialService.clearCredentials();
-              this.errorService.setMessage(<any>error);
-              this.router.parent.navigateByUrl('/error');
+            this.credentialService.clearCredentials();
+            this.errorService.setMessage(<any>error);
+            this.router.parent.navigateByUrl('/error');
           },
           () => {
               console.log('Authentication Complete');
