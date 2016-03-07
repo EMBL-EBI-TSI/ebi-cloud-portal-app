@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {Router} from 'angular2/router';
+import { Component } from 'angular2/core';
+import { Router } from 'angular2/router';
 
 import { AccountService } from '../../services/account/account.service';
 import { CredentialService } from '../../services/credential/credential.service';
@@ -32,21 +32,19 @@ export class Login {
     this.credentialService.setCredentials(username, password);
     this.accountService.getAccount(this.credentialService)
         .subscribe(
-        data => {
-            console.log('User data is %O', data);
-            this.router.parent.navigateByUrl('/deployments');
-        },
-        err => {
-            console.log(err);
-            this.credentialService.clearCredentials();
-            this.errorService.setMessage('Wrong credentials');
-
-            this.router.parent.navigateByUrl('/error');
-            // this.router.parent.navigateByUrl('/login');
-        },
-        () => {
-            console.log('Authentication Complete');
-        }
+          data => {
+              console.log('User data is %O', data);
+              this.router.parent.navigateByUrl('/deployments');
+          },
+          err => {
+              console.log('[Login] error %O: ', err);
+              this.credentialService.clearCredentials();
+              this.errorService.setMessage(err);
+              this.router.parent.navigateByUrl('/error');
+          },
+          () => {
+              console.log('Authentication Complete');
+          }
         );
   }
 

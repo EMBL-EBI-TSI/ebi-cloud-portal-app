@@ -1,8 +1,10 @@
-import {Injectable} from 'angular2/core';
-import {Http, Headers} from 'angular2/http';
-import {Router} from 'angular2/router';
+import { Injectable } from 'angular2/core';
+import { Http, Headers, Response } from 'angular2/http';
+import { Router } from 'angular2/router';
+import { Observable } from 'rxjs';
 
 import { CredentialService } from '../credential/credential.service';
+import { ErrorService } from '../error/error.service';
 import { ConfigService } from '../config/config.service';
 import { Account } from './account';
 
@@ -11,7 +13,7 @@ export class AccountService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http, public config: ConfigService) {
+  constructor( public router: Router, public http: Http, public config: ConfigService, public errorService: ErrorService ) {
 
   }
 
@@ -32,9 +34,13 @@ export class AccountService {
         headers: headers
       }
     )
-    .map(res => <Account> res.json());
+    .map( res => <Account> res.json() )
+    .catch( this.handleError );
 
   }
 
+  private handleError( error: Response ) {
+    return Observable.throw(error.json().error || 'Server error')
+  }
 
 }
