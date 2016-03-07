@@ -3,16 +3,13 @@ import {Router} from 'angular2/router';
 
 import { AccountService } from '../../services/account/account.service';
 import { CredentialService } from '../../services/credential/credential.service';
-
+import { ErrorService } from '../../services/error/error.service';
 
 @Component({
 
   selector: 'login',
   // We need to tell Angular's Dependency Injection which providers are in our app.
-  providers: [
-    AccountService,
-    CredentialService
-  ],
+  providers: [ AccountService ],
   // Our list of styles in our component. We may add more to compose many styles together
   styles: [require('./login.component.css')],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
@@ -24,7 +21,8 @@ export class Login {
   constructor(
         public router: Router,
         public accountService: AccountService,
-        public credentialService: CredentialService) {
+        public credentialService: CredentialService,
+        public errorService: ErrorService) {
 
   }
 
@@ -41,7 +39,10 @@ export class Login {
         err => {
             console.log(err);
             this.credentialService.clearCredentials();
-            this.router.parent.navigateByUrl('/login');
+            this.errorService.setMessage('Wrong credentials');
+
+            this.router.parent.navigateByUrl('/error');
+            // this.router.parent.navigateByUrl('/login');
         },
         () => {
             console.log('Authentication Complete');

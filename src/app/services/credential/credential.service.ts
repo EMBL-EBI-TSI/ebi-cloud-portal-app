@@ -5,6 +5,7 @@ export class CredentialService {
 
 
   constructor() {
+    console.log('[CredentialService] constructor called');
   }
 
   getUsername() {

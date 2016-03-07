@@ -8,9 +8,11 @@ export class ConfigService {
 
   constructor(apiAddress: string) {
 		this.apiAddress = apiAddress;
+		console.log('[ConfigService] constructor called');
   }
 
   getApiAddress() {
+		console.log('[ConfigService] getting IP address');
 		return this.apiAddress;
   }
 

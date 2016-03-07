@@ -21,7 +21,8 @@ export class LoggedInRouterOutlet extends RouterOutlet {
       'repository': false,
       'home': false,
       'about': true,
-      'profile': true
+      'profile': true,
+      'error': true
     };
   }
 
