@@ -48,12 +48,13 @@ export class VolumeSetupService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-      this.config.getApiAddress() + 'volumesetup/' + volumeSetupId,
-        {
-            headers: headers
-        }
-    )
-        .map(res => <VolumeSetup> res.json());
+        this.config.getApiAddress() + 'volumesetup/' + volumeSetupId,
+          {
+              headers: headers
+          }
+      )
+      .map(res => <VolumeSetup>res.json())
+      .catch(this.handleError);
 
   }
 
@@ -70,7 +71,8 @@ export class VolumeSetupService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.config.getApiAddress() + 'volumesetup/', body, options)
-      .map(res => <VolumeSetup> res.json());
+      .map(res => <VolumeSetup>res.json())
+      .catch(this.handleError);
   }
 
   delete(credentialService: CredentialService, volumeSetup: VolumeSetup) {
@@ -89,7 +91,8 @@ export class VolumeSetupService {
       this.config.getApiAddress()
       + 'volumesetup/'
       + volumeSetup.name, options
-    ).map(res => res.status);
+      ).map(res => res.status)
+      .catch(this.handleError);
   }
 
   private processResult(res: Response) {

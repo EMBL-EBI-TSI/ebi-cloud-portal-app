@@ -10,14 +10,14 @@ import { VolumeInstance } from '../../services/volume-instance/volume-instance';
 import { VolumeSetupService } from '../../services/volume-setup/volume-setup.service';
 import { VolumeInstanceService } from '../../services/volume-instance/volume-instance.service';
 import { CredentialService } from '../../services/credential/credential.service';
+import { ErrorService } from '../../services/error/error.service';
 
 
 @Component({
   selector: 'volumes',
   providers: [
     VolumeSetupService,
-    VolumeInstanceService,
-    CredentialService
+    VolumeInstanceService
   ],
   directives: [ CORE_DIRECTIVES ],
   pipes: [ ],
@@ -38,7 +38,8 @@ export class Volumes {
       public router: Router,
       public volumeSetupService: VolumeSetupService,
       public volumeInstanceService: VolumeInstanceService,
-      public credentialService: CredentialService) {
+      public credentialService: CredentialService,
+      public errorService: ErrorService) {
     this.volumeSetupForm = fb.group({
       repoUri: ['', Validators.required]
     });
@@ -61,8 +62,11 @@ export class Volumes {
         this._updateVolumes();
       },
       error => {
-        console.log(error);
-        this.router.navigateByUrl('/login');
+        console.log('[Volumes] error %O: ', error);
+        this.errorService.setMessage(
+            'Could not deploy volume instance. ' + <any>error + '.'
+        );
+        this.router.navigateByUrl('/error');
       }
     );
   }
@@ -76,13 +80,15 @@ export class Volumes {
         console.log('[Volumes] got response %O', res);
         this._updateVolumes();
       },
-      err => {
-        console.log('[Volumes] error: ' + err);
-        this.credentialService.clearCredentials();
-        this.router.navigateByUrl('/login');
+      error => {
+          console.log('[Volumes] error %O: ', error);
+          this.errorService.setMessage(
+              'Could not destroy volume instance. ' + <any>error + '.'
+          );
+          this.router.navigateByUrl('/error');
       },
       () => {
-        console.log('[Volumes] Deployment data deletion complete');
+        console.log('[Volumes] Volume instance data deletion complete');
       }
     );
   }
@@ -97,8 +103,11 @@ export class Volumes {
         this._updateVolumes();
       },
       error => {
-        console.log(error);
-        this.router.navigateByUrl('/login');
+        console.log('[Volumes] error %O: ', error);
+        this.errorService.setMessage(
+            'Could not add volume setup. ' + <any>error + '.'
+        );
+        this.router.navigateByUrl('/error');
       }
       );
   }
@@ -114,10 +123,12 @@ export class Volumes {
         console.log('[Volumes] got response %O', res);
         this._updateVolumes();
       },
-      err => {
-        console.log('[Volumes] error: ' + err);
-        this.credentialService.clearCredentials();
-        this.router.navigateByUrl('/login');
+      error => {
+        console.log('[Volumes] error %O: ', error);
+        this.errorService.setMessage(
+            'Could not remove volume setup. ' + <any>error + '.'
+        );
+        this.router.navigateByUrl('/error');
       },
       () => {
         console.log('[Volumes] volume setup data deletion complete');
@@ -133,9 +144,11 @@ export class Volumes {
         this.volumeDeployers = volumeSetups.map(app => <VolumeDeployer>app);
       },
       error => {
-        console.log(error);
-        this.credentialService.clearCredentials();
-        this.router.parent.navigateByUrl('/login');
+        console.log('[Volumes] error %O: ', error);
+        this.errorService.setMessage(
+            'Could not get the list of volume setups. ' + <any>error + '.'
+        );
+        this.router.navigateByUrl('/error');
       },
       () => {
         console.log('[Volumes] Volume setup data retrieval complete');
@@ -150,9 +163,11 @@ export class Volumes {
           volumeInstances.map(vol => <VolumeInstanceDeployment>vol);
       },
       error => {
-        console.log(error);
-        this.credentialService.clearCredentials();
-        this.router.parent.navigateByUrl('/login');
+        console.log('[Volumes] error %O: ', error);
+        this.errorService.setMessage(
+            'Could not get the list of volume instances. ' + <any>error + '.'
+        );
+        this.router.navigateByUrl('/error');
       },
       () => {
         console.log('[Volumes] Volume instance data retrieval complete');
