@@ -6,6 +6,7 @@ import { DeploymentInstance } from './deployment-instance';
 import { Deployment } from '../../services/deployment/deployment';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 import { CredentialService } from '../../services/credential/credential.service';
+import { ErrorService } from '../../services/error/error.service';
 
 @Component({
   selector: 'deployments',
@@ -21,7 +22,8 @@ export class Deployments {
   constructor(
       public router: Router,
       public deploymentService: DeploymentService,
-      public credentialService: CredentialService) {
+      public credentialService: CredentialService,
+      public errorService: ErrorService) {
     this.deploymentInstances = [];
 
   }
@@ -41,10 +43,12 @@ export class Deployments {
         console.log('[Deployments] got response %O', res);
         this._updateDeployments();
       },
-      err => {
-        console.log('[Deployments] error: ' + err);
-        this.credentialService.clearCredentials();
-        this.router.navigateByUrl('/login');
+      error => {
+        console.log('[Deployments] error %O: ', error);
+        this.errorService.setMessage(
+          'Could not destroy deployment. ' + <any>error + '.'
+        );
+        this.router.navigateByUrl('/error');
       },
       () => {
         console.log('[Deployments] Deployment data deletion complete');
@@ -61,10 +65,12 @@ export class Deployments {
               deployment => <DeploymentInstance> deployment
           );
         },
-        err => {
-          console.log('[Deployments] error ' + err);
-          this.credentialService.clearCredentials();
-          this.router.parent.navigateByUrl('/login');
+        error => {
+          console.log('[Deployments] error %O: ', error);
+          this.errorService.setMessage(
+            'Could not get deployment list. ' + <any>error + '.'
+          );
+          this.router.navigateByUrl('/error');
         },
         () => {
           console.log('[Deployments] deployment data retrieval complete');
