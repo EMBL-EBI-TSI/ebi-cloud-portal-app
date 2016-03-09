@@ -41,7 +41,7 @@ export class AccountService {
   }
 
   private handleError( error : Response ) {
-    return Observable.throw(error.json().error || 'Server error');
+    return Observable.throw(error.json()[0].message || 'Server error');
   }
 
 }
