@@ -21,7 +21,7 @@ export class AccountService {
 
   getAccount(credentialService: CredentialService) {
 
-    console.log('Getting account for user ' + credentialService.getUsername());
+    console.debug('Getting account for user ' + credentialService.getUsername());
 
     var headers = new Headers();
     headers.append('Authorization', 'Basic '

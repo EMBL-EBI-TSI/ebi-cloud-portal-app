@@ -18,7 +18,7 @@ describe('ErrorService', () => {
     ErrorService
   ]);
 
-  it('message is set', inject([ErrorService], (errorService) => {
+  it('should set a message', inject([ErrorService], (errorService) => {
     errorService.setMessage('an error message');
     expect(errorService.getMessage()).toEqual('an error message');
   }));
