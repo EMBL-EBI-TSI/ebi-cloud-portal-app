@@ -5,7 +5,7 @@ export class CredentialService {
 
 
   constructor() {
-    console.log('[CredentialService] constructor called');
+
   }
 
   getUsername() {
@@ -17,8 +17,6 @@ export class CredentialService {
   }
 
   setCredentials(username, password) {
-    console.log('Username is ' + username);
-
     localStorage.setItem('username', username);
     localStorage.setItem('password', password);
   }
