@@ -48,7 +48,6 @@ describe('VolumeInstanceService', () => {
     inject([VolumeInstanceService, CredentialService, MockBackend],
       fakeAsync(
         (volumeInstanceService, credentialService, mockBackend) => {
-          
         }
       )
     )

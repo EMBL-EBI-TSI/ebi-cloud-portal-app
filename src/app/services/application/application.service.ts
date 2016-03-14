@@ -13,7 +13,6 @@ export class ApplicationService {
   credentials = null;
 
   constructor(public router: Router, public http: Http, public config: ConfigService) {
-
   }
 
 
@@ -96,6 +95,7 @@ export class ApplicationService {
   }
 
   private processResult(res: Response) {
+    console.log('[ApplicationService] Processing response %O', res);
     let jsonRes = res.json();
     if (jsonRes._embedded) {
       return <Application[]>jsonRes._embedded.applicationResourceList;

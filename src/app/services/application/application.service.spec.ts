@@ -45,6 +45,7 @@ describe('ApplicationService', () => {
     ErrorService
   ]);
 
+
   it('should get single application data',
     inject([ApplicationService, CredentialService, MockBackend],
       fakeAsync(
@@ -52,12 +53,10 @@ describe('ApplicationService', () => {
           var res;
           mockBackend.connections.subscribe(c => {
             expect(c.request.url).toBe('some_url/application/app_name');
-            let response = new ResponseOptions(
-              { body: `
-              {"name": "app_name", 
-              "repoUri": "app_url"}
-              `}
-            );
+            let response = new ResponseOptions({
+            	body:
+            	`{"name": "app_name", "repoUri": "app_url"}`
+            });
             c.mockRespond(new Response(response));
           });
 
@@ -74,6 +73,35 @@ describe('ApplicationService', () => {
         }
       )
     )
+  );
+
+  it('should get all applications data',
+		inject([ApplicationService, CredentialService, MockBackend],
+			fakeAsync(
+				(applicationService, credentialService, mockBackend) => {
+					var res;
+					mockBackend.connections.subscribe(c => {
+						expect(c.request.url).toBe('some_url/application/');
+						let response = new ResponseOptions({
+							body: `{"_embedded": {"applicationResourceList": [
+				              	{"name": "app_name", "repoUri": "app_url"},
+				              	{"name": "another app_name", "repoUri": "another/app_url"}
+				            ]}}`
+				    });
+						c.mockRespond(new Response(response));
+					});
+
+					credentialService.setCredentials('username', 'userpassword');
+					applicationService.getAll(credentialService).subscribe(
+							(_res) => {
+									res = _res;
+							}
+					);
+					tick();
+					expect(res.length).toBe(2);
+				}
+			)
+		)
   );
 
 });
