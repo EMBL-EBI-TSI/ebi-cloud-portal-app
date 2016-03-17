@@ -61,8 +61,9 @@ export class DeploymentService {
         'volumeInstanceReference' : volumeReference
       }
     );
-    console.log('[DeploymentService] body is ' + body);
+    console.debug('[DeploymentService] body is ' + body);
     let options = new RequestOptions({ headers: headers });
+    console.debug('[DeploymentService] options is %O', options);
 
     return this.http.post(this.config.getApiAddress() + 'deployment/', body, options)
       .map(res => <Deployment>res.json())
@@ -97,6 +98,7 @@ export class DeploymentService {
   // }
 
   private processResult(res: Response) {
+    console.debug('[DeploymentService] result %O', res);
     let jsonRes = res.json();
     if (jsonRes._embedded) {
       return <Deployment[]>jsonRes._embedded.deploymentResourceList;
@@ -106,6 +108,7 @@ export class DeploymentService {
   }
 
   private handleError(error: Response) {
+    console.debug('[DeploymentService] error %O', error);
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
     console.error('[DeploymentService] error ' + error);
