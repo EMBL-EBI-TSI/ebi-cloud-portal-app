@@ -37,27 +37,6 @@ export class VolumeSetupService {
     .catch(this.handleError);
   }
 
-  getById(credentialService: CredentialService, volumeSetupId: string) {
-    console.log('[VolumeSetupService] Getting volume setup ' + volumeSetupId
-        + ' for user ' + credentialService.getUsername());
-
-    let headers = new Headers();
-    headers.append('Authorization', 'Basic '
-        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
-    headers.append('Accept', 'application/json');
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.get(
-        this.config.getApiAddress() + 'volumesetup/' + volumeSetupId,
-          {
-              headers: headers
-          }
-      )
-      .map(res => <VolumeSetup>res.json())
-      .catch(this.handleError);
-
-  }
-
   add(credentialService: CredentialService, repoUri: string) {
     console.log('[VolumeSetupService] Adding repo at ' + repoUri);
 
