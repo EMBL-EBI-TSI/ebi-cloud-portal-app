@@ -8,15 +8,25 @@ import {
   TestComponentBuilder
 } from 'angular2/testing';
 
-import {Component, provide} from 'angular2/core';
-import {BaseRequestOptions, Http} from 'angular2/http';
-import {MockBackend} from 'angular2/http/testing';
+import { Component, provide } from 'angular2/core';
+import { BaseRequestOptions, Http } from 'angular2/http';
+import { MockBackend } from 'angular2/http/testing';
 
 
 // Load the implementations that should be tested
-import {Deployments} from './deployments.component';
+import { Deployments } from './deployments.component';
+
+// mocks needed
+import { CredentialService } from '../../services/credential/credential.service';
+import { ConfigService } from '../../services/config/config.service';
+import { ErrorService } from '../../services/error/error.service';
+import { MockDeploymentService } from '../mocks/deployment.service';
+import { MockRouterProvider } from '../mocks/routes';
 
 describe('Deployments', () => {
+  var mockDeploymentService = new MockDeploymentService();
+  var mockRouterProvider = new MockRouterProvider();
+
   // provide our implementations or mocks to the dependency injector
   beforeEachProviders(() => [
     BaseRequestOptions,
@@ -27,20 +37,12 @@ describe('Deployments', () => {
       },
       deps: [MockBackend, BaseRequestOptions]
     }),
-
-    Deployments
+    CredentialService,
+    ErrorService,
+    Deployments,
+    provide(ConfigService, { useValue: new ConfigService('some_url/') }),
+    mockDeploymentService.getProviders(),
+    mockRouterProvider.getProviders()
   ]);
-
-  xit('should have default data', inject([ Deployments ], (deployments) => {
-    expect(deployments.data).toEqual({ value: '' });
-  }));
-
-  xit('should log ngOnInit', inject([ Deployments ], (deployments) => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
-
-    deployments.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
-  }));
 
 });

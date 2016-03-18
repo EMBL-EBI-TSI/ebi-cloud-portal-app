@@ -31,16 +31,5 @@ describe('Repository', () => {
     Repository
   ]);
 
-  xit('should have default data', inject([ Repository ], (repository) => {
-    expect(repository.data).toEqual({ value: '' });
-  }));
-
-  xit('should log ngOnInit', inject([ Repository ], (repository) => {
-    spyOn(console, 'log');
-    expect(console.log).not.toHaveBeenCalled();
-
-    repository.ngOnInit();
-    expect(console.log).toHaveBeenCalled();
-  }));
 
 });
