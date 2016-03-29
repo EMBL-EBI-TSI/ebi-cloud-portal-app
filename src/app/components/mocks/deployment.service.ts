@@ -18,12 +18,12 @@ export class MockDeploymentService extends SpyObject {
 		callback(this.fakeResponse);
   }
 
-  setResponse(json: any): void {
-		this.fakeResponse = json;
+  setResponse(response: any): void {
+		this.fakeResponse = response;
   }
 
   getProviders(): Array<any> {
-		return [provide(DeploymentService, { useValue: this })];
+		return [ provide(DeploymentService, { useValue: this }) ];
   }
 
 }

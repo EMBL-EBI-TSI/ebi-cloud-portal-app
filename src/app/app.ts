@@ -16,6 +16,7 @@ import { Login } from './components/login/login.component';
 import { Profile } from './components/profile/profile.component';
 import { CredentialService } from './services/credential/credential.service';
 import { ConfigService } from './services/config/config.service';
+import { DeploymentService } from './services/deployment/deployment.service';
 import { ErrorService } from './services/error/error.service';
 
 /*
@@ -24,7 +25,7 @@ import { ErrorService } from './services/error/error.service';
  */
 @Component({
   selector: 'app',
-  providers: [...FORM_PROVIDERS, CredentialService, ErrorService ],
+  providers: [...FORM_PROVIDERS, CredentialService, ErrorService, DeploymentService ],
   directives: [...ROUTER_DIRECTIVES, RouterActive, LoggedInRouterOutlet ],
   pipes: [],
   template: require('./app.html')

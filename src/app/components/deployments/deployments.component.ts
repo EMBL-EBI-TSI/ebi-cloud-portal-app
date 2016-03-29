@@ -10,7 +10,6 @@ import { ErrorService } from '../../services/error/error.service';
 
 @Component({
   selector: 'deployments',
-  providers: [ DeploymentService, CredentialService ],
   styles: [ require('./deployments.component.css') ],
   template: require('./deployments.component.html')
 })
