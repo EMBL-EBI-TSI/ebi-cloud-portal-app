@@ -77,4 +77,48 @@ describe('Repository component', () => {
     );
   });
 
+  describe('when removing an application', () => {
+    it('prevents the default event',
+      injectAsync([TestComponentBuilder], (tcb) => {
+        return tcb.createAsync(Repository).then((fixture) => {
+          let repositoryComponent = fixture.debugElement.componentInstance;
+          mockApplicationService.setResponse([]);
+          mockVolumeInstanceService.setResponse([]);
+          fixture.detectChanges();
+          let application = <Application>{ name: 'app_name' };
+          repositoryComponent.removeApplication(mockEvent, application);
+          expect(mockEvent.preventDefaultSpy).toHaveBeenCalled();
+        });
+      })
+    );
+
+    it('calls for delete on service layer',
+      injectAsync([TestComponentBuilder], (tcb) => {
+        return tcb.createAsync(Repository).then((fixture) => {
+          let repositoryComponent = fixture.debugElement.componentInstance;
+          mockApplicationService.setResponse([]);
+          mockVolumeInstanceService.setResponse([]);
+          fixture.detectChanges();
+          let application = <Application>{ name: 'app_name' };
+          repositoryComponent.removeApplication(mockEvent, application);
+          expect(mockApplicationService.deleteSpy).toHaveBeenCalled();
+        });
+      })
+    );
+
+    it('asks for the lists of applications and volume instances again',
+      injectAsync([TestComponentBuilder], (tcb) => {
+        return tcb.createAsync(Repository).then((fixture) => {
+          let repositoryComponent = fixture.debugElement.componentInstance;
+          mockApplicationService.setResponse([]);
+          mockVolumeInstanceService.setResponse([]);
+          fixture.detectChanges();
+          let application = <Application>{ name: 'app_name' };
+          repositoryComponent.removeApplication(mockEvent, application);
+          expect(mockApplicationService.getAllSpy.calls.count()).toBe(2);
+          expect(mockVolumeInstanceService.getAllSpy.calls.count()).toBe(2);
+        });
+      })
+    );
+  });
 });
