@@ -119,6 +119,22 @@ describe('Deployments component', () => {
 				});
 			})
 		);
+
+		it('renders the right number of elements',
+			injectAsync([TestComponentBuilder, CredentialService], (tcb, cs) => {
+				return tcb.createAsync(Deployments).then((fixture) => {
+					mockDeploymentService.setResponse([
+						<Deployment>{ reference: 'deployment1_ref' },
+						<Deployment>{ reference: 'deployment2_ref' }]
+					);
+					cs.setCredentials('tsi', 'password');
+					fixture.detectChanges();
+					var compiled = fixture.debugElement.nativeElement;
+					// Each deployment element is rendered using 9 html elements
+					expect(compiled.querySelector('div').childNodes.length).toBe(18);
+				});
+			})
+		);
 	});
 
 });
