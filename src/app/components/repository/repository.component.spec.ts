@@ -121,4 +121,35 @@ describe('Repository component', () => {
       })
     );
   });
+
+  describe('on updating applications', () => {
+    it('renders the right message when result is empty',
+      injectAsync([TestComponentBuilder], (tcb, cs) => {
+        return tcb.createAsync(Repository).then((fixture) => {
+          mockApplicationService.setResponse([]);
+          mockVolumeInstanceService.setResponse([]);
+          fixture.detectChanges();
+          var compiled = fixture.debugElement.nativeElement;
+          expect(compiled.querySelector('h3')).toHaveText('No applications registered yet');
+        });
+      })
+    );
+
+    it('does not render the empty result message when applies',
+      injectAsync([TestComponentBuilder], (tcb, cs) => {
+        return tcb.createAsync(Repository).then((fixture) => {
+          mockApplicationService.setResponse([
+            <Application>{ name: 'app1_name' },
+            <Application>{ name: 'app2_name' }]
+          );
+          mockVolumeInstanceService.setResponse([]);
+          fixture.detectChanges();
+          var compiled = fixture.debugElement.nativeElement;
+          // Each deployment element is rendered using 9 html elements
+          expect(compiled.querySelector('h3')).not.toHaveText('No applications registered yet');
+        });
+      })
+    );
+  });
+
 });
