@@ -15,6 +15,7 @@ import { MockBackend } from 'angular2/http/testing';
 
 // Load the implementations that should be tested
 import { Deployments } from './deployments.component';
+import { Deployment } from '../../services/deployment/deployment';
 
 // mocks needed
 import { CredentialService } from '../../services/credential/credential.service';
@@ -22,15 +23,18 @@ import { ConfigService } from '../../services/config/config.service';
 import { ErrorService } from '../../services/error/error.service';
 import { MockDeploymentService } from '../mocks/deployment.service';
 import { MockRouterProvider } from '../mocks/routes';
+import { MockEvent } from '../mocks/event';
 
 describe('Deployments component', () => {
   var mockRouterProvider: MockRouterProvider;
   var mockDeploymentService: MockDeploymentService;
+  var mockEvent: MockEvent;
 
   // provide our implementations or mocks to the dependency injector
   beforeEachProviders(() => {
     mockRouterProvider = new MockRouterProvider();
     mockDeploymentService = new MockDeploymentService();
+    mockEvent = new MockEvent();
     return [
       BaseRequestOptions,
       MockBackend,
@@ -45,7 +49,8 @@ describe('Deployments component', () => {
       Deployments,
       provide(ConfigService, { useValue: new ConfigService('some_url/') }),
       mockDeploymentService.getProviders(),
-      mockRouterProvider.getProviders()
+      mockRouterProvider.getProviders(),
+			mockEvent.getProviders()
     ];
   });
 
@@ -53,12 +58,52 @@ describe('Deployments component', () => {
     it('asks for the list of deployments',
       injectAsync([TestComponentBuilder], (tcb) => {
         return tcb.createAsync(Deployments).then((fixture) => {
-          //credentialService.setCredentials('username', 'userpassword');
           mockDeploymentService.setResponse([]);
           fixture.detectChanges();
           expect(mockDeploymentService.getAllSpy).toHaveBeenCalled();
         });
       })
+    );
+  });
+
+  describe('when destroying a deployment', () => {
+		it('prevents the default event',
+			injectAsync([TestComponentBuilder], (tcb) => {
+				return tcb.createAsync(Deployments).then((fixture) => {
+					let deploymentsComponent = fixture.debugElement.componentInstance;
+					mockDeploymentService.setResponse([]);
+					fixture.detectChanges();
+					let deployment = <Deployment>{ reference: 'deployment_ref' };
+					deploymentsComponent.destroyDeployment(mockEvent, deployment);
+					expect(mockEvent.preventDefaultSpy).toHaveBeenCalled();
+				});
+			})
+		);
+
+		it('calls for delete on service layer',
+			injectAsync([TestComponentBuilder], (tcb) => {
+				return tcb.createAsync(Deployments).then((fixture) => {
+					let deploymentsComponent = fixture.debugElement.componentInstance;
+					mockDeploymentService.setResponse([]);
+					fixture.detectChanges();
+					let deployment = <Deployment>{ reference: 'deployment_ref' };
+					deploymentsComponent.destroyDeployment(mockEvent, deployment);
+					expect(mockDeploymentService.deleteSpy).toHaveBeenCalled();
+				});
+			})
+		);
+
+		it('asks for the list of deployments again',
+			injectAsync([TestComponentBuilder], (tcb) => {
+				return tcb.createAsync(Deployments).then((fixture) => {
+						let deploymentsComponent = fixture.debugElement.componentInstance;
+						mockDeploymentService.setResponse([]);
+						fixture.detectChanges();
+						let deployment = <Deployment>{ reference: 'deployment_ref' };
+						deploymentsComponent.destroyDeployment(mockEvent, deployment);
+						expect(mockDeploymentService.getAllSpy.calls.count()).toBe(2);
+				});
+			})
     );
   });
 

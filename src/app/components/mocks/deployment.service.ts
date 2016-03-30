@@ -4,6 +4,7 @@ import { DeploymentService } from '../../services/deployment/deployment.service'
 
 export class MockDeploymentService extends SpyObject {
 	getAllSpy;
+	deleteSpy;
 
 	mockObservable;
 	fakeResponse;
@@ -12,6 +13,7 @@ export class MockDeploymentService extends SpyObject {
 		super(DeploymentService);
 		this.fakeResponse = null;
 		this.getAllSpy = this.spy('getAll').andReturn(this);
+		this.deleteSpy = this.spy('delete').andReturn(this);
 	}
 
   subscribe(callback) {
