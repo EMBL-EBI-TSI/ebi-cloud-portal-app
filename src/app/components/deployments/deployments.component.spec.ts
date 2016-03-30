@@ -1,9 +1,9 @@
 import {
   it,
-  xit,
   inject,
   injectAsync,
   describe,
+  expect,
   beforeEachProviders,
   TestComponentBuilder
 } from 'angular2/testing';
@@ -106,5 +106,19 @@ describe('Deployments component', () => {
 			})
     );
   });
+
+	describe('on updating deployments', () => {
+		it('renders the right message when result is empty',
+			injectAsync([TestComponentBuilder, CredentialService], (tcb, cs) => {
+				return tcb.createAsync(Deployments).then((fixture) => {
+					mockDeploymentService.setResponse([]);
+					cs.setCredentials('tsi', 'password');
+					fixture.detectChanges();
+					var compiled = fixture.debugElement.nativeElement;
+					expect(compiled.querySelector('h3')).toHaveText('No deployments for user tsi yet');
+				});
+			})
+		);
+	});
 
 });
