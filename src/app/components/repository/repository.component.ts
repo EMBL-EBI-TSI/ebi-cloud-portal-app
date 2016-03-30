@@ -15,11 +15,6 @@ import { ErrorService } from '../../services/error/error.service';
 
 @Component({
   selector: 'repository',
-  providers: [
-    ApplicationService,
-    VolumeInstanceService,
-    DeploymentService
-  ],
   directives: [ CORE_DIRECTIVES ],
   pipes: [ ],
   styles: [require('./repository.component.css')],
