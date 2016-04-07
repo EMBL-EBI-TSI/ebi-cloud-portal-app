@@ -90,12 +90,26 @@ export class DeploymentService {
       .catch(this.handleError);
   }
 
-  // pollStatus(deploymentReference: string, interval: number) {
-  //   return Observable.interval(interval).flatMap(
-  //     () => this.http.get(this.config.getApiAddress() 
-  // + '/deployment/' + deploymentReference + 'status')
-  //   ).map(res => <DeploymentStatus>res.json())
-  // }
+  getDeploymentStatusFeed(credentialService: CredentialService, deployment: Deployment, interval: number) {
+    return Observable.interval(interval).flatMap(
+      () => {
+        // Prepare header
+        var headers = new Headers();
+        headers.append('Authorization', 'Basic '
+          + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
+        // make the call
+        return this.http.get(
+          this.config.getApiAddress() + '/deployment/' + deployment.reference + '/status',
+          {
+            headers: headers
+          }
+        )
+        .map(res => res.json())
+        .catch(this.handleError);
+      });
+  }
 
   private processResult(res: Response) {
     console.debug('[DeploymentService] result %O', res);
