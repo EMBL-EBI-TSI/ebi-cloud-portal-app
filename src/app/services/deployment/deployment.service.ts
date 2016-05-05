@@ -90,7 +90,9 @@ export class DeploymentService {
       .catch(this.handleError);
   }
 
-  getDeploymentStatusFeed(credentialService: CredentialService, deployment: Deployment, interval: number) {
+  getDeploymentStatusFeed(credentialService: CredentialService,
+                          deployment: Deployment,
+                          interval: number) {
     return Observable.interval(interval).flatMap(
       () => {
         // Prepare header
