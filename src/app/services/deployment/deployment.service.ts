@@ -66,6 +66,7 @@ export class DeploymentService {
     console.debug('[DeploymentService] options is %O', options);
 
     return this.http.post(this.config.getApiAddress() + 'deployment/', body, options)
+      .timeout(600000, new Error('timeout exceeded'))
       .map(res => <Deployment>res.json())
       .catch(this.handleError);
   }

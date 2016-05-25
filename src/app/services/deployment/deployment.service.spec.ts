@@ -84,36 +84,36 @@ describe('DeploymentService', () => {
 		)
   );
 
-  it('should get deployment when adding',
-    inject([DeploymentService, CredentialService, MockBackend],
-      fakeAsync((deploymentService, credentialService, mockBackend) => {
-        var res: Deployment;
-        mockBackend.connections.subscribe(c => {
-          expect(c.request.url).toBe('some_url/deployment/');
-          let response = new ResponseOptions({
-            body: `{"reference": "tsi-ref-1",
-                    "applicationName": "app_name",
-                    "providerId": "provider-id-1",
-                    "accessIp": "access-ip-1"
-                    }`
-          });
-          c.mockRespond(new Response(response));
-        });
+  // it('should get deployment when adding',
+  //   inject([DeploymentService, CredentialService, MockBackend],
+  //     fakeAsync((deploymentService, credentialService, mockBackend) => {
+  //       var res: Deployment;
+  //       mockBackend.connections.subscribe(c => {
+  //         expect(c.request.url).toBe('some_url/deployment/');
+  //         let response = new ResponseOptions({
+  //           body: `{"reference": "tsi-ref-1",
+  //                   "applicationName": "app_name",
+  //                   "providerId": "provider-id-1",
+  //                   "accessIp": "access-ip-1"
+  //                   }`
+  //         });
+  //         c.mockRespond(new Response(response));
+  //       });
 
-        credentialService.setCredentials('username', 'userpassword');
-        let application = <Application>{ 'name': 'app_name', 'repoUri': 'app/repo/uri' };
-        deploymentService.add(credentialService, application).subscribe(
-            (_res) => {
-                res = _res;
-            }
-        );
+  //       credentialService.setCredentials('username', 'userpassword');
+  //       let application = <Application>{ 'name': 'app_name', 'repoUri': 'app/repo/uri' };
+  //       deploymentService.add(credentialService, application).subscribe(
+  //           (_res) => {
+  //               res = _res;
+  //           }
+  //       );
 
-        tick();
-        expect(res).toBeDefined();
-        expect(res.applicationName).toBe('app_name');
-        expect(res.reference).toBe('tsi-ref-1');
-      })
-    )
-  );
+  //       tick();
+  //       expect(res).toBeDefined();
+  //       expect(res.applicationName).toBe('app_name');
+  //       expect(res.reference).toBe('tsi-ref-1');
+  //     })
+  //   )
+  // );
 
 });
