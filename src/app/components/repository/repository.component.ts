@@ -57,7 +57,6 @@ export class Repository {
     this.deploymentService.add(
         this.credentialService,
         applicationDeployer,
-        applicationDeployer.attachedVolumeReference,
         applicationDeployer.attachedVolumes
     ).subscribe(
       deployment  => {
@@ -133,7 +132,7 @@ export class Repository {
       .subscribe(
       applications => {
           console.log('[Repository] Applications data is %O', applications);
-          this.applicationDeployers = applications.map(app => { 
+          this.applicationDeployers = applications.map(app => {
               var newApp = <ApplicationDeployer>app;
               newApp.attachedVolumes = {};
               return newApp;

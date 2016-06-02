@@ -4,7 +4,6 @@ export interface ApplicationDeployer {
   deploying: boolean;
   parameters: string[];
   volumes: string[];
-  attachedVolumeReference: string;
   attachedVolumes: { [id: string]: string };
   destroying: boolean;
 }

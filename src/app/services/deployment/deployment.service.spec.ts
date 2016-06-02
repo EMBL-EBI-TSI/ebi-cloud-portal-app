@@ -94,7 +94,8 @@ describe('DeploymentService', () => {
             body: `{"reference": "tsi-ref-1",
                     "applicationName": "app_name",
                     "providerId": "provider-id-1",
-                    "accessIp": "access-ip-1"
+                    "accessIp": "access-ip-1",
+                    "attachedVolumes": []
                     }`
           });
           c.mockRespond(new Response(response));
@@ -102,7 +103,7 @@ describe('DeploymentService', () => {
 
         credentialService.setCredentials('username', 'userpassword');
         let application = <Application>{ 'name': 'app_name', 'repoUri': 'app/repo/uri' };
-        deploymentService.add(credentialService, application).subscribe(
+        deploymentService.add(credentialService, application, {}).subscribe(
             (_res) => {
                 res = _res;
             }

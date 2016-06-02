@@ -27,13 +27,6 @@
 			      <option *ngFor="#volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
 			    </select> as volume {{ aVolume }}</p>
 				</div>
-				<!-- <div>
-					<p>Use 
-			    <select (change)="selectVolume($event, applicationDeployer, aVolume, $event.target.value)">
-			    	<option value="null">None</option>
-			      <option *ngFor="#volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
-			    </select> as attached volume</p>
-				</div> -->
 				<div style="margin-left:10px" *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
 				    <button (click)="deployApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="}">Deploy</button>
 		    		<button style="margin-left:10px" class="grid_8"(click)="removeApplication($event, applicationDeployer)" class="icon icon-functional" data-icon="d">Remove</button>

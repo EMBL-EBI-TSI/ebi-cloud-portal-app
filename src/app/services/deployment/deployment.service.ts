@@ -41,7 +41,8 @@ export class DeploymentService {
 
   }
 
-  add(credentialService: CredentialService, application: Application, volumeReference: string, attachedVolumes: { [id: string]: string }) {
+  add(credentialService: CredentialService, application: Application,
+      attachedVolumes: { [id: string]: string }) {
     console.log('[DeploymentService] Deploying application with repo '
       + application.repoUri
       + ' for user ' + credentialService.getUsername()
@@ -60,9 +61,8 @@ export class DeploymentService {
           'repoUri' : application.repoUri,
           'name' : application.name
         },
-        'volumeInstanceReference' : volumeReference,
         'attachedVolumes': Object.keys(attachedVolumes).map(
-          key => { 
+          key => {
             var newAttachment = <DeploymentAttachedVolume>{
               'name': key,
               'volumeInstanceReference': attachedVolumes[key]

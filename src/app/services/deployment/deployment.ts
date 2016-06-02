@@ -5,6 +5,5 @@ export interface Deployment {
   applicationName: string;
   providerId: string;
   accessIp: string;
-  volumeInstanceReference: string;
   attachedVolumes: DeploymentAttachedVolume[];
 }
