@@ -5,7 +5,9 @@
 		<h4>{{ deploymentInstance.reference }}</h4>
 		<h5>Provider ID: {{ deploymentInstance.providerId }}</h5>
 		<h5>Access IP: {{ deploymentInstance.accessIp }}</h5>
-		<h5 *ngIf="deploymentInstance.volumeInstanceReference">Attached volume: {{ deploymentInstance.volumeInstanceReference }}</h5>
+		<div *ngFor="#attachedVolume of deploymentInstance.attachedVolumes">
+			<h5>{{ attachedVolume.name }} attached to volume {{ attachedVolume.volumeInstanceReference }}</h5>
+		</div>
 		<div *ngIf="deploymentInstance.destroying" class="loader-icon"></div>
 		<form *ngIf="!deploymentInstance.destroying">
 			<input type="text" [(ngModel)]="deploymentInstance.reference" class="form-control" readonly hidden>

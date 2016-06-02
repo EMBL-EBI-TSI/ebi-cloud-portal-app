@@ -5,6 +5,7 @@ import { Observable }     from 'rxjs/Observable';
 
 import { Deployment } from './deployment';
 import { DeploymentStatus } from './deployment-status';
+import { DeploymentAttachedVolume } from './deployment-attached-volume';
 import { CredentialService } from '../credential/credential.service';
 import { ConfigService } from '../config/config.service';
 import { Application } from '../application/application';
@@ -40,11 +41,11 @@ export class DeploymentService {
 
   }
 
-  add(credentialService: CredentialService, application: Application, volumeReference: string) {
+  add(credentialService: CredentialService, application: Application, volumeReference: string, attachedVolumes: { [id: string]: string }) {
     console.log('[DeploymentService] Deploying application with repo '
       + application.repoUri
       + ' for user ' + credentialService.getUsername()
-      + ' and attached volume ' + volumeReference);
+      + ' and ' + Object.keys(attachedVolumes) + ' attached volumes');
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic '
@@ -52,13 +53,22 @@ export class DeploymentService {
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
+    // We need to stringify a deployment here as defined by the API (more or less)
     let body = JSON.stringify(
       {
         'application': {
           'repoUri' : application.repoUri,
           'name' : application.name
         },
-        'volumeInstanceReference' : volumeReference
+        'volumeInstanceReference' : volumeReference,
+        'attachedVolumes': Object.keys(attachedVolumes).map(
+          key => { 
+            var newAttachment = <DeploymentAttachedVolume>{
+              'name': key,
+              'volumeInstanceReference': attachedVolumes[key]
+            };
+            return newAttachment;
+          })
       }
     );
     console.debug('[DeploymentService] body is ' + body);

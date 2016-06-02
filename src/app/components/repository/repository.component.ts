@@ -57,7 +57,8 @@ export class Repository {
     this.deploymentService.add(
         this.credentialService,
         applicationDeployer,
-        applicationDeployer.attachedVolumeReference
+        applicationDeployer.attachedVolumeReference,
+        applicationDeployer.attachedVolumes
     ).subscribe(
       deployment  => {
         this.router.navigateByUrl('/deployments');
@@ -120,12 +121,23 @@ export class Repository {
     applicationDeployer.attachedVolumeReference = volumeInstanceReference;
   }
 
+  attachVolume(event, applicationDeployer, volumeName, volumeInstanceReference) {
+      event.preventDefault();
+      console.log('[Repository] attaching volume ' + volumeName + '=' + volumeInstanceReference
+          + ' to application ' + applicationDeployer.name);
+      applicationDeployer.attachedVolumes[volumeName] = volumeInstanceReference;
+  }
+
   _updateRepository() {
     this.applicationService.getAll(this.credentialService)
       .subscribe(
       applications => {
           console.log('[Repository] Applications data is %O', applications);
-        this.applicationDeployers = applications.map(app => <ApplicationDeployer>app);
+          this.applicationDeployers = applications.map(app => { 
+              var newApp = <ApplicationDeployer>app;
+              newApp.attachedVolumes = {};
+              return newApp;
+          });
       },
       error => {
         console.log('[Repository] error %O: ', error);
