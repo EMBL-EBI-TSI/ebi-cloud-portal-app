@@ -8,9 +8,9 @@ import {
   afterEach,
   beforeEachProviders,
   tick,
-} from 'angular2/testing';
+} from '@angular/core/testing';
 
-import { provide } from 'angular2/core';
+import { provide } from '@angular/core';
 
 import { ConfigService } from './config.service';
 
