@@ -1,0 +1,27 @@
+<md-content>
+    <md-toolbar color="primary">
+        <span>{{ name }}</span>
+        <span class="fill"></span>
+        <a md-button router-active [routerLink]=" ['./'] ">
+            Index
+        </a>
+        <a md-button router-active [routerLink]=" ['./home'] ">
+            Home
+        </a>
+        <a md-button router-active [routerLink]=" ['./profile'] ">
+            Profile
+        </a>
+        <a md-button router-active [routerLink]=" ['./about'] ">
+            About
+        </a>
+    </md-toolbar>
+
+    <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
+
+    <router-outlet></router-outlet>
+
+    <footer>
+        <img [src]="emblLogo" width="10%" style="margin-right:10px">
+        <span id="footerText"> Cloud Portal by <a [href]="url">@EMBL-EBI-TSI</a></span>
+    </footer>
+</md-content>

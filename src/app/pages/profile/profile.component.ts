@@ -10,8 +10,8 @@ import { ErrorService } from '../../services/error/error.service';
   providers: [
     AccountService
   ],
-  styles: [require('./profile.component.css')],
-  template: require('./profile.component.html')
+  styles: [require('./profile.style.css')],
+  template: require('./profile.template.html')
 })
 export class Profile {
 

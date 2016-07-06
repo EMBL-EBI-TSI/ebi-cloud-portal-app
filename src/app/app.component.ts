@@ -10,26 +10,26 @@ import { AppState } from './services/app.service';
  * Top Level Component
  */
 @Component({
-  selector: 'app',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.style.css'
-  ],
-  template: require('./app.html')
+    selector: 'app',
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: [
+        './app.style.css'
+    ],
+    template: require('./app.template.html')
 })
 export class App {
-  angularclassLogo = 'assets/img/angularclass-avatar.png';
-  name = 'Angular 2 Webpack Starter';
-  url = 'https://twitter.com/AngularClass';
+    emblLogo = 'assets/img/embl-logo.png';
+    name = 'TSI Cloud Portal';
+    url = 'https://github.com/EMBL-EBI-TSI';
 
-  constructor(
-    public appState: AppState) {
+    constructor(
+        public appState: AppState) {
 
-  }
+    }
 
-  ngOnInit() {
-    console.log('Initial App State', this.appState.state);
-  }
+    ngOnInit() {
+        console.log('Initial App State', this.appState.state);
+    }
 
 }
 

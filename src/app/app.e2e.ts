@@ -11,21 +11,21 @@ describe('App', () => {
     expect(subject).toEqual(result);
   });
 
-  it('should have header', () => {
-    let subject = element(by.css('h1')).isPresent();
+  it('should have <md-toolbar>', () => {
+    let subject = element(by.css('app md-toolbar')).isPresent();
     let result  = true;
     expect(subject).toEqual(result);
   });
 
-  it('should have <home>', () => {
-    let subject = element(by.css('app home')).isPresent();
+  it('should have <md-content>', () => {
+    let subject = element(by.css('app md-content')).isPresent();
     let result  = true;
     expect(subject).toEqual(result);
   });
 
-  it('should have buttons', () => {
-    let subject = element(by.css('button')).getText();
-    let result  = 'Index';
+  it('should have text in footer', () => {
+    let subject = element(by.css('app #footerText')).getText();
+    let result  = 'WebPack Angular 2 Starter by @AngularClass';
     expect(subject).toEqual(result);
   });
 
