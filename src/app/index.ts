@@ -1,11 +1,9 @@
 // App
 export * from './app.component';
-export * from './services/app.service';
 export * from './app.routes';
 
 import {provide, enableProdMode} from '@angular/core';
 
-import { AppState } from './services/app.service';
 import { ConfigService } from './services/config/config.service';
 import { ErrorService } from './services/error/error.service';
 import { CredentialService } from './services/credential/credential.service';
@@ -24,7 +22,6 @@ if ('production' === process.env.ENV) {
 
 // Application wide providers
 export const APP_PROVIDERS = [
-  AppState,
   provide(ConfigService, { useValue: activeConfig }),
   ErrorService,
   CredentialService

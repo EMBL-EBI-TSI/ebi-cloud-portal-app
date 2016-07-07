@@ -32,3 +32,19 @@ footer{
   justify-content: center;
   background: #fff;
 }
+/*.card-container{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+}*/
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card-container md-card {
+  flex: 1;
+  max-width: 400px;
+  box-sizing: border-box;
+  margin: 16px;
+}

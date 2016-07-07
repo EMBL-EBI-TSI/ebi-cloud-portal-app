@@ -1,0 +1,36 @@
+<md-content *ngIf="deploymentInstances">
+
+	<md-card *ngIf="deploymentInstances.length==0">
+		No deployments for user {{ credentialService.getUsername() }} yet
+	</md-card>
+
+	<div class="card-container">
+		<md-card *ngFor="let deploymentInstance of deploymentInstances">
+
+			<img md-card-image src="assets/img/EMBASSYCloud_logo.png">
+
+			<md-card-title>
+				{{ deploymentInstance.applicationName }}
+			</md-card-title>
+
+			<md-card-subtitle>
+				{{ deploymentInstance.reference }}
+			</md-card-subtitle>
+
+			<md-card-content>
+				<h5>Provider ID: {{ deploymentInstance.providerId }}</h5>
+				<h5>Access IP: {{ deploymentInstance.accessIp }}</h5>
+				<div *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
+					<h5>{{ attachedVolume.name }} attached to volume {{ attachedVolume.volumeInstanceReference }}</h5>
+				</div>
+			</md-card-content>
+
+			<md-progress-bar *ngIf="deploymentInstance.destroying"  mode="indeterminate"></md-progress-bar>
+
+			<md-card-actions *ngIf="!deploymentInstance.destroying">
+				<button md-button (click)="destroyDeployment($event, deploymentInstance)">Destroy</button>
+			</md-card-actions>
+			
+		</md-card>
+	</div>
+</md-content>

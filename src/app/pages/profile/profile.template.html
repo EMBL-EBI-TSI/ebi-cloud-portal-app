@@ -1,14 +1,15 @@
 <md-content *ngIf="account">
 	<md-card>
-		<h3>Username</h3>
-		<h4>{{ account.userName }}</h4>
+		<md-card-title>User</md-card-title>
+		<md-card-content>
+			<p>Name: {{ account.userName }}</p>
+			<p>e-mail: {{ account.email }}</p>
+		</md-card-content>
 	</md-card>
 	<md-card>
-		<h3>Email</h3>
-		<h4>{{ account.email }}</h4>
-	</md-card>
-	<md-card>
-		<h3>Organisation</h3>
-		<h4>{{ account.organisation }}</h4>
+		<md-card-title>Organisation</md-card-title>
+		<md-card-content>
+			<p>Name: {{ account.organisation }}</p>
+		</md-card-content>
 	</md-card>
 </md-content>

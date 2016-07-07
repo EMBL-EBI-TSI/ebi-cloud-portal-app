@@ -3,8 +3,6 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { AppState } from './services/app.service';
-
 /*
  * App Component
  * Top Level Component
@@ -22,13 +20,12 @@ export class App {
     name = 'TSI Cloud Portal';
     url = 'https://github.com/EMBL-EBI-TSI';
 
-    constructor(
-        public appState: AppState) {
+    constructor() {
 
     }
 
     ngOnInit() {
-        console.log('Initial App State', this.appState.state);
+        console.log('Hello app');
     }
 
 }
