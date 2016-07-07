@@ -32,19 +32,37 @@ footer{
   justify-content: center;
   background: #fff;
 }
-/*.card-container{
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-}*/
+
 .card-container {
   display: flex;
   flex-flow: row wrap;
 }
 
+.secondary {
+  color: rgba(0,0,0,0.54);
+}
+
 .card-container md-card {
   flex: 1;
   max-width: 400px;
+  min-width: 400px;
   box-sizing: border-box;
-  margin: 16px;
+  margin: 10px;
+}
+
+md-sidenav-layout {
+  background: rgba(0,0,0,0.03);
+}
+
+md-input {
+  margin: 8px 0;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+}
+
+.form md-card {
+  flex-grow: 1;
 }

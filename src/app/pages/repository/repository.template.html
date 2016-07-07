@@ -9,7 +9,8 @@
 			<md-input 
 				type="url" 
 				placeholder="Repository URI" 
-				[formControl]="applicationForm.controls['repoUri']" autofocus>
+				[formControl]="applicationForm.controls['repoUri']"
+				autofocus>
 			</md-input>
 			<div *ngIf="!applicationForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
 			<div *ngIf="applicationForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>

@@ -1,5 +1,5 @@
 <md-sidenav-layout fullscreen>
-  <md-sidenav #sidenav>
+  <md-sidenav #sidenav mode="push">
     <md-nav-list>
         <a md-list-item router-active [routerLink]=" ['./deployments'] " (click)="sidenav.close()">
             <md-icon md-list-icon>cloud</md-icon>
@@ -21,11 +21,7 @@
             <span md-line>About</span>
             <span md-line>Information about the TSI Cloud Portal</span>
         </a>
-        <a md-list-item router-active [routerLink]=" ['./profile'] " (click)="sidenav.close()">
-            <md-icon md-list-icon>face</md-icon>
-            <span md-line>Profile</span>
-            <span md-line>Your account info and settings</span>
-        </a>
+        
       <!--<a md-list-item *ngFor="let view of views">
         <md-icon md-list-icon>assignment ind</md-icon>
         <span md-line>saham</span>
@@ -37,7 +33,12 @@
         <button md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
         </button>
-        {{ name }}        
+        {{ name }}
+        <span class="fill"></span>
+        <a md-button router-active [routerLink]=" ['./profile'] " (click)="sidenav.close()">
+            <md-icon md-list-icon>face</md-icon>
+            <span md-line>Profile</span>
+        </a>  
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
