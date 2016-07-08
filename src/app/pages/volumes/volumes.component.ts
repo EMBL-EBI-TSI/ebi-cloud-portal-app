@@ -27,7 +27,8 @@ import { ErrorService } from '../../services/error/error.service';
 export class Volumes {
 
   volumeSetupForm: ControlGroup;
-
+  volumeSetupForm: boolean;
+  
   // Set our default values
   volumeDeployers: VolumeDeployer[];
   volumeInstanceDeployments: VolumeInstanceDeployment[];
@@ -93,10 +94,10 @@ export class Volumes {
     );
   }
 
-  addVolumeSetup(event) {
+  addVolumeSetup(value: any) {
     event.preventDefault();
-    console.log('[Volumes] adding ' + this.volumeSetupForm.value.repoUri);
-    this.volumeSetupService.add(this.credentialService, this.volumeSetupForm.value.repoUri)
+    console.log('[Volumes] adding ' + value.repoUri);
+    this.volumeSetupService.add(this.credentialService, value.repoUri)
       .subscribe(
       volume  => {
         console.log('[Volumes] got response %O', volume);

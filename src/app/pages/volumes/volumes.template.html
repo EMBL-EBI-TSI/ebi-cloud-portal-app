@@ -1,49 +1,75 @@
-<md-content layout="row" >
-	<div class="left-panel" *ngIf="volumeInstanceDeployments">
+<md-tab-group>
+  <md-tab>
+    <template md-tab-label>Instances</template>
+    <template md-tab-content>
+      <md-content *ngIf="volumeInstanceDeployments">
 		<md-card *ngIf="volumeInstanceDeployments.length==0">No volume deployments for user {{ credentialService.getUsername() }} yet</md-card>
-		<md-card *ngFor="let volumeInstanceDeployment of volumeInstanceDeployments">
-			<h3>{{ volumeInstanceDeployment.name }}</h3>
-			<h4>{{ volumeInstanceDeployment.reference }}</h4>
-			<p>ID: {{ volumeInstanceDeployment.providerId }}</p>
-			<div *ngIf="volumeInstanceDeployment.destroying" class="loader-icon"></div>
-			<form *ngIf="!volumeInstanceDeployment.destroying">
-				<input type="text" [(ngModel)]="volumeInstanceDeployment.reference" name="reference" class="form-control" readonly hidden>
-		    	<input type="text" [(ngModel)]="volumeInstanceDeployment.providerId" name="providerId" class="form-control" readonly hidden>
-	      		<button (click)="destroyVolume($event, volumeInstanceDeployment)" class="icon icon-functional" data-icon="d">Destroy</button>
-	    	</form>
-		</md-card>
-	</div>
 
-	<div class="right-panel" layout="row" *ngIf="volumeDeployers">
-		<md-card>
-			<md-card-title>
-				<md-card-title-text>Available volume setups</md-card-title-text>
-			</md-card-title>
-			<md-card-content>
-				<form (ngSubmit)="addVolumeSetup($event)">
-					<md-input ngControl="repoUri" type="url" placeholder="Repository URI"></md-input>
-					<button md-raised-button color="primary" type="submit">Add</button>
-				</form>
-			</md-card-content>
-		</md-card>
 		<div class="card-container">
-			<md-card *ngFor="let volumeDeployer of volumeDeployers">
-				<md-card-title>
-					<md-card-title-text>{{ volumeDeployer.name }}</md-card-title-text>
-				</md-card-title>
+			<md-card *ngFor="let volumeInstanceDeployment of volumeInstanceDeployments">
+				<md-card-title>{{ volumeInstanceDeployment.name }}</md-card-title>
+				<md-card-subtitle>{{ volumeInstanceDeployment.reference }}</md-card-subtitle>
 				<md-card-content>
-					<p>URI: {{ volumeDeployer.repoUri }}</p>
+					<p>ID: {{ volumeInstanceDeployment.providerId }}</p>
 				</md-card-content>
-				<div *ngIf="volumeDeployer.deploying || volumeDeployer.removing" class="loader-icon"></div>
-				<md-card-actions layout="column" layout-align="start" *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing ">
-					<!--<md-input type="text" [(ngModel)]="volumeDeployer.name" name="reference" class="form-control" readonly hidden></md-input>
-					<md-input type="text" [(ngModel)]="volumeDeployer.repoUri" name="reference" class="form-control" readonly hidden></md-input>-->
-					<button md-button (click)="deployVolume($event, volumeDeployer)" >Deploy</button>
-					<button md-button (click)="removeVolumeSetup($event, volumeDeployer)">Remove</button>
+				<md-progress-bar *ngIf="volumeInstanceDeployment.destroying" mode="indeterminate"></md-progress-bar>
+				<md-card-actions *ngIf="!volumeInstanceDeployment.destroying">
+					<button md-button (click)="destroyVolume($event, volumeInstanceDeployment)">Destroy</button>
 				</md-card-actions>
 			</md-card>
 		</div>
+		</md-content>
+    </template>
+  </md-tab>
+  <md-tab>
+    <template md-tab-label>Setups</template>
+    <template md-tab-content>
+		<button md-fab (click)="addVolumeSetupFormShowing=!addVolumeSetupFormShowing">
+			<md-icon>add</md-icon>
+		</button>
+		<md-card>
+			<md-card-title>Add volume setup</md-card-title>
+			<md-card-content>
+				<form [formGroup]="volumeSetupForm" autocomplete="off">
+					<md-input 
+						type="url" 
+						placeholder="Repository URI" 
+						[formControl]="volumeSetupForm.controls['repoUri']"
+						autofocus>
+					</md-input>
+					<div *ngIf="!volumeSetupForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
+					<div *ngIf="volumeSetupForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>
+				</form>
+			</md-card-content>
+			<md-card-actions>
+				<button md-raised-button color="accent"
+				(click)="addVolumeSetup(volumeSetupForm.value); addVolumeSetupFormShowing = false"
+				align="end">Add</button>
+			</md-card-actions>
+		</md-card>
+		<md-card *ngIf="volumeInstanceDeployments.length==0">No volume setups for user {{ credentialService.getUsername() }} yet</md-card>
+		<div class="card-container">
+			<md-content *ngIf="volumeDeployers">
+				<div class="card-container">
+					<md-card *ngFor="let volumeDeployer of volumeDeployers">
+						<md-card-title>
+							<md-card-title-text>{{ volumeDeployer.name }}</md-card-title-text>
+						</md-card-title>
+						<md-card-content>
+							<p>URI: {{ volumeDeployer.repoUri }}</p>
+						</md-card-content>
+						<md-progress-bar *ngIf="volumeDeployer.deploying || volumeDeployer.removing" mode="indeterminate"></md-progress-bar>
+						<md-card-actions layout="column" layout-align="start" *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing ">
+							<!--<md-input type="text" [(ngModel)]="volumeDeployer.name" name="reference" class="form-control" readonly hidden></md-input>
+							<md-input type="text" [(ngModel)]="volumeDeployer.repoUri" name="reference" class="form-control" readonly hidden></md-input>-->
+							<button md-button (click)="deployVolume($event, volumeDeployer)" >Deploy</button>
+							<button md-button (click)="removeVolumeSetup($event, volumeDeployer)">Remove</button>
+						</md-card-actions>
+					</md-card>
+				</div>
+			</md-content>
+		</div>
+    </template>
+  </md-tab>
+</md-tab-group>
 
-	</div>
-
-</md-content>

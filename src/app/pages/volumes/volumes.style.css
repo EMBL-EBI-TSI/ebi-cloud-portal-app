@@ -1,5 +1,6 @@
-.card-container md-card {
-  width: 400px;
-  box-sizing: border-box;
-  margin: 16px;
+[md-fab] {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  z-index: 1;
 }
