@@ -1,22 +1,21 @@
 import {
   it,
-  xit,
   describe,
   expect,
   inject,
   fakeAsync,
-  afterEach,
-  beforeEachProviders,
-  tick,
-} from 'angular2/testing';
+  tick
+} from '@angular/core/testing';
 
-import { provide } from 'angular2/core';
-import { BaseRequestOptions, Http, Response, ResponseOptions } from 'angular2/http';
-import { MockBackend } from 'angular2/http/testing';
-import { RootRouter } from 'angular2/src/router/router';
-import { Router, Location, ROUTER_PRIMARY_COMPONENT } from 'angular2/router';
-import { RouteRegistry } from 'angular2/src/router/route_registry';
-import { SpyLocation } from 'angular2/src/mock/location_mock';
+import {MockBackend} from '@angular/http/testing';
+import {provide} from '@angular/core';
+import {
+  Http,
+  ConnectionBackend,
+  BaseRequestOptions,
+  Response,
+  ResponseOptions
+} from '@angular/http';
 
 import { AccountService } from './account.service';
 import { CredentialService } from '../credential/credential.service';
@@ -29,14 +28,30 @@ describe('AccountService', () => {
     BaseRequestOptions,
     MockBackend,
     provide(Http, {
-      useFactory: function(backend, defaultOptions) {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [MockBackend, BaseRequestOptions]
-    }),
+      useFactory: (backend: ConnectionBackend,
+                    defaultOptions: BaseRequestOptions) => {
+      return new Http(backend, defaultOptions);
+    }, deps: [MockBackend, BaseRequestOptions]}),
     provide(Location, { useClass: SpyLocation }),
-    provide(ROUTER_PRIMARY_COMPONENT, { useValue: AccountService }),
-    provide(Router, { useClass: RootRouter }),
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+	  {provide: PlatformLocation, useClass: BrowserPlatformLocation},
+    provide(
+      Router, 
+      { useFactory: (resolver: ComponentResolver, urlSerializer: UrlSerializer,
+                   outletMap: RouterOutletMap, location: Location,
+                   injector: Injector) => {
+       return new Router(
+         RootCmp, resolver, urlSerializer, outletMap,
+         location, injector, routerConfig);
+      },
+      deps: [
+        ComponentResolver,
+        UrlSerializer,
+        RouterOutletMap,
+        Location,
+        Injector
+      ]}
+    ),
     RouteRegistry,
     AccountService,
     CredentialService,

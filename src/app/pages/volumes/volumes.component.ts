@@ -27,7 +27,7 @@ import { ErrorService } from '../../services/error/error.service';
 export class Volumes {
 
   volumeSetupForm: ControlGroup;
-  volumeSetupForm: boolean;
+  volumeSetupFormShowing: boolean;
   
   // Set our default values
   volumeDeployers: VolumeDeployer[];
