@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 import { VolumeInstance } from './volume-instance';
@@ -13,7 +12,7 @@ export class VolumeInstanceService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http, public config: ConfigService) {
+  constructor(public http: Http, public config: ConfigService) {
 
   }
 
@@ -22,7 +21,7 @@ export class VolumeInstanceService {
     console.log('[VolumeInstanceService] Getting all volume instnaces for user '
         + credentialService.getUsername());
 
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Authorization', 'Basic '
         + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');

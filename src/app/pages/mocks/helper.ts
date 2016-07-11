@@ -1,7 +1,35 @@
-import {DebugElement} from '@angular/core/src/debug/debug_node';
-import {Response, ResponseOptions} from '@angular/http';
-import {By} from '@angular/platform-browser/src/dom/debug/by';
-import {StringMapWrapper} from '@angular/core/src/facade/collection';
+import {
+  Component,
+  ComponentResolver,
+  Injector
+} from '@angular/core';
+import { DebugElement } from '@angular/core/src/debug/debug_node';
+import { Response, ResponseOptions } from '@angular/http';
+import { By } from '@angular/platform-browser/src/dom/debug/by';
+import { StringMapWrapper } from '@angular/core/src/facade/collection';
+import { TestComponentBuilder, ComponentFixture } from '@angular/core/testing';
+import {
+  ROUTER_DIRECTIVES,
+  ActivatedRoute,
+  Router,
+  RouterConfig,
+  RouterOutletMap,
+  DefaultUrlSerializer,
+  UrlSerializer
+} from '@angular/router';
+import {
+  PlatformLocation,
+  Location,
+  LocationStrategy,
+  HashLocationStrategy
+} from '@angular/common';
+import { SpyLocation } from '@angular/common/testing';
+import { BrowserPlatformLocation } from '@angular/platform-browser';
+
+import { tick } from '@angular/core/testing';
+import { Repository } from '../repository';
+import { Deployments } from '../deployments';
+import { Volumes } from '../volumes';
 
 class MockResponse extends Response {
   _json: any;
@@ -19,7 +47,7 @@ class MockResponse extends Response {
 export class TestHelper {
   /** Gets a child DebugElement by tag name. */
   static getChildByTagName(parent: DebugElement, tagName: string): DebugElement {
-    return parent.query(debugEl => debugEl.nativeElement.tagName.toLowerCase() == tagName);
+    return parent.query(debugEl => debugEl.nativeElement.tagName.toLowerCase() === tagName);
   }
 
   /**
@@ -41,7 +69,7 @@ export class TestHelper {
 
   static isPhantomJS(): boolean {
     return navigator && navigator.userAgent
-        && navigator.userAgent.indexOf('PhantomJS') > -1;
+      && navigator.userAgent.indexOf('PhantomJS') > -1;
   }
 
   static mockJSONResponse(payload: any) {
@@ -86,8 +114,8 @@ export interface GuinessCompatibleSpy extends jasmine.Spy {
 export class SpyObject {
   constructor(type = null) {
     if (type) {
-      for (var prop in type.prototype) {
-        var m = null;
+      for (let prop in type.prototype) {
+        let m = null;
         try {
           m = type.prototype[prop];
         } catch (e) {
@@ -103,7 +131,7 @@ export class SpyObject {
     }
   }
   // Noop so that SpyObject has the same interface as in Dart
-  noSuchMethod(args) {}
+  noSuchMethod(args) { }
 
   spy(name) {
     if (!this[name]) {
@@ -121,14 +149,14 @@ export class SpyObject {
       object = new SpyObject();
     }
 
-    var m = StringMapWrapper.merge(config, overrides);
+    let m = StringMapWrapper.merge(config, overrides);
     StringMapWrapper.forEach(m, (value, key) => { object.spy(key).andReturn(value); });
     return object;
   }
 
   /** @internal */
   _createGuinnessCompatibleSpy(name): GuinessCompatibleSpy {
-    var newSpy: GuinessCompatibleSpy = <any>jasmine.createSpy(name);
+    let newSpy: GuinessCompatibleSpy = <any>jasmine.createSpy(name);
     newSpy.andCallFake = <any>newSpy.and.callFake;
     newSpy.andReturn = <any>newSpy.and.returnValue;
     newSpy.reset = <any>newSpy.calls.reset;
@@ -136,4 +164,59 @@ export class SpyObject {
     newSpy.and.returnValue(null);
     return newSpy;
   }
+}
+
+export function advance(fixture: ComponentFixture<any>): void {
+  tick();
+  fixture.detectChanges();
+}
+
+export function createRoot(tcb: TestComponentBuilder,
+  router: Router,
+  type: any): ComponentFixture<any> {
+  const f = tcb.createFakeAsync(type);
+  advance(f);
+  (<any>router).initialNavigation();
+  advance(f);
+  return f;
+}
+
+export function routerTestProviders(routerConfig: RouterConfig) {
+  return [
+    RouterOutletMap,
+    { provide: UrlSerializer, useClass: DefaultUrlSerializer },
+    { provide: Location, useClass: SpyLocation },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: PlatformLocation, useClass: BrowserPlatformLocation },
+    {
+      provide: Router,
+      useFactory: (resolver: ComponentResolver, urlSerializer: UrlSerializer,
+        outletMap: RouterOutletMap, location: Location,
+        injector: Injector) => {
+        return new Router(
+          RootCmp, resolver, urlSerializer, outletMap,
+          location, injector, routerConfig);
+      },
+      deps: [
+        ComponentResolver,
+        UrlSerializer,
+        RouterOutletMap,
+        Location,
+        Injector
+      ]
+    },
+    {
+      provide: ActivatedRoute,
+      useFactory: (r: Router) => r.routerState.root, deps: [Router]
+    }
+  ];
+};
+
+@Component({
+  selector: 'root-cmp',
+  template: `<router-outlet></router-outlet>`,
+  directives: [ROUTER_DIRECTIVES],
+  precompile: [Repository, Deployments]
+})
+export class RootCmp {
 }

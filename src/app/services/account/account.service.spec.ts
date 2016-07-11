@@ -4,11 +4,12 @@ import {
   expect,
   inject,
   fakeAsync,
-  tick
+  tick,
+  addProviders
 } from '@angular/core/testing';
 
-import {MockBackend} from '@angular/http/testing';
-import {provide} from '@angular/core';
+import { MockBackend } from '@angular/http/testing';
+import { provide } from '@angular/core';
 import {
   Http,
   ConnectionBackend,
@@ -24,50 +25,33 @@ import { ErrorService } from '../error/error.service';
 
 describe('AccountService', () => {
 
-  beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    provide(Http, {
-      useFactory: (backend: ConnectionBackend,
-                    defaultOptions: BaseRequestOptions) => {
-      return new Http(backend, defaultOptions);
-    }, deps: [MockBackend, BaseRequestOptions]}),
-    provide(Location, { useClass: SpyLocation }),
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
-	  {provide: PlatformLocation, useClass: BrowserPlatformLocation},
-    provide(
-      Router, 
-      { useFactory: (resolver: ComponentResolver, urlSerializer: UrlSerializer,
-                   outletMap: RouterOutletMap, location: Location,
-                   injector: Injector) => {
-       return new Router(
-         RootCmp, resolver, urlSerializer, outletMap,
-         location, injector, routerConfig);
-      },
-      deps: [
-        ComponentResolver,
-        UrlSerializer,
-        RouterOutletMap,
-        Location,
-        Injector
-      ]}
-    ),
-    RouteRegistry,
-    AccountService,
-    CredentialService,
-    provide(ConfigService, { useValue: new ConfigService('some_url/') }),
-    ErrorService
-  ]);
+  beforeEach(() => {
+    addProviders([
+      BaseRequestOptions,
+      MockBackend,
+      provide(Http, {
+        useFactory: (backend: ConnectionBackend,
+          defaultOptions: BaseRequestOptions) => {
+          return new Http(backend, defaultOptions);
+        }, deps: [MockBackend, BaseRequestOptions]
+      }),
+      AccountService,
+      CredentialService,
+      provide(ConfigService, { useValue: new ConfigService('some_url/') }),
+      ErrorService,
+    ]);
+  });
 
   it('should get account data',
     inject([AccountService, CredentialService, MockBackend],
       fakeAsync(
         (accountService, credentialService, mockBackend) => {
-          var res;
+          let res;
           mockBackend.connections.subscribe(c => {
             expect(c.request.url).toBe('some_url/account/username');
             let response = new ResponseOptions(
-              { body: `
+              {
+                body: `
               {"name": "username", 
               "email": "user@email", 
               "organisation": "user organisation"}

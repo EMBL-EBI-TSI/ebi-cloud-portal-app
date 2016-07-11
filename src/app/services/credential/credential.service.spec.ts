@@ -8,7 +8,7 @@ import {
   afterEach,
   beforeEachProviders,
   tick,
-} from 'angular2/testing';
+} from '@angular/core/testing';
 
 import { CredentialService } from './credential.service';
 

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 import { VolumeSetup } from './volume-setup';
@@ -12,7 +11,7 @@ export class VolumeSetupService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http, public config: ConfigService) {
+  constructor(public http: Http, public config: ConfigService) {
 
   }
 

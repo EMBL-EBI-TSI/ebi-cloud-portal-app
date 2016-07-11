@@ -7,6 +7,11 @@ module.exports = function(config) {
 
   config.set({
 
+    // @jdianes: hide log messages
+    client: {
+      captureConsole: false
+    },
+
     // base path that will be used to resolve all patterns (e.g. files, exclude)
     basePath: '',
 

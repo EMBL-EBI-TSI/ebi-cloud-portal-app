@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FORM_DIRECTIVES, CORE_DIRECTIVES } from '@angular/common';
-import { NgForm, FormBuilder, Validators, FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
+import { NgForm, FormBuilder, Validators,
+  FormGroup, REACTIVE_FORM_DIRECTIVES } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ApplicationDeployer } from './application-deployer';
@@ -42,7 +43,7 @@ export class Repository {
     public deploymentService: DeploymentService,
     public credentialService: CredentialService,
     public errorService: ErrorService) {
-    
+
     this.applicationForm = fb.group({
       'repoUri': ['', Validators.required]
     });
@@ -140,7 +141,7 @@ export class Repository {
       applications => {
           console.log('[Repository] Applications data is %O', applications);
           this.applicationDeployers = applications.map(app => {
-              var newApp = <ApplicationDeployer>app;
+              let newApp = <ApplicationDeployer>app;
               newApp.attachedVolumes = {};
               return newApp;
           });

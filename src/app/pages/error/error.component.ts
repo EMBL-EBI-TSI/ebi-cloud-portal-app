@@ -8,11 +8,11 @@ import { ErrorService } from '../../services/error/error.service';
 })
 export class Error {
 
-	error: ErrorService;
+  error: ErrorService;
 
   constructor(public errorService: ErrorService) {
 		this.error = errorService;
-  }
+	}
 
   ngOnInit() {
     console.log('hello *Error* component');

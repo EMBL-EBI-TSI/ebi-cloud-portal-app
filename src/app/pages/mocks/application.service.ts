@@ -25,6 +25,7 @@ export class MockApplicationService extends SpyObject {
   }
 
   setResponse(response: any): void {
+		console.log('Setting repsonse to %O', response);
 		this.fakeResponse = response;
   }
 

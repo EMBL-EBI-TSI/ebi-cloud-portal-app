@@ -1,5 +1,5 @@
-import { provide } from 'angular2/core';
-import { SpyObject } from 'angular2/testing_internal';
+import { provide } from '@angular/core';
+import { SpyObject } from './helper';
 import { DeploymentService } from '../../services/deployment/deployment.service';
 
 export class MockDeploymentService extends SpyObject {
@@ -25,7 +25,7 @@ export class MockDeploymentService extends SpyObject {
   }
 
   getProviders(): Array<any> {
-		return [ provide(DeploymentService, { useValue: this }) ];
+		return [provide(DeploymentService, { useValue: this })];
   }
 
 }

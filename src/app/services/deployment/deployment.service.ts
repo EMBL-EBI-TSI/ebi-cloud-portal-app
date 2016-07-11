@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Router } from '@angular/router';
 import { Observable }     from 'rxjs/Observable';
 
 import { Deployment } from './deployment';
@@ -15,34 +14,34 @@ export class DeploymentService {
 
   credentials = null;
 
-  constructor( public router: Router, public http: Http, public config: ConfigService ) {
+  constructor(public http: Http, public config: ConfigService) {
 
   }
 
 
   getAll(credentialService: CredentialService) {
     console.log('[DeploymentService] Getting all deployments for user '
-        + credentialService.getUsername());
+      + credentialService.getUsername());
 
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Authorization', 'Basic '
-        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+      + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
     return this.http.get(
-        this.config.getApiAddress() + 'deployment/',
-        {
-          headers: headers
-        }
-      )
+      this.config.getApiAddress() + 'deployment/',
+      {
+        headers: headers
+      }
+    )
       .map(res => this.processResult(res))
       .catch(this.handleError);
 
   }
 
   add(credentialService: CredentialService, application: Application,
-      attachedVolumes: { [id: string]: string }) {
+    attachedVolumes: { [id: string]: string }) {
     console.log('[DeploymentService] Deploying application with repo '
       + application.repoUri
       + ' for user ' + credentialService.getUsername()
@@ -50,7 +49,7 @@ export class DeploymentService {
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic '
-        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+      + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -58,12 +57,12 @@ export class DeploymentService {
     let body = JSON.stringify(
       {
         'application': {
-          'repoUri' : application.repoUri,
-          'name' : application.name
+          'repoUri': application.repoUri,
+          'name': application.name
         },
         'attachedVolumes': Object.keys(attachedVolumes).map(
           key => {
-            var newAttachment = <DeploymentAttachedVolume>{
+            let newAttachment = <DeploymentAttachedVolume>{
               'name': key,
               'volumeInstanceReference': attachedVolumes[key]
             };
@@ -71,9 +70,9 @@ export class DeploymentService {
           })
       }
     );
-    console.debug('[DeploymentService] body is ' + body);
+    console.log('[DeploymentService] body is ' + body);
     let options = new RequestOptions({ headers: headers });
-    console.debug('[DeploymentService] options is %O', options);
+    console.log('[DeploymentService] options is %O', options);
 
     return this.http.post(this.config.getApiAddress() + 'deployment/', body, options)
       .map(res => <Deployment>res.json())
@@ -86,27 +85,27 @@ export class DeploymentService {
 
     let headers = new Headers();
     headers.append('Authorization', 'Basic '
-        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+      + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
     let options = new RequestOptions({ headers: headers });
 
     return this.http.delete(
-        this.config.getApiAddress()
-        + 'deployment/'
-        + deployment.reference, options)
+      this.config.getApiAddress()
+      + 'deployment/'
+      + deployment.reference, options)
       .map(res => res.status)
       .catch(this.handleError);
   }
 
   getDeploymentStatusFeed(credentialService: CredentialService,
-                          deployment: Deployment,
-                          interval: number) {
+    deployment: Deployment,
+    interval: number) {
     return Observable.interval(interval).flatMap(
       () => {
         // Prepare header
-        var headers = new Headers();
+        let headers = new Headers();
         headers.append('Authorization', 'Basic '
           + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
         headers.append('Accept', 'application/json');
@@ -118,13 +117,13 @@ export class DeploymentService {
             headers: headers
           }
         )
-        .map(res => res.json())
-        .catch(this.handleError);
+          .map(res => res.json())
+          .catch(this.handleError);
       });
   }
 
   private processResult(res: Response) {
-    console.debug('[DeploymentService] result %O', res);
+    console.log('[DeploymentService] result %O', res);
     let jsonRes = res.json();
     if (jsonRes._embedded) {
       return <Deployment[]>jsonRes._embedded.deploymentResourceList;
@@ -134,7 +133,7 @@ export class DeploymentService {
   }
 
   private handleError(error: Response) {
-    console.debug('[DeploymentService] error %O', error);
+    console.log('[DeploymentService] error %O', error);
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
     console.error('[DeploymentService] error ' + error);

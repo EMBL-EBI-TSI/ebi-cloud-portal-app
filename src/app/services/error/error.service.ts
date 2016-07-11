@@ -9,11 +9,11 @@ export class ErrorService {
   }
 
   setMessage(message: string) {
-		this.message = message;
+    this.message = message;
   }
 
-	getMessage() {
-		return this.message;
+  getMessage() {
+    return this.message;
   }
 
 }

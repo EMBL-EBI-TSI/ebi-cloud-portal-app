@@ -8,7 +8,7 @@ import {
   afterEach,
   beforeEachProviders,
   tick,
-} from 'angular2/testing';
+} from '@angular/core/testing';
 
 import { ErrorService } from './error.service';
 

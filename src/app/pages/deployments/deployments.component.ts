@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {FORM_DIRECTIVES} from '@angular/common';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { FORM_DIRECTIVES } from '@angular/common';
+import  { Router } from '@angular/router';
 
 import { DeploymentInstance } from './deployment-instance';
 import { Deployment } from '../../services/deployment/deployment';
@@ -10,7 +10,7 @@ import { ErrorService } from '../../services/error/error.service';
 
 @Component({
   selector: 'deployments',
-  styles: [ require('./deployments.style.css') ],
+  styles: [require('./deployments.style.css')],
   template: require('./deployments.template.html'),
   providers: [
     DeploymentService,
@@ -24,10 +24,10 @@ export class Deployments {
 
   // TypeScript public modifiers
   constructor(
-      public router: Router,
-      public deploymentService: DeploymentService,
-      public credentialService: CredentialService,
-      public errorService: ErrorService) {
+    public router: Router,
+    public deploymentService: DeploymentService,
+    public credentialService: CredentialService,
+    public errorService: ErrorService) {
     this.deploymentInstances = [];
 
   }
@@ -40,7 +40,7 @@ export class Deployments {
   destroyDeployment(event, deploymentInstance: DeploymentInstance) {
     event.preventDefault();
     console.log('[Deployments] destroying application with reference '
-        + deploymentInstance.reference);
+      + deploymentInstance.reference);
     deploymentInstance.destroying = true;
     this.deploymentService.delete(this.credentialService, deploymentInstance).subscribe(
       res => {
@@ -63,22 +63,22 @@ export class Deployments {
   private _updateDeployments() {
     this.deploymentService.getAll(this.credentialService)
       .subscribe(
-        deployments => {
-          console.log('[Deployments] Deployments data is %O', deployments);
-          this.deploymentInstances = deployments.map(
-              deployment => <DeploymentInstance> deployment
-          );
-        },
-        error => {
-          console.log('[Deployments] error %O: ', error);
-          this.errorService.setMessage(
-            'Could not get deployment list. ' + <any>error + '.'
-          );
-          this.router.navigateByUrl('/error');
-        },
-        () => {
-          console.log('[Deployments] deployment data retrieval complete');
-        }
+      deployments => {
+        console.log('[Deployments] Deployments data is %O', deployments);
+        this.deploymentInstances = deployments.map(
+          deployment => <DeploymentInstance>deployment
+        );
+      },
+      error => {
+        console.log('[Deployments] error %O: ', error);
+        this.errorService.setMessage(
+          'Could not get deployment list. ' + <any>error + '.'
+        );
+        this.router.navigateByUrl('/error');
+      },
+      () => {
+        console.log('[Deployments] deployment data retrieval complete');
+      }
       );
   }
 }

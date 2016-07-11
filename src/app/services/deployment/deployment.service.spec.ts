@@ -8,15 +8,12 @@ import {
   afterEach,
   beforeEachProviders,
   tick,
-} from 'angular2/testing';
+  addProviders
+} from '@angular/core/testing';
 
-import { provide } from 'angular2/core';
-import { BaseRequestOptions, Http, Response, ResponseOptions } from 'angular2/http';
-import { MockBackend } from 'angular2/http/testing';
-import { RootRouter } from 'angular2/src/router/router';
-import { Router, Location, ROUTER_PRIMARY_COMPONENT } from 'angular2/router';
-import { RouteRegistry } from 'angular2/src/router/route_registry';
-import { SpyLocation } from 'angular2/src/mock/location_mock';
+import { provide } from '@angular/core';
+import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
 
 import { DeploymentService } from './deployment.service';
 import { Deployment } from './deployment';
@@ -27,35 +24,33 @@ import { ErrorService } from '../error/error.service';
 
 describe('DeploymentService', () => {
 
-  beforeEachProviders(() => [
-    BaseRequestOptions,
-    MockBackend,
-    provide(Http, {
-      useFactory: function(backend, defaultOptions) {
-        return new Http(backend, defaultOptions);
-      },
-      deps: [MockBackend, BaseRequestOptions]
-    }),
-    provide(Location, { useClass: SpyLocation }),
-    provide(ROUTER_PRIMARY_COMPONENT, { useValue: DeploymentService }),
-    provide(Router, { useClass: RootRouter }),
-    RouteRegistry,
+  beforeEach(() => {
+    addProviders([
+      BaseRequestOptions,
+      MockBackend,
+      provide(Http, {
+        useFactory: function (backend, defaultOptions) {
+          return new Http(backend, defaultOptions);
+        },
+        deps: [MockBackend, BaseRequestOptions]
+      }),
       DeploymentService,
-    CredentialService,
-    provide(ConfigService, { useValue: new ConfigService('some_url/') }),
-    ErrorService
-  ]);
+      CredentialService,
+      provide(ConfigService, { useValue: new ConfigService('some_url/') }),
+      ErrorService
+    ]);
+  });
 
 
   it('should get all deployments data',
     inject([DeploymentService, CredentialService, MockBackend],
-			fakeAsync(
+      fakeAsync(
         (deploymentService, credentialService, mockBackend) => {
-					var res;
-					mockBackend.connections.subscribe(c => {
-						expect(c.request.url).toBe('some_url/deployment/');
-						let response = new ResponseOptions({
-							body: `{"_embedded": {"deploymentResourceList": [
+          let res;
+          mockBackend.connections.subscribe(c => {
+            expect(c.request.url).toBe('some_url/deployment/');
+            let response = new ResponseOptions({
+              body: `{"_embedded": {"deploymentResourceList": [
 				              	{"reference": "tsi-ref-1",
                         "applicationName": "app_name",
                         "providerId": "provider-id-1",
@@ -67,27 +62,27 @@ describe('DeploymentService', () => {
                         "accessIp": "access-ip-2",
                         "volumeInstanceReference": null}
 				            ]}}`
-				    });
-						c.mockRespond(new Response(response));
-					});
+            });
+            c.mockRespond(new Response(response));
+          });
 
-					credentialService.setCredentials('username', 'userpassword');
+          credentialService.setCredentials('username', 'userpassword');
           deploymentService.getAll(credentialService).subscribe(
-							(_res) => {
-									res = _res;
-							}
-					);
-					tick();
-					expect(res.length).toBe(2);
-				}
-			)
-		)
+            (_res) => {
+              res = _res;
+            }
+          );
+          tick();
+          expect(res.length).toBe(2);
+        }
+      )
+    )
   );
 
   it('should get deployment when adding',
     inject([DeploymentService, CredentialService, MockBackend],
       fakeAsync((deploymentService, credentialService, mockBackend) => {
-        var res: Deployment;
+        let res: Deployment;
         mockBackend.connections.subscribe(c => {
           expect(c.request.url).toBe('some_url/deployment/');
           let response = new ResponseOptions({
@@ -104,9 +99,9 @@ describe('DeploymentService', () => {
         credentialService.setCredentials('username', 'userpassword');
         let application = <Application>{ 'name': 'app_name', 'repoUri': 'app/repo/uri' };
         deploymentService.add(credentialService, application, {}).subscribe(
-            (_res) => {
-                res = _res;
-            }
+          (_res) => {
+            res = _res;
+          }
         );
 
         tick();
