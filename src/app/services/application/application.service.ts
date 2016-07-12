@@ -1,6 +1,5 @@
-import { Injectable } from 'angular2/core';
-import { Http, Headers, RequestOptions, Response } from 'angular2/http';
-import { Router } from 'angular2/router';
+import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 
 import { Application } from './application';
@@ -12,7 +11,7 @@ export class ApplicationService {
 
   credentials = null;
 
-  constructor(public router: Router, public http: Http, public config: ConfigService) {
+  constructor(public http: Http, public config: ConfigService) {
   }
 
 
@@ -37,7 +36,7 @@ export class ApplicationService {
   }
 
   get(credentialService: CredentialService, application: Application) {
-      console.log('[ApplicationService] Getting application ' + application.name
+    console.log('[ApplicationService] Getting application ' + application.name
         + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();
@@ -75,7 +74,7 @@ export class ApplicationService {
   }
 
   delete(credentialService: CredentialService, application: Application) {
-      console.log('[ApplicationService] removing application  '
+    console.log('[ApplicationService] removing application  '
           + application.name + ' for user ' + credentialService.getUsername());
 
     let headers = new Headers();

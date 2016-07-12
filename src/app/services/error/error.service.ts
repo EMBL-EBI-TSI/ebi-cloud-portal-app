@@ -1,4 +1,4 @@
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ErrorService {
@@ -9,11 +9,11 @@ export class ErrorService {
   }
 
   setMessage(message: string) {
-		this.message = message;
+    this.message = message;
   }
 
-	getMessage() {
-		return this.message;
+  getMessage() {
+    return this.message;
   }
 
 }

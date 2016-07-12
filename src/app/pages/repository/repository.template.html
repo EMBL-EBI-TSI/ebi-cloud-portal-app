@@ -1,0 +1,71 @@
+<button md-fab (click)="addApplicationFormShowing=!addApplicationFormShowing">
+	<md-icon>add</md-icon>
+</button>
+		
+<md-card *ngIf="addApplicationFormShowing">
+	<md-card-title>Add application</md-card-title>
+	<md-card-content>
+		<form [formGroup]="applicationForm" autocomplete="off">
+			<md-input 
+				type="url" 
+				placeholder="Repository URI" 
+				[formControl]="applicationForm.controls['repoUri']"
+				autofocus>
+			</md-input>
+			<div *ngIf="!applicationForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
+			<div *ngIf="applicationForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>
+		</form>
+	</md-card-content>
+	<md-card-actions>
+		<button md-raised-button color="accent"
+		 (click)="addApplication(applicationForm.value); addApplicationFormShowing = false"
+		  align="end">Add</button>
+	</md-card-actions>
+</md-card>
+
+<md-content *ngIf="applicationDeployers">
+
+	<md-card *ngIf="applicationDeployers.length==0">
+		No applications registered yet
+	</md-card>
+	
+	<div class="card-container">
+		<md-card *ngFor="let applicationDeployer of applicationDeployers">
+
+			<img md-card-image [alt]="applicationDeployer.name" src="http://www.openstack4j.com/assets/img/openstack.png">
+			
+			<md-card-title>
+				<md-card-title-text>{{ applicationDeployer.name }}</md-card-title-text>
+			</md-card-title>
+
+			<md-card-subtitle>{{ applicationDeployer.repoUri }}</md-card-subtitle>
+			
+			<md-card-content>
+				Application description, etc.
+				<div *ngFor="let aVolume of applicationDeployer.volumes">
+					<p>Use 
+					<select (change)="attachVolume($event, applicationDeployer, aVolume, $event.target.value)">
+						<option value="null">None</option>
+						<option *ngFor="let volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
+					</select> as volume {{ aVolume }}</p>
+				</div>
+			</md-card-content>
+
+			<!-- <div *ngFor="#aParam of applicationDeployer.parameters">
+				<p>Use 
+				<select (change)="selectVolume($event, applicationDeployer, $event.target.value)">
+					<option value="null">None</option>
+					<option *ngFor="#volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
+				</select> to obtain {{ aParam }}</p>
+			</div> -->
+			<md-progress-bar *ngIf="applicationDeployer.deploying || applicationDeployer.destroying" mode="indeterminate"></md-progress-bar>
+
+			<md-card-actions *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
+					<button md-button (click)="deployApplication($event, applicationDeployer)">Deploy</button>
+					<button md-button (click)="removeApplication($event, applicationDeployer)">Remove</button>
+			</md-card-actions>
+
+		</md-card>
+	</div>
+
+</md-content>

@@ -1,6 +1,5 @@
-import { Injectable } from 'angular2/core';
-import { Http, Headers, Response } from 'angular2/http';
-import { Router } from 'angular2/router';
+import { Injectable } from '@angular/core';
+import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { CredentialService } from '../credential/credential.service';
@@ -13,19 +12,19 @@ export class AccountService {
 
   credentials = null;
 
-  constructor( public router: Router, public http: Http,
-    public config: ConfigService, public errorService: ErrorService ) {
+  constructor(public http: Http,
+    public config: ConfigService, public errorService: ErrorService) {
 
   }
 
 
   getAccount(credentialService: CredentialService) {
 
-    console.debug('[AccountService] Getting account for user ' + credentialService.getUsername());
+    console.log('[AccountService] Getting account for user ' + credentialService.getUsername());
 
-    var headers = new Headers();
+    let headers = new Headers();
     headers.append('Authorization', 'Basic '
-        + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
+      + btoa(credentialService.getUsername() + ':' + credentialService.getPassword()));
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
@@ -35,12 +34,11 @@ export class AccountService {
         headers: headers
       }
     )
-    .map( res => <Account> res.json() )
-    .catch( this.handleError );
-
+      .map(res => <Account>res.json())
+      .catch(this.handleError);
   }
 
-  private handleError( error : Response ) {
+  private handleError(error: Response) {
     return Observable.throw(error.json()[0].message || 'Server error');
   }
 
