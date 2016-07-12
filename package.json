@@ -1,14 +1,15 @@
 {
-  "name": "angular2-webpack-starter",
+  "name": "tsi-cloud-portal",
   "version": "5.0.5",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
+  "description": "An Angular2 webapp for the EBML EBI TSI Cloud Portal",
   "keywords": [
     "angular2",
     "webpack",
-    "typescript"
+    "typescript",
+    "cloud"
   ],
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
+  "author": "Jose A Dianes <jadianes@gmail.com>",
+  "homepage": "https://github.com/EMBL-EBI-TSI/tsi-cloud-portal-app",
   "license": "MIT",
   "scripts": {
      "rimraf": "rimraf",
@@ -164,10 +165,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
+    "url": "https://github.com/EMBL-EBI-TSI/tsi-cloud-portal-app.git"
   },
   "bugs": {
-    "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
+    "url": "https://github.com/EMBL-EBI-TSI/tsi-cloud-portal-app/issues"
   },
   "engines": {
     "node": ">= 4.2.1",
