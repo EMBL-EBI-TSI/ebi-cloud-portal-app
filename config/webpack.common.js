@@ -18,7 +18,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
  * Webpack Constants
  */
 const METADATA = {
-  title: 'TSI cloud Portal',
+  title: 'TSI Cloud Portal',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer()
 };
