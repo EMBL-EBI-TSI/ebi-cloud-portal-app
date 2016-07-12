@@ -102,19 +102,34 @@ export class TestHelper {
 
 export interface GuinessCompatibleSpy extends jasmine.Spy {
   /** By chaining the spy with and.returnValue, all calls to the function will return a specific
-   * value. */
+   * value. 
+   */
   andReturn(val: any): void;
   /** By chaining the spy with and.callFake, all calls to the spy will delegate to the supplied
-   * function. */
+   * function. 
+   */
   andCallFake(fn: Function): GuinessCompatibleSpy;
   /** removes all recorded calls */
   reset();
 }
 
 export class SpyObject {
+
+  static stub(object = null, config = null, overrides = null) {
+    if (!(object instanceof SpyObject)) {
+      overrides = config;
+      config = object;
+      object = new SpyObject();
+    }
+
+    let m = StringMapWrapper.merge(config, overrides);
+    StringMapWrapper.forEach(m, (value, key) => { object.spy(key).andReturn(value); });
+    return object;
+  }
+
   constructor(type = null) {
     if (type) {
-      for (let prop in type.prototype) {
+      for (let prop of type.prototype) {
         let m = null;
         try {
           m = type.prototype[prop];
@@ -141,18 +156,6 @@ export class SpyObject {
   }
 
   prop(name, value) { this[name] = value; }
-
-  static stub(object = null, config = null, overrides = null) {
-    if (!(object instanceof SpyObject)) {
-      overrides = config;
-      config = object;
-      object = new SpyObject();
-    }
-
-    let m = StringMapWrapper.merge(config, overrides);
-    StringMapWrapper.forEach(m, (value, key) => { object.spy(key).andReturn(value); });
-    return object;
-  }
 
   /** @internal */
   _createGuinnessCompatibleSpy(name): GuinessCompatibleSpy {

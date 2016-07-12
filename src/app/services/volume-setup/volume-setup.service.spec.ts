@@ -43,30 +43,30 @@ describe('VolumeSetupService', () => {
   it('should get all applications data',
     inject([VolumeSetupService, CredentialService, MockBackend],
       fakeAsync(
-	      (volumeSetupService, credentialService, mockBackend) => {
-	        let res;
-	        mockBackend.connections.subscribe(c => {
-	          expect(c.request.url).toBe('some_url/volumesetup/');
-	          let response = new ResponseOptions({
-	            body: `{"_embedded": {"volumeSetupResourceList": [
-	                  {"name": "volume_name", "repoUri": "volume_url"},
-	                  {"name": "another volume_name", "repoUri": "another/volume_url"}
-	                  ]}}`
-	          });
-	          c.mockRespond(new Response(response));
-	        });
+        (volumeSetupService, credentialService, mockBackend) => {
+          let res;
+          mockBackend.connections.subscribe(c => {
+            expect(c.request.url).toBe('some_url/volumesetup/');
+            let response = new ResponseOptions({
+              body: `{"_embedded": {"volumeSetupResourceList": [
+                       {"name": "volume_name", "repoUri": "volume_url"},
+                       {"name": "another volume_name", "repoUri": "another/volume_url"}
+                     ]}}`
+            });
+            c.mockRespond(new Response(response));
+          });
 
           credentialService.setCredentials('username', 'userpassword');
-	        volumeSetupService.getAll(credentialService).subscribe(
-	          (_res) => {
-	            res = _res;
-	          }
-	        );
-	        tick();
-	        expect(res.length).toBe(2);
-	      }
-	    )
+          volumeSetupService.getAll(credentialService).subscribe(
+            (_res) => {
+              res = _res;
+            }
+          );
+          tick();
+          expect(res.length).toBe(2);
+        }
+      )
     )
-	);
+  );
 
 });

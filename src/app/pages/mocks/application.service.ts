@@ -3,34 +3,34 @@ import { SpyObject } from './helper';
 import { ApplicationService } from '../../services/application/application.service';
 
 export class MockApplicationService extends SpyObject {
-	getAllSpy;
-	getSpy;
-	addSpy;
-	deleteSpy;
+  getAllSpy;
+  getSpy;
+  addSpy;
+  deleteSpy;
 
-	mockObservable;
-	fakeResponse;
+  mockObservable;
+  fakeResponse;
 
-	constructor() {
-		super(ApplicationService);
-		this.fakeResponse = null;
-		this.getAllSpy = this.spy('getAll').andReturn(this);
-		this.getSpy = this.spy('get').andReturn(this);
-		this.addSpy = this.spy('add').andReturn(this);
-		this.deleteSpy = this.spy('delete').andReturn(this);
-	}
+  constructor() {
+    super(ApplicationService);
+    this.fakeResponse = null;
+    this.getAllSpy = this.spy('getAll').andReturn(this);
+    this.getSpy = this.spy('get').andReturn(this);
+    this.addSpy = this.spy('add').andReturn(this);
+    this.deleteSpy = this.spy('delete').andReturn(this);
+  }
 
   subscribe(callback) {
-		callback(this.fakeResponse);
+    callback(this.fakeResponse);
   }
 
   setResponse(response: any): void {
-		console.log('Setting repsonse to %O', response);
-		this.fakeResponse = response;
+    console.log('Setting repsonse to %O', response);
+    this.fakeResponse = response;
   }
 
   getProviders(): Array<any> {
-		return [provide(ApplicationService, { useValue: this })];
+    return [provide(ApplicationService, { useValue: this })];
   }
 
 }

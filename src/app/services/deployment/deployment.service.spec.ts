@@ -51,7 +51,7 @@ describe('DeploymentService', () => {
             expect(c.request.url).toBe('some_url/deployment/');
             let response = new ResponseOptions({
               body: `{"_embedded": {"deploymentResourceList": [
-				              	{"reference": "tsi-ref-1",
+                       {"reference": "tsi-ref-1",
                         "applicationName": "app_name",
                         "providerId": "provider-id-1",
                         "accessIp": "access-ip-1",
@@ -61,7 +61,7 @@ describe('DeploymentService', () => {
                         "providerId": "provider-id-2",
                         "accessIp": "access-ip-2",
                         "volumeInstanceReference": null}
-				            ]}}`
+                    ]}}`
             });
             c.mockRespond(new Response(response));
           });
