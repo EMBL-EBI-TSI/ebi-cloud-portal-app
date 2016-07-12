@@ -1,6 +1,7 @@
 [md-fab] {
   position: absolute;
   right: 10px;
-  top: 0px;
-  z-index: 1;
+  top: 10px;
+  z-index: 2;
+  background: #004D40;
 }
