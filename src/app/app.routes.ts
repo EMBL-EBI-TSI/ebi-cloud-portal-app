@@ -6,6 +6,7 @@ import { Volumes } from './pages/volumes';
 import { Deployments } from './pages/deployments';
 import { About } from './pages/about';
 import { Error } from './pages/error';
+import { Login } from './pages/login';
 
 export const routes: RouterConfig = [
     { path: '', component: Deployments },
@@ -15,5 +16,6 @@ export const routes: RouterConfig = [
     { path: 'deployments', component: Deployments },
     { path: 'error', component: Error },
     { path: 'about', component: About },
+    { path: 'login', component: Login },
     { path: '**', component: Deployments },
 ];

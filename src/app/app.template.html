@@ -1,50 +1,51 @@
 <md-sidenav-layout fullscreen>
-  <md-sidenav #sidenav mode="push">
-    <md-nav-list>
-        <a md-list-item router-active [routerLink]=" ['./deployments'] " (click)="sidenav.close()">
-            <md-icon md-list-icon>cloud</md-icon>
-            <span md-line>Deployments</span>
-            <span md-line>Currently deployed appliances</span>
-        </a>
-        <a md-list-item router-active [routerLink]=" ['./repository'] " (click)="sidenav.close()">
-            <md-icon md-list-icon>dashboard</md-icon>
-            <span md-line>Repository</span>
-            <span md-line>Appliances available for deployment</span>
-        </a>
-        <a md-list-item router-active [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
-            <md-icon md-list-icon>storage</md-icon>
-            <span md-line>Volumes</span>
-            <span md-line>Data storage units</span>
-        </a>
-        <a md-list-item router-active [routerLink]=" ['./about'] " (click)="sidenav.close()">
-            <md-icon md-list-icon>info</md-icon>
-            <span md-line>About</span>
-            <span md-line>Information about the TSI Cloud Portal</span>
-        </a>
-        
-      <!--<a md-list-item *ngFor="let view of views">
-        <md-icon md-list-icon>assignment ind</md-icon>
-        <span md-line>saham</span>
-        <span md-line class="secondary">sean</span>
-      </a>-->
-    </md-nav-list>
-  </md-sidenav>
+    <md-sidenav #sidenav mode="push">
+        <md-nav-list>
+            <a md-list-item *ngIf="credentialService.getUsername()" router-active [routerLink]=" ['./deployments'] " (click)="sidenav.close()">
+                <md-icon md-list-icon>cloud</md-icon>
+                <span md-line>Deployments</span>
+                <span md-line>Currently deployed appliances</span>
+            </a>
+            <a md-list-item *ngIf="credentialService.getUsername()" router-active [routerLink]=" ['./repository'] " (click)="sidenav.close()">
+                <md-icon md-list-icon>dashboard</md-icon>
+                <span md-line>Repository</span>
+                <span md-line>Appliances available for deployment</span>
+            </a>
+            <a md-list-item *ngIf="credentialService.getUsername()" router-active [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
+                <md-icon md-list-icon>storage</md-icon>
+                <span md-line>Volumes</span>
+                <span md-line>Data storage units</span>
+            </a>
+            <a md-list-item router-active [routerLink]=" ['./about'] " (click)="sidenav.close()">
+                <md-icon md-list-icon>info</md-icon>
+                <span md-line>About</span>
+                <span md-line>Information about the TSI Cloud Portal</span>
+            </a>
+        </md-nav-list>
+    </md-sidenav>
     <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.open()">
-            <md-icon>menu</md-icon>
-        </button>
-        {{ name }}
+        <md-icon>menu</md-icon>
+    </button> {{ name }}
         <span class="fill"></span>
-        <a md-button router-active [routerLink]=" ['./profile'] " (click)="sidenav.close()">
+        <a md-button *ngIf="credentialService.getUsername()" router-active [routerLink]=" ['./profile'] " (click)="sidenav.close()">
             <md-icon md-list-icon>face</md-icon>
             <span md-line>Profile</span>
-        </a>  
+        </a>
+        <a md-button *ngIf="credentialService.getUsername()" router-active (click)="logOut(); sidenav.close()">
+            <md-icon md-list-icon>vpn_key</md-icon>
+            <span md-line>Logout</span>
+        </a>
+        <a md-button *ngIf="!credentialService.getUsername()" router-active [routerLink]=" ['./login'] ">
+            <md-icon md-list-icon>vpn_key</md-icon>
+            <span md-line>Login</span>
+        </a>
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
 
     <router-outlet></router-outlet>
-<!--
+    <!--
     <footer>
         <img [src]="emblLogo" width="10%" style="margin-right:10px">
         <span id="footerText"> Cloud Portal by <a [href]="url">@EMBL-EBI-TSI</a></span>

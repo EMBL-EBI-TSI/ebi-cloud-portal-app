@@ -2,6 +2,8 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CredentialService } from './services/credential/credential.service';
+import { Router } from '@angular/router';
 
 /*
  * App Component
@@ -20,8 +22,14 @@ export class App {
     name = 'TSI Cloud Portal';
     url = 'https://github.com/EMBL-EBI-TSI';
 
-    constructor() {
+    constructor(public credentialService: CredentialService,
+        public router: Router) {
 
+    }
+
+    logOut() {
+        this.credentialService.clearCredentials();
+        this.router.navigateByUrl('/login');
     }
 
     ngOnInit() {
