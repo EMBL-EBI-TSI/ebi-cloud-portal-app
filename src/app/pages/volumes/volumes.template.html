@@ -1,4 +1,9 @@
-<md-tab-group>
+<!--Add setup button-->
+<button *ngIf="volumesTabGroup.selectedIndex == 1" md-fab (click)="addVolumeSetupFormShowing=!addVolumeSetupFormShowing">
+	<md-icon>add</md-icon>
+</button>
+
+<md-tab-group #volumesTabGroup>
 	<md-tab>
 		<template md-tab-label>Instances</template>
 		<template md-tab-content>
@@ -21,15 +26,10 @@
 			</md-content>
 		</template>
 	</md-tab>
+	
 	<md-tab>
 		<template md-tab-label>Setups</template>
-
 		<template md-tab-content>
-			<!--Add setup button-->
-			<button md-fab (click)="addVolumeSetupFormShowing=!addVolumeSetupFormShowing">
-				<md-icon>add</md-icon>
-			</button>
-
 			<!--Add setup form-->
 			<md-card *ngIf="addVolumeSetupFormShowing">
 				<md-card-title>Add volume setup</md-card-title>
