@@ -30,24 +30,18 @@
 	</md-card>
 	
 	<div class="card-container">
-		<md-card *ngFor="let applicationDeployer of applicationDeployers">
-
-			<img md-card-image [alt]="applicationDeployer.name" src="http://www.openstack4j.com/assets/img/openstack.png">
-			
-			<md-card-title>
-				<md-card-title-text>{{ applicationDeployer.name }}</md-card-title-text>
-			</md-card-title>
-
-			<md-card-subtitle>{{ applicationDeployer.repoUri }}</md-card-subtitle>
-			
+		<md-card *ngFor="let applicationDeployer of applicationDeployers">	
+			<md-card-title-group>
+				<md-card-title>{{ applicationDeployer.name }}</md-card-title>
+				<md-card-subtitle>{{ applicationDeployer.repoUri }}</md-card-subtitle>
+			</md-card-title-group>
 			<md-card-content>
-				Application description, etc.
 				<div *ngFor="let aVolume of applicationDeployer.volumes">
-					<p>Use 
+					<p>Select volume for  {{ aVolume }}</p>
 					<select (change)="attachVolume($event, applicationDeployer, aVolume, $event.target.value)">
 						<option value="null">None</option>
 						<option *ngFor="let volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
-					</select> as volume {{ aVolume }}</p>
+					</select>
 				</div>
 			</md-card-content>
 
