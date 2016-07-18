@@ -22,7 +22,7 @@ import { RootCmp, createRoot, routerTestProviders, advance } from '../mocks/help
 
 // Load the implementations that should be tested
 import { Repository } from './repository.component';
-import { Application } from '../../services/application/application';
+import { Application } from 'ng2-tsi-cloud-portal-lib';
 
 // mocks needed
 import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
