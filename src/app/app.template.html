@@ -41,7 +41,7 @@
     <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
-        </button> {{ name }}
+        </button> <a class="title-link" router-active [routerLink]=" ['./welcome'] " (click)="sidenav.close()">{{ name }}</a>
         <span class="fill"></span>
 
     </md-toolbar>

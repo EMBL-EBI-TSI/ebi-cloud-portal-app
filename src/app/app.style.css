@@ -85,3 +85,10 @@ md-input {
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
+
+.title-link {
+  text-decoration: none;
+  color: white;
+  padding-left: 10px;
+  padding-top: 2px;
+}
