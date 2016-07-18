@@ -33,7 +33,7 @@
 		<md-card *ngFor="let applicationDeployer of applicationDeployers">	
 			<md-card-title-group>
 				<md-card-title>{{ applicationDeployer.name }}</md-card-title>
-				<md-card-subtitle>{{ applicationDeployer.repoUri }}</md-card-subtitle>
+				<md-card-subtitle><a href="{{ applicationDeployer.repoUri }}">{{ applicationDeployer.repoUri }}</a></md-card-subtitle>
 			</md-card-title-group>
 			<md-card-content>
 				<div *ngFor="let aVolume of applicationDeployer.volumes">

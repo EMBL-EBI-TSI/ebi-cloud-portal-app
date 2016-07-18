@@ -26,7 +26,7 @@
 			</md-content>
 		</template>
 	</md-tab>
-	
+
 	<md-tab>
 		<template md-tab-label>Setups</template>
 		<template md-tab-content>
@@ -53,11 +53,12 @@
 				<md-content *ngIf="volumeDeployers">
 					<div class="card-container">
 						<md-card *ngFor="let volumeDeployer of volumeDeployers">
-							<md-card-title>
-								<md-card-title-text>{{ volumeDeployer.name }}</md-card-title-text>
-							</md-card-title>
+							<md-card-title-group>
+								<md-card-title>{{ volumeDeployer.name }}</md-card-title>
+								<md-card-subtitle><a href="{{ volumeDeployer.repoUri }}">{{ volumeDeployer.repoUri }}</a></md-card-subtitle>
+							</md-card-title-group>
 							<md-card-content>
-								<p>URI: {{ volumeDeployer.repoUri }}</p>
+								
 							</md-card-content>
 							<md-progress-bar *ngIf="volumeDeployer.deploying || volumeDeployer.removing" mode="indeterminate"></md-progress-bar>
 							<md-card-actions layout="column" layout-align="start" *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing ">
@@ -70,7 +71,7 @@
 					</div>
 				</md-content>
 			</div>
-			
+
 		</template>
 	</md-tab>
 </md-tab-group>

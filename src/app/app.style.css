@@ -49,11 +49,16 @@ footer{
 
 .card-container md-card {
   flex: 1;
-  max-width: 300px;
+  max-width: 400px;
   min-width: 300px;
   box-sizing: border-box;
   margin: 10px;
   background: rgb(229,229,229);
+}
+
+.card-container md-card md-card-title {
+  color: rgb(85,85,85);
+  font-size: 1.25em;
 }
 
 md-sidenav-layout {
