@@ -2,7 +2,7 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation } from '@angular/core';
-import { CredentialService } from './services/credential/credential.service';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
 import { Router } from '@angular/router';
 
 /*

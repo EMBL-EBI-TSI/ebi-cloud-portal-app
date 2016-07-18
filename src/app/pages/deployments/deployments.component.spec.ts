@@ -13,12 +13,12 @@ import { MockBackend } from '@angular/http/testing';
 
 // Load the implementations that should be tested
 import { Deployments } from './deployments.component';
-import { Deployment } from '../../services/deployment/deployment';
+import { Deployment } from 'ng2-tsi-cloud-portal-lib';
 
 // mocks needed
-import { CredentialService } from '../../services/credential/credential.service';
-import { ConfigService } from '../../services/config/config.service';
-import { ErrorService } from '../../services/error/error.service';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
+import { ConfigService } from 'ng2-tsi-cloud-portal-lib';
+import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
 import { MockDeploymentService } from '../mocks/deployment.service';
 import { MockEvent } from '../mocks/event';
 

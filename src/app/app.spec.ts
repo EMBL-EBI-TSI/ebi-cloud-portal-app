@@ -3,7 +3,7 @@ import {
   inject,
   it
 } from '@angular/core/testing';
-import { CredentialService } from './services/credential/credential.service';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
 import { Router, RouterConfig } from '@angular/router';
 import { RootCmp, createRoot, routerTestProviders, advance } from './pages/mocks/helper';
 

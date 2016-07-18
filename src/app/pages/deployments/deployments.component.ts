@@ -3,10 +3,10 @@ import { FORM_DIRECTIVES } from '@angular/common';
 import  { Router } from '@angular/router';
 
 import { DeploymentInstance } from './deployment-instance';
-import { Deployment } from '../../services/deployment/deployment';
-import { DeploymentService } from '../../services/deployment/deployment.service';
-import { CredentialService } from '../../services/credential/credential.service';
-import { ErrorService } from '../../services/error/error.service';
+import { Deployment } from 'ng2-tsi-cloud-portal-lib';
+import { DeploymentService } from 'ng2-tsi-cloud-portal-lib';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
+import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
 
 @Component({
   selector: 'deployments',

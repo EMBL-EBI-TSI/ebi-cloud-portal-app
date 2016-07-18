@@ -1,4 +1,4 @@
-import { DeploymentAttachedVolume } from '../../services/deployment/deployment-attached-volume';
+import { DeploymentAttachedVolume } from 'ng2-tsi-cloud-portal-lib';
 
 export interface DeploymentInstance {
   reference: string;

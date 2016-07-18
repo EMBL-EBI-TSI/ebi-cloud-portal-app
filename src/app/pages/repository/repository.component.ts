@@ -5,14 +5,13 @@ import { NgForm, FormBuilder, Validators,
 import { Router } from '@angular/router';
 
 import { ApplicationDeployer } from './application-deployer';
-import { Application } from '../../services/application/application';
-import { ApplicationService } from '../../services/application/application.service';
-import { VolumeInstance } from '../../services/volume-instance/volume-instance';
-import { VolumeInstanceService } from '../../services/volume-instance/volume-instance.service';
-import { DeploymentService } from '../../services/deployment/deployment.service';
-import { CredentialService } from '../../services/credential/credential.service';
-import { ErrorService } from '../../services/error/error.service';
-
+import { Application } from 'ng2-tsi-cloud-portal-lib';
+import { ApplicationService } from 'ng2-tsi-cloud-portal-lib';
+import { VolumeInstance } from 'ng2-tsi-cloud-portal-lib';
+import { VolumeInstanceService } from 'ng2-tsi-cloud-portal-lib';
+import { DeploymentService } from 'ng2-tsi-cloud-portal-lib';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
+import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
 
 @Component({
   selector: 'repository',

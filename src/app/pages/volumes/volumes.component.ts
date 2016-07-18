@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 
 import { VolumeDeployer } from './volume-deployer';
 import { VolumeInstanceDeployment } from './volume-instance-deployment';
-import { VolumeSetup } from '../../services/volume-setup/volume-setup';
-import { VolumeInstance } from '../../services/volume-instance/volume-instance';
-import { VolumeSetupService } from '../../services/volume-setup/volume-setup.service';
-import { VolumeInstanceService } from '../../services/volume-instance/volume-instance.service';
-import { CredentialService } from '../../services/credential/credential.service';
-import { ErrorService } from '../../services/error/error.service';
+import { VolumeSetup } from 'ng2-tsi-cloud-portal-lib';
+import { VolumeInstance } from 'ng2-tsi-cloud-portal-lib';
+import { VolumeSetupService } from 'ng2-tsi-cloud-portal-lib';
+import { VolumeInstanceService } from 'ng2-tsi-cloud-portal-lib';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
+import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
 
 
 @Component({

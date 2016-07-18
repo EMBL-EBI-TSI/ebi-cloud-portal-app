@@ -1,6 +1,6 @@
 import { provide } from '@angular/core';
 import { SpyObject } from './helper';
-import { ApplicationService } from '../../services/application/application.service';
+import { ApplicationService } from 'ng2-tsi-cloud-portal-lib';
 
 export class MockApplicationService extends SpyObject {
   getAllSpy;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ErrorService } from '../../services/error/error.service';
+import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
 
 @Component({
   selector: 'error',

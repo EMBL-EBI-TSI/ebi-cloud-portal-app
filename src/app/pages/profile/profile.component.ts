@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AccountService } from '../../services/account/account.service';
-import { CredentialService } from '../../services/credential/credential.service';
-import { ErrorService } from '../../services/error/error.service';
+import { AccountService } from 'ng2-tsi-cloud-portal-lib';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
+import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
 
 @Component({
   selector: 'profile',

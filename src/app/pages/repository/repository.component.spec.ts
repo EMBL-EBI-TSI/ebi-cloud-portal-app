@@ -25,12 +25,12 @@ import { Repository } from './repository.component';
 import { Application } from '../../services/application/application';
 
 // mocks needed
-import { CredentialService } from '../../services/credential/credential.service';
-import { ConfigService } from '../../services/config/config.service';
-import { ErrorService } from '../../services/error/error.service';
-import { ApplicationService } from '../../services/application/application.service';
-import { DeploymentService } from '../../services/deployment/deployment.service';
-import { VolumeInstanceService } from '../../services/volume-instance/volume-instance.service';
+import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
+import { ConfigService } from 'ng2-tsi-cloud-portal-lib';
+import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
+import { ApplicationService } from 'ng2-tsi-cloud-portal-lib';
+import { DeploymentService } from 'ng2-tsi-cloud-portal-lib';
+import { VolumeInstanceService } from 'ng2-tsi-cloud-portal-lib';
 import { MockDeploymentService } from '../mocks/deployment.service';
 import { MockApplicationService } from '../mocks/application.service';
 import { MockVolumeInstanceService } from '../mocks/volume-instance.service';
