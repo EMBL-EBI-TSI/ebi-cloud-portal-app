@@ -8,27 +8,37 @@
 		<md-card *ngFor="let deploymentInstance of deploymentInstances">
 
 			<img md-card-image src="assets/img/EMBASSYCloud_logo.png">
-
-			<md-card-title>
-				{{ deploymentInstance.applicationName }}
-			</md-card-title>
-
-			<md-card-subtitle>
-				{{ deploymentInstance.reference }}
-			</md-card-subtitle>
+			<md-card-title-group>
+				<md-card-title>
+					<md-icon>done</md-icon> {{ deploymentInstance.applicationName }}
+				</md-card-title>
+				<md-card-subtitle>{{ deploymentInstance.reference }}</md-card-subtitle>
+			</md-card-title-group>
 
 			<md-card-content>
-				<h5>Provider ID: {{ deploymentInstance.providerId }}</h5>
-				<h5>Access IP: {{ deploymentInstance.accessIp }}</h5>
-				<div *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
-					<h5>{{ attachedVolume.name }} attached to volume {{ attachedVolume.volumeInstanceReference }}</h5>
-				</div>
+				<md-list dense>
+					<md-list-item>
+						<h3 md-line>Provider ID</h3>
+						<p md-line>{{ deploymentInstance.providerId }}</p>
+					</md-list-item>
+					<md-list-item>
+						<h3 md-line>Access IP</h3>
+						<p md-line>{{ deploymentInstance.accessIp }}</p>
+					</md-list-item>
+					<h3 md-subheader>Volumes</h3>
+					<md-list-item *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
+						<h3 md-line>{{ attachedVolume.name }}</h3>
+						<p md-line>attached to {{ attachedVolume.volumeInstanceReference }}</p>
+					</md-list-item>
+				</md-list>
 			</md-card-content>
 
 			<md-progress-bar *ngIf="deploymentInstance.destroying"  mode="indeterminate"></md-progress-bar>
 
-			<md-card-actions *ngIf="!deploymentInstance.destroying">
-				<button md-button (click)="destroyDeployment($event, deploymentInstance)">Destroy</button>
+			<md-card-actions align="end" *ngIf="!deploymentInstance.destroying">
+				<button md-icon-button color="warn" (click)="destroyDeployment($event, deploymentInstance)">
+					<md-icon>delete_forever</md-icon>
+				</button>
 			</md-card-actions>
 			
 		</md-card>

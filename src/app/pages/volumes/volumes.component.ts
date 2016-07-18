@@ -53,8 +53,7 @@ export class Volumes {
     this._updateVolumes();
   }
 
-  deployVolume(event, volumeDeployer: VolumeDeployer) {
-    event.preventDefault();
+  deployVolume(volumeDeployer: VolumeDeployer) {
     volumeDeployer.deploying = true;
     console.log('[Volumes] Adding deployment for volume from ' + volumeDeployer.repoUri);
     this.volumeInstanceService.add(this.credentialService, volumeDeployer).subscribe(
@@ -72,8 +71,7 @@ export class Volumes {
     );
   }
 
-  destroyVolume(event, volumeInstanceDeployment: VolumeInstanceDeployment) {
-    event.preventDefault();
+  destroyVolume(volumeInstanceDeployment: VolumeInstanceDeployment) {
     volumeInstanceDeployment.destroying = true;
     console.log('[Volumes] Destroying deployment for volume ' + volumeInstanceDeployment.reference);
     this.volumeInstanceService.delete(this.credentialService, volumeInstanceDeployment).subscribe(
@@ -113,8 +111,7 @@ export class Volumes {
       );
   }
 
-  removeVolumeSetup(event, volumeDeployer: VolumeDeployer) {
-    event.preventDefault();
+  removeVolumeSetup(volumeDeployer: VolumeDeployer) {
     console.log('[Volumes] removing ' + volumeDeployer.name);
 
     volumeDeployer.removing = true;

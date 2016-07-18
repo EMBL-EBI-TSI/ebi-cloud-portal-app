@@ -54,8 +54,7 @@ export class Repository {
     this._updateRepository();
   }
 
-  deployApplication(event, applicationDeployer: ApplicationDeployer) {
-    event.preventDefault();
+  deployApplication(applicationDeployer: ApplicationDeployer) {
     applicationDeployer.deploying = true;
     console.log('[Repository] Adding deployment for application from '
         + applicationDeployer.repoUri);
@@ -96,8 +95,7 @@ export class Repository {
 
   }
 
-  removeApplication(event, applicationDeployer: ApplicationDeployer) {
-      event.preventDefault();
+  removeApplication(applicationDeployer: ApplicationDeployer) {
       console.log('[Repository] removing ' + applicationDeployer.name);
 
       applicationDeployer.destroying = true;
@@ -120,15 +118,13 @@ export class Repository {
       );
   }
 
-  selectVolume(event, applicationDeployer, volumeInstanceReference) {
-    event.preventDefault();
+  selectVolume(applicationDeployer, volumeInstanceReference) {
     console.log('[Repository] attaching volume ' + volumeInstanceReference
       + ' to application ' + applicationDeployer.name);
     applicationDeployer.attachedVolumeReference = volumeInstanceReference;
   }
 
-  attachVolume(event, applicationDeployer, volumeName, volumeInstanceReference) {
-      event.preventDefault();
+  attachVolume(applicationDeployer, volumeName, volumeInstanceReference) {
       console.log('[Repository] attaching volume ' + volumeName + '=' + volumeInstanceReference
           + ' to application ' + applicationDeployer.name);
       applicationDeployer.attachedVolumes[volumeName] = volumeInstanceReference;
