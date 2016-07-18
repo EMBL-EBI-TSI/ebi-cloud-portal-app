@@ -21,7 +21,8 @@ export class App {
     ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
     ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
     name = 'TSI Cloud Portal';
-    url = 'https://github.com/EMBL-EBI-TSI';
+    ebiUrl = 'http://www.ebi.ac.uk/';
+    tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
 
     constructor(public credentialService: CredentialService,
         public router: Router) {

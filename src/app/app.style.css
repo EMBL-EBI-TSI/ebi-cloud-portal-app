@@ -1,7 +1,7 @@
-/*html, body{
-  height: 100%;
-  background: #F4FAFA;
-}*/
+html, body{
+  /*height: 100%;*/
+  background: #ffffff;
+}
 button.active{
   background: #fff;
   color: #009688;
@@ -23,9 +23,13 @@ md-content{
   display: flex;
   flex-direction: column;
   /*height: 100%;*/
+  background: #ffffff;
 }
 
 footer{
+  border-top-style: solid;
+  border-top-width: 5px;
+  border-top-color: rgb(229,229,229);
   flex: 0 0 60px;
   padding: 10px;
   display: flex;
@@ -49,6 +53,7 @@ footer{
   min-width: 300px;
   box-sizing: border-box;
   margin: 10px;
+  background: rgb(229,229,229);
 }
 
 md-sidenav-layout {

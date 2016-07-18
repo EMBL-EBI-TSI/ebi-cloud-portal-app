@@ -36,7 +36,7 @@
         </md-nav-list>
     </md-sidenav>
     <div class="ebi-header">
-        <img [src]="ebiLogoWhite">
+        <a [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
     </div>
     <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.open()">
@@ -55,7 +55,7 @@
             <img [src]="ebiLogoBlack">
         </div>
         <div>
-            <span id="footerText"> Cloud Portal by <a [href]="url">@EMBL-EBI-TSI</a></span>
+            <span id="footerText"> Cloud Portal by <a [href]="tsiGithubUrl">@EMBL-EBI-TSI</a></span>
         </div>
     </footer>
 
