@@ -31,7 +31,7 @@ export class App {
 
     logOut() {
         this.credentialService.clearCredentials();
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/welcome');
     }
 
     ngOnInit() {

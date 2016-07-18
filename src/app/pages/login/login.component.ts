@@ -32,7 +32,7 @@ export class Login {
         .subscribe(
           data => {
               console.log('User data is %O', data);
-              this.router.navigateByUrl('/deployments');
+              this.router.navigateByUrl('/dashboard');
           },
           error => {
             console.log('[Login] error %O: ', error);
