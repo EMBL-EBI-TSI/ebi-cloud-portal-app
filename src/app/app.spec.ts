@@ -23,7 +23,7 @@ describe('App', () => {
   ]);
 
   it('should have a url', inject([ App ], (app) => {
-    expect(app.url).toEqual('https://github.com/EMBL-EBI-TSI');
+    expect(app.tsiGithubUrl).toEqual('https://github.com/EMBL-EBI-TSI');
   }));
 
 });
