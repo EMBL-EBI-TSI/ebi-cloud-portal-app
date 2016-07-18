@@ -7,4 +7,13 @@
   box-sizing: border-box;
   margin: 10px;
 }
-
+.welcome-container about md-card {
+  flex-grow: 1;
+  box-sizing: border-box;
+  border: 0 none white;
+}
+.welcome-container login {
+  flex-grow: 1;
+  min-width: 300px;
+  box-sizing: border-box;
+}
