@@ -18,7 +18,8 @@ import { Router } from '@angular/router';
     template: require('./app.template.html')
 })
 export class App {
-    emblLogo = 'assets/img/embl-logo.png';
+    ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
+    ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
     name = 'TSI Cloud Portal';
     url = 'https://github.com/EMBL-EBI-TSI';
 

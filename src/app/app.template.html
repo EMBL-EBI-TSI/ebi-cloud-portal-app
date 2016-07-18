@@ -22,8 +22,8 @@
                 <span md-line>Information about the TSI Cloud Portal</span>
             </a>
             <a md-list-item *ngIf="credentialService.getUsername()" router-active [routerLink]=" ['./profile'] " (click)="sidenav.close()">
-            <md-icon md-list-icon>face</md-icon>
-            <span md-line>Profile</span>
+                <md-icon md-list-icon>face</md-icon>
+                <span md-line>Profile</span>
             </a>
             <a md-list-item *ngIf="credentialService.getUsername()" router-active (click)="logOut(); sidenav.close()">
                 <md-icon md-list-icon>vpn_key</md-icon>
@@ -35,21 +35,28 @@
             </a>
         </md-nav-list>
     </md-sidenav>
+    <div class="ebi-header">
+        <img [src]="ebiLogoWhite">
+    </div>
     <md-toolbar color="primary">
         <button md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
         </button> {{ name }}
         <span class="fill"></span>
-        
+
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
 
     <router-outlet></router-outlet>
-    <!--
+
     <footer>
-        <img [src]="emblLogo" width="10%" style="margin-right:10px">
-        <span id="footerText"> Cloud Portal by <a [href]="url">@EMBL-EBI-TSI</a></span>
+        <div>
+            <img [src]="ebiLogoBlack">
+        </div>
+        <div>
+            <span id="footerText"> Cloud Portal by <a [href]="url">@EMBL-EBI-TSI</a></span>
+        </div>
     </footer>
-    -->
+
 </md-sidenav-layout>
