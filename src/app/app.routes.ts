@@ -1,22 +1,22 @@
 import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
-import { Welcome } from './pages/welcome';
-import { Profile } from './pages/profile';
-import { Repository } from './pages/repository';
-import { Volumes } from './pages/volumes';
-import { Deployments } from './pages/deployments';
-import { About } from './pages/about';
-import { Error } from './pages/error';
-import { Login } from './pages/login';
+import { WelcomePage } from './pages/welcome-page';
+import { ProfilePage } from './pages/profile-page';
+import { RepositoryPage } from './pages/repository-page';
+import { VolumesPage } from './pages/volumes-page';
+import { DeploymentsPage } from './pages/deployments-page';
+import { AboutPage } from './pages/about-page';
+import { ErrorPage } from './pages/error-page';
+import { LoginPage } from './pages/login-page';
 
 export const routes: RouterConfig = [
-    { path: '', component: Welcome },
-    { path: 'profile', component: Profile },
-    { path: 'repository', component: Repository },
-    { path: 'volumes', component: Volumes },
-    { path: 'deployments', component: Deployments },
-    { path: 'error', component: Error },
-    { path: 'about', component: About },
-    { path: 'login', component: Login },
-    { path: '**', component: Welcome },
+    { path: '', component: WelcomePage },
+    { path: 'profile', component: ProfilePage },
+    { path: 'repository', component: RepositoryPage },
+    { path: 'volumes', component: VolumesPage },
+    { path: 'deployments', component: DeploymentsPage },
+    { path: 'error', component: ErrorPage },
+    { path: 'about', component: AboutPage },
+    { path: 'login', component: LoginPage },
+    { path: '**', component: WelcomePage },
 ];

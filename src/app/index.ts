@@ -4,9 +4,9 @@ export * from './app.routes';
 
 import {provide, enableProdMode} from '@angular/core';
 
-import { ConfigService } from 'ng2-tsi-cloud-portal-lib';
-import { ErrorService } from 'ng2-tsi-cloud-portal-lib';
-import { CredentialService } from 'ng2-tsi-cloud-portal-lib';
+import { ConfigService } from 'ng2-cloud-portal-service-lib';
+import { ErrorService } from 'ng2-cloud-portal-service-lib';
+import { CredentialService } from 'ng2-cloud-portal-service-lib';
 
 const ENV_PROVIDERS = [];
 

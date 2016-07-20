@@ -1,6 +1,6 @@
 import { provide } from '@angular/core';
 import { SpyObject } from './helper';
-import { VolumeInstanceService } from 'ng2-tsi-cloud-portal-lib';
+import { VolumeInstanceService } from 'ng2-cloud-portal-service-lib';
 
 export class MockVolumeInstanceService extends SpyObject {
   getAllSpy;

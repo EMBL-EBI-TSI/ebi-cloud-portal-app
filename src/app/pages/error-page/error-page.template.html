@@ -1,0 +1,12 @@
+<cp-error-component #errorComponent>
+	<md-content>
+		<md-card>
+			<md-card-title>
+				Sorry, there is a problem...
+			</md-card-title>
+			<md-card-content>
+				{{ errorComponent.error.getMessage() }}
+			</md-card-content>
+		</md-card>
+	</md-content>
+</cp-error-component>

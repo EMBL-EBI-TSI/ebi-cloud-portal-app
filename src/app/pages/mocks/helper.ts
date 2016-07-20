@@ -27,9 +27,9 @@ import { SpyLocation } from '@angular/common/testing';
 import { BrowserPlatformLocation } from '@angular/platform-browser';
 
 import { tick } from '@angular/core/testing';
-import { Repository } from '../repository';
-import { Deployments } from '../deployments';
-import { Volumes } from '../volumes';
+import { RepositoryPage } from '../repository-page';
+import { DeploymentsPage } from '../deployments-page';
+import { VolumesPage } from '../volumes-page';
 
 class MockResponse extends Response {
   _json: any;
@@ -221,7 +221,7 @@ export function routerTestProviders(routerConfig: RouterConfig) {
   selector: 'root-cmp',
   template: `<router-outlet></router-outlet>`,
   directives: [ROUTER_DIRECTIVES],
-  precompile: [Repository, Deployments]
+  precompile: [RepositoryPage, DeploymentsPage]
 })
 export class RootCmp {
 }
