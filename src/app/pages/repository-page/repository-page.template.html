@@ -39,9 +39,9 @@
             <h3 md-subheader>Volumes</h3>
             <md-list-item *ngFor="let aVolume of applicationDeployer.volumes">
               <h3 md-line>{{ aVolume }}</h3>
-              <select md-line (change)="attachVolume(applicationDeployer, aVolume, $event.target.value)">
+              <select md-line (change)="repo.attachVolume(applicationDeployer, aVolume, $event.target.value)">
                 <option value="null">None</option>
-                <option *ngFor="let volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
+                <option *ngFor="let volumeInstance of repo.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
               </select>
             </md-list-item>
           </md-list>
@@ -50,10 +50,10 @@
         <md-progress-bar *ngIf="applicationDeployer.deploying || applicationDeployer.destroying" mode="indeterminate"></md-progress-bar>
 
         <md-card-actions align="end" *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
-          <button md-icon-button color="accent" (click)="deployApplication(applicationDeployer)">
+          <button md-icon-button color="accent" (click)="repo.deployApplication(applicationDeployer)">
               <md-icon>cloud_upload</md-icon>
             </button>
-          <button md-icon-button color="warn" (click)="removeApplication(applicationDeployer)">
+          <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
               <md-icon>clear</md-icon> 
             </button>
         </md-card-actions>
