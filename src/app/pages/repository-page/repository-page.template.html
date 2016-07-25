@@ -1,21 +1,21 @@
 <cp-repository-component #repo>
 
-  <button md-fab (click)="addApplicationFormShowing=!addApplicationFormShowing">
+  <button md-fab (click)="repo.addApplicationFormShowing=!repo.addApplicationFormShowing">
     <md-icon>add</md-icon>
   </button>
 
-  <md-card *ngIf="addApplicationFormShowing">
+  <md-card *ngIf="repo.addApplicationFormShowing">
     <md-card-title>Add application</md-card-title>
     <md-card-content>
-      <form [formGroup]="applicationForm" autocomplete="off">
-        <md-input type="url" placeholder="Repository URI" [formControl]="applicationForm.controls['repoUri']" autofocus>
+      <form [formGroup]="repo.applicationForm" autocomplete="off">
+        <md-input type="url" placeholder="Repository URI" [formControl]="repo.applicationForm.controls['repoUri']" autofocus>
         </md-input>
-        <div *ngIf="!applicationForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
-        <div *ngIf="applicationForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>
+        <div *ngIf="!repo.applicationForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
+        <div *ngIf="repo.applicationForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>
       </form>
     </md-card-content>
     <md-card-actions>
-      <button md-raised-button color="accent" (click)="addApplication(applicationForm.value); addApplicationFormShowing = false"
+      <button md-raised-button color="accent" (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false"
         align="end">Add</button>
     </md-card-actions>
   </md-card>

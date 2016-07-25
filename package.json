@@ -1,6 +1,6 @@
 {
   "name": "tsi-cloud-portal",
-  "version": "5.0.5",
+  "version": "0.2.0",
   "description": "An Angular2 webapp for the EBML EBI TSI Cloud Portal",
   "keywords": [
     "angular2",
@@ -121,7 +121,6 @@
     "rimraf": "^2.5.2",
 
     "karma": "^0.13.22",
-    "karma-chrome-launcher": "^1.0.1",
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-coverage": "^1.0.0",
     "karma-jasmine": "^1.0.2",
