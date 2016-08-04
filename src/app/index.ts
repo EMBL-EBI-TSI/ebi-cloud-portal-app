@@ -7,6 +7,7 @@ import {provide, enableProdMode} from '@angular/core';
 import { ConfigService } from 'ng2-cloud-portal-service-lib';
 import { ErrorService } from 'ng2-cloud-portal-service-lib';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
+import { TokenService } from './auth/token.service';
 
 const ENV_PROVIDERS = [];
 
@@ -24,5 +25,6 @@ if ('production' === process.env.ENV) {
 export const APP_PROVIDERS = [
   provide(ConfigService, { useValue: activeConfig }),
   ErrorService,
-  CredentialService
+  CredentialService,
+  TokenService
 ];

@@ -92,3 +92,7 @@ md-input {
   padding-left: 10px;
   padding-top: 2px;
 }
+
+.param-value {
+  color: rgba(0,0,0,0.50);
+}

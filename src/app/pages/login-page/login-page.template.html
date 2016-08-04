@@ -3,9 +3,9 @@
 
   <md-content>
     <md-card>
-      <md-card *ngIf="jwtToken">
+      <md-card *ngIf="tokenService.getToken()">
         <md-card-title>Token</md-card-title>
-        <md-card-content>{{ jwtToken.token }}</md-card-content>
+        <md-card-content>{{ tokenService.getToken().token }}</md-card-content>
       </md-card>
       <md-card *ngIf="account">
         <md-card-title>Profile</md-card-title>
@@ -16,7 +16,7 @@
       </md-card>
     </md-card>
 
-    <md-card *ngIf="!jwtToken">
+    <md-card *ngIf="!tokenService.getToken()">
       <md-card-title>Login</md-card-title>
       <md-card-content>
         <form>
@@ -25,7 +25,7 @@
         </form>
       </md-card-content>
       <md-card-actions>
-        <button md-button (click)="getToken(username.value, password.value)">Submit</button>
+        <button md-button (click)="authenticate(username.value, password.value)">Submit</button>
       </md-card-actions>
     </md-card>
   </md-content>

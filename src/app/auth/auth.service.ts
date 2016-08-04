@@ -17,7 +17,7 @@ export class AuthService {
 
   }
 
-  getToken(username: string, password: string): Observable<JwtToken> {
+  authenticate(username: string, password: string): Observable<JwtToken> {
     console.log('[AuthService] Getting jwt token for user ' + username);
 
     let headers = new Headers();
