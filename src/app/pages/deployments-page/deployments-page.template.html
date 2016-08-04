@@ -8,12 +8,12 @@
 		<div class="card-container">
 			<md-card *ngFor="let deploymentInstance of deploymentsComponent.deploymentInstances">
 
-				<img md-card-image src="assets/img/EMBASSYCloud_logo.png">
+				<!--<img md-card-image src="assets/img/EMBASSYCloud_logo.png">-->
 				<md-card-title-group>
 					<md-card-title>
-						<md-icon>done</md-icon> {{ deploymentInstance.applicationName }}
+						<md-icon class="card-type-icon">done</md-icon> {{ deploymentInstance.applicationName }}
 					</md-card-title>
-					<md-card-subtitle>{{ deploymentInstance.reference }}</md-card-subtitle>
+					<md-card-subtitle class="indented-subtitle">{{ deploymentInstance.reference }}</md-card-subtitle>
 				</md-card-title-group>
 
 				<md-card-content>

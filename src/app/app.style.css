@@ -96,3 +96,14 @@ md-input {
 .param-value {
   color: rgba(0,0,0,0.50);
 }
+
+md-icon.card-type-icon {
+  font-size: 36px;
+  padding: 0px 6px 0px 0px;
+  position: relative;
+  top: 8px;
+}
+
+md-card-subtitle.indented-subtitle {
+  padding: 0px 0px 0px 36px;
+}
