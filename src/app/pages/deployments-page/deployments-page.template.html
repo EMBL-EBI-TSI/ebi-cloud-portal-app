@@ -7,19 +7,16 @@
 
 		<div class="card-container">
 			<md-card *ngFor="let deploymentInstance of deploymentsComponent.deploymentInstances">
-
-				<!--<img md-card-image src="assets/img/EMBASSYCloud_logo.png">-->
-				<md-card-title-group>
-					<md-card-title>
-						<md-icon class="card-type-icon">done</md-icon> {{ deploymentInstance.applicationName }}
-					</md-card-title>
-					<md-card-subtitle class="indented-subtitle">{{ deploymentInstance.reference }}</md-card-subtitle>
-				</md-card-title-group>
-
+        <md-toolbar class="md-card-toolbar">
+          <md-icon class="card-type-icon">done</md-icon> {{ deploymentInstance.applicationName }}
+        </md-toolbar>
 				<md-card-content>
 					<md-list dense>
-						<h3 md-header>Access info</h3>
-						<md-divider></md-divider>
+						<!--Application meta-data-->
+            <md-list-item>
+              <h3 md-line>Reference</h3>
+              <p md-line class="param-value">{{ deploymentInstance.reference }}</p>
+            </md-list-item>
 						<md-list-item>
 							<h3 md-line>Provider ID</h3>
 							<p md-line class="param-value">{{ deploymentInstance.providerId }}</p>

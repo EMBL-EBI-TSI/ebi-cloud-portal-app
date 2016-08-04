@@ -15,7 +15,7 @@
       </form>
     </md-card-content>
     <md-card-actions>
-      <button md-raised-button color="accent" (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false"
+      <button md-raised-button class="button-color-accent" (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false"
         align="end">Add</button>
     </md-card-actions>
   </md-card>
@@ -28,16 +28,16 @@
 
     <div class="card-container">
       <md-card *ngFor="let applicationDeployer of repo.applicationDeployers">
-        <!--Application data-->
-        <md-card-title-group>
-          <md-card-title>
-            <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
-          </md-card-title>
-          <md-card-subtitle class="indented-subtitle"><a href="{{ applicationDeployer.repoUri }}">{{ applicationDeployer.repoUri }}</a></md-card-subtitle>
-        </md-card-title-group>
-        
+        <md-toolbar class="md-card-toolbar">
+          <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
+        </md-toolbar>
         <md-card-content>
           <md-list dense>
+            <!--Application meta-data-->
+            <md-list-item>
+              <h3 md-line>Source</h3>
+              <p md-line class="param-value"><a href="{{ applicationDeployer.repoUri }}">{{ applicationDeployer.repoUri }}</a></p>
+            </md-list-item>
             <!--Application required volumes-->
             <h3 md-header>Volumes</h3>
             <md-divider></md-divider>
@@ -56,7 +56,11 @@
             <p md-subheader *ngIf="applicationDeployer.inputs.length==0">This application requires no input values</p>
             <p md-subheader *ngIf="applicationDeployer.inputs.length>0">This application requires to enter the following values</p>
             <md-list-item *ngFor="let anInput of applicationDeployer.inputs">
-              <md-input placeholder="{{ anInput }}"></md-input>
+              <md-input placeholder="{{ anInput }}">
+                <!--<span md-prefix>[some other hint]</span>-->
+                <!--<span md-suffix>[value type]</span>-->
+                <!--<md-hint align="end">[some other hint]</md-hint>-->
+              </md-input>
             </md-list-item>
             <br>
             <!--Application outputs-->

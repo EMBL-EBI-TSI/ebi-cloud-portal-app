@@ -1,35 +1,35 @@
 <md-sidenav-layout fullscreen>
     <md-sidenav #sidenav mode="push">
         <md-nav-list>
-            <a md-list-item *ngIf="tokenService.getToken()" router-active [routerLink]=" ['./deployments'] " (click)="sidenav.close()">
+            <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] " (click)="sidenav.close()">
                 <md-icon md-list-icon>cloud</md-icon>
                 <span md-line>Deployments</span>
                 <span md-line>Currently deployed appliances</span>
             </a>
-            <a md-list-item *ngIf="tokenService.getToken()" router-active [routerLink]=" ['./repository'] " (click)="sidenav.close()">
+            <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] " (click)="sidenav.close()">
                 <md-icon md-list-icon>dashboard</md-icon>
                 <span md-line>Repository</span>
                 <span md-line>Appliances available for deployment</span>
             </a>
-            <a md-list-item *ngIf="tokenService.getToken()" router-active [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
+            <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
                 <md-icon md-list-icon>storage</md-icon>
                 <span md-line>Volumes</span>
                 <span md-line>Data storage units</span>
             </a>
-            <a md-list-item router-active [routerLink]=" ['./about'] " (click)="sidenav.close()">
+            <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./about'] " (click)="sidenav.close()">
                 <md-icon md-list-icon>info</md-icon>
                 <span md-line>About</span>
                 <span md-line>Information about the TSI Cloud Portal</span>
             </a>
-            <a md-list-item *ngIf="tokenService.getToken()" router-active [routerLink]=" ['./profile'] " (click)="sidenav.close()">
+            <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
                 <md-icon md-list-icon>face</md-icon>
                 <span md-line>Profile</span>
             </a>
-            <a md-list-item *ngIf="tokenService.getToken()" router-active (click)="logOut(); sidenav.close()">
+            <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" (click)="logOut(); sidenav.close()">
                 <md-icon md-list-icon>vpn_key</md-icon>
                 <span md-line>Logout</span>
             </a>
-            <a md-list-item *ngIf="!tokenService.getToken()" router-active [routerLink]=" ['./login'] " (click)="sidenav.close()">
+            <a md-list-item *ngIf="!tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./login'] " (click)="sidenav.close()">
                 <md-icon md-list-icon>vpn_key</md-icon>
                 <span md-line>Login</span>
             </a>
@@ -38,12 +38,11 @@
     <div class="ebi-header">
         <a [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
     </div>
-    <md-toolbar color="primary">
+    <md-toolbar class="md-main-toolbar">
         <button md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
         </button> <a class="title-link" router-active [routerLink]=" ['./welcome'] " (click)="sidenav.close()">{{ name }}</a>
         <span class="fill"></span>
-
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>

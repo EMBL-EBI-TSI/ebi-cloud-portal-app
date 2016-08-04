@@ -1,6 +1,6 @@
 <cp-volumes-component #volumesComponent>
 	<!--Add setup button-->
-	<button *ngIf="volumesTabGroup.selectedIndex == 1" md-fab (click)="volumesComponent.addVolumeSetupFormShowing=!addVolumeSetupFormShowing">
+	<button *ngIf="volumesTabGroup.selectedIndex == 1" md-fab (click)="volumesComponent.addVolumeSetupFormShowing=!volumesComponent.addVolumeSetupFormShowing">
 		<md-icon>add</md-icon>
 	</button>
 
@@ -56,7 +56,7 @@
 						</form>
 					</md-card-content>
 					<md-card-actions>
-						<button md-raised-button color="accent" (click)="volumesComponent.addVolumeSetup(volumesComponent.volumeSetupForm.value); volumesComponent.addVolumeSetupFormShowing = false"
+						<button md-raised-button class="button-color-accent" (click)="volumesComponent.addVolumeSetup(volumesComponent.volumeSetupForm.value); volumesComponent.addVolumeSetupFormShowing = false"
 							align="end">Add</button>
 					</md-card-actions>
 				</md-card>
