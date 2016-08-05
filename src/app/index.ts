@@ -7,7 +7,7 @@ import {provide, enableProdMode} from '@angular/core';
 import { ConfigService } from 'ng2-cloud-portal-service-lib';
 import { ErrorService } from 'ng2-cloud-portal-service-lib';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
-import { TokenService } from './auth/token.service';
+import { TokenService } from 'ng2-cloud-portal-service-lib';
 
 const ENV_PROVIDERS = [];
 

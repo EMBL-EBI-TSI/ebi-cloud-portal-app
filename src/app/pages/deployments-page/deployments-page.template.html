@@ -52,7 +52,7 @@
 					</md-list>
 				</md-card-content>
 
-				<md-progress-bar *ngIf="deploymentInstance.destroying"  mode="indeterminate"></md-progress-bar>
+				<md-progress-bar *ngIf="deploymentInstance.destroying" mode="indeterminate"></md-progress-bar>
 
 				<md-card-actions align="end" *ngIf="!deploymentInstance.destroying">
 					<button md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">

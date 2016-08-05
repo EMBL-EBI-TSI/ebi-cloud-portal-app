@@ -2,18 +2,8 @@
 
 
   <md-content>
-    <md-card>
-      <md-card *ngIf="tokenService.getToken()">
-        <md-card-title>Token</md-card-title>
-        <md-card-content>{{ tokenService.getToken().token }}</md-card-content>
-      </md-card>
-      <md-card *ngIf="account">
-        <md-card-title>Profile</md-card-title>
-        <md-card-content>
-          <h3>{{ account.userName }}</h3>
-          <h3>{{ account.email }}</h3>
-        </md-card-content>
-      </md-card>
+    <md-card *ngIf="tokenService.getToken()">
+      <md-card-content>You are already logged in!</md-card-content>    
     </md-card>
 
     <md-card *ngIf="!tokenService.getToken()">

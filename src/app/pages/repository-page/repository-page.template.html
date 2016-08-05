@@ -81,10 +81,10 @@
         <md-card-actions align="end" *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
           <button md-icon-button color="accent" (click)="repo.deployApplication(applicationDeployer)">
               <md-icon>cloud_upload</md-icon>
-            </button>
+          </button>
           <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
               <md-icon>clear</md-icon> 
-            </button>
+          </button>
         </md-card-actions>
 
       </md-card>

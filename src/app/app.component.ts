@@ -4,7 +4,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
 import { Router } from '@angular/router';
-import { TokenService } from './auth/token.service';
+import { TokenService } from 'ng2-cloud-portal-service-lib';
 
 /*
  * App Component

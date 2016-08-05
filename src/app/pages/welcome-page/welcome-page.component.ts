@@ -3,11 +3,11 @@ import { CORE_DIRECTIVES } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginPage } from '../login-page';
 import { AboutPage } from '../about-page';
-import { TokenService } from '../../auth/token.service';
+import { TokenService } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'welcome-page',
-  providers: [ TokenService ],
+  providers: [ ],
   directives: [ CORE_DIRECTIVES, LoginPage, AboutPage ],
   pipes: [ ],
   styles: [require('./welcome-page.style.css')],
