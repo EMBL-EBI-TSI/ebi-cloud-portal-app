@@ -7,37 +7,55 @@
 
 		<div class="card-container">
 			<md-card *ngFor="let deploymentInstance of deploymentsComponent.deploymentInstances">
-
-				<img md-card-image src="assets/img/EMBASSYCloud_logo.png">
-				<md-card-title-group>
-					<md-card-title>
-						<md-icon>done</md-icon> {{ deploymentInstance.applicationName }}
-					</md-card-title>
-					<md-card-subtitle>{{ deploymentInstance.reference }}</md-card-subtitle>
-				</md-card-title-group>
-
+        <md-toolbar class="md-card-toolbar">
+          <md-icon class="card-type-icon">done</md-icon> {{ deploymentInstance.applicationName }}
+        </md-toolbar>
 				<md-card-content>
 					<md-list dense>
+						<!--Application meta-data-->
+            <md-list-item>
+              <h3 md-line>Reference</h3>
+              <p md-line class="param-value">{{ deploymentInstance.reference }}</p>
+            </md-list-item>
 						<md-list-item>
 							<h3 md-line>Provider ID</h3>
-							<p md-line>{{ deploymentInstance.providerId }}</p>
+							<p md-line class="param-value">{{ deploymentInstance.providerId }}</p>
 						</md-list-item>
-						<md-list-item>
+						<md-list-item *ngIf="deploymentInstance.acessIp">
 							<h3 md-line>Access IP</h3>
-							<p md-line>{{ deploymentInstance.accessIp }}</p>
+							<p md-line class="param-value">{{ deploymentInstance.accessIp }}</p>
 						</md-list-item>
-						<h3 md-subheader>Volumes</h3>
+						<!--List attached volumes-->
+						<h3 md-header>Volumes</h3>
+						<md-divider></md-divider>
+						<p md-subheader *ngIf="deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
 						<md-list-item *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
 							<h3 md-line>{{ attachedVolume.name }}</h3>
-							<p md-line>attached to {{ attachedVolume.volumeInstanceReference }}</p>
+							<p md-line class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</p>
+						</md-list-item>
+						<!--List assigned inputs-->
+						<h3 md-header>Inputs</h3>
+						<md-divider></md-divider>
+						<p md-subheader *ngIf="deploymentInstance.assignedInputs.length==0">There are no assigned inputs for this deployment</p>
+						<md-list-item *ngFor="let assignedInput of deploymentInstance.assignedInputs">
+							<h3 md-line>{{ assignedInput.inputName }}</h3>
+							<p md-line class="param-value">{{ assignedInput.assignedValue }}</p>
+						</md-list-item>
+						<!--List generated outputs-->
+						<h3 md-header>Outputs</h3>
+						<md-divider></md-divider>
+						<p md-subheader *ngIf="deploymentInstance.generatedOutputs.length==0">There are no generated outputs for this deployment</p>
+						<md-list-item *ngFor="let generatedOutput of deploymentInstance.generatedOutputs">
+							<h3 md-line>{{ generatedOutput.outputName }}</h3>
+							<p md-line class="param-value">{{ generatedOutput.generatedValue }}</p>
 						</md-list-item>
 					</md-list>
 				</md-card-content>
 
-				<md-progress-bar *ngIf="deploymentInstance.destroying"  mode="indeterminate"></md-progress-bar>
+				<md-progress-bar *ngIf="deploymentInstance.destroying" mode="indeterminate"></md-progress-bar>
 
 				<md-card-actions align="end" *ngIf="!deploymentInstance.destroying">
-					<button md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment($event, deploymentInstance)">
+					<button md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
 						<md-icon>delete_forever</md-icon>
 					</button>
 				</md-card-actions>

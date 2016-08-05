@@ -3,11 +3,11 @@ import { CORE_DIRECTIVES } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginPage } from '../login-page';
 import { AboutPage } from '../about-page';
-import { CredentialService } from 'ng2-cloud-portal-service-lib';
+import { TokenService } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'welcome-page',
-  providers: [ CredentialService ],
+  providers: [ ],
   directives: [ CORE_DIRECTIVES, LoginPage, AboutPage ],
   pipes: [ ],
   styles: [require('./welcome-page.style.css')],
@@ -15,8 +15,9 @@ import { CredentialService } from 'ng2-cloud-portal-service-lib';
 })
 export class WelcomePage {
 
-  constructor( public credentialService: CredentialService,
-        public router: Router) {
+  constructor(
+      public tokenService: TokenService,
+      public router: Router) {
 
     }
 

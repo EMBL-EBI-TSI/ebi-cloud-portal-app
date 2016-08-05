@@ -1,8 +1,8 @@
-<div *ngIf="!credentialService.getUsername()" class="welcome-container">
+<div *ngIf="!tokenService.getToken()" class="welcome-container">
   <about-page></about-page>
   <login-page></login-page>
 </div>
-<div *ngIf="credentialService.getUsername()" class="welcome-container">
+<div *ngIf="tokenService.getToken()" class="welcome-container">
 
   <md-card (click)="goToDeployments()">
     <md-card-title-group>
