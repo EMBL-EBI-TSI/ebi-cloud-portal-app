@@ -13,17 +13,17 @@
 
 					<div class="card-container">
 						<md-card *ngFor="let volumeDeploymentInstance of volumesComponent.volumeDeploymentInstances">
-							<md-card-title-group>
-								<md-card-title>
-									<md-icon>done</md-icon> {{ volumeDeploymentInstance.name }}
-								</md-card-title>
-								<md-card-subtitle>{{ volumeDeploymentInstance.reference }}</md-card-subtitle>
-							</md-card-title-group>
-
+							<md-toolbar class="md-card-toolbar">
+								<md-icon class="card-type-icon">done</md-icon> {{ volumeDeploymentInstance.name }}
+							</md-toolbar>
 							<md-card-content>
 								<md-list dense>
 									<md-list-item>
-										<h3 md-line>ID</h3>
+										<h3 md-line>Reference</h3>
+										<p md-line class="param-value">{{ volumeDeploymentInstance.reference }}</p>
+									</md-list-item>
+									<md-list-item>
+										<h3 md-line>Provider ID</h3>
 										<p md-line>{{ volumeDeploymentInstance.providerId }}</p>
 									</md-list-item>
 								</md-list>
@@ -67,16 +67,15 @@
 					<md-content *ngIf="volumesComponent.volumeDeployers">
 						<div class="card-container">
 							<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
-								<md-card-title-group>
-									<md-card-title>
-										<md-icon>settings_application</md-icon> {{ volumeDeployer.name }}
-									</md-card-title>
-									<md-card-subtitle><a href="{{ volumeDeployer.repoUri }}">{{ volumeDeployer.repoUri }}</a></md-card-subtitle>
-								</md-card-title-group>
-
+								<md-toolbar class="md-card-toolbar">
+									<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
+								</md-toolbar>
 								<md-card-content>
 									<md-list dense>
-
+										<md-list-item>
+											<h3 md-line>Source</h3>
+											<p md-line class="param-value"><a href="{{ volumeDeployer.repoUri }}">{{ volumeDeployer.repoUri }}</a></p>
+										</md-list-item>
 									</md-list>
 								</md-card-content>
 
