@@ -4,6 +4,7 @@ import {
   it
 } from '@angular/core/testing';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
+import { TokenService } from 'ng2-cloud-portal-service-lib';
 import { Router, RouterConfig } from '@angular/router';
 import { RootCmp, createRoot, routerTestProviders, advance } from './pages/mocks/helper';
 
@@ -19,6 +20,7 @@ describe('App', () => {
   beforeEachProviders(() => [
     App,
     CredentialService,
+    TokenService,
     routerTestProviders(routerConfig)
   ]);
 
