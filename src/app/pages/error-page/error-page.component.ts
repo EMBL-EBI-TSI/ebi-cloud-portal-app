@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ErrorComponent } from 'ng2-cloud-portal-presentation-lib';
+import { ErrorService } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'error-page',
