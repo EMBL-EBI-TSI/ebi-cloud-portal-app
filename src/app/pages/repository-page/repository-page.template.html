@@ -56,7 +56,9 @@
             <p md-subheader *ngIf="applicationDeployer.inputs.length==0">This application requires no input values</p>
             <p md-subheader *ngIf="applicationDeployer.inputs.length>0">This application requires to enter the following values</p>
             <md-list-item *ngFor="let anInput of applicationDeployer.inputs">
-              <md-input placeholder="{{ anInput }}">
+              <md-input #{{anInput}} placeholder="{{ anInput }}" 
+                (keyup.enter)="repo.assignInput(applicationDeployer, anInput, $event.target.value)"
+                (blur)="repo.assignInput(applicationDeployer, anInput, $event.target.value)">
                 <!--<span md-prefix>[some other hint]</span>-->
                 <!--<span md-suffix>[value type]</span>-->
                 <!--<md-hint align="end">[some other hint]</md-hint>-->
