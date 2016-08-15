@@ -8,6 +8,7 @@
 		<div class="card-container">
 			<md-card *ngFor="let deploymentInstance of deploymentsComponent.deploymentInstances">
         <md-toolbar class="md-card-toolbar">
+					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
 					<md-icon *ngIf="deploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
           <md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> 
 					{{ deploymentInstance.applicationName }}
@@ -60,7 +61,7 @@
 
 				<md-progress-bar *ngIf="deploymentInstance.destroying || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
 
-				<md-card-actions align="end" *ngIf="!deploymentInstance.destroying && deploymentInstance.status == 'RUNNING'">
+				<md-card-actions align="end" *ngIf="!deploymentInstance.destroying && deploymentInstance.status != 'STARTING'">
 					<button md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
 						<md-icon>delete_forever</md-icon>
 					</button>
