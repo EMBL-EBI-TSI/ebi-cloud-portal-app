@@ -20,8 +20,14 @@
               <h3 md-line>Reference</h3>
               <p md-line class="param-value">{{ deploymentInstance.reference }}</p>
             </md-list-item>
+						<md-list-item *ngIf="deploymentInstance.status == 'STARTING'">
+							<p md-line class="param-value">Waiting for provider data...</p>
+						</md-list-item>
+						<md-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED'">
+							<p md-line class="param-value">This deployment failed and there is nor provider data</p>
+						</md-list-item>
 						<md-list-item>
-							<h3 md-line>Provider ID</h3>
+							<h3 md-line *ngIf="deploymentInstance.providerId">Provider ID</h3>
 							<p md-line class="param-value">{{ deploymentInstance.providerId }}</p>
 						</md-list-item>
 						<md-list-item *ngIf="deploymentInstance.acessIp">
