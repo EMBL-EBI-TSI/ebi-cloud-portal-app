@@ -8,11 +8,13 @@
 		<div class="card-container">
 			<md-card *ngFor="let deploymentInstance of deploymentsComponent.deploymentInstances">
         <md-toolbar class="md-card-toolbar">
-          <md-icon class="card-type-icon">done</md-icon> {{ deploymentInstance.applicationName }}
+					<md-icon *ngIf="deploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
+          <md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> 
+					{{ deploymentInstance.applicationName }}
         </md-toolbar>
 				<md-card-content>
 					<md-list dense>
-						<!--Application meta-data-->
+						<!--Deployment meta-data-->
             <md-list-item>
               <h3 md-line>Reference</h3>
               <p md-line class="param-value">{{ deploymentInstance.reference }}</p>
@@ -25,6 +27,10 @@
 							<h3 md-line>Access IP</h3>
 							<p md-line class="param-value">{{ deploymentInstance.accessIp }}</p>
 						</md-list-item>
+						<!--<md-list-item>
+							<h3 md-line>Deployment status</h3>
+							<p md-line class="param-value">{{ deploymentInstance.status }}</p>
+						</md-list-item>-->
 						<!--List attached volumes-->
 						<h3 md-header>Volumes</h3>
 						<md-divider></md-divider>
@@ -52,9 +58,9 @@
 					</md-list>
 				</md-card-content>
 
-				<md-progress-bar *ngIf="deploymentInstance.destroying" mode="indeterminate"></md-progress-bar>
+				<md-progress-bar *ngIf="deploymentInstance.destroying || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
 
-				<md-card-actions align="end" *ngIf="!deploymentInstance.destroying">
+				<md-card-actions align="end" *ngIf="!deploymentInstance.destroying && deploymentInstance.status == 'RUNNING'">
 					<button md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
 						<md-icon>delete_forever</md-icon>
 					</button>
