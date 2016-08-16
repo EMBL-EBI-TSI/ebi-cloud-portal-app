@@ -68,8 +68,8 @@
 				<md-progress-bar *ngIf="deploymentInstance.destroying || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
 
 				<md-card-actions align="end" *ngIf="!deploymentInstance.destroying && deploymentInstance.status != 'STARTING'">
-					<button md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
-						<md-icon>delete_forever</md-icon>
+					<button md-tooltip="Destroy deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
+						<md-icon class="card-action-icon">delete_forever</md-icon>
 					</button>
 				</md-card-actions>
 				

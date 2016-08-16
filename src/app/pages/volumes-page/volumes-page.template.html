@@ -14,7 +14,9 @@
 					<div class="card-container">
 						<md-card *ngFor="let volumeDeploymentInstance of volumesComponent.volumeDeploymentInstances">
 							<md-toolbar class="md-card-toolbar">
-								<md-icon class="card-type-icon">done</md-icon> {{ volumeDeploymentInstance.name }}
+								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
+								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
+								<md-icon *ngIf="volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> {{ volumeDeploymentInstance.setupName }}
 							</md-toolbar>
 							<md-card-content>
 								<md-list dense>
@@ -22,17 +24,17 @@
 										<h3 md-line>Reference</h3>
 										<p md-line class="param-value">{{ volumeDeploymentInstance.reference }}</p>
 									</md-list-item>
-									<md-list-item>
+									<!--<md-list-item>
 										<h3 md-line>Provider ID</h3>
 										<p md-line>{{ volumeDeploymentInstance.providerId }}</p>
-									</md-list-item>
+									</md-list-item>-->
 								</md-list>
 							</md-card-content>
 
 							<md-progress-bar *ngIf="volumeDeploymentInstance.destroying" mode="indeterminate"></md-progress-bar>
 							<md-card-actions align="end" *ngIf="!volumeDeploymentInstance.destroying">
 								<button md-icon-button color="warn" (click)="volumesComponent.destroyVolume(volumeDeploymentInstance)">
-								<md-icon>delete_forever</md-icon>
+								<md-icon class="card-action-icon">delete_forever</md-icon>
 						  </button>
 							</md-card-actions>
 						</md-card>
@@ -69,6 +71,9 @@
 							<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
 								<md-toolbar class="md-card-toolbar">
 									<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
+									<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
+										<md-icon class="card-action-icon">clear</md-icon> 
+									</button>
 								</md-toolbar>
 								<md-card-content>
 									<md-list dense>
@@ -80,13 +85,14 @@
 								</md-card-content>
 
 								<md-progress-bar *ngIf="volumeDeployer.deploying || volumeDeployer.removing" mode="indeterminate"></md-progress-bar>
-								<md-card-actions align="end" *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing ">
+								<md-card-actions align="end" *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing">
+									<md-radio-group [(ngModel)]="volumeDeployer.selectedCloudProvider">
+										<md-radio-button *ngFor="let provider of volumeDeployer.cloudProviders" 
+											[value]="provider">{{ provider }}</md-radio-button>
+									</md-radio-group>
 									<button md-icon-button color="accent" (click)="volumesComponent.deployVolume(volumeDeployer)">
-									<md-icon>cloud_upload</md-icon>
-								</button>
-									<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
-									<md-icon>clear</md-icon>
-								</button>
+											<md-icon class="card-action-icon" class="card-action-icon">cloud_upload</md-icon>
+									</button>
 								</md-card-actions>
 							</md-card>
 						</div>

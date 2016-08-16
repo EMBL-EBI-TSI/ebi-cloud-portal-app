@@ -76,6 +76,14 @@ footer{
   padding: 0px 30px 0px 0px;
 }
 
+.card-container md-card md-card-actions button {
+  top: -7px;
+}
+
+.card-container md-card md-toolbar button {
+  right: -10px;
+}
+
 .card-container md-card md-card-title {
   color: var(--complementary-color);
   font-size: 1.25em;
@@ -128,6 +136,13 @@ md-icon.card-type-icon {
   top: -7px;
 }
 
+md-icon.card-action-icon {
+  font-size: 36px;
+  padding: 0px 14px 0px 0px;
+  position: relative;
+  top: -7px;
+}
+
 md-card-subtitle.indented-subtitle {
   padding: 0px 0px 0px 36px;
 }
@@ -144,4 +159,8 @@ button.button-color-accent {
 
 .md-main-toolbar {
   background: var(--primary-color);
+}
+
+md-radio-button {
+  padding-right: 10px;
 }

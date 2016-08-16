@@ -30,6 +30,9 @@
       <md-card *ngFor="let applicationDeployer of repo.applicationDeployers">
         <md-toolbar class="md-card-toolbar">
           <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
+          <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
+            <md-icon class="card-action-icon">clear</md-icon> 
+          </button>
         </md-toolbar>
         <md-card-content>
           <md-list dense>
@@ -74,6 +77,7 @@
               <li>{{ anOutput }}</li>
             </md-list-item>
           </md-list>
+          <md-divider></md-divider>
         </md-card-content>
 
         <!--A progress bar-->
@@ -81,14 +85,14 @@
         
         <!--These are the action controls-->
         <md-card-actions align="end" *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
+          <md-radio-group [(ngModel)]="applicationDeployer.selectedCloudProvider">
+            <md-radio-button *ngFor="let provider of applicationDeployer.cloudProviders" 
+              [value]="provider">{{ provider }}</md-radio-button>
+          </md-radio-group>
           <button md-icon-button color="accent" (click)="repo.deployApplication(applicationDeployer)">
-              <md-icon>cloud_upload</md-icon>
-          </button>
-          <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
-              <md-icon>clear</md-icon> 
+              <md-icon class="card-action-icon">cloud_upload</md-icon>
           </button>
         </md-card-actions>
-
       </md-card>
     </div>
   </md-content>
