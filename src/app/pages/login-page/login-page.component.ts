@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Renderer } from '@angular/core';
 import { LoginComponent } from 'ng2-cloud-portal-presentation-lib';
 import { AuthService } from '../../auth/auth.service';
-import { TokenService } from 'ng2-cloud-portal-service-lib';
+import { CredentialService, TokenService, ConfigService} from 'ng2-cloud-portal-service-lib';
 import { JwtToken } from 'ng2-cloud-portal-service-lib';
 
 import { Account } from 'ng2-cloud-portal-service-lib';
-import { CredentialService } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'login-page',
@@ -17,13 +16,32 @@ import { CredentialService } from 'ng2-cloud-portal-service-lib';
 export class LoginPage {
 
   account: Account;
+  removeMessageListener: Function;
 
   constructor(
     private _authService: AuthService,
     public credentialService: CredentialService,
-    public tokenService: TokenService) {
-      
-  } 
+    public tokenService: TokenService,
+    private _configService: ConfigService,
+    renderer: Renderer) {
+
+    // We cache the function "listenGlobal" returns, as it's one that allows to cleanly unregister the event listener
+    this.removeMessageListener = renderer.listenGlobal('window', 'message', (event: MessageEvent) => {
+      var apiUrl = this._configService.getApiAddress().replace(/\/$/, "");
+      if (event.origin !== apiUrl) {
+        log.warn("received message from unexpected origin! ", event.origin);
+        return;
+      }
+      this.saveToken(event.data);
+      event.source.close();
+    });
+  }
+
+  private saveToken(jwt: string) {
+    console.log('[LoginPage] Obtained token from saml %O', jwt);
+    let theToken: JwtToken = <JwtToken>{ token: jwt };
+    this.tokenService.setToken(theToken);
+  }
 
   public authenticate(username: string, password: string) {
     this._authService.authenticate(username,password).subscribe(
@@ -39,5 +57,8 @@ export class LoginPage {
     );
   }
 
+  ngOnDestroy() {
+    this.removeMessageListener();
+  }
 
 }

@@ -3,7 +3,7 @@
 
   <md-content>
     <md-card *ngIf="tokenService.getToken()">
-      <md-card-content>You are already logged in!</md-card-content>    
+      <md-card-content>You are already logged in!</md-card-content>
     </md-card>
 
     <md-card *ngIf="!tokenService.getToken()">
@@ -16,6 +16,8 @@
       </md-card-content>
       <md-card-actions>
         <button md-button (click)="authenticate(username.value, password.value)">Submit</button>
+        or
+        <a href="http://localhost:8080/sso" target="_blank">SSO</a>
       </md-card-actions>
     </md-card>
   </md-content>
