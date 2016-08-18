@@ -41,6 +41,8 @@ export class LoginPage {
     console.log('[LoginPage] Obtained token from saml %O', jwt);
     let theToken: JwtToken = <JwtToken>{ token: jwt };
     this.tokenService.setToken(theToken);
+    let tokenClaims = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(jwt.split(".")[1]));
+    this.credentialService.setCredentials(tokenClaims.sub, null);
   }
 
   public authenticate(username: string, password: string) {
