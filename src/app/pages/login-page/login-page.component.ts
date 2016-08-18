@@ -59,6 +59,10 @@ export class LoginPage {
     );
   }
 
+  ssoLink() {
+    return this._authService.ssoLink();
+  }
+
   ngOnDestroy() {
     this.removeMessageListener();
   }

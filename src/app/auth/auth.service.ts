@@ -58,4 +58,8 @@ export class AuthService {
       .map(res => <Account>res.json() )
       .catch(this.handleError);
   }
+
+  public ssoLink() : string {
+    return this._configService.getApiAddress() + 'sso?from=' + encodeURIComponent(window.location.origin);
+  }
 }

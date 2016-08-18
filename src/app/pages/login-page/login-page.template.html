@@ -17,7 +17,7 @@
       <md-card-actions>
         <button md-button (click)="authenticate(username.value, password.value)">Submit</button>
         or
-        <a href="http://localhost:8080/sso" target="_blank">SSO</a>
+        <a href="{{ssoLink()}}" target="_blank">SSO</a>
       </md-card-actions>
     </md-card>
   </md-content>
