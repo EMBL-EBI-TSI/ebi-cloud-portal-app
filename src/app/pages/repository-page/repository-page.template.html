@@ -86,8 +86,8 @@
         <!--These are the action controls-->
         <md-card-actions align="end" *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
           <md-radio-group [(ngModel)]="applicationDeployer.selectedCloudProvider">
-            <md-radio-button *ngFor="let provider of applicationDeployer.cloudProviders" 
-              [value]="provider">{{ provider }}</md-radio-button>
+            <md-radio-button *ngFor="let cloudProvider of applicationDeployer.cloudProviders" 
+              [value]="cloudProvider">{{ cloudProvider }}</md-radio-button>
           </md-radio-group>
           <button md-icon-button color="accent" (click)="repo.deployApplication(applicationDeployer)">
               <md-icon class="card-action-icon">cloud_upload</md-icon>
