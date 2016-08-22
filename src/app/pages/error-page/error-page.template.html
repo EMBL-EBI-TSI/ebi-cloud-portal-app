@@ -4,8 +4,14 @@
 			<md-card-title>
 				Sorry, there is a problem...
 			</md-card-title>
-			<md-card-content>
+			<md-card-content *ngIf="errorComponent.errorService.getCurrentError()[0]">
 				{{ errorComponent.errorService.getCurrentError()[0].message }}
+			</md-card-content>
+			<md-card-content *ngIf="!errorComponent.errorService.getCurrentError()[0] && errorComponent.errorService.getCurrentError()">
+				{{ errorComponent.errorService.getCurrentError().message }}
+			</md-card-content>
+			<md-card-content *ngIf="!errorComponent.errorService.getCurrentError()[0] && !errorComponent.errorService.getCurrentError()">
+				The exact error cannot be determined
 			</md-card-content>
 		</md-card>
 	</md-content>
