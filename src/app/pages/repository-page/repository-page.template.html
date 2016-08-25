@@ -67,6 +67,19 @@
                 <!--<md-hint align="end">[some other hint]</md-hint>-->
               </md-input>
             </md-list-item>
+            <span *ngFor="let aCloudProvider of applicationDeployer.cloudProviders">
+              <span *ngIf="aCloudProvider.cloudProvider==applicationDeployer.selectedCloudProvider">
+                <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
+                  <md-input #{{anInput}} placeholder="{{ anInput }}" 
+                    (keyup.enter)="repo.assignInput(applicationDeployer, anInput, $event.target.value)"
+                    (blur)="repo.assignInput(applicationDeployer, anInput, $event.target.value)">
+                    <!--<span md-prefix>[some other hint]</span>-->
+                    <!--<span md-suffix>[value type]</span>-->
+                    <!--<md-hint align="end">[some other hint]</md-hint>-->
+                  </md-input>
+                </md-list-item>
+              </span>
+            </span>
             <br>
             <!--Application outputs-->
             <h3 md-header>Outputs</h3>
@@ -87,7 +100,7 @@
         <md-card-actions align="end" *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
           <md-radio-group [(ngModel)]="applicationDeployer.selectedCloudProvider">
             <md-radio-button *ngFor="let cloudProvider of applicationDeployer.cloudProviders" 
-              [value]="cloudProvider">{{ cloudProvider }}</md-radio-button>
+              [value]="cloudProvider.cloudProvider">{{ cloudProvider.cloudProvider }}</md-radio-button>
           </md-radio-group>
           <button md-icon-button color="accent" (click)="repo.deployApplication(applicationDeployer)">
               <md-icon class="card-action-icon">cloud_upload</md-icon>
