@@ -1,7 +1,6 @@
 import { Component, Renderer } from '@angular/core';
 import { LoginComponent } from 'ng2-cloud-portal-presentation-lib';
-import { AuthService } from '../../auth/auth.service';
-import { CredentialService, TokenService, ConfigService} from 'ng2-cloud-portal-service-lib';
+import { CredentialService, TokenService, AuthService } from 'ng2-cloud-portal-service-lib';
 import { JwtToken } from 'ng2-cloud-portal-service-lib';
 
 import { Account } from 'ng2-cloud-portal-service-lib';
@@ -22,14 +21,12 @@ export class LoginPage {
     private _authService: AuthService,
     public credentialService: CredentialService,
     public tokenService: TokenService,
-    private _configService: ConfigService,
     renderer: Renderer) {
 
     // We cache the function "listenGlobal" returns, as it's one that allows to cleanly unregister the event listener
     this.removeMessageListener = renderer.listenGlobal('window', 'message', (event: MessageEvent) => {
-      var apiUrl = this._configService.getApiAddress().replace(/\/$/, "");
-      if (event.origin !== apiUrl) {
-        log.warn("received message from unexpected origin! ", event.origin);
+      if (!this._authService.canAcceptMessage(event)) {
+        console.warn("received unacceptable message! Ignoring...", event);
         return;
       }
       this.saveToken(event.data);
