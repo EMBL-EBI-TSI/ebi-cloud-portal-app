@@ -38,26 +38,20 @@
               </button>-->
             </md-toolbar>
             <md-card-content>
-              <p>Nullam nec ex lorem. Quisque vel est sem. Etiam eu pharetra ipsum. In iaculis libero at libero placerat, a pulvinar erat consequat. Vivamus ac ante nec ex egestas volutpat. Praesent malesuada magna in leo tincidunt, placerat mattis lorem aliquam.</p>
+              <p>{{ applicationDeployer.about }}</p>
               <md-list dense>
-                <!--Application meta-data-->
-                <md-list-item>
-                  <h3 md-line>Source</h3>
-                  <p md-line class="param-value"><a href="{{ applicationDeployer.repoUri }}">{{ applicationDeployer.repoUri }}</a></p>
-                </md-list-item>
                 <md-list-item>
                   <h3 md-line>Version</h3>
-                  <p md-line class="param-value">v0.1.0</p>
+                  <p md-line class="param-value">{{ applicationDeployer.version }}</p>
                 </md-list-item>
                 <md-list-item>
                   <h3 md-line>Contact</h3>
-                  <p md-line class="param-value">dario[at]ebi.ac.uk</p>
+                  <p md-line class="param-value">{{ applicationDeployer.contact }}</p>
                 </md-list-item>
                 <h3 md-header>Available for</h3>
                 <md-list-item *ngFor="let cloudProvider of applicationDeployer.cloudProviders">
                   <p md-line>{{ cloudProvider.cloudProvider }}</p>
                 </md-list-item>
-
               </md-list>
             </md-card-content>
           </md-card>
@@ -71,7 +65,11 @@
             </md-toolbar>
             <md-card-content>
               <md-list dense>
-                
+                <!--Application source-->
+                <md-list-item>
+                  <h3 md-line>Source</h3>
+                  <p md-line class="param-value"><a href="{{ applicationDeployer.repoUri }}">{{ applicationDeployer.repoUri }}</a></p>
+                </md-list-item>
                 <!--Application required volumes-->
                 <h3 md-header>Volumes</h3>
                 <md-divider></md-divider>
