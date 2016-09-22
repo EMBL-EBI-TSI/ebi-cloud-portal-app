@@ -15,20 +15,23 @@
 			</md-card-content>
 		</md-card>
 		<div class="card-container">
-			<md-card class="credentials-container">
+			<md-card *ngFor="let cloudCredentials of profileComponent.cloudCredentials" class="credentials-container">
 				<md-toolbar class="md-card-toolbar">
-					<md-icon class="card-type-icon">vpn_key</md-icon> AWS Credentials
+					<md-icon class="card-type-icon">vpn_key</md-icon>{{ cloudCredentials.name }}
 					</md-toolbar>
 				<md-card-content>
-					
-				</md-card-content>
-			</md-card>
-			<md-card class="credentials-container">
-				<md-toolbar class="md-card-toolbar">
-					<md-icon class="card-type-icon">vpn_key</md-icon> Embassy Credentials
-					</md-toolbar>
-				<md-card-content>
-					
+					<md-list dense>
+						<md-list-item>
+							<h3 md-line>Provider</h3>
+							<p md-line class="param-value">{{ cloudCredentials.cloudProvider }}</p>
+						</md-list-item>
+						<h3 md-header>Fields</h3>
+						<md-divider></md-divider>
+						<md-list-item *ngFor="let credentialField of cloudCredentials.fields">
+							<h3 md-line>{{ credentialField.key }}</h3>
+							<p md-line class="param-value">{{ credentialField.value }}</p>
+						</md-list-item>
+					</md-list>
 				</md-card-content>
 			</md-card>
 		</div>
