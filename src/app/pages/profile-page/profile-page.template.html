@@ -15,9 +15,12 @@
 			</md-card-content>
 		</md-card>
 		<div class="card-container">
-			<md-card *ngFor="let cloudCredentials of profileComponent.cloudCredentials" class="credentials-container">
+			<md-card *ngFor="let cloudCredentials of profileComponent.cloudCredentialsPresenters" class="credentials-container">
 				<md-toolbar class="md-card-toolbar">
 					<md-icon class="card-type-icon">vpn_key</md-icon>{{ cloudCredentials.name }}
+					<button md-icon-button color="warn" (click)="profileComponent.removeCloudCredentials(cloudCredentials)">
+						<md-icon class="card-action-icon">clear</md-icon> 
+					</button>
 					</md-toolbar>
 				<md-card-content>
 					<md-list dense>
