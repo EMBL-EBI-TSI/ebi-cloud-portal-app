@@ -1,4 +1,46 @@
 <cp-profile-component #profileComponent>
+
+	<button md-fab (click)="profileComponent.addCloudCredentialsFormShowing=!profileComponent.addCloudCredentialsFormShowing">
+    <md-icon>add</md-icon>
+  </button>
+
+  <md-card *ngIf="profileComponent.addCloudCredentialsFormShowing">
+    <md-card-title>Add Cloud Credentials</md-card-title>
+    <md-card-content>
+      <form [formGroup]="profileComponent.cloudCredentialsForm" autocomplete="off">
+        <md-input 
+					type="text" 
+					placeholder="Credentials name" 
+					[formControl]="profileComponent.cloudCredentialsForm.controls['name']" 
+					autofocus>
+        </md-input>
+        <div *ngIf="!profileComponent.cloudCredentialsForm.controls['name'].valid" class="ui error message">Name is invalid</div>
+        <div *ngIf="profileComponent.cloudCredentialsForm.controls['name'].hasError('required')" class="ui error message">Name is required</div>
+				<md-input 
+					type="text" 
+					placeholder="Cloud provider" 
+					[formControl]="profileComponent.cloudCredentialsForm.controls['cloudProvider']" 
+					autofocus>
+        </md-input>
+        <div *ngIf="!profileComponent.cloudCredentialsForm.controls['cloudProvider'].valid" class="ui error message">Provider is invalid</div>
+        <div *ngIf="profileComponent.cloudCredentialsForm.controls['cloudProvider'].hasError('required')" class="ui error message">Provider is required</div>
+				<md-input 
+					type="text" 
+					placeholder="Credentials fields (JSON array)" 
+					[formControl]="profileComponent.cloudCredentialsForm.controls['fields']" 
+					autofocus>
+        </md-input>
+        <div *ngIf="!profileComponent.cloudCredentialsForm.controls['fields'].valid" class="ui error message">Fields are invalid</div>
+        <div *ngIf="profileComponent.cloudCredentialsForm.controls['fields'].hasError('required')" class="ui error message">Fields are required</div>
+      </form>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button class="button-color-accent" 
+				(click)="profileComponent.addCloudCredentials(profileComponent.cloudCredentialsForm.value); profileComponent.addCloudCredentialsFormShowing = false"
+        align="end">Add</button>
+    </md-card-actions>
+  </md-card>
+
 	<md-content *ngIf="profileComponent.account">
 		<md-card>
 			<md-card-header>
@@ -39,4 +81,6 @@
 			</md-card>
 		</div>
 	</md-content>
+
+	
 </cp-profile-component>
