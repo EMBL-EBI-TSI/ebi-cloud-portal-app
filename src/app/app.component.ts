@@ -21,7 +21,7 @@ import { TokenService } from 'ng2-cloud-portal-service-lib';
 export class App {
     ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
     ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
-    name = 'TSI Cloud Portal';
+    name = 'EBI Cloud Portal';
     ebiUrl = 'http://www.ebi.ac.uk/';
     tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
 
