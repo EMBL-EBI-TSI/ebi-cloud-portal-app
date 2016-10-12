@@ -76,6 +76,16 @@ footer{
   margin: 20px;
 }
 
+.card-container .volume-setup-container {
+  width: 300px;
+	min-height: 200px;
+}
+
+.card-container .volume-instance-container {
+  width: 300px;
+	min-height: 200px;
+  margin: 20px;
+}
 
 /* entire container, keeps perspective */
 .flip-container {

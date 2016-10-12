@@ -10,8 +10,8 @@
 				<md-card>
 					<md-toolbar class="md-card-toolbar">
 						<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
-						<md-icon *ngIf="deploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
-						<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> 
+						<md-icon *ngIf="deploymentInstance.destroying || deploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
+						<md-icon *ngIf="!deploymentInstance.destroying && deploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> 
 						{{ deploymentInstance.applicationName }}
 					</md-toolbar>
 					<md-card-content>

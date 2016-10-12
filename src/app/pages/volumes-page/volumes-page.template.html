@@ -12,12 +12,12 @@
 					<md-card *ngIf="volumesComponent.volumeDeploymentInstances.length==0">No volume deployments for user {{ volumesComponent.credentialService.getUsername() }} yet</md-card>
 
 					<div class="card-container">
-						<div class="flip-container" *ngFor="let volumeDeploymentInstance of volumesComponent.volumeDeploymentInstances"> 
-							<md-card>
+						<div *ngFor="let volumeDeploymentInstance of volumesComponent.volumeDeploymentInstances"> 
+							<md-card class="volume-instance-container">
 								<md-toolbar class="md-card-toolbar">
 									<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
-									<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
-									<md-icon *ngIf="volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> {{ volumeDeploymentInstance.setupName }}
+									<md-icon *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
+									<md-icon *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> {{ volumeDeploymentInstance.setupName }}
 								</md-toolbar>
 								<md-card-content>
 									<md-list dense>
@@ -25,15 +25,21 @@
 											<h3 md-line>Reference</h3>
 											<p md-line class="param-value">{{ volumeDeploymentInstance.reference }}</p>
 										</md-list-item>
-										<md-list-item>
+										<!--<md-list-item>
 											<h3 md-line>Provider ID</h3>
 											<p md-line>{{ volumeDeploymentInstance.providerId }}</p>
+										</md-list-item>-->
+										<md-list-item *ngIf="volumeDeploymentInstance.status == 'STARTING'">
+											<p md-line class="param-value">Waiting for provider data...</p>
+										</md-list-item>
+										<md-list-item *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'">
+											<p md-line class="param-value">This deployment failed and there is nor provider data</p>
 										</md-list-item>
 									</md-list>
 								</md-card-content>
 
-								<md-progress-bar *ngIf="volumeDeploymentInstance.destroying" mode="indeterminate"></md-progress-bar>
-								<md-card-actions align="end" *ngIf="!volumeDeploymentInstance.destroying">
+								<md-progress-bar *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
+								<md-card-actions align="end" *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status != 'STARTING'">
 									<button md-icon-button color="warn" (click)="volumesComponent.destroyVolume(volumeDeploymentInstance)">
 									<md-icon class="card-action-icon">delete_forever</md-icon>
 								</button>
@@ -67,42 +73,39 @@
 
 				<!--List setups-->
 				<md-card *ngIf="volumesComponent.volumeDeployers.length==0">No volume setups for user {{ volumesComponent.credentialService.getUsername() }} yet</md-card>
-				<!--<div class="card-container">-->
-					<md-content *ngIf="volumesComponent.volumeDeployers">
-						<div class="card-container">
-							<div class="flip-container" *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
-								<md-card>
-									<md-toolbar class="md-card-toolbar">
-										<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
-										<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
-											<md-icon class="card-action-icon">clear</md-icon> 
-										</button>
-									</md-toolbar>
-									<md-card-content>
-										<md-list dense>
-											<md-list-item>
-												<h3 md-line>Source</h3>
-												<p md-line class="param-value"><a href="{{ volumeDeployer.repoUri }}">{{ volumeDeployer.repoUri }}</a></p>
-											</md-list-item>
-										</md-list>
-									</md-card-content>
+				<md-content *ngIf="volumesComponent.volumeDeployers">
+					<div class="card-container">
+						<div class="flip-container" *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
+							<md-card class="volume-setup-container">
+								<md-toolbar class="md-card-toolbar">
+									<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
+									<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
+										<md-icon class="card-action-icon">clear</md-icon> 
+									</button>
+								</md-toolbar>
+								<md-card-content>
+									<md-list dense>
+										<md-list-item>
+											<h3 md-line>Source</h3>
+											<p md-line class="param-value"><a href="{{ volumeDeployer.repoUri }}">{{ volumeDeployer.repoUri }}</a></p>
+										</md-list-item>
+									</md-list>
+								</md-card-content>
 
-									<md-progress-bar *ngIf="volumeDeployer.deploying || volumeDeployer.removing" mode="indeterminate"></md-progress-bar>
-									<md-card-actions align="end" *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing">
-										<md-radio-group [(ngModel)]="volumeDeployer.selectedCloudProvider">
-											<md-radio-button *ngFor="let provider of volumeDeployer.cloudProviders" 
-												[value]="provider">{{ provider }}</md-radio-button>
-										</md-radio-group>
-										<button md-icon-button color="accent" (click)="volumesComponent.deployVolume(volumeDeployer)">
-												<md-icon class="card-action-icon" class="card-action-icon">cloud_upload</md-icon>
-										</button>
-									</md-card-actions>
-								</md-card>
-							</div> <!-- flip-container -->
-						</div>
-					</md-content>
-				<!--</div>-->
-
+								<md-progress-bar *ngIf="volumeDeployer.deploying || volumeDeployer.removing" mode="indeterminate"></md-progress-bar>
+								<md-card-actions align="end" *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing">
+									<md-radio-group [(ngModel)]="volumeDeployer.selectedCloudProvider">
+										<md-radio-button *ngFor="let provider of volumeDeployer.cloudProviders" 
+											[value]="provider">{{ provider }}</md-radio-button>
+									</md-radio-group>
+									<button md-icon-button color="accent" (click)="volumesComponent.deployVolume(volumeDeployer)">
+											<md-icon class="card-action-icon" class="card-action-icon">cloud_upload</md-icon>
+									</button>
+								</md-card-actions>
+							</md-card>
+						</div> <!-- flip-container -->
+					</div>
+				</md-content>
 			</template>
 		</md-tab>
 	</md-tab-group>
