@@ -41,8 +41,18 @@
     <md-toolbar class="md-main-toolbar">
         <button md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
-        </button> <a class="title-link" router-active [routerLink]=" ['./welcome'] " (click)="sidenav.close()">{{ name }}</a>
-        <span class="fill"></span>
+        </button> 
+        <a class="title-link" router-active [routerLink]=" ['./welcome'] " (click)="sidenav.close()">{{ name }}</a>
+        <span class="fill">
+            <a class="toolbar-link" *ngIf="credentialService.getUsername()" [routerLink]=" ['./profile'] ">
+            <md-icon class="toolbar-link-icon" md-list-icon>face</md-icon>
+            <span class="toolbar-link-text">{{ credentialService.getUsername() }}</span>
+        </a>
+        <a class="toolbar-link" *ngIf="!credentialService.getUsername()" [routerLink]=" ['./login'] ">
+            <md-icon class="toolbar-link-icon" md-list-icon>vpn_key</md-icon>
+            <span class="toolbar-link-text">Login</span>
+        </a>
+        </span>
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>

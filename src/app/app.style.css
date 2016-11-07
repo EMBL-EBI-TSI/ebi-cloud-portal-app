@@ -177,6 +177,23 @@ md-input {
   border-bottom-style: solid;
 }
 
+.toolbar-link {
+  text-decoration: none;
+  color: white;
+  position: absolute;
+  right: 100px;
+}
+
+.toolbar-link-text {
+  position: relative;
+  bottom: 15px;
+}
+
+.toolbar-link-icon {
+  position: relative;
+  bottom: 10px;
+}
+
 .title-link {
   text-decoration: none;
   color: white;
