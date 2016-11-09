@@ -57,7 +57,7 @@
         <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
         </button> 
-        <a class="md-main-toolbar-title" router-active [routerLink]=" ['./welcome'] " (click)="sidenav.close()">
+        <a class="md-main-toolbar-title" >
             {{ (getViewName() | slice:1) || 'welcome'}}
         </a>
     </md-toolbar>
