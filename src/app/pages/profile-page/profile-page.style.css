@@ -1,6 +1,6 @@
 [md-fab] {
   position: absolute;
-  right: 10px;
+  right: 40px;
   top: 70px;
   z-index: 2;
   background: var(--complementary-color);

@@ -1,9 +1,9 @@
 :root {
-  --primary-color: #81B381;
+  --primary-color: rgb(51,51,51);
   --secondary-color-a: #78A6A6;
   --secondary-color-b: #AABB88;
-  --complementary-color: rgb(51,51,51);
-  --light-color: #efefef;
+  --complementary-color: #81B381;
+  --light-color: rgb(249,249,249);
   --dark-color: #333333;
 }
 
@@ -11,6 +11,101 @@ html, body{
   /*height: 100%;*/
   background: #ffffff;
 }
+
+.ebi-header {
+  background-color: var(--primary-color);
+  padding: 0px 0px 0px 10px;
+  /*border-bottom-color: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;*/
+}
+
+.ebi-header-logo {
+  position: relative;
+  top: 8px;
+  left: 10px;
+}
+
+.ebi-header-title {
+  text-decoration: none;
+  color: var(--light-color);;
+  padding-left: 8px;
+  position: relative;
+  font-size: 1.3em;
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ebi-header-link-container {
+  float: right;
+  text-align: right;
+  width: auto;
+  padding-right: 55px;
+  color: var(--light-color);
+}
+
+.ebi-header-link {
+  text-decoration: none;
+  color: white;
+}
+
+.ebi-header-link-text {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.8em;
+}
+
+.ebi-header-link-icon {
+  position: relative;
+  top: 8px;
+}
+
+
+
+.md-main-toolbar {
+  background: var(--primary-color);
+  color: var(--light-color);
+  min-height: 65px;
+}
+
+.md-main-toolbar-title {
+  text-decoration: none;
+  color: var(--light-color);;
+  padding-left: 10px;
+  padding-top: 2px;
+  border-left: solid;
+  border-width: 1px;
+  border-color: var(--light-color);
+  font-weight: lighter;
+  font-size: 1.2em;
+}
+
+.md-main-toolbar-link {
+  text-decoration: none;
+  color: var(--light-color);
+  position: absolute;
+  right: 100px;
+}
+
+.md-main-toolbar-sidebar-button {
+  color: var(--dark-color);
+}
+
+.md-main-toolbar-link-text {
+  position: relative;
+  bottom: 15px;
+  color: var(--light-color);
+}
+
+.md-main-toolbar-link-icon {
+  position: relative;
+  bottom: 10px;
+}
+
+.md-card-toolbar {
+  background: var(--secondary-color-b);
+  color: var(--dark-color);
+}
+
 button.active{
   background: #fff;
   color: #009688;
@@ -169,37 +264,6 @@ md-input {
   flex-grow: 1;
 }
 
-.ebi-header {
-  background-color: rgb(51,51,51);
-  padding: 0px 0px 0px 10px;
-  border-bottom-color: white;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
-
-.toolbar-link {
-  text-decoration: none;
-  color: white;
-  position: absolute;
-  right: 100px;
-}
-
-.toolbar-link-text {
-  position: relative;
-  bottom: 15px;
-}
-
-.toolbar-link-icon {
-  position: relative;
-  bottom: 10px;
-}
-
-.title-link {
-  text-decoration: none;
-  color: white;
-  padding-left: 10px;
-  padding-top: 2px;
-}
 
 .param-value {
   color: rgba(0,0,0,0.50);
@@ -226,15 +290,6 @@ md-card-subtitle.indented-subtitle {
 button.button-color-accent {
   background: var(--complementary-color);
   color: var(--light-color);
-}
-
-.md-card-toolbar {
-  background: var(--secondary-color-b);
-  color: var(--dark-color);
-}
-
-.md-main-toolbar {
-  background: var(--primary-color);
 }
 
 md-radio-button {
