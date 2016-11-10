@@ -10,8 +10,9 @@
 				<md-card>
 					<md-toolbar class="md-card-toolbar">
 						<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
-						<md-icon *ngIf="deploymentInstance.destroying || deploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> 
-						<md-icon *ngIf="!deploymentInstance.destroying && deploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> 
+						<md-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
+						<md-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> 
+						<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
 						{{ deploymentInstance.applicationName }}
 					</md-toolbar>
 					<md-card-content>
@@ -21,10 +22,14 @@
 								<h3 md-line>Reference</h3>
 								<p md-line class="param-value">{{ deploymentInstance.reference }}</p>
 							</md-list-item>
+							<md-list-item>
+								<h3 md-line>State</h3>
+								<p md-line class="param-value">{{ deploymentInstance.status }}</p>
+							</md-list-item>
 							<md-list-item *ngIf="deploymentInstance.status == 'STARTING'">
 								<p md-line class="param-value">Waiting for provider data...</p>
 							</md-list-item>
-							<md-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED'">
+							<md-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
 								<p md-line class="param-value">This deployment failed and there is nor provider data</p>
 							</md-list-item>
 							<md-list-item>
@@ -66,10 +71,13 @@
 						</md-list>
 					</md-card-content>
 
-					<md-progress-bar *ngIf="deploymentInstance.destroying || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
+					<md-progress-bar *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
 
-					<md-card-actions align="end" *ngIf="!deploymentInstance.destroying && deploymentInstance.status != 'STARTING'">
-						<button md-tooltip="Destroy deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
+					<md-card-actions align="end" *ngIf="deploymentInstance.status != 'DESTROYING' && deploymentInstance.status != 'STARTING'">
+						<button *ngIf="deploymentInstance.status != 'DESTROYED'" md-tooltip="Destroy deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
+							<md-icon class="card-action-icon">cloud_off</md-icon>
+						</button>
+						<button *ngIf="deploymentInstance.status == 'DESTROYED'" md-tooltip="Delete deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentsComponent.deleteDeployment(deploymentInstance)">
 							<md-icon class="card-action-icon">delete_forever</md-icon>
 						</button>
 					</md-card-actions>
