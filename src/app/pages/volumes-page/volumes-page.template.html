@@ -1,6 +1,6 @@
 <cp-volumes-component #volumesComponent>
 	<!--Add setup button-->
-	<button *ngIf="volumesTabGroup.selectedIndex == 1" md-fab (click)="volumesComponent.addVolumeSetupFormShowing=!volumesComponent.addVolumeSetupFormShowing">
+	<button *ngIf="volumesTabGroup.selectedIndex == 1" md-mini-fab (click)="volumesComponent.addVolumeSetupFormShowing=!volumesComponent.addVolumeSetupFormShowing">
 		<md-icon>add</md-icon>
 	</button>
 
