@@ -1,6 +1,5 @@
 <div *ngIf="!tokenService.getToken()" class="welcome-container">
   <about-page></about-page>
-  <login-page></login-page>
 </div>
 <div *ngIf="tokenService.getToken()" class="welcome-container">
 

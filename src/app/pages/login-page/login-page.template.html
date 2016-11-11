@@ -1,24 +1,18 @@
 <cp-login-component #loginComponent>
 
+    <div class="hero login-form" *ngIf="tokenService.getToken()">
+      <h2>You are logged in as {{ credentialService.getUsername() }}</h2>
+    </div>
 
-  <md-content>
-    <md-card *ngIf="tokenService.getToken()">
-      <md-card-content>You are now logged in</md-card-content>
-    </md-card>
+    <div class="hero login-form" *ngIf="!tokenService.getToken()">
+      <h2>Login to EBI Cloud Portal</h2>
+      <h3>Enter your details below</h3>  
+      <form>
+        <md-input type="text" #username placeholder="Username"></md-input>
+        <md-input type="password" #password placeholder="Password"></md-input>
+      </form>
+      <button md-raised-button (click)="authenticate(username.value, password.value)">Sign In</button>
+      <a md-button href="{{ssoLink()}}" target="_blank">SSO</a>
+    </div>
 
-    <md-card *ngIf="!tokenService.getToken()">
-      <md-card-title>Login</md-card-title>
-      <md-card-content>
-        <form>
-          <md-input type="text" #username placeholder="Username"></md-input>
-          <md-input type="password" #password placeholder="Password"></md-input>
-        </form>
-      </md-card-content>
-      <md-card-actions>
-        <button md-button (click)="authenticate(username.value, password.value)">Submit</button>
-        or
-        <a href="{{ssoLink()}}" target="_blank">SSO</a>
-      </md-card-actions>
-    </md-card>
-  </md-content>
 </cp-login-component>

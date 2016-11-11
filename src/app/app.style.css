@@ -1,15 +1,20 @@
 :root {
-  --primary-color: rgb(51,51,51);
-  --secondary-color-a: #78A6A6;
-  --secondary-color-b: #AABB88;
-  --complementary-color: #81B381;
+  --primary-color: #389196;
+  --secondary-color: #c3c0ab;
+  --complementary-color: #9fcc3b;
   --light-color: rgb(249,249,249);
   --dark-color: #333333;
 }
 
-html, body{
-  /*height: 100%;*/
-  background: #ffffff;
+html {
+  height: 100%;
+  background: var(--light-color);
+}
+
+body{
+  min-height: 100%;
+  /*position: relative;*/
+  margin: 0;
 }
 
 .ebi-header {
@@ -109,7 +114,7 @@ html, body{
 }
 
 .md-card-toolbar {
-  background: var(--secondary-color-b);
+  background: var(--secondary-color);
   color: var(--dark-color);
 }
 
@@ -301,4 +306,41 @@ button.button-color-accent {
 
 md-radio-button {
   padding-right: 10px;
+}
+h1 {
+  font-size: 2em;
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h2 {
+  font-size: 1.4em;
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h3 {
+  font-size: 0.9em;
+  color: var(--dark-color);
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+}
+p {
+  font-size: 1em;
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+}
+footer{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background: var(--secondary-color);
+}
+.hero {
+  position: relative;
+  left: 33%;
+  max-width: 33%;
+}
+.hero-img {
+  max-width: 100%;
 }
