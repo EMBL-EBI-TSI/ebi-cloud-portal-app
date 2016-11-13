@@ -1,5 +1,5 @@
 <cp-login-component #loginComponent>
-
+    <img class="hero-img robby-form" [src]="robby">
     <div class="hero login-form" *ngIf="tokenService.getToken()">
       <h2>You are logged in as {{ credentialService.getUsername() }}</h2>
     </div>

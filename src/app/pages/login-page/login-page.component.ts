@@ -13,6 +13,7 @@ import { Account } from 'ng2-cloud-portal-service-lib';
 })
 export class LoginPage {
 
+  robby = 'assets/img/Robby form@0.5x.png';
   account: Account;
   removeMessageListener: Function;
 

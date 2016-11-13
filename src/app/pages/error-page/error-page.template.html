@@ -1,19 +1,15 @@
 <cp-error-component #errorComponent>
-	<md-content>
-		<md-card>
-			<md-card-title>
-				Sorry, there is a problem...
-			</md-card-title>
-			<img class="hero-img" [src]="robby">
-			<md-card-content *ngIf="errorComponent.errorService.getCurrentError()[0]">
-				{{ errorComponent.errorService.getCurrentError()[0].message }}
-			</md-card-content>
-			<md-card-content *ngIf="!errorComponent.errorService.getCurrentError()[0] && errorComponent.errorService.getCurrentError()">
-				{{ errorComponent.errorService.getCurrentError().message }}
-			</md-card-content>
-			<md-card-content *ngIf="!errorComponent.errorService.getCurrentError()[0] && !errorComponent.errorService.getCurrentError()">
-				The exact error cannot be determined
-			</md-card-content>
-		</md-card>
-	</md-content>
+	<img class="hero-img robby" [src]="robby">
+	<div class="hero">
+		<h2>Sorry, there is a problem...</h2>
+		<h3 *ngIf="errorComponent.errorService.getCurrentError()[0]">
+			{{ errorComponent.errorService.getCurrentError()[0].message }}
+		</h3>
+		<h3 *ngIf="!errorComponent.errorService.getCurrentError()[0] && errorComponent.errorService.getCurrentError()">
+			{{ errorComponent.errorService.getCurrentError().message }}
+		</h3>
+		<h3 *ngIf="!errorComponent.errorService.getCurrentError()[0] && !errorComponent.errorService.getCurrentError()">
+			The exact error cannot be determined
+		</h3>
+	</div>
 </cp-error-component>
