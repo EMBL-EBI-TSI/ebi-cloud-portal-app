@@ -11,4 +11,17 @@ import { DeploymentStatusPipe } from './deployment-status.pipe';
 })
 export class DeploymentsPage {
 
+  statusFilters: string[] = [];
+  showDestroyed: boolean = false;
+
+  switchDestroyed() {
+    this.showDestroyed = !this.showDestroyed;
+    this.updateFilters();
+  }
+  updateFilters() {
+    this.statusFilters = [];
+    if (this.showDestroyed) {
+      this.statusFilters.push('DESTROYED');
+    } 
+  }
 }
