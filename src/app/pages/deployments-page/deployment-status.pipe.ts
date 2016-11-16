@@ -8,6 +8,6 @@ import { DeploymentInstance } from 'ng2-cloud-portal-presentation-lib';
 @Injectable()
 export class DeploymentStatusPipe implements PipeTransform {
     transform(items: DeploymentInstance[], status: string[]): DeploymentInstance[] {
-        return items.filter(item => (status.indexOf(item.status)!=-1));
+        return items.filter(item => (status.indexOf(item.status)==-1));
     }
 }

@@ -12,15 +12,15 @@ import { DeploymentStatusPipe } from './deployment-status.pipe';
 export class DeploymentsPage {
 
   statusFilters: string[] = [];
-  showDestroyed: boolean = false;
+  hideDestroyed: boolean = false;
 
   switchDestroyed() {
-    this.showDestroyed = !this.showDestroyed;
+    this.hideDestroyed = !this.hideDestroyed;
     this.updateFilters();
   }
   updateFilters() {
     this.statusFilters = [];
-    if (this.showDestroyed) {
+    if (this.hideDestroyed) {
       this.statusFilters.push('DESTROYED');
     } 
   }
