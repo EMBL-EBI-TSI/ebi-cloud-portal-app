@@ -6,7 +6,7 @@
 		</md-card>
 
 		<div class="card-container">
-			<div class="flip-container" *ngFor="let deploymentInstance of deploymentsComponent.deploymentInstances">
+			<div class="flip-container" *ngFor="let deploymentInstance of deploymentsComponent.deploymentInstances | deploymentStatus:'DESTROYED'">
 				<md-card>
 					<md-toolbar class="md-card-toolbar">
 						<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
