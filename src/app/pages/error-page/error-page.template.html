@@ -2,14 +2,8 @@
 	<img class="hero-img robby" [src]="robby">
 	<div class="hero">
 		<h2>Sorry, there is a problem...</h2>
-		<h3 *ngIf="errorComponent.errorService.getCurrentError()[0]">
-			{{ errorComponent.errorService.getCurrentError()[0].message }}
-		</h3>
-		<h3 *ngIf="!errorComponent.errorService.getCurrentError()[0] && errorComponent.errorService.getCurrentError()">
-			{{ errorComponent.errorService.getCurrentError().message }}
-		</h3>
-		<h3 *ngIf="!errorComponent.errorService.getCurrentError()[0] && !errorComponent.errorService.getCurrentError()">
-			The exact error cannot be determined
+		<h3>
+			{{ errorComponent.getErrorMessage() }}
 		</h3>
 	</div>
 </cp-error-component>

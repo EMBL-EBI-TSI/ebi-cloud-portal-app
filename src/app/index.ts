@@ -8,6 +8,11 @@ import { ConfigService } from 'ng2-cloud-portal-service-lib';
 import { ErrorService } from 'ng2-cloud-portal-service-lib';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
 import { TokenService } from 'ng2-cloud-portal-service-lib';
+// All these are temporary
+import { ApplicationService } from 'ng2-cloud-portal-service-lib';
+import { VolumeInstanceService } from 'ng2-cloud-portal-service-lib';
+import { DeploymentService } from 'ng2-cloud-portal-service-lib';
+
 
 const ENV_PROVIDERS = [];
 
@@ -26,5 +31,8 @@ export const APP_PROVIDERS = [
   provide(ConfigService, { useValue: activeConfig }),
   ErrorService,
   CredentialService,
-  TokenService
+  TokenService,
+  ApplicationService,
+  VolumeInstanceService,
+  DeploymentService
 ];

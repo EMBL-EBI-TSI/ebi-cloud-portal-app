@@ -3,6 +3,7 @@ import { RouterConfig } from '@angular/router';
 import { WelcomePage } from './pages/welcome-page';
 import { ProfilePage } from './pages/profile-page';
 import { RepositoryPage } from './pages/repository-page';
+import { ApplicationPage } from './pages/application-page';
 import { VolumesPage } from './pages/volumes-page';
 import { DeploymentsPage } from './pages/deployments-page';
 import { AboutPage } from './pages/about-page';
@@ -13,6 +14,7 @@ export const routes: RouterConfig = [
     { path: '', component: WelcomePage },
     { path: 'profile', component: ProfilePage },
     { path: 'repository', component: RepositoryPage },
+    { path: 'application/:id', component: ApplicationPage },
     { path: 'volumes', component: VolumesPage },
     { path: 'deployments', component: DeploymentsPage },
     { path: 'error', component: ErrorPage },

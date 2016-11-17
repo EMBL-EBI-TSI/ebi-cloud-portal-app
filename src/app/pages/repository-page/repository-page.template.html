@@ -47,6 +47,9 @@
               <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
               <!--<button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
                 <md-icon class="card-action-icon">clear</md-icon> 
+              </button>
+              <button md-icon-button color="primary" [routerLink]=" ['/application/', applicationDeployer.name]">
+                <md-icon class="card-action-icon">visibility</md-icon> 
               </button>-->
             </md-toolbar>
             <md-card-content>
@@ -73,6 +76,9 @@
               <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
               <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
                 <md-icon class="card-action-icon">clear</md-icon> 
+              </button>
+              <button md-icon-button color="primary" [routerLink]=" ['/application/', applicationDeployer.name]">
+                <md-icon class="card-action-icon">visibility</md-icon> 
               </button>
             </md-toolbar>
             <md-card-content>
