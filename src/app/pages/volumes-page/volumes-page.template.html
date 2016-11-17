@@ -56,7 +56,7 @@
 			<template md-tab-content>
 				<!--Add setup form-->
 				<md-card *ngIf="volumesComponent.addVolumeSetupFormShowing">
-					<md-card-title>Add volume setup</md-card-title>
+					<md-card-title><h3>Add volume setup</h3></md-card-title>
 					<md-card-content>
 						<form [formGroup]="volumesComponent.volumeSetupForm" autocomplete="off">
 							<md-input type="url" placeholder="Repository URI" [formControl]="volumesComponent.volumeSetupForm.controls['repoUri']" autofocus>

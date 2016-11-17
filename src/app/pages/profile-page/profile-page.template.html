@@ -4,8 +4,23 @@
     <md-icon>add</md-icon>
   </button>
 
+	<md-card *ngIf="profileComponent.account">
+		<md-card-header>
+			<img md-card-avatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AWS_Simple_Icons_Non-Service_Specific_User.svg/2000px-AWS_Simple_Icons_Non-Service_Specific_User.svg.png"
+			/>
+			<md-card-title>{{ profileComponent.account.userName }}</md-card-title>
+			<md-card-subtitle>{{ profileComponent.account.email }}</md-card-subtitle>
+		</md-card-header>
+		<md-card-content>
+			<p>
+				<md-icon md-list-icon>home</md-icon><a href="http://my.homepage.me">http://my.homepage.me</a></p>
+			<p>
+				<md-icon md-list-icon>domain</md-icon>{{ profileComponent.account.organisation }}</p>
+		</md-card-content>
+	</md-card>
+
   <md-card *ngIf="profileComponent.addCloudCredentialsFormShowing">
-    <md-card-title>Add Cloud Credentials</md-card-title>
+    <md-card-title><h3>Add Cloud Credentials</h3></md-card-title>
     <md-card-content>
       <form [formGroup]="profileComponent.cloudCredentialsForm" autocomplete="off">
         <md-input 
@@ -42,20 +57,7 @@
   </md-card>
 
 	<md-content *ngIf="profileComponent.account">
-		<md-card>
-			<md-card-header>
-				<img md-card-avatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AWS_Simple_Icons_Non-Service_Specific_User.svg/2000px-AWS_Simple_Icons_Non-Service_Specific_User.svg.png"
-				/>
-				<md-card-title>{{ profileComponent.account.userName }}</md-card-title>
-				<md-card-subtitle>{{ profileComponent.account.email }}</md-card-subtitle>
-			</md-card-header>
-			<md-card-content>
-				<p>
-					<md-icon md-list-icon>home</md-icon><a href="http://my.homepage.me">http://my.homepage.me</a></p>
-				<p>
-					<md-icon md-list-icon>domain</md-icon>{{ profileComponent.account.organisation }}</p>
-			</md-card-content>
-		</md-card>
+		
 		<div class="card-container">
 			<md-card *ngFor="let cloudCredentials of profileComponent.cloudCredentialsPresenters" class="credentials-container">
 				<md-toolbar class="md-card-toolbar">

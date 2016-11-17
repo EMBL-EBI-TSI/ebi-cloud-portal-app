@@ -1,7 +1,7 @@
 <cp-deployments-component #deploymentsComponent>
 		<md-toolbar>
-			<md-checkbox [checked]="hideDestroyed" (change)="switchDestroyed()">
-				Hide destroyed
+			<md-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
+				<p>Hide destroyed</p>
 			</md-checkbox>
     </md-toolbar>
 	<md-content *ngIf="deploymentsComponent.deploymentInstances">

@@ -337,3 +337,6 @@ footer{
 .hero-img {
   max-width: 100%;
 }
+.inner-toolbar-checkbox {
+  padding-left: 20px;
+}
