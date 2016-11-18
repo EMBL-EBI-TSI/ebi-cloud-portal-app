@@ -36,13 +36,31 @@
         </md-nav-list>
     </md-sidenav>
     <div class="ebi-header">
-        <a [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
+        <a class="ebi-header-logo" [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
+        <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
+        <span class="ebi-header-link-container">
+            <a class="ebi-header-link" *ngIf="credentialService.getUsername()" [routerLink]=" ['./profile'] ">
+                <md-icon class="ebi-header-link-icon" md-list-icon>face</md-icon>
+                <span md-line class="ebi-header-link-text">{{ credentialService.getUsername() }}</span>
+            </a>
+           
+            <a class="ebi-header-link-last" *ngIf="credentialService.getUsername()" (click)="logOut()">
+                <span md-line class="ebi-header-link-text">Logout</span>
+            </a>
+
+            <a class="ebi-header-link" *ngIf="!credentialService.getUsername()" [routerLink]=" ['./login'] ">
+                <md-icon class="ebi-header-link-icon" md-list-icon>vpn_key</md-icon>
+                <span class="ebi-header-link-text">Login</span>
+            </a>
+        </span>
     </div>
     <md-toolbar class="md-main-toolbar">
-        <button md-icon-button (click)="sidenav.open()">
+        <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
-        </button> <a class="title-link" router-active [routerLink]=" ['./welcome'] " (click)="sidenav.close()">{{ name }}</a>
-        <span class="fill"></span>
+        </button> 
+        <a class="md-main-toolbar-title" >
+            {{ (getViewName() | slice:1) || 'welcome'}}
+        </a>
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>

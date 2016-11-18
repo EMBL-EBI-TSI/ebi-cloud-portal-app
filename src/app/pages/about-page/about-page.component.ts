@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   template: require('./about-page.template.html')
 })
 export class AboutPage {
+  ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
+  ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
+  ebiLogoLarge = 'assets/img/embl-logo.png';
   constructor() {
 
   }

@@ -2,7 +2,6 @@ import { Component, Renderer } from '@angular/core';
 import { LoginComponent } from 'ng2-cloud-portal-presentation-lib';
 import { CredentialService, TokenService, AuthService } from 'ng2-cloud-portal-service-lib';
 import { JwtToken } from 'ng2-cloud-portal-service-lib';
-
 import { Account } from 'ng2-cloud-portal-service-lib';
 
 @Component({
@@ -14,6 +13,7 @@ import { Account } from 'ng2-cloud-portal-service-lib';
 })
 export class LoginPage {
 
+  robby = 'assets/img/Robby form@0.5x.png';
   account: Account;
   removeMessageListener: Function;
 

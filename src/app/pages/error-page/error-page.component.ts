@@ -9,5 +9,5 @@ import { ErrorService } from 'ng2-cloud-portal-service-lib';
   template: require('./error-page.template.html')
 })
 export class ErrorPage {
-
+  robby = 'assets/img/Robby error@0.5x.png';
 }
