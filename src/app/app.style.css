@@ -160,33 +160,42 @@ footer{
 
 .card-container md-card {
   box-sizing: border-box;
-  width: 300px;
-  min-height: 600px;
   /*background: var(--light-color);*/
   padding: 0px;
 }
 
-.card-container .flip-container {
-  width: 300px;
-	min-height: 600px;
-  margin: 20px;
+.application-card-container {
+  width: 20em;
+	min-height: 40em;
+  margin: 1em;
 }
 
-.card-container .credentials-container {
-  width: 300px;
-	min-height: 300px;
-  margin: 20px;
+.application-detail-card-container {
+  margin: 1em;
 }
 
-.card-container .volume-setup-container {
-  width: 300px;
-	min-height: 200px;
+.deployment-card-container {
+  width: 20em;
+	min-height: 40em;
+  margin: 1em;
 }
 
-.card-container .volume-instance-container {
-  width: 300px;
-	min-height: 200px;
-  margin: 20px;
+.credentials-card-container {
+  width: 20em;
+	min-height: 30em;
+  margin: 1em;
+}
+
+.volume-setup-card-container {
+  width: 20em;
+	min-height: 15em;
+  margin: 1em;
+}
+
+.volume-instance-card-container {
+  width: 20em;
+	min-height: 15em;
+  margin: 1em;
 }
 
 /* entire container, keeps perspective */
@@ -326,13 +335,14 @@ footer{
   bottom: 0;
   left: 0;
   padding: 1rem;
-  /*margin-top: 3rem;*/
+  margin-top: 1rem;
   background: var(--secondary-color);
 }
 .hero {
   position: relative;
   left: 33%;
   max-width: 33%;
+  margin-bottom: 1rem;
 }
 .hero-img {
   max-width: 100%;

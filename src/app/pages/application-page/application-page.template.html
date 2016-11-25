@@ -1,3 +1,4 @@
+<div class="application-detail-card-container">
 <md-card *ngIf="applicationDeployer">
   <md-toolbar class="md-card-toolbar">
     <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
@@ -33,7 +34,7 @@
       <p md-subheader *ngIf="applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>
       <md-list-item *ngFor="let aVolume of applicationDeployer.volumes">
         <h3 md-line>{{ aVolume }}</h3>
-        <select md-line (change)="repo.attachVolume(applicationDeployer, aVolume, $event.target.value)">
+        <select md-line (change)="attachVolume(applicationDeployer, aVolume, $event.target.value)">
           <option value="null">None</option>
           <option *ngFor="let volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
         </select>
@@ -45,8 +46,8 @@
       <p md-subheader *ngIf="applicationDeployer.inputs.length>0">This application requires to enter the following values</p>
       <md-list-item *ngFor="let anInput of applicationDeployer.inputs">
         <md-input #{{anInput}} placeholder="{{ anInput }}" 
-          (keyup.enter)="repo.assignInput(applicationDeployer, anInput, $event.target.value)"
-          (blur)="repo.assignInput(applicationDeployer, anInput, $event.target.value)">
+          (keyup.enter)="assignInput(applicationDeployer, anInput, $event.target.value)"
+          (blur)="assignInput(applicationDeployer, anInput, $event.target.value)">
           <!--<span md-prefix>[some other hint]</span>-->
           <!--<span md-suffix>[value type]</span>-->
           <!--<md-hint align="end">[some other hint]</md-hint>-->
@@ -56,8 +57,8 @@
         <span *ngIf="aCloudProvider.cloudProvider==applicationDeployer.selectedCloudProvider">
           <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
             <md-input #{{anInput}} placeholder="{{ anInput }}" 
-              (keyup.enter)="repo.assignInput(applicationDeployer, anInput, $event.target.value)"
-              (blur)="repo.assignInput(applicationDeployer, anInput, $event.target.value)">
+              (keyup.enter)="assignInput(applicationDeployer, anInput, $event.target.value)"
+              (blur)="assignInput(applicationDeployer, anInput, $event.target.value)">
               <!--<span md-prefix>[some other hint]</span>-->
               <!--<span md-suffix>[value type]</span>-->
               <!--<md-hint align="end">[some other hint]</md-hint>-->
@@ -87,8 +88,9 @@
       <md-radio-button *ngFor="let cloudProvider of applicationDeployer.cloudProviders" 
         [value]="cloudProvider.cloudProvider">{{ cloudProvider.cloudProvider }}</md-radio-button>
     </md-radio-group>
-    <button md-icon-button color="accent" (click)="repo.deployApplication(applicationDeployer)">
+    <button md-icon-button color="accent" (click)="deployApplication(applicationDeployer)">
         <md-icon class="card-action-icon">cloud_upload</md-icon>
     </button>
   </md-card-actions>
 </md-card>
+</div>

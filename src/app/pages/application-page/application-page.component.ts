@@ -64,19 +64,66 @@ export class ApplicationPage {
         this._tokenService.getToken())
       .subscribe(
       volumeInstances => {
-        console.log('[RepositoryComponent] Volume instance data is %O', volumeInstances);
+        console.log('[ApplicationPage] Volume instance data is %O', volumeInstances);
         this.volumeInstances =
           volumeInstances.map((vol: any) => <VolumeInstance>vol);
       },
       error => {
-        console.log('[RepositoryComponent] error %O', error);
+        console.log('[ApplicationPage] error %O', error);
         this.errorService.setCurrentError(error);
         this._router.navigateByUrl('/error');
       },
       () => {
-        console.log('[RepositoryComponent] Volume instance data retrieval complete');
+        console.log('[ApplicationPage] Volume instance data retrieval complete');
       }
       );
 
   }
+
+  public deployApplication(applicationDeployer: ApplicationDeployer) {
+    applicationDeployer.deploying = true;
+    console.log('[ApplicationPage] Adding deployment for application from '
+        + applicationDeployer.repoUri + ' into '
+        + applicationDeployer.selectedCloudProvider);
+    this._deploymentService.add(
+        this.credentialService.getUsername(),
+        this._tokenService.getToken(),
+        applicationDeployer,
+        applicationDeployer.selectedCloudProvider,
+        applicationDeployer.attachedVolumes,
+        applicationDeployer.assignedInputs
+    ).subscribe(
+      deployment  => {
+        console.log('[ApplicationPage] deployed %O', deployment);
+        this._router.navigateByUrl('/deployments');
+      },
+      error => {
+        console.log('[ApplicationPage] error %O', error);
+        if (error[0]) {
+          error = error[0];
+        }
+        this.errorService.setCurrentError(error);
+        this._router.navigateByUrl('/error');
+      }
+    );
+  }
+
+  public attachVolume(applicationDeployer: ApplicationDeployer, volumeName: string, volumeInstanceReference: string) {
+      console.log('[ApplicationPage] attaching volume ' + volumeName + '=' + volumeInstanceReference
+          + ' to application ' + applicationDeployer.name);
+      applicationDeployer.attachedVolumes[volumeName] = volumeInstanceReference;
+  }
+
+  public deattachVolume(applicationDeployer: ApplicationDeployer, volumeName: string) {
+      console.log('[ApplicationPage] deattaching volume ' + volumeName + ' to application ' + applicationDeployer.name);
+      applicationDeployer.attachedVolumes[volumeName] = null;
+  }
+
+  public assignInput(applicationDeployer: ApplicationDeployer, inputName: string, inputValue: string) {
+      console.log('[ApplicationPage] assigning input ' + inputName + '=' + inputValue
+          + ' to application ' + applicationDeployer.name);
+      applicationDeployer.assignedInputs[inputName] = inputValue;
+  }
+
+
 }
