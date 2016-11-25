@@ -164,13 +164,13 @@ footer{
   padding: 0px;
 }
 
-.application-card-container {
+.application-card-container md-card {
   width: 20em;
 	min-height: 40em;
   margin: 1em;
 }
 
-.application-detail-card-container md-card {
+.application-detail-card-container {
   margin: 1em;
 }
 
