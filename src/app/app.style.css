@@ -170,70 +170,32 @@ footer{
   margin: 1em;
 }
 
-.application-detail-card-container {
+.application-detail-card-container md-card {
   margin: 1em;
 }
 
-.deployment-card-container {
+.deployment-card-container md-card {
   width: 20em;
 	min-height: 40em;
   margin: 1em;
 }
 
-.credentials-card-container {
+.credentials-card-container md-card {
   width: 20em;
 	min-height: 30em;
   margin: 1em;
 }
 
-.volume-setup-card-container {
+.volume-setup-card-container md-card {
   width: 20em;
 	min-height: 15em;
   margin: 1em;
 }
 
-.volume-instance-card-container {
+.volume-instance-card-container md-card {
   width: 20em;
 	min-height: 15em;
   margin: 1em;
-}
-
-/* entire container, keeps perspective */
-.flip-container {
-	perspective: 1000px;
-}
-
-/* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-  transform: rotateY(180deg);
-}
-
-/* flip speed goes here */
-.flipper {
-	transition: 0.6s;
-	transform-style: preserve-3d;
-	position: relative;
-}
-
-/* hide back of pane during swap */
-.front, .back {
-	backface-visibility: hidden;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-/* front pane, placed above back */
-.front {
-	z-index: 2;
-	/* for firefox 31 */
-	transform: rotateY(0deg);
-}
-
-/* back, initially hidden pane */
-.back {
-	transform: rotateY(180deg);
 }
 
 .card-container md-card md-card-content {
