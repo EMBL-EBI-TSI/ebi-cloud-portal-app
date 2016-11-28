@@ -18,6 +18,9 @@
 					<md-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> 
 					<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
 					{{ deploymentInstance.applicationName }}
+					<button md-icon-button color="primary" [routerLink]=" ['/deployments/', deploymentInstance.reference]">
+              <md-icon class="card-action-icon">visibility</md-icon> 
+					</button>
 				</md-toolbar>
 				<md-card-content>
 					<md-list dense>
@@ -77,14 +80,14 @@
 
 				<md-progress-bar *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
 
-				<md-card-actions align="end" *ngIf="deploymentInstance.status != 'DESTROYING' && deploymentInstance.status != 'STARTING'">
+				<!--<md-card-actions align="end" *ngIf="deploymentInstance.status != 'DESTROYING' && deploymentInstance.status != 'STARTING'">
 					<button *ngIf="deploymentInstance.status != 'DESTROYED'" md-tooltip="Destroy deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
 						<md-icon class="card-action-icon">cloud_off</md-icon>
 					</button>
 					<button *ngIf="deploymentInstance.status == 'DESTROYED'" md-tooltip="Delete deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentsComponent.deleteDeployment(deploymentInstance)">
 						<md-icon class="card-action-icon">delete_forever</md-icon>
 					</button>
-				</md-card-actions>
+				</md-card-actions>-->
 			</md-card>
 		</div>
 	</md-content>

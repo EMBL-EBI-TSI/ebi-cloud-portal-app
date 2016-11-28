@@ -110,7 +110,7 @@
 
     "http-server": "^0.9.0",
 
-    "ng2-cloud-portal-service-lib": "^0.1.50",
+    "ng2-cloud-portal-service-lib": "^0.1.51",
     "ng2-cloud-portal-presentation-lib": "^0.1.89"
   },
   "devDependencies": {
