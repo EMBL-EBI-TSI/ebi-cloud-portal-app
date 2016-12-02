@@ -1,96 +1,98 @@
-<div class="application-detail-card-container">
-<md-card *ngIf="applicationDeployer">
-  <md-toolbar class="md-card-toolbar">
-    <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
-    <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
-      <md-icon class="card-action-icon">clear</md-icon> 
-    </button>
-  </md-toolbar>
-  <md-card-content>
-    <p>{{ applicationDeployer.about }}</p>
-    <md-list dense>
-      <md-list-item>
-        <h3 md-line>Version</h3>
-        <p md-line class="param-value">{{ applicationDeployer.version }}</p>
-      </md-list-item>
-      <md-list-item>
-        <h3 md-line>Contact</h3>
-        <p md-line class="param-value">{{ applicationDeployer.contact }}</p>
-      </md-list-item>
-      <h3 md-header>Available for</h3>
-      <md-list-item *ngFor="let cloudProvider of applicationDeployer.cloudProviders">
-        <p md-line>{{ cloudProvider.cloudProvider }}</p>
-      </md-list-item>
-      <h3 md-header>Source</h3>
-      <!--Application source-->
-      <md-list-item>
-        <h3 md-line>Source</h3>
-        <p md-line class="param-value"><a href="{{ applicationDeployer.repoUri }}">{{ applicationDeployer.repoUri }}</a></p>
-      </md-list-item>
-      <!--Application required volumes-->
-      <h3 md-header>Volumes</h3>
-      <md-divider></md-divider>
-      <p md-subheader *ngIf="applicationDeployer.volumes.length==0">This application requires no attached volumes</p>
-      <p md-subheader *ngIf="applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>
-      <md-list-item *ngFor="let aVolume of applicationDeployer.volumes">
-        <h3 md-line>{{ aVolume }}</h3>
-        <select md-line (change)="attachVolume(applicationDeployer, aVolume, $event.target.value)">
-          <option value="null">None</option>
-          <option *ngFor="let volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
-        </select>
-      </md-list-item>
-      <!--Application required inputs-->
-      <h3 md-header>Inputs</h3>
-      <md-divider></md-divider>
-      <p md-subheader *ngIf="applicationDeployer.inputs.length==0">This application requires no input values</p>
-      <p md-subheader *ngIf="applicationDeployer.inputs.length>0">This application requires to enter the following values</p>
-      <md-list-item *ngFor="let anInput of applicationDeployer.inputs">
-        <md-input #{{anInput}} placeholder="{{ anInput }}" 
-          (keyup.enter)="assignInput(applicationDeployer, anInput, $event.target.value)"
-          (blur)="assignInput(applicationDeployer, anInput, $event.target.value)">
-          <!--<span md-prefix>[some other hint]</span>-->
-          <!--<span md-suffix>[value type]</span>-->
-          <!--<md-hint align="end">[some other hint]</md-hint>-->
-        </md-input>
-      </md-list-item>
-      <span *ngFor="let aCloudProvider of applicationDeployer.cloudProviders">
-        <span *ngIf="aCloudProvider.cloudProvider==applicationDeployer.selectedCloudProvider">
-          <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
-            <md-input #{{anInput}} placeholder="{{ anInput }}" 
-              (keyup.enter)="assignInput(applicationDeployer, anInput, $event.target.value)"
-              (blur)="assignInput(applicationDeployer, anInput, $event.target.value)">
-              <!--<span md-prefix>[some other hint]</span>-->
-              <!--<span md-suffix>[value type]</span>-->
-              <!--<md-hint align="end">[some other hint]</md-hint>-->
-            </md-input>
-          </md-list-item>
+<cp-application-component #applicationDetail>
+  <div class="application-detail-card-container">
+  <md-card *ngIf="applicationDetail.applicationDeployer">
+    <md-toolbar class="md-card-toolbar">
+      <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDetail.applicationDeployer.name }}
+      <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
+        <md-icon class="card-action-icon">clear</md-icon> 
+      </button>
+    </md-toolbar>
+    <md-card-content>
+      <p>{{ applicationDetail.applicationDeployer.about }}</p>
+      <md-list dense>
+        <md-list-item>
+          <h3 md-line>Version</h3>
+          <p md-line class="param-value">{{ applicationDetail.applicationDeployer.version }}</p>
+        </md-list-item>
+        <md-list-item>
+          <h3 md-line>Contact</h3>
+          <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
+        </md-list-item>
+        <h3 md-header>Available for</h3>
+        <md-list-item *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+          <p md-line>{{ cloudProvider.cloudProvider }}</p>
+        </md-list-item>
+        <h3 md-header>Source</h3>
+        <!--Application source-->
+        <md-list-item>
+          <h3 md-line>Source</h3>
+          <p md-line class="param-value"><a href="{{ applicationDetail.applicationDeployer.repoUri }}">{{ applicationDetail.applicationDeployer.repoUri }}</a></p>
+        </md-list-item>
+        <!--Application required volumes-->
+        <h3 md-header>Volumes</h3>
+        <md-divider></md-divider>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length==0">This application requires no attached volumes</p>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>
+        <md-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
+          <h3 md-line>{{ aVolume }}</h3>
+          <select md-line (change)="attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
+            <option value="null">None</option>
+            <option *ngFor="let volumeInstance of volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
+          </select>
+        </md-list-item>
+        <!--Application required inputs-->
+        <h3 md-header>Inputs</h3>
+        <md-divider></md-divider>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.inputs.length==0">This application requires no input values</p>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.inputs.length>0">This application requires to enter the following values</p>
+        <md-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
+          <md-input #{{anInput}} placeholder="{{ anInput }}" 
+            (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+            (blur)="applicationDetail.assignInput(applicationDeployer, anInput, $event.target.value)">
+            <!--<span md-prefix>[some other hint]</span>-->
+            <!--<span md-suffix>[value type]</span>-->
+            <!--<md-hint align="end">[some other hint]</md-hint>-->
+          </md-input>
+        </md-list-item>
+        <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+          <span *ngIf="aCloudProvider.cloudProvider==applicationDetail.applicationDeployer.selectedCloudProvider">
+            <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
+              <md-input #{{anInput}} placeholder="{{ anInput }}" 
+                (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+                (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
+                <!--<span md-prefix>[some other hint]</span>-->
+                <!--<span md-suffix>[value type]</span>-->
+                <!--<md-hint align="end">[some other hint]</md-hint>-->
+              </md-input>
+            </md-list-item>
+          </span>
         </span>
-      </span>
-      <br>
-      <!--Application outputs-->
-      <h3 md-header>Outputs</h3>
+        <br>
+        <!--Application outputs-->
+        <h3 md-header>Outputs</h3>
+        <md-divider></md-divider>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.outputs.length==0">This application generates no output</p>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.outputs.length>0">This application will generate the following values</p>
+        <md-list-item *ngFor="let anOutput of applicationDetail.applicationDeployer.outputs">
+          <li>{{ anOutput }}</li>
+        </md-list-item>
+      </md-list>
       <md-divider></md-divider>
-      <p md-subheader *ngIf="applicationDeployer.outputs.length==0">This application generates no output</p>
-      <p md-subheader *ngIf="applicationDeployer.outputs.length>0">This application will generate the following values</p>
-      <md-list-item *ngFor="let anOutput of applicationDeployer.outputs">
-        <li>{{ anOutput }}</li>
-      </md-list-item>
-    </md-list>
-    <md-divider></md-divider>
-  </md-card-content>
+    </md-card-content>
 
-  <!--A progress bar-->
-  <md-progress-bar *ngIf="applicationDeployer.deploying || applicationDeployer.destroying" mode="indeterminate"></md-progress-bar>
-  
-  <!--These are the action controls-->
-  <md-card-actions align="end" *ngIf="!applicationDeployer.deploying && !applicationDeployer.destroying">
-    <md-radio-group [(ngModel)]="applicationDeployer.selectedCloudProvider">
-      <md-radio-button *ngFor="let cloudProvider of applicationDeployer.cloudProviders" 
-        [value]="cloudProvider.cloudProvider">{{ cloudProvider.cloudProvider }}</md-radio-button>
-    </md-radio-group>
-    <button md-icon-button color="accent" (click)="deployApplication(applicationDeployer)">
-        <md-icon class="card-action-icon">cloud_upload</md-icon>
-    </button>
-  </md-card-actions>
-</md-card>
-</div>
+    <!--A progress bar-->
+    <md-progress-bar *ngIf="applicationDetail.applicationDeployer.deploying || applicationDetail.applicationDeployer.destroying" mode="indeterminate"></md-progress-bar>
+    
+    <!--These are the action controls-->
+    <md-card-actions align="end" *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
+      <md-radio-group [(ngModel)]="applicationDetail.applicationDeployer.selectedCloudProvider">
+        <md-radio-button *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders" 
+          [value]="cloudProvider.cloudProvider">{{ cloudProvider.cloudProvider }}</md-radio-button>
+      </md-radio-group>
+      <button md-icon-button color="accent" (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
+          <md-icon class="card-action-icon">cloud_upload</md-icon>
+      </button>
+    </md-card-actions>
+  </md-card>
+  </div>
+</cp-application-component>
