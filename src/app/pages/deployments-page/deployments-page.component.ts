@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { DeploymentsComponent } from 'ng2-cloud-portal-presentation-lib';
-import { DeploymentStatusPipe } from './deployment-status.pipe';
+import { DeploymentsComponent, DeploymentStatusPipe } from 'ng2-cloud-portal-presentation-lib';
 
 @Component({
   selector: 'deployments-page',
