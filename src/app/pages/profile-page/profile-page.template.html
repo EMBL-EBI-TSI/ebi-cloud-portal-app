@@ -58,7 +58,7 @@
 
 	<md-content *ngIf="profileComponent.account">
 		
-		<div class="card-container">
+		<div class="card-container credentials-card-container">
 			<md-card *ngFor="let cloudCredentials of profileComponent.cloudCredentialsPresenters" class="credentials-container">
 				<md-toolbar class="md-card-toolbar">
 					<md-icon class="card-type-icon">vpn_key</md-icon>{{ cloudCredentials.name }}

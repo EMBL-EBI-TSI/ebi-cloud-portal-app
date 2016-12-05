@@ -160,71 +160,42 @@ footer{
 
 .card-container md-card {
   box-sizing: border-box;
-  width: 300px;
-  min-height: 600px;
   /*background: var(--light-color);*/
   padding: 0px;
 }
 
-.card-container .flip-container {
-  width: 300px;
-	min-height: 600px;
-  margin: 20px;
+.application-card-container md-card {
+  width: 20em;
+	min-height: 40em;
+  margin: 1em;
 }
 
-.card-container .credentials-container {
-  width: 300px;
-	min-height: 300px;
-  margin: 20px;
+.application-detail-card-container {
+  margin: 1em;
 }
 
-.card-container .volume-setup-container {
-  width: 300px;
-	min-height: 200px;
+.deployment-card-container md-card {
+  width: 20em;
+	min-height: 40em;
+  margin: 1em;
 }
 
-.card-container .volume-instance-container {
-  width: 300px;
-	min-height: 200px;
-  margin: 20px;
+.credentials-card-container md-card {
+  width: 20em;
+	min-height: 30em;
+  margin: 1em;
 }
 
-/* entire container, keeps perspective */
-.flip-container {
-	perspective: 1000px;
+.volume-setup-card-container md-card {
+  width: 20em;
+	min-height: 15em;
+  margin: 1em;
 }
 
-/* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-  transform: rotateY(180deg);
-}
-
-/* flip speed goes here */
-.flipper {
-	transition: 0.6s;
-	transform-style: preserve-3d;
-	position: relative;
-}
-
-/* hide back of pane during swap */
-.front, .back {
-	backface-visibility: hidden;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-/* front pane, placed above back */
-.front {
-	z-index: 2;
-	/* for firefox 31 */
-	transform: rotateY(0deg);
-}
-
-/* back, initially hidden pane */
-.back {
-	transform: rotateY(180deg);
+.volume-instance-card-container md-card {
+  width: 20em;
+	min-height: 15em;
+  margin: 1em;
 }
 
 .card-container md-card md-card-content {
@@ -326,13 +297,14 @@ footer{
   bottom: 0;
   left: 0;
   padding: 1rem;
-  /*margin-top: 3rem;*/
+  margin-top: 1rem;
   background: var(--secondary-color);
 }
 .hero {
   position: relative;
   left: 33%;
   max-width: 33%;
+  margin-bottom: 1rem;
 }
 .hero-img {
   max-width: 100%;

@@ -1,0 +1,80 @@
+<cp-deployment-component #deploymentDetail>
+  <div class="application-detail-card-container">
+    <md-card *ngIf="deploymentDetail.deploymentInstance">
+      <md-toolbar class="md-card-toolbar">
+        <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
+        <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
+        <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> 
+        <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
+        {{ deploymentDetail.deploymentInstance.applicationName }}
+        
+      </md-toolbar>
+      <md-card-content>
+        <md-list dense>
+          <!--Deployment meta-data-->
+          <md-list-item>
+            <h3 md-line>Reference</h3>
+            <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.reference }}</p>
+          </md-list-item>
+          <md-list-item>
+            <h3 md-line>State</h3>
+            <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
+          </md-list-item>
+          <md-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'">
+            <p md-line class="param-value">Waiting for provider data...</p>
+          </md-list-item>
+          <md-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED' || deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'">
+            <p md-line class="param-value">This deployment failed and there is nor provider data</p>
+          </md-list-item>
+          <md-list-item>
+            <h3 md-line *ngIf="deploymentDetail.deploymentInstance.providerId">Provider ID</h3>
+            <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.providerId }}</p>
+          </md-list-item>
+          <md-list-item *ngIf="deploymentDetail.deploymentInstance.accessIp">
+            <h3 md-line>Access IP</h3>
+            <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.accessIp }}</p>
+          </md-list-item>
+          <!--<md-list-item>
+            <h3 md-line>Deployment status</h3>
+            <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
+          </md-list-item>-->
+          <!--List attached volumes-->
+          <h3 md-header>Volumes</h3>
+          <md-divider></md-divider>
+          <p md-subheader *ngIf="deploymentDetail.deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
+          <md-list-item *ngFor="let attachedVolume of deploymentDetail.deploymentInstance.attachedVolumes">
+            <h3 md-line>{{ attachedVolume.name }}</h3>
+            <p md-line class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</p>
+          </md-list-item>
+          <!--List assigned inputs-->
+          <h3 md-header>Inputs</h3>
+          <md-divider></md-divider>
+          <p md-subheader *ngIf="deploymentDetail.deploymentInstance.assignedInputs.length==0">There are no assigned inputs for this deployment</p>
+          <md-list-item *ngFor="let assignedInput of deploymentDetail.deploymentInstance.assignedInputs">
+            <h3 md-line>{{ assignedInput.inputName }}</h3>
+            <p md-line class="param-value">{{ assignedInput.assignedValue }}</p>
+          </md-list-item>
+          <!--List generated outputs-->
+          <h3 md-header>Outputs</h3>
+          <md-divider></md-divider>
+          <p md-subheader *ngIf="deploymentDetail.deploymentInstance.generatedOutputs.length==0">There are no generated outputs for this deployment</p>
+          <md-list-item *ngFor="let generatedOutput of deploymentDetail.deploymentInstance.generatedOutputs">
+            <h3 md-line>{{ generatedOutput.outputName }}</h3>
+            <p md-line class="param-value">{{ generatedOutput.generatedValue }}</p>
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+
+      <md-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
+
+      <md-card-actions align="end" *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
+        <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-tooltip="Destroy deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentDetail.destroyDeployment(deploymentDetail.deploymentInstance)">
+          <md-icon class="card-action-icon">cloud_off</md-icon>
+        </button>
+        <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-tooltip="Delete deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentDetail.deleteDeployment(deploymentDetail.deploymentInstance)">
+          <md-icon class="card-action-icon">delete_forever</md-icon>
+        </button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</cp-deployment-component>

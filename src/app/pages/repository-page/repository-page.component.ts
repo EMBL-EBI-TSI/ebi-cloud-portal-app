@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
-import { ApplicationCloudProviderPipe } from './application-cloud-provider.pipe';
+import { ApplicationCloudProviderPipe } from 'ng2-cloud-portal-presentation-lib';
 
 @Component({
   selector: 'repository-page',

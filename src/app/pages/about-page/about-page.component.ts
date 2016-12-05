@@ -14,7 +14,7 @@ export class AboutPage {
   }
 
   ngOnInit() {
-    console.log('[AboutPage] hello *AboutPage* component');
+
   }
 
 }
