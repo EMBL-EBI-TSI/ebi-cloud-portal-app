@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 2.1.1 (Mac OS X 0.0.0)" package="" timestamp="2016-12-06T17:07:35" id="0" hostname="jdianes-m11l" tests="1" errors="0" failures="0" time="0.018">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
+  </properties>
+  <testcase name="App should have a url" time="0.018" classname="PhantomJS_2_1_1_(Mac_OS_X_0_0_0).App"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

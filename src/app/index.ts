@@ -23,7 +23,7 @@ if ('production' === process.env.ENV) {
   activeConfig = new ConfigService('https://dev.api.portal.tsi.ebi.ac.uk/', 'https://api.aap.tsi.ebi.ac.uk/');
 } else {
   //ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
-  activeConfig = new ConfigService('http://localhost:8080/');
+  activeConfig = new ConfigService('http://localhost:8080/', 'https://api.aap.tsi.ebi.ac.uk/');
 }
 
 // Application wide providers
