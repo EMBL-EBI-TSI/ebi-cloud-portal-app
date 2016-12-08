@@ -1,14 +1,14 @@
 [md-fab] {
   position: absolute;
-  right: 40px;
-  top: 70px;
+  right: 20px;
+  top: 215px;
   z-index: 2;
   background: var(--complementary-color);
 }
 [md-mini-fab] {
   position: absolute;
-  right: 40px;
-  top: 77px;
+  right: 20px;
+  top: 215px;
   z-index: 2;
   background: var(--complementary-color);
 }

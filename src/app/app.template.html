@@ -40,7 +40,8 @@
         <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
         <span class="ebi-header-link-container">
             <a class="ebi-header-link" *ngIf="credentialService.getUsername()" [routerLink]=" ['./profile'] ">
-                <md-icon class="ebi-header-link-icon" md-list-icon>face</md-icon>
+                <img class="ebi-header-avatar" *ngIf="loggedInAccount && loggedInAccount.avatarImageUrl" src="{{ loggedInAccount.avatarImageUrl }}"/>
+                <md-icon class="ebi-header-link-icon" *ngIf="!loggedInAccount || !loggedInAccount.avatarImageUrl" md-list-icon>face</md-icon>
                 <span md-line class="ebi-header-link-text">{{ credentialService.getUsername() }}</span>
             </a>
            
@@ -65,8 +66,10 @@
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
 
-    <router-outlet></router-outlet>
-
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+    
     <footer>
         <div>
             <img [src]="ebiLogoBlack">
