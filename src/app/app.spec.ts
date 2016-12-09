@@ -3,11 +3,13 @@ import {
   inject,
   it
 } from '@angular/core/testing';
-import { CredentialService } from 'ng2-cloud-portal-service-lib';
-import { TokenService } from 'ng2-cloud-portal-service-lib';
+import { TokenService, AccountService,
+  CredentialService, ConfigService } from 'ng2-cloud-portal-service-lib';
 import { Router, RouterConfig } from '@angular/router';
 import { RootCmp, createRoot, routerTestProviders, advance } from './pages/mocks/helper';
-
+import { provide } from '@angular/core';
+import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
 
 // Load the implementations that should be tested
 import { App } from './app.component';
@@ -21,6 +23,16 @@ describe('App', () => {
     App,
     CredentialService,
     TokenService,
+    AccountService,
+    provide(ConfigService, { useValue: new ConfigService('some_url/') }),
+    BaseRequestOptions,
+    MockBackend,
+    provide(Http, {
+        useFactory: function (backend, defaultOptions) {
+          return new Http(backend, defaultOptions);
+        },
+        deps: [MockBackend, BaseRequestOptions]
+      }),
     routerTestProviders(routerConfig)
   ]);
 
