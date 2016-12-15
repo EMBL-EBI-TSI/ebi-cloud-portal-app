@@ -3,6 +3,7 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
+import { AccountService, Account } from 'ng2-cloud-portal-service-lib';
 import { Router } from '@angular/router';
 import { TokenService } from 'ng2-cloud-portal-service-lib';
 
@@ -25,12 +26,23 @@ export class App {
     ebiUrl = 'http://www.ebi.ac.uk/';
     tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
     currentView = "Welcome";
+    loggedInAccount: Account;
 
     constructor(
         public tokenService: TokenService,
         public credentialService: CredentialService,
+        public accountService: AccountService,
         public router: Router) {
-
+        if (tokenService.getToken()) {
+            this.accountService.getAccount(
+                this.credentialService.getUsername(),
+                this.tokenService.getToken()
+            ).subscribe(
+                (account) => {
+                    this.loggedInAccount = account;
+                }
+            );
+        }
     }
 
     logOut() {
