@@ -35,7 +35,7 @@
         <p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>
         <md-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
           <h3 md-line>{{ aVolume }}</h3>
-          <select md-line (change)="attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
+          <select md-line (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
             <option value="null">None</option>
             <option *ngFor="let volumeInstance of applicationDetail.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</option>
           </select>
