@@ -48,7 +48,7 @@
         <md-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
           <md-input #{{anInput}} placeholder="{{ anInput }}" 
             (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
-            (blur)="applicationDetail.assignInput(applicationDeployer, anInput, $event.target.value)">
+            (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
             <!--<span md-prefix>[some other hint]</span>-->
             <!--<span md-suffix>[value type]</span>-->
             <!--<md-hint align="end">[some other hint]</md-hint>-->
