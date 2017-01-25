@@ -331,3 +331,9 @@ footer {
   border-width: 1px;
   border-color: var(--primary-color);
 }
+.logs-text-area {
+  width:100%; 
+  height: 200px; 
+  border: none; 
+  resize: none;
+}
