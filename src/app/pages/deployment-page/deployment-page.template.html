@@ -63,14 +63,14 @@
             <p md-line class="param-value">{{ generatedOutput.generatedValue }}</p>
           </md-list-item>
           <!--Logs-->
-          <h3 md-header>Logs
+          <h3 md-header>Deployment logs
             <button md-icon-button color="primary" (click)="logsShowing=!logsShowing">
               <md-icon>visibility</md-icon> 
             </button>
           </h3>
           <md-divider></md-divider>
-          <textarea class="logs-text-area" md-subheader *ngIf="logsShowing">
-            {{deploymentDetail.deploymentInstance.logs}}
+          <textarea style="color: rgb(249,249,249)" class="logs-text-area" md-subheader *ngIf="logsShowing">
+            {{ deploymentDetail.deploymentInstance.logs }}
           </textarea>
         </md-list>
       </md-card-content>
