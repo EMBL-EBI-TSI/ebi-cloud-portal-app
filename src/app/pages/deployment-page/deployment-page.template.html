@@ -69,7 +69,7 @@
             </button>
           </h3>
           <md-divider></md-divider>
-          <textarea style="width:100%; height: 200px; border: none; resize: none;" md-subheader *ngIf="logsShowing">
+          <textarea class="logs-text-area" md-subheader *ngIf="logsShowing">
             {{deploymentDetail.deploymentInstance.logs}}
           </textarea>
         </md-list>
