@@ -333,7 +333,7 @@ footer {
 }
 .logs-text-area {
   width: 100%;
-  min-height: 15em; 
+  min-height: 20em; 
   border: none; 
   resize: none;
   background: var(--dark-color);
