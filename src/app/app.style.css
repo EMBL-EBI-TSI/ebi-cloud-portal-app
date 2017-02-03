@@ -312,14 +312,29 @@ footer {
 }
 
 .hero {
-  position: relative;
-  left: 33%;
-  max-width: 33%;
+  margin: auto auto;
   margin-bottom: 1rem;
 }
-.hero-img {
-  max-width: 100%;
+.hero-message {
+    text-align: center;
+    margin-left: 37%;
+    max-width: 280px;
 }
+.hero-img {
+    margin-top: 2em;
+    margin-left: 37%;
+    max-width: 280px;
+}
+.hero-form {
+    margin-top: 2em;
+    margin-left: 37%;
+    max-width: 280px;
+}
+.intro-message {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 .inner-toolbar-checkbox {
   padding-left: 20px;
 }
@@ -335,3 +350,4 @@ footer {
   background: var(--dark-color);
   font-family: Courier New, Courier, monospace; 
 }
+

@@ -1,18 +1,19 @@
 <cp-login-component #loginComponent>
-    <img class="hero-img robby-form" [src]="robby">
-    <div class="hero login-form" *ngIf="tokenService.getToken()">
-      <h2>You are logged in as {{ credentialService.getUsername() }}</h2>
+    <img class="hero hero-img" [src]="robby">
+    <div class="hero hero-message" *ngIf="tokenService.getToken()">
+      <h3><em>You are logged in as {{ credentialService.getUsername() }}</em></h3>
     </div>
-
-    <div class="hero login-form" *ngIf="!tokenService.getToken()">
-      <h2>Login to EBI Cloud Portal</h2>
-      <h3>Enter your details below</h3>  
-      <form>
-        <md-input type="text" #username placeholder="Username"></md-input>
-        <md-input type="password" #password placeholder="Password"></md-input>
-      </form>
-      <button md-raised-button (click)="authenticate(username.value, password.value)">Sign In</button>
-      <a md-button href="{{ssoLink()}}" target="_blank">SSO</a>
+    <div  *ngIf="!tokenService.getToken()">
+      <div class="hero hero-message">
+        <h3><em>Please, enter your login details</em></h3>  
+      </div>
+      <div class="hero hero-form">
+        <form>
+          <md-input type="text" #username placeholder="Username"></md-input>
+          <md-input type="password" #password placeholder="Password"></md-input>
+        </form>
+        <button md-raised-button (click)="authenticate(username.value, password.value)">Sign In</button>
+        <a md-button href="{{ssoLink()}}" target="_blank">SSO</a>
+      </div>
     </div>
-
 </cp-login-component>

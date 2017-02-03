@@ -15,11 +15,11 @@
 
 	<md-tab-group #profileTabGroup>
 		<md-tab>
-				<template md-tab-label>Deployment profiles</template>
+				<template md-tab-label>Configurations</template>
 				<template md-tab-content>
 
 					<md-card *ngIf="!profileComponent.profilePresenters || profileComponent.profilePresenters.length==0">
-						No deployment profiles registered yet
+						No configurations registered yet
 					</md-card>
 
 					<button md-mini-fab (click)="profileComponent.addProfileFormShowing=!profileComponent.addProfileFormShowing">
@@ -27,7 +27,7 @@
 					</button>
 
 					<md-card *ngIf="profileComponent.addProfileFormShowing">
-						<md-card-title><h3>Add deployment Profile</h3></md-card-title>
+						<md-card-title><h3>Add configuration</h3></md-card-title>
 						<md-card-content>
 							<form [formGroup]="profileComponent.profileForm" autocomplete="off">
 								<md-input 
@@ -84,7 +84,7 @@
 								<md-card-content>
 									<md-list dense>
 										<md-list-item>
-											<h3 md-line>Cloud Credentials</h3>
+											<h3 md-line>Cloud provider parameters</h3>
 											<p md-line class="param-value">{{ profilePresenter.cloudCredentialsName }}</p>
 										</md-list-item>
 										<md-list-item>
@@ -107,11 +107,11 @@
 		</md-tab>
 
 		<md-tab>
-			<template md-tab-label>Credentials</template>
+			<template md-tab-label>Cloud Providers</template>
 			<template md-tab-content>
 
 				<md-card *ngIf="!profileComponent.cloudCredentialsPresenters || profileComponent.cloudCredentialsPresenters.length==0">
-					No credentials registered yet
+					No cloud providers registered yet
 				</md-card>
 
 				<button md-mini-fab (click)="profileComponent.addCloudCredentialsFormShowing=!profileComponent.addCloudCredentialsFormShowing">
