@@ -8,7 +8,7 @@
 
 html {
   height: 100%;
-  background: var(--light-color);
+  background: white;
 }
 
 body{
@@ -143,7 +143,7 @@ md-content{
   display: flex;
   flex-direction: column;
   /*height: 100%;*/
-  background: var(--light-color);
+  background: white;
 }
 
 .card-container {
@@ -324,12 +324,8 @@ footer {
   padding-left: 20px;
 }
 .profile-image {
-  border-radius: 100px;
   min-width: 200px;
   min-height: 200px;
-  border: solid;
-  border-width: 1px;
-  border-color: var(--primary-color);
 }
 .logs-text-area {
   width: 100%;

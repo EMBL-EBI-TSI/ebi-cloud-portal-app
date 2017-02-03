@@ -5,7 +5,8 @@ export * from './app.routes';
 import {provide, enableProdMode} from '@angular/core';
 
 import { ApplicationService, AccountService, CredentialService, ErrorService, ConfigService,
-  VolumeInstanceService, DeploymentService, TokenService } from 'ng2-cloud-portal-service-lib';
+  VolumeInstanceService, DeploymentService, TokenService,
+  CloudCredentialsService, ProfileService } from 'ng2-cloud-portal-service-lib';
 
 
 const ENV_PROVIDERS = [];
@@ -29,5 +30,7 @@ export const APP_PROVIDERS = [
   ApplicationService,
   AccountService,
   VolumeInstanceService,
-  DeploymentService
+  DeploymentService,
+  CloudCredentialsService,
+  ProfileService
 ];
