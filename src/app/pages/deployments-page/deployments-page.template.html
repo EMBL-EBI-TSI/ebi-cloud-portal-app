@@ -19,7 +19,7 @@
 					<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
 					{{ deploymentInstance.applicationName }}
 					<button md-icon-button color="primary" [routerLink]=" ['/deployments/', deploymentInstance.reference]">
-              <md-icon class="card-action-icon">visibility</md-icon> 
+              <md-icon>visibility</md-icon> 
 					</button>
 				</md-toolbar>
 				<md-card-content>

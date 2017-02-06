@@ -351,3 +351,6 @@ footer {
   font-family: Courier New, Courier, monospace; 
 }
 
+.toolbar-fill-remaining-space {
+  flex: 1 1 auto;
+}

@@ -6,7 +6,7 @@ import {provide, enableProdMode} from '@angular/core';
 
 import { ApplicationService, AccountService, CredentialService, ErrorService, ConfigService,
   VolumeInstanceService, DeploymentService, TokenService,
-  CloudCredentialsService, ProfileService } from 'ng2-cloud-portal-service-lib';
+  CloudProviderParametersService, ConfigurationService } from 'ng2-cloud-portal-service-lib';
 
 
 const ENV_PROVIDERS = [];
@@ -31,6 +31,6 @@ export const APP_PROVIDERS = [
   AccountService,
   VolumeInstanceService,
   DeploymentService,
-  CloudCredentialsService,
-  ProfileService
+  CloudProviderParametersService,
+  ConfigurationService
 ];

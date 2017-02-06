@@ -76,6 +76,7 @@
 						<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
 							<md-toolbar class="md-card-toolbar">
 								<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
+								<span class="toolbar-fill-remaining-space"></span>
 								<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
 									<md-icon class="card-action-icon">clear</md-icon> 
 								</button>

@@ -42,11 +42,12 @@
       <md-card *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
           <md-toolbar class="md-card-toolbar">
             <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
-            <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
-              <md-icon class="card-action-icon">clear</md-icon> 
-            </button>
+            <span class="toolbar-fill-remaining-space"></span>
+            <!--<button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
+              <md-icon>clear</md-icon> 
+            </button>-->
             <button md-icon-button color="primary" [routerLink]=" ['/repository/', applicationDeployer.name]">
-              <md-icon class="card-action-icon">visibility</md-icon> 
+              <md-icon>visibility</md-icon> 
             </button>
           </md-toolbar>
           <md-card-content>
