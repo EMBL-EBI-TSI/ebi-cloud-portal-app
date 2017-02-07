@@ -47,8 +47,9 @@
 							<!--<div *ngIf="!profileComponent.cloudProviderParametersForm.controls['cloudProvider'].valid" class="ui error message">Provider is invalid</div>-->
 							<div *ngIf="profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required')" class="ui error message">Provider is required</div>
 							
-							<div><button md-button (click)="profileComponent.addNewCloudProviderParametersFormField()">Add parameter</button></div>
-
+							<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewCloudProviderParametersFormField()">
+              <md-icon>add</md-icon> 
+            	</button></h3>
 							<!--Fields-->
 							<div *ngFor="let fieldFormGroup of profileComponent.cloudProviderParametersForm.controls['fields'].controls">
 								<form [formGroup]="fieldFormGroup">
@@ -147,8 +148,10 @@
 								</md-input>
 								<!--<div *ngIf="!profileComponent.configurationForm.controls['sshKey'].valid" class="ui error message">SSH Public Key is invalid</div>-->
 								<div *ngIf="profileComponent.configurationForm.controls['sshKey'].hasError('required')" class="ui error message">SSH Public Key is required</div>
-								<div><button md-button (click)="profileComponent.addNewConfigFormField()">Add parameter</button></div>
-
+								
+								<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewConfigFormField()">
+              	<md-icon>add</md-icon> 
+            		</button></h3>
 								<!--Fields-->
 								<div *ngFor="let fieldFormGroup of profileComponent.configurationForm.controls['fields'].controls">
 									<form [formGroup]="fieldFormGroup">
