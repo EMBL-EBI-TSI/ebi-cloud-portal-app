@@ -8,10 +8,10 @@
 
 html {
   height: 100%;
-  background: white;
+  background: var(--light-color);
 }
 
-body{
+body {
   min-height: 100%;
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -148,7 +148,8 @@ md-content{
   display: flex;
   flex-direction: column;
   /*height: 100%;*/
-  background: white;
+  /*background: white;*/
+    background: var(--light-color);
 }
 
 .card-container {
@@ -358,4 +359,8 @@ footer {
 
 .toolbar-fill-remaining-space {
   flex: 1 1 auto;
+}
+.background-card {
+  background: var(--light-color);
+  box-shadow: 0 0 0;
 }

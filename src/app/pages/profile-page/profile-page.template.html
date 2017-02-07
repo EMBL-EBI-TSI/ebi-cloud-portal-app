@@ -1,6 +1,6 @@
 <cp-profile-component #profileComponent>
 
-	<md-card *ngIf="profileComponent.account">
+	<md-card class="background-card" *ngIf="profileComponent.account">
 		<md-card-content>
 			<md-card-title-group>
 				<img class="profile-image" *ngIf="profileComponent.account.avatarImageUrl" md-card-sm-image src="{{ profileComponent.account.avatarImageUrl }}"/>
