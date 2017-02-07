@@ -94,7 +94,7 @@
 										<h3 md-line>Provider</h3>
 										<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
 									</md-list-item>
-									<h3 md-header>Fields</h3>
+									<h3 md-header>Parameters</h3>
 									<md-divider></md-divider>
 									<md-list-item *ngFor="let cloudProviderParametersField of cloudProviderParametersPresenter.fields">
 										<h3 md-line>{{ cloudProviderParametersField.key }}</h3>
@@ -199,7 +199,7 @@
 											<h3 md-line>SSH Public Key</h3>
 											<p md-line class="param-value">{{ configurationPresenter.sshKey }}</p>
 										</md-list-item>
-										<h3 md-header>Fields</h3>
+										<h3 md-header>Parameters</h3>
 										<md-divider></md-divider>
 										<md-list-item *ngFor="let configurationField of configurationPresenter.fields">
 											<h3 md-line>{{ configurationField.key }}</h3>
