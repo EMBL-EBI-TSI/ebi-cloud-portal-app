@@ -118,7 +118,12 @@ body{
 }
 
 .md-card-toolbar {
-  background: var(--secondary-color);
+  background: white;
+  color: var(--dark-color);
+}
+
+.md-detail-card-toolbar {
+  background: white;
   color: var(--dark-color);
 }
 

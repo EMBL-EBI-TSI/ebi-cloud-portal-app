@@ -1,7 +1,7 @@
 <cp-application-component #applicationDetail>
   <div class="application-detail-card-container">
   <md-card *ngIf="applicationDetail.applicationDeployer">
-    <md-toolbar class="md-card-toolbar">
+    <md-toolbar class="md-detail-card-toolbar">
       <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDetail.applicationDeployer.name }}
       <span class="toolbar-fill-remaining-space"></span>
       <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
@@ -9,8 +9,16 @@
       </button>
     </md-toolbar>
     <md-card-content>
-      <p>{{ applicationDetail.applicationDeployer.about }}</p>
+      
       <md-list dense>
+        <md-list-item>
+          <p>{{ applicationDetail.applicationDeployer.about }}</p>
+        </md-list-item>
+                <!--Application source-->
+        <md-list-item>
+          <h3 md-line>Source</h3>
+          <p md-line class="param-value"><a href="{{ applicationDetail.applicationDeployer.repoUri }}">{{ applicationDetail.applicationDeployer.repoUri }}</a></p>
+        </md-list-item>
         <md-list-item>
           <h3 md-line>Version</h3>
           <p md-line class="param-value">{{ applicationDetail.applicationDeployer.version }}</p>
@@ -19,15 +27,10 @@
           <h3 md-line>Contact</h3>
           <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
         </md-list-item>
-        <h3 md-header>Available for</h3>
-        <md-list-item *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-          <p md-line>{{ cloudProvider.cloudProvider }}</p>
-        </md-list-item>
-        <h3 md-header>Source</h3>
-        <!--Application source-->
         <md-list-item>
-          <h3 md-line>Source</h3>
-          <p md-line class="param-value"><a href="{{ applicationDetail.applicationDeployer.repoUri }}">{{ applicationDetail.applicationDeployer.repoUri }}</a></p>
+          <h3 md-line>Available for</h3>
+        <p md-line class="param-value" *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+          {{ cloudProvider.cloudProvider }}</p>
         </md-list-item>
         <!--Application required volumes-->
         <h3 md-header>Volumes</h3>
