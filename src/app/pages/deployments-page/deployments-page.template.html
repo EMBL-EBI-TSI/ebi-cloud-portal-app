@@ -6,7 +6,7 @@
     </md-toolbar>
 	<md-content *ngIf="deploymentsComponent.deploymentInstances">
 
-		<md-card *ngIf="deploymentsComponent.deploymentInstances.length==0">
+		<md-card class="background-card" *ngIf="deploymentsComponent.deploymentInstances.length==0">
 			No deployments for user {{ deploymentsComponent.credentialService.getUsername() }} yet
 		</md-card>
 

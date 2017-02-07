@@ -9,7 +9,7 @@
 			<template md-tab-label>Instances</template>
 			<template md-tab-content>
 				<md-content *ngIf="volumesComponent.volumeDeploymentInstances">
-					<md-card *ngIf="volumesComponent.volumeDeploymentInstances.length==0">No volume deployments for user {{ volumesComponent.credentialService.getUsername() }} yet</md-card>
+					<md-card class="background-card" *ngIf="volumesComponent.volumeDeploymentInstances.length==0">No volume deployments for user {{ volumesComponent.credentialService.getUsername() }} yet</md-card>
 
 					<div class="card-container volume-instance-card-container">
 						<md-card *ngFor="let volumeDeploymentInstance of volumesComponent.volumeDeploymentInstances">
@@ -70,7 +70,7 @@
 				</md-card>
 
 				<!--List setups-->
-				<md-card *ngIf="volumesComponent.volumeDeployers.length==0">No volume setups for user {{ volumesComponent.credentialService.getUsername() }} yet</md-card>
+				<md-card class="background-card" *ngIf="volumesComponent.volumeDeployers.length==0">No volume setups for user {{ volumesComponent.credentialService.getUsername() }} yet</md-card>
 				<md-content *ngIf="volumesComponent.volumeDeployers">
 					<div class="card-container volume-setup-card-container">
 						<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
