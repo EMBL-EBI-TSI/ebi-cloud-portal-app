@@ -59,7 +59,7 @@
 					</md-list-item>
 
 					<md-card-actions align="end">	
-						<button *ngIf="deploymentInstance.status != 'DESTROYED'" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
+						<button *ngIf="deploymentInstance.status != 'DESTROYED' && deploymentInstance.status != 'DESTROYING' && deploymentInstance.status != 'STARTING'" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
 							<md-icon class="card-action-icon">cloud_off</md-icon>
 						</button>
 						<button *ngIf="deploymentInstance.status == 'DESTROYED'" md-icon-button color="warn" (click)="deploymentsComponent.deleteDeployment(deploymentInstance)">
