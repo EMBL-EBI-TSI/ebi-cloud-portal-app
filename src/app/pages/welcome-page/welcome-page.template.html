@@ -1,9 +1,6 @@
-<div *ngIf="!tokenService.getToken()" class="welcome-container">
-  <about-page></about-page>
-</div>
-<div *ngIf="tokenService.getToken()" class="welcome-container">
-
-  <md-card (click)="goToDeployments()">
+<about-page *ngIf="!tokenService.getToken()"></about-page>
+<repository-page *ngIf="tokenService.getToken()"></repository-page>
+  <!--<md-card (click)="goToDeployments()">
     <md-card-title-group>
       <md-icon md-list-icon>cloud</md-icon>
       <md-card-title>My deployments</md-card-title>
@@ -25,5 +22,4 @@
       <md-card-title>Manage data volumes</md-card-title>
     </md-card-title-group>
     <md-card-contents>Manage data storage units</md-card-contents>
-  </md-card>
-</div>
+  </md-card>-->
