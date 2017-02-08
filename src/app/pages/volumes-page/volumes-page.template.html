@@ -16,7 +16,7 @@
 							<md-toolbar class="md-card-toolbar">
 								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
 								<!--<md-icon *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> -->
-								<md-progress-circle *ngIf="volumeDeploymentInstance.status == 'DESTROYING' || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-circle>
+								<md-progress-circle *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-circle>
 								<md-icon *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> {{ volumeDeploymentInstance.setupName }}
 							</md-toolbar>
 							<md-card-content>
@@ -24,6 +24,10 @@
 									<md-list-item>
 										<h3 md-line>Reference</h3>
 										<p md-line class="param-value">{{ volumeDeploymentInstance.reference }}</p>
+									</md-list-item>
+									<md-list-item>
+										<h3 md-line>State</h3>
+										<p md-line class="param-value">{{ volumeDeploymentInstance.status }}</p>
 									</md-list-item>
 									<!--<md-list-item>
 										<h3 md-line>Provider ID</h3>
