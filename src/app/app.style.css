@@ -220,23 +220,43 @@ md-content{
   right: 50px;
 }
 
-
+.credentials-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 .credentials-card-container md-card {
   width: 20em;
-	min-height: 30em;
   margin: 1em;
 }
 
+/*Volume setup card container*/
+.volume-setup-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 .volume-setup-card-container md-card {
   width: 20em;
 	min-height: 15em;
   margin: 1em;
 }
+.volume-setup-card-container md-card md-card-actions {
+  padding: 25px 0px 0px 10px;
+}
 
+/*Volume isntance card container*/
+.volume-instance-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 .volume-instance-card-container md-card {
   width: 20em;
-	min-height: 15em;
   margin: 1em;
+}
+.volume-instance-card-container md-card md-toolbar md-progress-circle {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  margin-right: 15px;
 }
 
 .card-container md-card md-card-content {
