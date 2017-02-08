@@ -16,19 +16,24 @@
     <md-icon>add</md-icon>
   </button>
 
-  <md-card *ngIf="repo.addApplicationFormShowing">
-    <md-card-title><h3>Add application</h3></md-card-title>
+  <md-card class="add-dialog-form" *ngIf="repo.addApplicationFormShowing">
+    <md-card-header>
+      <md-card-title><h2>Add new application</h2></md-card-title>
+    </md-card-header>
     <md-card-content>
       <form [formGroup]="repo.applicationForm" autocomplete="off">
-        <md-input type="url" placeholder="Repository URI" [formControl]="repo.applicationForm.controls['repoUri']" autofocus>
+        <md-input type="url" placeholder="Repository URI (required)" [formControl]="repo.applicationForm.controls['repoUri']" autofocus>
         </md-input>
-        <div *ngIf="!repo.applicationForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
-        <div *ngIf="repo.applicationForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>
       </form>
     </md-card-content>
-    <md-card-actions>
-      <button md-raised-button class="button-color-accent" (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false"
-        align="end">Add</button>
+    <md-card-actions align="end">
+      <button *ngIf="repo.applicationForm.controls['repoUri'].hasError('required') || !repo.applicationForm.controls['repoUri'].valid"
+      md-raised-button class="button-color-accent" disabled>
+      Add</button>
+      <button *ngIf="!repo.applicationForm.controls['repoUri'].hasError('required') && repo.applicationForm.controls['repoUri'].valid"
+      md-raised-button class="button-color-accent" 
+      (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false">
+      Add</button>
     </md-card-actions>
   </md-card>
 

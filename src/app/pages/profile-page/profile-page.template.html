@@ -26,27 +26,24 @@
 					<md-icon>add</md-icon>
 				</button>
 
-				<md-card *ngIf="profileComponent.addCloudProviderParametersFormShowing">
-					<md-card-title><h3>Add Cloud Provider parameters</h3></md-card-title>
+				<md-card class="add-dialog-form" *ngIf="profileComponent.addCloudProviderParametersFormShowing">
+					<md-card-header>
+						<md-card-title><h2>Add cloud provider</h2></md-card-title>
+					</md-card-header>
 					<md-card-content>
 						<form [formGroup]="profileComponent.cloudProviderParametersForm" autocomplete="off">
 							<md-input 
 								type="text" 
-								placeholder="Provider parameters name" 
+								placeholder="Provider parameters name (required)" 
 								[formControl]="profileComponent.cloudProviderParametersForm.controls['name']" 
 								autofocus>
 							</md-input>
-							<!--<div *ngIf="!profileComponent.cloudProviderParametersForm.controls['name'].valid" class="ui error message">Name is invalid</div>-->
-							<div *ngIf="profileComponent.cloudProviderParametersForm.controls['name'].hasError('required')" class="ui error message">Name is required</div>
 							<md-input 
 								type="text" 
-								placeholder="Cloud provider" 
+								placeholder="Cloud provider (required)" 
 								[formControl]="profileComponent.cloudProviderParametersForm.controls['cloudProvider']" 
 								autofocus>
 							</md-input>
-							<!--<div *ngIf="!profileComponent.cloudProviderParametersForm.controls['cloudProvider'].valid" class="ui error message">Provider is invalid</div>-->
-							<div *ngIf="profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required')" class="ui error message">Provider is required</div>
-							
 							<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewCloudProviderParametersFormField()">
               <md-icon>add</md-icon> 
             	</button></h3>
@@ -70,10 +67,14 @@
 							
 						</form>
 					</md-card-content>
-					<md-card-actions>
-						<button md-raised-button class="button-color-accent" 
-							(click)="profileComponent.addCloudProviderParameters(profileComponent.cloudProviderParametersForm.value); profileComponent.addCloudProviderParametersFormShowing = false"
-							align="end">Add</button>
+					<md-card-actions align="end">
+						<button *ngIf="profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required') || profileComponent.cloudProviderParametersForm.controls['name'].hasError('required')"
+							md-raised-button class="button-color-accent" disabled>
+							Add</button>
+						<button *ngIf="!profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required') && !profileComponent.cloudProviderParametersForm.controls['name'].hasError('required')"
+							md-raised-button class="button-color-accent" 
+							(click)="profileComponent.addCloudProviderParameters(profileComponent.cloudProviderParametersForm.value); profileComponent.addCloudProviderParametersFormShowing = false">
+							Add</button>
 					</md-card-actions>
 				</md-card>
 
@@ -119,34 +120,30 @@
 						<md-icon>add</md-icon>
 					</button>
 
-					<md-card *ngIf="profileComponent.addConfigurationFormShowing">
-						<md-card-title><h3>Add configuration</h3></md-card-title>
+					<md-card class="add-dialog-form" *ngIf="profileComponent.addConfigurationFormShowing">
+						<md-card-header>
+							<md-card-title><h2>Add configuration</h2></md-card-title>
+						</md-card-header>
 						<md-card-content>
 							<form [formGroup]="profileComponent.configurationForm" autocomplete="off">
 								<md-input 
 									type="text" 
-									placeholder="Configuration name" 
+									placeholder="Configuration name (required)" 
 									[formControl]="profileComponent.configurationForm.controls['name']" 
 									autofocus>
 								</md-input>
-								<!--<div *ngIf="!profileComponent.configurationForm.controls['name'].valid" class="ui error message">Name is invalid</div>-->
-								<div *ngIf="profileComponent.configurationForm.controls['name'].hasError('required')" class="ui error message">Name is required</div>
 								<md-input 
 									type="text" 
-									placeholder="Cloud provider parameters name" 
+									placeholder="Cloud provider parameters name (required)" 
 									[formControl]="profileComponent.configurationForm.controls['cloudProviderParametersName']" 
 									autofocus>
 								</md-input>
-								<!--<div *ngIf="!profileComponent.configurationForm.controls['cloudProviderParametersName'].valid" class="ui error message">Cloud provider parameters name is invalid</div>-->
-								<div *ngIf="profileComponent.configurationForm.controls['cloudProviderParametersName'].hasError('required')" class="ui error message">Cloud provider parameters name is required</div>
 								<md-input 
 									type="text" 
 									placeholder="SSH public key" 
 									[formControl]="profileComponent.configurationForm.controls['sshKey']" 
 									autofocus>
 								</md-input>
-								<!--<div *ngIf="!profileComponent.configurationForm.controls['sshKey'].valid" class="ui error message">SSH Public Key is invalid</div>-->
-								<div *ngIf="profileComponent.configurationForm.controls['sshKey'].hasError('required')" class="ui error message">SSH Public Key is required</div>
 								
 								<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewConfigFormField()">
               	<md-icon>add</md-icon> 
@@ -170,10 +167,14 @@
 								</div>
 							</form>
 						</md-card-content>
-						<md-card-actions>
-							<button md-raised-button class="button-color-accent" 
-								(click)="profileComponent.addConfiguration(profileComponent.configurationForm.value); profileComponent.addConfigurationFormShowing = false"
-								align="end">Add</button>
+						<md-card-actions align="end">
+							<button *ngIf="profileComponent.configurationForm.controls['name'].hasError('required') || profileComponent.configurationForm.controls['cloudProviderParametersName'].hasError('required')"
+							md-raised-button class="button-color-accent" disabled>
+							Add</button>
+							<button *ngIf="!profileComponent.configurationForm.controls['name'].hasError('required') && !profileComponent.configurationForm.controls['cloudProviderParametersName'].hasError('required')"
+							md-raised-button class="button-color-accent" 
+							(click)="profileComponent.addConfiguration(profileComponent.configurationForm.value); profileComponent.addConfigurationFormShowing = false">
+							Add</button>
 						</md-card-actions>
 					</md-card>
 

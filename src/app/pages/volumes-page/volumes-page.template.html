@@ -57,19 +57,24 @@
 			<template md-tab-label>Setups</template>
 			<template md-tab-content>
 				<!--Add setup form-->
-				<md-card *ngIf="volumesComponent.addVolumeSetupFormShowing">
-					<md-card-title><h3>Add volume setup</h3></md-card-title>
+				<md-card class="add-dialog-form" *ngIf="volumesComponent.addVolumeSetupFormShowing">
+					<md-card-header>
+						<md-card-title><h2>Add volume setup</h2></md-card-title>
+					</md-card-header>
 					<md-card-content>
 						<form [formGroup]="volumesComponent.volumeSetupForm" autocomplete="off">
-							<md-input type="url" placeholder="Repository URI" [formControl]="volumesComponent.volumeSetupForm.controls['repoUri']" autofocus>
+							<md-input type="url" placeholder="Repository URI (required)" [formControl]="volumesComponent.volumeSetupForm.controls['repoUri']" autofocus>
 							</md-input>
-							<div *ngIf="!volumesComponent.volumeSetupForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
-							<div *ngIf="volumesComponent.volumeSetupForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>
 						</form>
 					</md-card-content>
-					<md-card-actions>
-						<button md-raised-button class="button-color-accent" (click)="volumesComponent.addVolumeSetup(volumesComponent.volumeSetupForm.value); volumesComponent.addVolumeSetupFormShowing = false"
-							align="end">Add</button>
+					<md-card-actions align="end">
+						<button *ngIf="!volumesComponent.volumeSetupForm.controls['repoUri'].valid || volumesComponent.volumeSetupForm.controls['repoUri'].hasError('required')"
+						md-raised-button class="button-color-accent" disabled>
+						Add</button>
+						<button *ngIf="volumesComponent.volumeSetupForm.controls['repoUri'].valid && !volumesComponent.volumeSetupForm.controls['repoUri'].hasError('required')"
+						md-raised-button class="button-color-accent" 
+						(click)="volumesComponent.addVolumeSetup(volumesComponent.volumeSetupForm.value); volumesComponent.addVolumeSetupFormShowing = false">
+						Add</button>
 					</md-card-actions>
 				</md-card>
 

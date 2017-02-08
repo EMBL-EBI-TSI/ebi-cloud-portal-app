@@ -9,5 +9,4 @@ import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
 })
 export class ProfilePage {
   userUrl = 'assets/img/a_user.ico';
-
 }

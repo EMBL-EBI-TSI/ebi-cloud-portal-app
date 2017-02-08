@@ -11,6 +11,7 @@ import { ApplicationCloudProviderPipe } from 'ng2-cloud-portal-presentation-lib'
 })
 export class RepositoryPage {
 
+  robby = 'assets/img/Robby form@0.5x.png';
   cloudProviderFilters: string[] = ["AWS","GCP","OSTACK"];
   showAws: boolean = true;
   showOstack: boolean = true;

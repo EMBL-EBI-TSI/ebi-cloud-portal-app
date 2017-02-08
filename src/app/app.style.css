@@ -374,14 +374,15 @@ footer {
     max-width: 280px;
 }
 .hero-img {
-    margin-top: 2em;
-    margin-left: 37%;
-    max-width: 280px;
+  border-radius: 100%;
+  margin-top: 2em;
+  margin-left: 37%;
+  max-width: 280px;
 }
 .hero-form {
-    margin-top: 2em;
-    margin-left: 37%;
-    max-width: 280px;
+  margin-top: 2em;
+  margin-left: 37%;
+  max-width: 280px;
 }
 .intro-message {
   margin-left: 10%;
@@ -410,4 +411,9 @@ footer {
 .background-card {
   background: var(--light-color);
   box-shadow: 0 0 0;
+}
+
+.add-dialog-form md-card-header md-card-title h2 {
+  position: relative;
+  top: -0.5em;
 }
