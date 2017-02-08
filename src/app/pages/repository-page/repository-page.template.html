@@ -38,21 +38,17 @@
       No applications registered yet
     </md-card>
 
-    <div class="card-container application-card-container">
+    <div class="application-summary-card-container">
       <md-card *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
           <md-toolbar class="md-card-toolbar">
             <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
             <span class="toolbar-fill-remaining-space"></span>
-            <!--<button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
-              <md-icon>clear</md-icon> 
-            </button>-->
-            <button md-icon-button color="primary" [routerLink]=" ['/repository/', applicationDeployer.name]">
-              <md-icon>visibility</md-icon> 
-            </button>
           </md-toolbar>
           <md-card-content>
-            <p>{{ applicationDeployer.about }}</p>
             <md-list dense>
+              <md-list-item>
+                <p>{{ applicationDeployer.about }}</p>
+              </md-list-item>
               <md-list-item>
                 <h3 md-line>Version</h3>
                 <p md-line class="param-value">{{ applicationDeployer.version }}</p>
@@ -61,12 +57,17 @@
                 <h3 md-line>Contact</h3>
                 <p md-line class="param-value">{{ applicationDeployer.contact }}</p>
               </md-list-item>
-              <h3 md-header>Available for</h3>
+              <!--<h3 md-header>Available for</h3>
               <md-list-item *ngFor="let cloudProvider of applicationDeployer.cloudProviders">
                 <p md-line>{{ cloudProvider.cloudProvider }}</p>
-              </md-list-item>
+              </md-list-item>-->
             </md-list>
           </md-card-content>
+          <md-card-actions>
+            <button md-button [routerLink]=" ['/repository/', applicationDeployer.name]">
+              DETAILS
+            </button>
+          </md-card-actions>
         </md-card>
     </div> <!-- card-container -->
   </md-content>

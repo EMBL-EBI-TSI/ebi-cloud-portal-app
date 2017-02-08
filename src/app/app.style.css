@@ -152,37 +152,74 @@ md-content{
     background: var(--light-color);
 }
 
-.card-container {
-  display: flex;
-  flex-flow: row wrap;
-}
 
 .secondary {
   color: rgba(0,0,0,0.54);
 }
 
-.card-container md-card {
+/*Application summary card container*/
+.application-summary-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.application-summary-card-container md-card {
   box-sizing: border-box;
-  /*background: var(--light-color);*/
-  padding: 0px;
-}
-
-.application-card-container md-card {
-  width: 20em;
-	min-height: 40em;
+  width: 25em;
+	min-height: 20em;
   margin: 1em;
 }
-
-.application-detail-card-container {
-  margin: 1em;
-  /*margin-bottom: 3em;*/
+.application-summary-card-container md-card md-card-actions {
+  padding: 0px 10px 0px 16px;
 }
 
-.deployment-card-container md-card {
-  width: 20em;
-	min-height: 40em;
+/* In detail card container*/
+.detail-card-container {
   margin: 1em;
 }
+.detail-card-container md-card {
+  padding-bottom: 2em;
+}
+.detail-card-container md-card md-card-actions {
+  padding: 25px 0px 0px 10px;
+  margin-bottom: 2em;
+}
+
+/*Deployment summary card container*/
+.deployment-summary-card-container md-card {
+  margin: 1em;
+}
+.deployment-summary-card-container md-card md-card-content {
+  padding-top: 1em;
+  padding-left: 1em;
+	display: flex;
+  flex-flow: row wrap;
+}
+.deployment-summary-card-container md-card md-card-content md-list-item {
+	margin-right: 25px;
+  position: relative;
+  top: -20px;
+}
+.deployment-summary-card-container md-card md-card-content h2 {
+	margin-right: 35px;
+}
+.deployment-summary-card-container md-card md-card-content .card-type-icon {
+	top: 15px;
+  margin-right: 10px;
+}
+.deployment-summary-card-container md-card md-card-content md-progress-circle {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  top: 20px;
+  margin-right: 15px;
+  margin-left: 5px;
+}
+.deployment-summary-card-container md-card md-card-content md-card-actions {
+	position: absolute;
+  top: 40px;
+  right: 50px;
+}
+
 
 .credentials-card-container md-card {
   width: 20em;
@@ -204,16 +241,6 @@ md-content{
 
 .card-container md-card md-card-content {
   padding: 16px;
-}
-
-.card-container md-card md-card-actions {
-  position: relative;
-  top: -20px;
-  padding: 0px 30px 0px 0px;
-}
-
-.card-container md-card md-card-actions button {
-  top: -7px;
 }
 
 .card-container md-card md-toolbar button {
