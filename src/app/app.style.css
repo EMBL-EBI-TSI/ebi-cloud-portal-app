@@ -402,6 +402,7 @@ footer {
   max-width: 280px;
 }
 
+
 .inner-toolbar-checkbox {
   padding-left: 20px;
 }
@@ -418,7 +419,7 @@ footer {
   font-family: Courier New, Courier, monospace; 
 }
 
-.toolbar-fill-remaining-space {
+.fill-remaining-space {
   flex: 1 1 auto;
 }
 .background-card {

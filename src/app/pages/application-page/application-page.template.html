@@ -3,9 +3,12 @@
   <md-card *ngIf="applicationDetail.applicationDeployer">
     <md-toolbar class="md-detail-card-toolbar">
       <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDetail.applicationDeployer.name }}
-      <span class="toolbar-fill-remaining-space"></span>
+      <span class="fill-remaining-space"></span>
+      <button md-icon-button>
+        <md-icon>share</md-icon> 
+      </button>
       <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
-        <md-icon>clear</md-icon> 
+        <md-icon>delete</md-icon> 
       </button>
     </md-toolbar>
     <md-card-content>
