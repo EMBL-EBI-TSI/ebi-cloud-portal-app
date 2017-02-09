@@ -1,18 +1,79 @@
 <md-content class="intro-message">
-		<h1>One portal to rule them all...</h1>
-		<p>
-			<em>The task is, not so much to see what no one has yet seen; but to
-			think what nobody has yet thought, about that which everybody sees.</em>
-		</p>
-		<p>
-			--Erwin Schrödinger
-		</p>
-		<p>
-			Nullam nec ex lorem. Quisque vel est sem. Etiam eu pharetra ipsum. In iaculis libero at libero placerat, a pulvinar erat
-			consequat. Vivamus ac ante nec ex egestas volutpat. Praesent malesuada magna in leo tincidunt, placerat mattis lorem
-			aliquam. Proin vitae fringilla elit, sit amet auctor quam. Donec eget viverra velit. In pellentesque mollis velit, quis
-			finibus sem porta ut. Maecenas blandit ipsum vitae dapibus cursus.
-		</p>
+	<div class="flex-container">
+		<span>
+			<h1>EMBL-EBI Cloud Portal</h1>
+			<p>The EMBL-EBI Cloud Portal has been developed by the 
+				<a href="https://www.ebi.ac.uk/about/people/steven-newhouse">Technology and Science Integration 
+				</a> team at EMBL-EBI	to simplify the experience for researchers when running their workloads 
+				across different cloud providers.
+			</p>
+			<p>
+					The portal enables cloud providers and research teams to package and share their key 
+			applications and environments with their respective users. That way, these key applications 
+			can be deployed on demand onto the cloud providers the user is able to access.
+			</p>
+		</span>
+		<span>
+			<img style="height: 16em; margin-top: 3em;" [src]="ebiLogoOnly">
+		</span>
+	</div>
+	<div class="flex-container">
+		<span>
+			<img style="height: 14em;" [src]="elixirLogo">
+		</span>
+		<span>
+			<h3>How to access to the EMBL-EBI Cloud Portal?</h3>
+			<p>The EMBL-EBI Cloud Portal is offered as a service to ELIXIR and other communities. Users 
+				will need a freely available <a href="https://www.elixir-europe.org/services/compute/aai">ELIXIR identity</a>
+				to access the portal.
+			</p>
+			<p>
+				Obtain your ELIXIR identity <a href="https://www.elixir-europe.org/register">here</a>.
+			</p>
+		</span>
 
+	</div>
+	<div class="flex-container">
+		<span>
+			<h3>How to use the EMBL-EBI Cloud Portal?</h3>
+			<p>
+				Access to the portal does not provide access to any cloud providers but is compatible with the 
+				work within the <a href="https://www.elixir-europe.org/services/compute">ELIXIR Compute Platform</a>.
+				Users will need to provide their own credentials to access 
+				cloud providers such as OpenStack, Google Compute Engine or Amazon Web Services.
+			</p>
+			<p>
+				Research groups can use the portal to share appliances and cloud credentials within their teams 
+				through the portal if they desire.
+			</p>
+		</span>
+		<span>
+			<img style="height: 10em; margin-top: 2em;" [src]="cloudsLogo">
+		</span>
+	</div>
+	<div class="flex-container">
+		<span>
+			<h3>Further questions?</h3>
+			<p>
+				Further information on the design and documentation on how to use and contribute appliances to 
+				the portal is available. Any questions around the EMBL-EBI Cloud Portal and its use can be sent 
+				to <em>tsi[at]ebi.ac.uk</em>. 
+			</p>
+			</span>
+		<span>
+			<h3>Acknowledgements</h3>
+			<p>
+				The portal has been developed under funding provided by the following projects and 
+				organisations:</p>
+				<ul>
+					<li><p><a href="http://www.ebi.ac.uk/">EMBL-EBI</a> (European Molecular Biology 
+					Laboratory - European Bioinformatics Institute).</p></li>
+					<li><p>Cancer Research UK funding to develop infrastructure to support 
+						the PanCancer collaboration.</p></li>
+					<li><p>EC funded <a href="http://bioexcel.eu/">BioExcel</a> project.</p></li>
+					<li><p>EC funded <a href="http://phenomenal-h2020.eu/home/">PhenomMeNal</a> project.</p></li>
+				</ul>
+		</span>
+	</div>
 </md-content>
-<img class="hero-img" [src]="ebiLogoLarge">
+
