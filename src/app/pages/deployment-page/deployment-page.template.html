@@ -6,7 +6,7 @@
         <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
         <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> 
         <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
-        {{ deploymentDetail.deploymentInstance.applicationName }}
+        <h3>{{ deploymentDetail.deploymentInstance.applicationName }}</h3>
         
       </md-toolbar>
       <md-card-content>

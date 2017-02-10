@@ -46,8 +46,8 @@
     <div class="application-summary-card-container">
       <md-card *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
           <md-toolbar class="md-card-toolbar">
-            <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
-            <span class="toolbar-fill-remaining-space"></span>
+            <h3>{{ applicationDeployer.name }}</h3>
+            <!--<span class="toolbar-fill-remaining-space"></span>-->
           </md-toolbar>
           <md-card-content>
             <md-list dense>
@@ -66,7 +66,7 @@
           </md-card-content>
           <md-card-actions>
             <button md-button [routerLink]=" ['/repository/', applicationDeployer.name]">
-              DETAILS
+              DEPLOY
             </button>
           </md-card-actions>
         </md-card>

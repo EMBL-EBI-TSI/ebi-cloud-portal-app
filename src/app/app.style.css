@@ -354,6 +354,13 @@ p {
   margin: 0em 1em 2em 1em;
 }
 
+.flex-container-wide {
+  display: flex;
+  /*flex-flow: row grow;*/
+  justify-content: space-between;
+}
+
+
 footer {
   height: 60px !important;
   width: 100%;
@@ -402,6 +409,12 @@ footer {
   max-width: 280px;
 }
 
+.thin-bottom-border {
+  border-bottom-style: solid; 
+  border-bottom-width: 1px;
+  border-color: var(--secondary-color);
+  margin-bottom: 1em;
+}
 
 .inner-toolbar-checkbox {
   padding-left: 20px;
@@ -430,4 +443,8 @@ footer {
 .add-dialog-form md-card-header md-card-title h2 {
   position: relative;
   top: -0.5em;
+}
+
+.share-application-dialog {
+  border-style: none;
 }

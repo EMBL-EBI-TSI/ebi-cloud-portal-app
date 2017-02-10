@@ -13,7 +13,7 @@
 		<div class="deployment-summary-card-container">
 			<md-card *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
 				<md-card-content>
-					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
+					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</md-icon> 
 					<md-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
 					<!--<md-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> -->
 					<md-progress-circle *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-circle>
