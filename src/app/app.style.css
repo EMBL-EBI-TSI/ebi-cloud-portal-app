@@ -183,6 +183,13 @@ md-content{
   padding: 25px 0px 0px 10px;
   margin-bottom: 2em;
 }
+.detail-card-container md-card .card-type-icon {
+  margin-right: 10px;
+}
+.detail-card-container md-card md-toolbar p {
+  padding-top: 15px;
+  margin-left: 10px;
+}
 
 /*Deployment summary card container*/
 .deployment-summary-card-container md-card {

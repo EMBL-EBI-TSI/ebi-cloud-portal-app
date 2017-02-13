@@ -6,16 +6,18 @@
         <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
         <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> 
         <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
-        <h3>{{ deploymentDetail.deploymentInstance.applicationName }}</h3>
-        
+        <span class="flex-container-wide">
+          <h3>{{ deploymentDetail.deploymentInstance.applicationName }}</h3>
+          <p>{{ deploymentDetail.deploymentInstance.reference }}</p>
+        </span>
       </md-toolbar>
       <md-card-content>
         <md-list dense>
           <!--Deployment meta-data-->
-          <md-list-item>
+          <!--<md-list-item>
             <h3 md-line>Reference</h3>
             <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.reference }}</p>
-          </md-list-item>
+          </md-list-item>-->
           <md-list-item>
             <h3 md-line>State</h3>
             <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
@@ -34,6 +36,8 @@
             <h3 md-line>Access IP</h3>
             <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.accessIp }}</p>
           </md-list-item>
+        </md-list>
+        <md-list dense>
           <!--<md-list-item>
             <h3 md-line>Deployment status</h3>
             <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
