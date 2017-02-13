@@ -84,9 +84,9 @@
 						<md-card *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters" class="credentials-container">
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
-								<span class="toolbar-fill-remaining-space"></span>
+								<span class="fill-remaining-space"></span>
 								<button md-icon-button color="warn" (click)="profileComponent.removeCloudProviderParameters(cloudProviderParametersPresenter)">
-									<md-icon>clear</md-icon> 
+									<md-icon>delete_forever</md-icon> 
 								</button>
 								</md-toolbar>
 							<md-card-content>
@@ -184,9 +184,9 @@
 							<md-card *ngFor="let configurationPresenter of profileComponent.configurationPresenters" class="credentials-container">
 								<md-toolbar class="summary-card-toolbar">
 									<md-icon class="card-type-icon">settings_applications</md-icon><h3>{{ configurationPresenter.name }}</h3>
-									<span class="toolbar-fill-remaining-space"></span>
+									<span class="fill-remaining-space"></span>
 									<button md-icon-button color="warn" (click)="profileComponent.removeConfiguration(configurationPresenter)">
-										<md-icon>clear</md-icon> 
+										<md-icon>delete_forever</md-icon> 
 									</button>
 									</md-toolbar>
 								<md-card-content>
