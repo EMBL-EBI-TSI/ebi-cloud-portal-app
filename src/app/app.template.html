@@ -42,7 +42,7 @@
             <a class="ebi-header-link" *ngIf="credentialService.getUsername()" [routerLink]=" ['./profile'] ">
                 <img class="ebi-header-avatar" *ngIf="loggedInAccount && loggedInAccount.avatarImageUrl" src="{{ loggedInAccount.avatarImageUrl }}"/>
                 <md-icon class="ebi-header-link-icon" *ngIf="!loggedInAccount || !loggedInAccount.avatarImageUrl" md-list-icon>face</md-icon>
-                <span md-line class="ebi-header-link-text">{{ credentialService.getUsername() }} @ OS jdianes</span>
+                <span md-line class="ebi-header-link-text">{{ credentialService.getUsername() }} @ [Select Provider]</span>
             </a>
            
             <a class="ebi-header-link-last" *ngIf="credentialService.getUsername()" (click)="logOut()">
