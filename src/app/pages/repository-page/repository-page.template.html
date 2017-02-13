@@ -44,7 +44,7 @@
     </md-card>
 
     <div class="application-summary-card-container">
-      <md-card *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
+      <md-card [routerLink]=" ['/repository/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
           <md-toolbar class="md-card-toolbar">
             <h3>{{ applicationDeployer.name }}</h3>
             <!--<span class="toolbar-fill-remaining-space"></span>-->
@@ -64,11 +64,11 @@
               </md-list-item>-->
             </md-list>
           </md-card-content>
-          <md-card-actions>
+          <!--<md-card-actions>
             <button md-button [routerLink]=" ['/repository/', applicationDeployer.name]">
               DEPLOY
             </button>
-          </md-card-actions>
+          </md-card-actions>-->
         </md-card>
     </div> <!-- card-container -->
   </md-content>

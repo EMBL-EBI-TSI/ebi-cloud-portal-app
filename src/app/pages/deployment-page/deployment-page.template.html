@@ -10,6 +10,13 @@
           <h3>{{ deploymentDetail.deploymentInstance.applicationName }}</h3>
           <p>{{ deploymentDetail.deploymentInstance.reference }}</p>
         </span>
+        <span class="fill-remaining-space"></span>
+        <button md-icon-button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" color="warn" (click)="deploymentDetail.deleteDeployment(deploymentDetail.deploymentInstance)">
+          <md-icon class="card-action-icon">delete_forever</md-icon>
+        </button>
+        <button md-icon-button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" disabled>
+          <md-icon class="card-action-icon">delete_forever</md-icon>
+        </button>
       </md-toolbar>
       <md-card-content>
         <md-list dense>
@@ -81,12 +88,12 @@
 
       <md-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
 
-      <md-card-actions align="end" *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
-        <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-tooltip="Destroy deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentDetail.destroyDeployment(deploymentDetail.deploymentInstance)">
-          <md-icon class="card-action-icon">cloud_off</md-icon>
+      <md-card-actions *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
+        <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-button (click)="deploymentDetail.destroyDeployment(deploymentDetail.deploymentInstance)">
+          DESTROY
         </button>
-        <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-tooltip="Delete deployment" tooltip-position="below" md-icon-button color="warn" (click)="deploymentDetail.deleteDeployment(deploymentDetail.deploymentInstance)">
-          <md-icon class="card-action-icon">delete_forever</md-icon>
+        <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-button disabled>
+          DESTROY
         </button>
       </md-card-actions>
     </md-card>

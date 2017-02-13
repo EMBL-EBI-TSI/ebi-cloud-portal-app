@@ -11,7 +11,7 @@
 		</md-card>
 
 		<div class="deployment-summary-card-container">
-			<md-card *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
+			<md-card [routerLink]=" ['/deployments/', deploymentInstance.reference]" *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
 				<md-card-content>
 					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</md-icon> 
 					<md-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
@@ -58,7 +58,7 @@
 						<h3 md-line class="param-value">{{ generatedOutput.generatedValue }}</h3>
 					</md-list-item>
 
-					<md-card-actions align="end">	
+					<!--<md-card-actions align="end">	
 						<button *ngIf="deploymentInstance.status != 'DESTROYED' && deploymentInstance.status != 'DESTROYING' && deploymentInstance.status != 'STARTING'" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
 							<md-icon class="card-action-icon">cloud_off</md-icon>
 						</button>
@@ -68,7 +68,7 @@
 						<button md-icon-button color="primary" [routerLink]=" ['/deployments/', deploymentInstance.reference]">
 								<md-icon>visibility</md-icon> 
 						</button>
-					</md-card-actions>
+					</md-card-actions>-->
 				</md-card-content>
 			</md-card>
 		</div>
