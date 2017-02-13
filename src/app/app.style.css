@@ -117,16 +117,6 @@ body {
   bottom: 10px;
 }
 
-.md-card-toolbar {
-  background: white;
-  color: var(--dark-color);
-}
-
-.md-detail-card-toolbar {
-  background: white;
-  color: var(--dark-color);
-}
-
 button.active{
   background: #fff;
   color: #009688;
@@ -155,6 +145,11 @@ md-content{
 
 .secondary {
   color: rgba(0,0,0,0.54);
+}
+
+.summary-card-toolbar {
+  background: white;
+  color: var(--dark-color);
 }
 
 /*Application summary card container*/
@@ -189,6 +184,10 @@ md-content{
 .detail-card-container md-card md-toolbar p {
   padding-top: 15px;
   margin-left: 10px;
+}
+.detail-card-toolbar {
+  background: white;
+  color: var(--dark-color);
 }
 
 /*Deployment summary card container*/

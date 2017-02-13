@@ -45,7 +45,7 @@
 
     <div class="application-summary-card-container">
       <md-card [routerLink]=" ['/repository/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
-          <md-toolbar class="md-card-toolbar">
+          <md-toolbar class="summary-card-toolbar">
             <h3>{{ applicationDeployer.name }}</h3>
             <!--<span class="toolbar-fill-remaining-space"></span>-->
           </md-toolbar>

@@ -13,7 +13,7 @@
 
 					<div class="volume-instance-card-container">
 						<md-card *ngFor="let volumeDeploymentInstance of volumesComponent.volumeDeploymentInstances">
-							<md-toolbar class="md-card-toolbar">
+							<md-toolbar class="summary-card-toolbar">
 								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
 								<!--<md-icon *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> -->
 								<md-progress-circle *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-circle>
@@ -83,7 +83,7 @@
 				<md-content *ngIf="volumesComponent.volumeDeployers">
 					<div class="card-container volume-setup-card-container">
 						<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
-							<md-toolbar class="md-card-toolbar">
+							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
 								<span class="toolbar-fill-remaining-space"></span>
 								<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
