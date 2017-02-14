@@ -89,10 +89,10 @@
       <md-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-bar>
 
       <md-card-actions *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
-        <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-button (click)="deploymentDetail.destroyDeployment(deploymentDetail.deploymentInstance)">
+        <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-raised-button (click)="deploymentDetail.destroyDeployment(deploymentDetail.deploymentInstance)">
           DESTROY
         </button>
-        <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-button disabled>
+        <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-raised-button disabled>
           DESTROY
         </button>
       </md-card-actions>

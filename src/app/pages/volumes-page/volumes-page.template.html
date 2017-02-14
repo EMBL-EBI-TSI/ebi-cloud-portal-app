@@ -70,11 +70,11 @@
 					<md-card-actions align="end">
 						<button *ngIf="!volumesComponent.volumeSetupForm.controls['repoUri'].valid || volumesComponent.volumeSetupForm.controls['repoUri'].hasError('required')"
 						md-raised-button class="button-color-accent" disabled>
-						Add</button>
+						REGISTER</button>
 						<button *ngIf="volumesComponent.volumeSetupForm.controls['repoUri'].valid && !volumesComponent.volumeSetupForm.controls['repoUri'].hasError('required')"
 						md-raised-button class="button-color-accent" 
 						(click)="volumesComponent.addVolumeSetup(volumesComponent.volumeSetupForm.value); volumesComponent.addVolumeSetupFormShowing = false">
-						Add</button>
+						REGISTER</button>
 					</md-card-actions>
 				</md-card>
 

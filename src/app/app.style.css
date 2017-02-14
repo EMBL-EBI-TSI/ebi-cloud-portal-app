@@ -178,6 +178,9 @@ md-content{
   padding: 25px 0px 0px 10px;
   margin-bottom: 2em;
 }
+.detail-card-container md-card md-card-actions md-radio-group {
+  margin-left: 20px;
+}
 .detail-card-container md-card .card-type-icon {
   margin-right: 10px;
 }

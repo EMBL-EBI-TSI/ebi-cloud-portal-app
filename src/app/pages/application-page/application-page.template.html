@@ -135,10 +135,10 @@
     
     <!--These are the action controls-->
     <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
-      <button *ngIf="applicationDetail.applicationDeployer.selectedCloudProvider" md-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
+      <button *ngIf="applicationDetail.applicationDeployer.selectedCloudProvider" md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
           DEPLOY
       </button>
-      <button *ngIf="!applicationDetail.applicationDeployer.selectedCloudProvider" md-button disabled>
+      <button *ngIf="!applicationDetail.applicationDeployer.selectedCloudProvider" md-raised-button disabled>
           DEPLOY
       </button>
       <md-radio-group [(ngModel)]="applicationDetail.applicationDeployer.selectedCloudProvider">

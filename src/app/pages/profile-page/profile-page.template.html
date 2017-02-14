@@ -70,11 +70,11 @@
 					<md-card-actions align="end">
 						<button *ngIf="profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required') || profileComponent.cloudProviderParametersForm.controls['name'].hasError('required')"
 							md-raised-button class="button-color-accent" disabled>
-							Add</button>
+							SAVE</button>
 						<button *ngIf="!profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required') && !profileComponent.cloudProviderParametersForm.controls['name'].hasError('required')"
 							md-raised-button class="button-color-accent" 
 							(click)="profileComponent.addCloudProviderParameters(profileComponent.cloudProviderParametersForm.value); profileComponent.addCloudProviderParametersFormShowing = false">
-							Add</button>
+							SAVE</button>
 					</md-card-actions>
 				</md-card>
 
@@ -88,6 +88,29 @@
 								<button md-icon-button color="warn" (click)="profileComponent.removeCloudProviderParameters(cloudProviderParametersPresenter)">
 									<md-icon>delete_forever</md-icon> 
 								</button>
+								</md-toolbar>
+							<md-card-content>
+								<md-list dense>
+									<md-list-item>
+										<h3 md-line>Provider</h3>
+										<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
+									</md-list-item>
+									<h3 md-header>Parameters</h3>
+									<md-divider></md-divider>
+									<md-list-item *ngFor="let cloudProviderParametersField of cloudProviderParametersPresenter.fields">
+										<h3 md-line>{{ cloudProviderParametersField.key }}</h3>
+										<p md-line class="param-value">{{ cloudProviderParametersField.value }}</p>
+									</md-list-item>
+								</md-list>
+							</md-card-content>
+						</md-card>
+					</div>
+					<div class="credentials-card-container">
+						<md-card *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters" class="credentials-container">
+							<md-toolbar class="summary-card-toolbar">
+								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
+								<span class="fill-remaining-space"></span>
+								<p>SHARED</p>
 								</md-toolbar>
 							<md-card-content>
 								<md-list dense>
@@ -170,11 +193,11 @@
 						<md-card-actions align="end">
 							<button *ngIf="profileComponent.configurationForm.controls['name'].hasError('required') || profileComponent.configurationForm.controls['cloudProviderParametersName'].hasError('required')"
 							md-raised-button class="button-color-accent" disabled>
-							Add</button>
+							SAVE</button>
 							<button *ngIf="!profileComponent.configurationForm.controls['name'].hasError('required') && !profileComponent.configurationForm.controls['cloudProviderParametersName'].hasError('required')"
 							md-raised-button class="button-color-accent" 
 							(click)="profileComponent.addConfiguration(profileComponent.configurationForm.value); profileComponent.addConfigurationFormShowing = false">
-							Add</button>
+							SAVE</button>
 						</md-card-actions>
 					</md-card>
 
@@ -188,7 +211,7 @@
 									<button md-icon-button color="warn" (click)="profileComponent.removeConfiguration(configurationPresenter)">
 										<md-icon>delete_forever</md-icon> 
 									</button>
-									</md-toolbar>
+								</md-toolbar>
 								<md-card-content>
 									<md-list dense>
 										<md-list-item>

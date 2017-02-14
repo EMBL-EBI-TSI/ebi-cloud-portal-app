@@ -29,11 +29,11 @@
     <md-card-actions align="end">
       <button *ngIf="repo.applicationForm.controls['repoUri'].hasError('required') || !repo.applicationForm.controls['repoUri'].valid"
       md-raised-button class="button-color-accent" disabled>
-      Add</button>
+      REGISTER</button>
       <button *ngIf="!repo.applicationForm.controls['repoUri'].hasError('required') && repo.applicationForm.controls['repoUri'].valid"
       md-raised-button class="button-color-accent" 
       (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false">
-      Add</button>
+      REGISTER</button>
     </md-card-actions>
   </md-card>
 
