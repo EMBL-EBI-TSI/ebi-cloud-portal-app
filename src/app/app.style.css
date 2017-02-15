@@ -457,3 +457,15 @@ footer {
 .share-application-dialog {
   border-style: none;
 }
+.share-credentials-dialog {
+  display: flex;
+  flex-flow: row grow;
+}
+.share-credentials-dialog form {
+  flex-grow: 2;
+}
+.share-credentials-dialog button {
+  margin-left: 10px;
+  margin-top: 10px;
+  max-height: 3em;
+}

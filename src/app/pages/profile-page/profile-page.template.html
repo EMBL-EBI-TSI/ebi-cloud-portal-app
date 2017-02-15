@@ -85,7 +85,7 @@
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
 								<span class="fill-remaining-space"></span>
-								<button md-icon-button>
+								<button md-icon-button (click)="profileComponent.shareCloudProviderParametersDialogShowing=!profileComponent.shareCloudProviderParametersDialogShowing">
 									<md-icon>share</md-icon> 
 								</button>
 								<button md-icon-button color="warn" (click)="profileComponent.removeCloudProviderParameters(cloudProviderParametersPresenter)">
@@ -93,6 +93,16 @@
 								</button>
 								</md-toolbar>
 							<md-card-content>
+								<span class="share-credentials-dialog" *ngIf="profileComponent.shareCloudProviderParametersDialogShowing" open>
+									<form #shareProviderForm >
+										<md-input type="email" placeholder="Share email (required)" [(ngModel)]="userEmail" name="userEmail" autofocus>
+										</md-input>
+									</form>
+									<!--<span class="fill-remaining-space"></span>-->
+									<button md-raised-button (click)="profileComponent.shareCloudProviderParameters(cloudProviderParametersPresenter, userEmail); profileComponent.shareCloudProviderParametersDialogShowing = false">
+									SHARE</button>
+								</span>
+
 								<md-list dense>
 									<md-list-item>
 										<h3 md-line>Provider</h3>
