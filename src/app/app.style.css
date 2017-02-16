@@ -237,6 +237,12 @@ md-content{
   width: 20em;
   margin: 1em;
 }
+.credentials-card-container md-card md-card-actions {
+  padding: 0px 0px 0px 10px;
+}
+.credentials-card-container md-card md-card-actions button {
+  margin-bottom: 10px;
+}
 
 /*Volume setup card container*/
 .volume-setup-card-container {

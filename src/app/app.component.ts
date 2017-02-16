@@ -3,6 +3,7 @@
  */
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
+import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
 import { AccountService, Account } from 'ng2-cloud-portal-service-lib';
 import { Router } from '@angular/router';
 import { TokenService } from 'ng2-cloud-portal-service-lib';
@@ -32,6 +33,7 @@ export class App {
         public tokenService: TokenService,
         public credentialService: CredentialService,
         public accountService: AccountService,
+        public cloudProviderParametersService: CloudProviderParametersService,
         public router: Router) {
         if (tokenService.getToken()) {
             this.accountService.getAccount(

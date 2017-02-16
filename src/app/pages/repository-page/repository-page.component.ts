@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ApplicationCloudProviderPipe } from 'ng2-cloud-portal-presentation-lib';
+import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'repository-page',
@@ -13,39 +14,14 @@ export class RepositoryPage {
 
   robby = 'assets/img/Robby form@0.5x.png';
   cloudProviderFilters: string[] = ["AWS","GCP","OSTACK"];
-  showAws: boolean = true;
-  showOstack: boolean = true;
-  showGcp: boolean = true;
 
-  RepositoryPage() {
-    this.updateFilters();
-  }
-
-  switchAws() {
-    this.showAws = !this.showAws;
-    this.updateFilters();
-  }
-
-  switchOstack() {
-    this.showOstack = !this.showOstack;
-    this.updateFilters();
-  }
-
-  switchGcp() {
-    this.showGcp = !this.showGcp;
+  constructor(public cloudProviderParametersService: CloudProviderParametersService) {
     this.updateFilters();
   }
 
   updateFilters() {
-    this.cloudProviderFilters = [];
-    if (this.showAws) {
-      this.cloudProviderFilters.push('AWS');
-    } 
-    if (this.showOstack) {
-      this.cloudProviderFilters.push('OSTACK');
-    } 
-    if (this.showGcp) {
-      this.cloudProviderFilters.push('GCP');
-    } 
+    if (this.cloudProviderParametersService.currentlySelectedCloudProviderParameters) {
+      this.cloudProviderFilters = [this.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider];
+    }
   }
 }
