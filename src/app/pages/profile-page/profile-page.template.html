@@ -137,16 +137,29 @@
 								</md-toolbar>
 							<md-card-content>
 								<md-list dense>
-									<md-list-item>
-										<h3 md-line>Provider</h3>
-										<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
-									</md-list-item>
-									<h3 md-header>Parameters</h3>
-									<md-divider></md-divider>
-									<md-list-item *ngFor="let cloudProviderParametersField of cloudProviderParametersPresenter.fields">
-										<h3 md-line>{{ cloudProviderParametersField.key }}</h3>
-										<p md-line class="param-value">{{ cloudProviderParametersField.value }}</p>
-									</md-list-item>
+									<span class="flex-container-wide">
+										<md-list-item>
+											<h3 md-line>Provider</h3>
+											<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
+										</md-list-item>
+										<span class="fill-remaining-space"></span>
+										<md-list-item>
+											<h3 md-line>Owner</h3>
+											<p md-line class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
+										</md-list-item>
+									</span>
+									<h3 md-header>Parameters
+										<button md-icon-button color="primary" (click)="fieldsShowing=!fieldsShowing">
+											<md-icon>visibility</md-icon> 
+										</button>
+									</h3>
+									<span  *ngIf="fieldsShowing">
+										<md-divider></md-divider>
+										<md-list-item *ngFor="let cloudProviderParametersField of cloudProviderParametersPresenter.fields">
+											<h3 md-line>{{ cloudProviderParametersField.key }}</h3>
+											<p md-line class="param-value">{{ cloudProviderParametersField.value }}</p>
+										</md-list-item>
+									</span>
 								</md-list>
 							</md-card-content>
 							<md-card-actions>
