@@ -81,7 +81,7 @@
 				<md-content *ngIf="profileComponent.cloudProviderParametersPresenters">
 					
 					<span class="credentials-card-container">
-						<md-card *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters" class="credentials-container">
+						<md-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]"  *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters" class="credentials-container">
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
 								<span class="fill-remaining-space"></span>
@@ -129,7 +129,7 @@
 							</md-card-actions>
 						</md-card>
 
-						<md-card *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters" class="credentials-container">
+						<md-card [routerLink]=" ['/cloudprovider/shared/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters" class="credentials-container">
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
 								<span class="fill-remaining-space"></span>
@@ -174,7 +174,7 @@
 		</md-tab>
 	<md-tab>
 				<template md-tab-label *ngIf="False">Configurations</template>
-				<template md-tab-content>
+				<template md-tab-content *ngIf="False">
 
 					<md-card class="background-card" *ngIf="!profileComponent.configurationPresenters || profileComponent.configurationPresenters.length==0">
 						No configurations registered yet
