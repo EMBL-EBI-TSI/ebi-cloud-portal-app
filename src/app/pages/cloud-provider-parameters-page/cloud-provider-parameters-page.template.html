@@ -2,7 +2,7 @@
   <div class="detail-card-container">
   <md-card *ngIf="cloudProviderDetail.cloudProviderParametersPresenter">
     <md-toolbar class="detail-card-toolbar">
-      <h3>{{ cloudProviderDetail.cloudProviderParametersPresenter.name }}</h3>
+      <md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderDetail.cloudProviderParametersPresenter.name }}</h3>
       <span class="fill-remaining-space"></span>
       <span *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared">
         <button md-icon-button (click)="cloudProviderDetail.shareProviderDialogShowing=!cloudProviderDetail.shareProviderDialogShowing">
