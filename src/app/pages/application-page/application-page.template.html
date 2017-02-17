@@ -31,6 +31,11 @@
             <h3 md-line>Contact</h3>
             <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
           </md-list-item>
+          <md-list-item>
+            <h3 md-line>Available for</h3>
+            <p md-line class="param-value" *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+            {{ cloudProvider.cloudProvider }}</p>
+          </md-list-item>
         </md-list>
         <md-list dense>
           <md-list-item>
@@ -71,11 +76,6 @@
         </span>
       </span>
       <md-list>
-        <!--<md-list-item>
-          <h3 md-line>Available for</h3>
-          <p md-line class="param-value" *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-          {{ cloudProvider.cloudProvider }}</p>
-        </md-list-item>-->
         <!--Application required volumes-->
         <h3 md-header>Volumes</h3>
         <md-divider></md-divider>
@@ -140,10 +140,9 @@
       <button *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" md-raised-button disabled>
           DEPLOY
       </button>
-      <!--<md-radio-group [(ngModel)]="applicationDetail.applicationDeployer.selectedCloudProvider">
-        <md-radio-button *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders" 
-          [value]="cloudProvider.cloudProvider">{{ cloudProvider.cloudProvider }}</md-radio-button>
-      </md-radio-group>-->
+      <span  md-line class="param-value" *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" disabled>
+        A valid Cloud Provider needs to be selected in order to deploy this application
+      </span>
     </md-card-actions>
   </md-card>
   </div>
