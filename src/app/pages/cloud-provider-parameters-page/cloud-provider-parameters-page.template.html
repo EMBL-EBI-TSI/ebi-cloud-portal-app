@@ -34,7 +34,9 @@
             <h3 md-line>Shared with</h3>
           </md-list-item>
           <md-list-item *ngFor="let accountEmail of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails">
-            <p md-line class="param-value">{{ accountEmail }}</p>
+            <p md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="cloudProviderDetail.unshare(accountEmail)">
+              <md-icon>highlight_off</md-icon> 
+            </button></p>
           </md-list-item>
         </md-list>
         </span>
