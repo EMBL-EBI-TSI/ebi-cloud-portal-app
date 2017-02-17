@@ -8,7 +8,7 @@
         <button md-icon-button (click)="cloudProviderDetail.shareProviderDialogShowing=!cloudProviderDetail.shareProviderDialogShowing">
           <md-icon>share</md-icon> 
         </button>
-        <button md-icon-button color="warn">
+        <button md-icon-button color="warn" (click)="cloudProviderDetail.remove()">
           <md-icon>delete_forever</md-icon> 
         </button>
       </span>
@@ -18,61 +18,49 @@
     </md-toolbar>
     <md-card-content>
       <span class="flex-container-wide">
-        <span class="flex-container-wide">
-        <md-list dense *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.isShared">
-          <md-list-item>
+        <span>
+        <md-list dense>
+          <md-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.isShared">
             <h3 md-line>Owned by</h3>
+            <p md-line class="param-value">{{ cloudProviderDetail.cloudProviderParametersPresenter.accountEmail }}</p>
           </md-list-item>
           <md-list-item>
-            <p>{{ cloudProviderDetail.cloudProviderParametersPresenter.accountEmail }}</p>
+            <h3 md-line>Provider</h3>
+            <p md-line class="param-value">{{ cloudProviderDetail.cloudProviderParametersPresenter.cloudProvider }}</p>
           </md-list-item>
         </md-list>
-        <md-list dense *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared">
+        <md-list dense *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails.length>0">
           <md-list-item>
             <h3 md-line>Shared with</h3>
           </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">ameliec@ebi.ac.uk</p>
-          </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">dario@ebi.ac.uk</p>
-          </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">gianni@ebi.ac.uk</p>
-          </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">jdianes@ebi.ac.uk</p>
+          <md-list-item *ngFor="let accountEmail of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails">
+            <p md-line class="param-value">{{ accountEmail }}</p>
           </md-list-item>
         </md-list>
         </span>
-        <span class="share-application-dialog" *ngIf="cloudProviderDetail.shareProviderDialogShowing" open>
-          <md-card>
-            <md-card-header>
-              <md-card-title>
-                <h3>Share Cloud Provider</h3>
-              </md-card-title>
-            </md-card-header>
-            <md-card-content>
-              <form>
-                <md-input type="url" placeholder="Share email (required)" autofocus>
-                </md-input>
-              </form>
-            </md-card-content>
-            <md-card-actions align="end">
-              <button md-button (click)="cloudProviderDetail.shareProviderDialogShowing = false">
-              ADD</button>
-            </md-card-actions>
-          </md-card>
+        <span class="share-credentials-dialog" *ngIf="cloudProviderDetail.shareProviderDialogShowing">
+          <form #shareProviderForm>
+            <md-input type="email" placeholder="Share email (required)" [(ngModel)]="accountEmail" name="accountEmail" autofocus>
+            </md-input>
+          </form>
+          <!--<span class="fill-remaining-space"></span>-->
+          <button md-raised-button (click)="cloudProviderDetail.share(accountEmail); cloudProviderDetail.shareProviderDialogShowing = false">
+          SHARE</button>
         </span>
       </span>
       <md-list>
-        <h3 md-header>Parameters</h3>
-        <md-divider></md-divider>
-        <p md-subheader *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.fields.length==0">This Cloud Provider defines no parameters</p>
-        <md-list-item *ngFor="let aParameter of cloudProviderDetail.cloudProviderParametersPresenter.fields">
-          <h3 md-line>{{ aParameter.key }}</h3>
-          <p md-line class="param-value">{{ aParameter.value }}</p>
-        </md-list-item>
+        <h3 md-header>Parameters
+          <button md-icon-button color="primary" (click)="fieldsShowing=!fieldsShowing">
+            <md-icon>visibility</md-icon> 
+          </button></h3>
+        <span *ngIf="fieldsShowing">
+          <md-divider></md-divider>
+          <p md-subheader *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.fields.length==0">This Cloud Provider defines no parameters</p>
+          <md-list-item *ngFor="let aParameter of cloudProviderDetail.cloudProviderParametersPresenter.fields">
+            <h3 md-line>{{ aParameter.key }}</h3>
+            <p md-line class="param-value">{{ aParameter.value }}</p>
+          </md-list-item>
+        </span>
       </md-list>
     </md-card-content>
 

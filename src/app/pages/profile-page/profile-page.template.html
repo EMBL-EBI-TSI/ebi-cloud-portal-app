@@ -85,16 +85,16 @@
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
 								<span class="fill-remaining-space"></span>
-								<button md-icon-button (click)="profileComponent.shareCloudProviderParametersDialogShowing=!profileComponent.shareCloudProviderParametersDialogShowing">
+								<!--<button md-icon-button (click)="profileComponent.shareCloudProviderParametersDialogShowing=!profileComponent.shareCloudProviderParametersDialogShowing">
 									<md-icon>share</md-icon> 
 								</button>
 								<button md-icon-button color="warn" (click)="profileComponent.removeCloudProviderParameters(cloudProviderParametersPresenter)">
 									<md-icon>delete_forever</md-icon> 
-								</button>
-								</md-toolbar>
+								</button>-->
+							</md-toolbar>
 							<md-card-content>
-								<span class="share-credentials-dialog" *ngIf="profileComponent.shareCloudProviderParametersDialogShowing" open>
-									<form #shareProviderForm >
+								<span class="share-credentials-dialog" *ngIf="profileComponent.shareCloudProviderParametersDialogShowing">
+									<form #shareProviderForm>
 										<md-input type="email" placeholder="Share email (required)" [(ngModel)]="userEmail" name="userEmail" autofocus>
 										</md-input>
 									</form>
@@ -102,24 +102,11 @@
 									<button md-raised-button (click)="profileComponent.shareCloudProviderParameters(cloudProviderParametersPresenter, userEmail); profileComponent.shareCloudProviderParametersDialogShowing = false">
 									SHARE</button>
 								</span>
-
 								<md-list dense>
 									<md-list-item>
 										<h3 md-line>Provider</h3>
 										<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
 									</md-list-item>
-									<h3 md-header>Parameters
-										<button md-icon-button color="primary" (click)="fieldsShowing=!fieldsShowing">
-											<md-icon>visibility</md-icon> 
-										</button>
-									</h3>
-									<span  *ngIf="fieldsShowing">
-										<md-divider></md-divider>
-										<md-list-item *ngFor="let cloudProviderParametersField of cloudProviderParametersPresenter.fields">
-											<h3 md-line>{{ cloudProviderParametersField.key }}</h3>
-											<p md-line class="param-value">{{ cloudProviderParametersField.value }}</p>
-										</md-list-item>
-									</span>
 								</md-list>
 							</md-card-content>
 							<md-card-actions>
@@ -146,18 +133,6 @@
 										<md-list-item>
 											<h3 md-line>Owner</h3>
 											<p md-line class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
-										</md-list-item>
-									</span>
-									<h3 md-header>Parameters
-										<button md-icon-button color="primary" (click)="fieldsShowing=!fieldsShowing">
-											<md-icon>visibility</md-icon> 
-										</button>
-									</h3>
-									<span  *ngIf="fieldsShowing">
-										<md-divider></md-divider>
-										<md-list-item *ngFor="let cloudProviderParametersField of cloudProviderParametersPresenter.fields">
-											<h3 md-line>{{ cloudProviderParametersField.key }}</h3>
-											<p md-line class="param-value">{{ cloudProviderParametersField.value }}</p>
 										</md-list-item>
 									</span>
 								</md-list>
