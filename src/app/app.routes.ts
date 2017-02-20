@@ -17,6 +17,7 @@ export const routes: RouterConfig = [
     { path: 'profile', component: ProfilePage },
     { path: 'repository', component: RepositoryPage },
     { path: 'repository/:id', component: ApplicationPage },
+    { path: 'repository/shared/:id', component: ApplicationPage },
     { path: 'cloudprovider/shared/:id', component: CloudProviderParametersPage },
     { path: 'cloudprovider/:id', component: CloudProviderParametersPage },
     { path: 'deployments/:id', component: DeploymentPage },
