@@ -1,14 +1,10 @@
 <cp-profile-component #profileComponent>
 
-	<button md-mini-fab (click)="profileComponent.addCloudCredentialsFormShowing=!profileComponent.addCloudCredentialsFormShowing">
-    <md-icon>add</md-icon>
-  </button>
-
-	<md-card *ngIf="profileComponent.account">
+	<md-card class="background-card" *ngIf="profileComponent.account">
 		<md-card-content>
 			<md-card-title-group>
 				<img class="profile-image" *ngIf="profileComponent.account.avatarImageUrl" md-card-sm-image src="{{ profileComponent.account.avatarImageUrl }}"/>
-				<img class="profile-image" *ngIf="!profileComponent.account.avatarImageUrl" md-card-sm-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/AWS_Simple_Icons_Non-Service_Specific_User.svg/2000px-AWS_Simple_Icons_Non-Service_Specific_User.svg.png"/>
+				<img class="profile-image" *ngIf="!profileComponent.account.avatarImageUrl" md-card-sm-image [src]="userUrl"/>
 				<md-card-title>{{ profileComponent.account.userName }}</md-card-title>
 				<md-card-subtitle><md-icon md-list-icon>domain</md-icon> {{ profileComponent.account.organisation }}</md-card-subtitle>
 				<md-card-subtitle><md-icon md-list-icon>mail_outline</md-icon> {{ profileComponent.account.email }}</md-card-subtitle>
@@ -17,70 +13,246 @@
 		</md-card-content>
 	</md-card>
 
-  <md-card *ngIf="profileComponent.addCloudCredentialsFormShowing">
-    <md-card-title><h3>Add Cloud Credentials</h3></md-card-title>
-    <md-card-content>
-      <form [formGroup]="profileComponent.cloudCredentialsForm" autocomplete="off">
-        <md-input 
-					type="text" 
-					placeholder="Credentials name" 
-					[formControl]="profileComponent.cloudCredentialsForm.controls['name']" 
-					autofocus>
-        </md-input>
-        <div *ngIf="!profileComponent.cloudCredentialsForm.controls['name'].valid" class="ui error message">Name is invalid</div>
-        <div *ngIf="profileComponent.cloudCredentialsForm.controls['name'].hasError('required')" class="ui error message">Name is required</div>
-				<md-input 
-					type="text" 
-					placeholder="Cloud provider" 
-					[formControl]="profileComponent.cloudCredentialsForm.controls['cloudProvider']" 
-					autofocus>
-        </md-input>
-        <div *ngIf="!profileComponent.cloudCredentialsForm.controls['cloudProvider'].valid" class="ui error message">Provider is invalid</div>
-        <div *ngIf="profileComponent.cloudCredentialsForm.controls['cloudProvider'].hasError('required')" class="ui error message">Provider is required</div>
-				<md-input 
-					type="text" 
-					placeholder="Credentials fields (JSON array)" 
-					[formControl]="profileComponent.cloudCredentialsForm.controls['fields']" 
-					autofocus>
-        </md-input>
-        <div *ngIf="!profileComponent.cloudCredentialsForm.controls['fields'].valid" class="ui error message">Fields are invalid</div>
-        <div *ngIf="profileComponent.cloudCredentialsForm.controls['fields'].hasError('required')" class="ui error message">Fields are required</div>
-      </form>
-    </md-card-content>
-    <md-card-actions>
-      <button md-raised-button class="button-color-accent" 
-				(click)="profileComponent.addCloudCredentials(profileComponent.cloudCredentialsForm.value); profileComponent.addCloudCredentialsFormShowing = false"
-        align="end">Add</button>
-    </md-card-actions>
-  </md-card>
+	<md-tab-group #configurationsTabGroup>
+		<md-tab>
+			<template md-tab-label>Cloud Providers</template>
+			<template md-tab-content>
 
-	<md-content *ngIf="profileComponent.account">
-		
-		<div class="card-container credentials-card-container">
-			<md-card *ngFor="let cloudCredentials of profileComponent.cloudCredentialsPresenters" class="credentials-container">
-				<md-toolbar class="md-card-toolbar">
-					<md-icon class="card-type-icon">vpn_key</md-icon>{{ cloudCredentials.name }}
-					<button md-icon-button color="warn" (click)="profileComponent.removeCloudCredentials(cloudCredentials)">
-						<md-icon class="card-action-icon">clear</md-icon> 
+				<md-card class="background-card" *ngIf="!profileComponent.cloudProviderParametersPresenters || profileComponent.cloudProviderParametersPresenters.length==0">
+					No cloud providers registered yet
+				</md-card>
+
+				<button md-mini-fab (click)="profileComponent.addCloudProviderParametersFormShowing=!profileComponent.addCloudProviderParametersFormShowing">
+					<md-icon>add</md-icon>
+				</button>
+
+				<md-card class="add-dialog-form" *ngIf="profileComponent.addCloudProviderParametersFormShowing">
+					<md-card-header>
+						<md-card-title><h2>Add cloud provider</h2></md-card-title>
+					</md-card-header>
+					<md-card-content>
+						<form [formGroup]="profileComponent.cloudProviderParametersForm" autocomplete="off">
+							<md-input 
+								type="text" 
+								placeholder="Provider parameters name (required)" 
+								[formControl]="profileComponent.cloudProviderParametersForm.controls['name']" 
+								autofocus>
+							</md-input>
+							<md-input 
+								type="text" 
+								placeholder="Cloud provider (required)" 
+								[formControl]="profileComponent.cloudProviderParametersForm.controls['cloudProvider']" 
+								autofocus>
+							</md-input>
+							<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewCloudProviderParametersFormField()">
+              <md-icon>add</md-icon> 
+            	</button></h3>
+							<!--Fields-->
+							<div *ngFor="let fieldFormGroup of profileComponent.cloudProviderParametersForm.controls['fields'].controls">
+								<form [formGroup]="fieldFormGroup">
+									<table style="width: 100%" cellspacing="0"><tr>
+									<td><md-input 
+										type="text" 
+										placeholder="Enter parameter key" 
+										[formControl]="fieldFormGroup.controls['key']" 
+										autofocus></md-input></td>
+									<td><md-input 
+										type="text" 
+										placeholder="Enter parameter value" 
+										[formControl]="fieldFormGroup.controls['value']" 
+										autofocus></md-input></td>
+										</tr></table>
+								</form>
+							</div>
+							
+						</form>
+					</md-card-content>
+					<md-card-actions align="end">
+						<button *ngIf="profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required') || profileComponent.cloudProviderParametersForm.controls['name'].hasError('required')"
+							md-raised-button class="button-color-accent" disabled>
+							SAVE</button>
+						<button *ngIf="!profileComponent.cloudProviderParametersForm.controls['cloudProvider'].hasError('required') && !profileComponent.cloudProviderParametersForm.controls['name'].hasError('required')"
+							md-raised-button class="button-color-accent" 
+							(click)="profileComponent.addCloudProviderParameters(profileComponent.cloudProviderParametersForm.value); profileComponent.addCloudProviderParametersFormShowing = false">
+							SAVE</button>
+					</md-card-actions>
+				</md-card>
+
+				<md-content *ngIf="profileComponent.cloudProviderParametersPresenters">
+					
+					<span class="credentials-card-container">
+						<md-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]"  *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters" class="credentials-container">
+							<md-toolbar class="summary-card-toolbar">
+								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
+								<span class="fill-remaining-space"></span>
+								<!--<button md-icon-button (click)="profileComponent.shareCloudProviderParametersDialogShowing=!profileComponent.shareCloudProviderParametersDialogShowing">
+									<md-icon>share</md-icon> 
+								</button>
+								<button md-icon-button color="warn" (click)="profileComponent.removeCloudProviderParameters(cloudProviderParametersPresenter)">
+									<md-icon>delete_forever</md-icon> 
+								</button>-->
+							</md-toolbar>
+							<md-card-content>
+								<span class="share-credentials-dialog" *ngIf="profileComponent.shareCloudProviderParametersDialogShowing">
+									<form #shareProviderForm>
+										<md-input type="email" placeholder="Share email (required)" [(ngModel)]="userEmail" name="userEmail" autofocus>
+										</md-input>
+									</form>
+									<!--<span class="fill-remaining-space"></span>-->
+									<button md-raised-button (click)="profileComponent.shareCloudProviderParameters(cloudProviderParametersPresenter, userEmail); profileComponent.shareCloudProviderParametersDialogShowing = false">
+									SHARE</button>
+								</span>
+								<md-list dense>
+									<md-list-item>
+										<h3 md-line>Provider</h3>
+										<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
+									</md-list-item>
+								</md-list>
+							</md-card-content>
+							<md-card-actions>
+								<button md-raised-button (click)="profileComponent.setCurrentlySelectedCloudProviderParameters(cloudProviderParametersPresenter)">
+									SELECT
+								</button>
+							</md-card-actions>
+						</md-card>
+
+						<md-card [routerLink]=" ['/cloudprovider/shared/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters" class="credentials-container">
+							<md-toolbar class="summary-card-toolbar">
+								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
+								<span class="fill-remaining-space"></span>
+								<p>SHARED</p>
+								</md-toolbar>
+							<md-card-content>
+								<md-list dense>
+									<span class="flex-container-wide">
+										<md-list-item>
+											<h3 md-line>Provider</h3>
+											<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
+										</md-list-item>
+										<span class="fill-remaining-space"></span>
+										<md-list-item>
+											<h3 md-line>Owner</h3>
+											<p md-line class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
+										</md-list-item>
+									</span>
+								</md-list>
+							</md-card-content>
+							<md-card-actions>
+								<button md-raised-button (click)="profileComponent.setCurrentlySelectedCloudProviderParameters(cloudProviderParametersPresenter)">
+									SELECT
+								</button>
+							</md-card-actions>
+						</md-card>
+					</span>
+				</md-content>
+			</template>
+		</md-tab>
+	<md-tab>
+				<template md-tab-label *ngIf="False">Configurations</template>
+				<template md-tab-content *ngIf="False">
+
+					<md-card class="background-card" *ngIf="!profileComponent.configurationPresenters || profileComponent.configurationPresenters.length==0">
+						No configurations registered yet
+					</md-card>
+
+					<button md-mini-fab (click)="profileComponent.addConfigurationFormShowing=!profileComponent.addConfigurationFormShowing">
+						<md-icon>add</md-icon>
 					</button>
-					</md-toolbar>
-				<md-card-content>
-					<md-list dense>
-						<md-list-item>
-							<h3 md-line>Provider</h3>
-							<p md-line class="param-value">{{ cloudCredentials.cloudProvider }}</p>
-						</md-list-item>
-						<h3 md-header>Fields</h3>
-						<md-divider></md-divider>
-						<md-list-item *ngFor="let credentialField of cloudCredentials.fields">
-							<h3 md-line>{{ credentialField.key }}</h3>
-							<p md-line class="param-value">{{ credentialField.value }}</p>
-						</md-list-item>
-					</md-list>
-				</md-card-content>
-			</md-card>
-		</div>
-	</md-content>
 
-	
+					<md-card class="add-dialog-form" *ngIf="profileComponent.addConfigurationFormShowing">
+						<md-card-header>
+							<md-card-title><h2>Add configuration</h2></md-card-title>
+						</md-card-header>
+						<md-card-content>
+							<form [formGroup]="profileComponent.configurationForm" autocomplete="off">
+								<md-input 
+									type="text" 
+									placeholder="Configuration name (required)" 
+									[formControl]="profileComponent.configurationForm.controls['name']" 
+									autofocus>
+								</md-input>
+								<md-input 
+									type="text" 
+									placeholder="Cloud provider parameters name (required)" 
+									[formControl]="profileComponent.configurationForm.controls['cloudProviderParametersName']" 
+									autofocus>
+								</md-input>
+								<md-input 
+									type="text" 
+									placeholder="SSH public key" 
+									[formControl]="profileComponent.configurationForm.controls['sshKey']" 
+									autofocus>
+								</md-input>
+								
+								<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewConfigFormField()">
+              	<md-icon>add</md-icon> 
+            		</button></h3>
+								<!--Fields-->
+								<div *ngFor="let fieldFormGroup of profileComponent.configurationForm.controls['fields'].controls">
+									<form [formGroup]="fieldFormGroup">
+										<table style="width: 100%" cellspacing="0"><tr>
+										<td><md-input 
+											type="text" 
+											placeholder="Enter parameter key" 
+											[formControl]="fieldFormGroup.controls['key']" 
+											autofocus></md-input></td>
+										<td><md-input 
+											type="text" 
+											placeholder="Enter parameter value" 
+											[formControl]="fieldFormGroup.controls['value']" 
+											autofocus></md-input></td>
+											</tr></table>
+									</form>
+								</div>
+							</form>
+						</md-card-content>
+						<md-card-actions align="end">
+							<button *ngIf="profileComponent.configurationForm.controls['name'].hasError('required') || profileComponent.configurationForm.controls['cloudProviderParametersName'].hasError('required')"
+							md-raised-button class="button-color-accent" disabled>
+							SAVE</button>
+							<button *ngIf="!profileComponent.configurationForm.controls['name'].hasError('required') && !profileComponent.configurationForm.controls['cloudProviderParametersName'].hasError('required')"
+							md-raised-button class="button-color-accent" 
+							(click)="profileComponent.addConfiguration(profileComponent.configurationForm.value); profileComponent.addConfigurationFormShowing = false">
+							SAVE</button>
+						</md-card-actions>
+					</md-card>
+
+					<md-content *ngIf="profileComponent.configurationPresenters">
+						
+						<div class="credentials-card-container">
+							<md-card *ngFor="let configurationPresenter of profileComponent.configurationPresenters" class="credentials-container">
+								<md-toolbar class="summary-card-toolbar">
+									<md-icon class="card-type-icon">settings_applications</md-icon><h3>{{ configurationPresenter.name }}</h3>
+									<span class="fill-remaining-space"></span>
+									<button md-icon-button color="warn" (click)="profileComponent.removeConfiguration(configurationPresenter)">
+										<md-icon>delete_forever</md-icon> 
+									</button>
+								</md-toolbar>
+								<md-card-content>
+									<md-list dense>
+										<md-list-item>
+											<h3 md-line>Cloud provider parameters</h3>
+											<p md-line class="param-value">{{ configurationPresenter.cloudProviderParametersName }}</p>
+										</md-list-item>
+										<md-list-item>
+											<h3 md-line>SSH Public Key</h3>
+											<p md-line class="param-value">{{ configurationPresenter.sshKey }}</p>
+										</md-list-item>
+										<h3 md-header>Parameters</h3>
+										<md-divider></md-divider>
+										<md-list-item *ngFor="let configurationField of configurationPresenter.fields">
+											<h3 md-line>{{ configurationField.key }}</h3>
+											<p md-line class="param-value">{{ configurationField.value }}</p>
+										</md-list-item>
+									</md-list>
+								</md-card-content>
+							</md-card>
+						</div>
+					</md-content>
+
+				</template>
+		</md-tab>
+
+	</md-tab-group>
+
 </cp-profile-component>

@@ -6,6 +6,7 @@ import { RepositoryPage } from './pages/repository-page';
 import { ApplicationPage } from './pages/application-page';
 import { VolumesPage } from './pages/volumes-page';
 import { DeploymentsPage } from './pages/deployments-page';
+import { CloudProviderParametersPage } from './pages/cloud-provider-parameters-page';
 import { DeploymentPage } from './pages/deployment-page';
 import { AboutPage } from './pages/about-page';
 import { ErrorPage } from './pages/error-page';
@@ -16,6 +17,8 @@ export const routes: RouterConfig = [
     { path: 'profile', component: ProfilePage },
     { path: 'repository', component: RepositoryPage },
     { path: 'repository/:id', component: ApplicationPage },
+    { path: 'cloudprovider/shared/:id', component: CloudProviderParametersPage },
+    { path: 'cloudprovider/:id', component: CloudProviderParametersPage },
     { path: 'deployments/:id', component: DeploymentPage },
     { path: 'deployments', component: DeploymentsPage },
     { path: 'volumes', component: VolumesPage },

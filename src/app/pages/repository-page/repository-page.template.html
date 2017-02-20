@@ -1,71 +1,62 @@
 <cp-repository-component #repo>
 
-  <md-toolbar>
-    <md-checkbox class="inner-toolbar-checkbox" [checked]="showAws" (change)="switchAws()">
-      <p>Show AWS</p>
-    </md-checkbox>
-    <md-checkbox class="inner-toolbar-checkbox" [checked]="showOstack" (change)="switchOstack()">
-      <p>Show OStack</p>
-    </md-checkbox>
-    <md-checkbox class="inner-toolbar-checkbox" [checked]="showGcp" (change)="switchGcp()">
-      <p>Show GCP</p>
-    </md-checkbox>
-  </md-toolbar>
-
   <button md-mini-fab (click)="repo.addApplicationFormShowing=!repo.addApplicationFormShowing">
     <md-icon>add</md-icon>
   </button>
 
-  <md-card *ngIf="repo.addApplicationFormShowing">
-    <md-card-title><h3>Add application</h3></md-card-title>
+  <md-card class="add-dialog-form" *ngIf="repo.addApplicationFormShowing">
+    <md-card-header>
+      <md-card-title><h2>Add new application</h2></md-card-title>
+    </md-card-header>
     <md-card-content>
       <form [formGroup]="repo.applicationForm" autocomplete="off">
-        <md-input type="url" placeholder="Repository URI" [formControl]="repo.applicationForm.controls['repoUri']" autofocus>
+        <md-input type="url" placeholder="Repository URI (required)" [formControl]="repo.applicationForm.controls['repoUri']" autofocus>
         </md-input>
-        <div *ngIf="!repo.applicationForm.controls['repoUri'].valid" class="ui error message">URI is invalid</div>
-        <div *ngIf="repo.applicationForm.controls['repoUri'].hasError('required')" class="ui error message">URI is required</div>
       </form>
     </md-card-content>
-    <md-card-actions>
-      <button md-raised-button class="button-color-accent" (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false"
-        align="end">Add</button>
+    <md-card-actions align="end">
+      <button *ngIf="repo.applicationForm.controls['repoUri'].hasError('required') || !repo.applicationForm.controls['repoUri'].valid"
+      md-raised-button class="button-color-accent" disabled>
+      REGISTER</button>
+      <button *ngIf="!repo.applicationForm.controls['repoUri'].hasError('required') && repo.applicationForm.controls['repoUri'].valid"
+      md-raised-button class="button-color-accent" 
+      (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false">
+      REGISTER</button>
     </md-card-actions>
   </md-card>
 
   <md-content *ngIf="repo.applicationDeployers">
 
-    <md-card *ngIf="repo.applicationDeployers.length==0">
+    <md-card class="background-card" *ngIf="repo.applicationDeployers.length==0">
       No applications registered yet
     </md-card>
 
-    <div class="card-container application-card-container">
-      <md-card *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
-          <md-toolbar class="md-card-toolbar">
-            <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDeployer.name }}
-            <button md-icon-button color="warn" (click)="repo.removeApplication(applicationDeployer)">
-              <md-icon class="card-action-icon">clear</md-icon> 
-            </button>
-            <button md-icon-button color="primary" [routerLink]=" ['/repository/', applicationDeployer.name]">
-              <md-icon class="card-action-icon">visibility</md-icon> 
-            </button>
+    <div class="application-summary-card-container">
+      <md-card [routerLink]=" ['/repository/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
+          <md-toolbar class="summary-card-toolbar">
+            <h3>{{ applicationDeployer.name }}</h3>
+            <!--<span class="toolbar-fill-remaining-space"></span>-->
           </md-toolbar>
           <md-card-content>
-            <p>{{ applicationDeployer.about }}</p>
             <md-list dense>
+              <md-list-item>
+                <p>{{ applicationDeployer.about }}</p>
+              </md-list-item>
               <md-list-item>
                 <h3 md-line>Version</h3>
                 <p md-line class="param-value">{{ applicationDeployer.version }}</p>
               </md-list-item>
-              <md-list-item>
-                <h3 md-line>Contact</h3>
-                <p md-line class="param-value">{{ applicationDeployer.contact }}</p>
-              </md-list-item>
-              <h3 md-header>Available for</h3>
+              <!--<h3 md-header>Available for</h3>
               <md-list-item *ngFor="let cloudProvider of applicationDeployer.cloudProviders">
                 <p md-line>{{ cloudProvider.cloudProvider }}</p>
-              </md-list-item>
+              </md-list-item>-->
             </md-list>
           </md-card-content>
+          <!--<md-card-actions>
+            <button md-button [routerLink]=" ['/repository/', applicationDeployer.name]">
+              DEPLOY
+            </button>
+          </md-card-actions>-->
         </md-card>
     </div> <!-- card-container -->
   </md-content>

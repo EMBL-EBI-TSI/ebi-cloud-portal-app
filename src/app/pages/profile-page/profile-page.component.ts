@@ -8,5 +8,5 @@ import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
   template: require('./profile-page.template.html')
 })
 export class ProfilePage {
-
+  userUrl = 'assets/img/a_user.ico';
 }

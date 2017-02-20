@@ -1,38 +1,86 @@
 <cp-application-component #applicationDetail>
-  <div class="application-detail-card-container">
+  <div class="detail-card-container">
   <md-card *ngIf="applicationDetail.applicationDeployer">
-    <md-toolbar class="md-card-toolbar">
-      <md-icon class="card-type-icon">settings_application</md-icon> {{ applicationDetail.applicationDeployer.name }}
+    <md-toolbar class="detail-card-toolbar">
+      <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
+      <span class="fill-remaining-space"></span>
+      <button md-icon-button (click)="applicationDetail.shareApplicationDialogShowing=!applicationDetail.shareApplicationDialogShowing">
+        <md-icon>share</md-icon> 
+      </button>
       <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
-        <md-icon class="card-action-icon">clear</md-icon> 
+        <md-icon>delete_forever</md-icon> 
       </button>
     </md-toolbar>
     <md-card-content>
-      <p>{{ applicationDetail.applicationDeployer.about }}</p>
-      <md-list dense>
-        <md-list-item>
-          <h3 md-line>Version</h3>
-          <p md-line class="param-value">{{ applicationDetail.applicationDeployer.version }}</p>
-        </md-list-item>
-        <md-list-item>
-          <h3 md-line>Contact</h3>
-          <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
-        </md-list-item>
-        <h3 md-header>Available for</h3>
-        <md-list-item *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-          <p md-line>{{ cloudProvider.cloudProvider }}</p>
-        </md-list-item>
-        <h3 md-header>Source</h3>
-        <!--Application source-->
-        <md-list-item>
-          <h3 md-line>Source</h3>
-          <p md-line class="param-value"><a href="{{ applicationDetail.applicationDeployer.repoUri }}">{{ applicationDetail.applicationDeployer.repoUri }}</a></p>
-        </md-list-item>
+      <span class="flex-container-wide">
+        <span class="flex-container-wide">
+        <md-list dense>
+          <md-list-item>
+            <p>{{ applicationDetail.applicationDeployer.about }}</p>
+          </md-list-item>
+          <!--Application source-->
+          <md-list-item>
+            <h3 md-line>Source</h3>
+            <p md-line class="param-value"><a href="{{ applicationDetail.applicationDeployer.repoUri }}">{{ applicationDetail.applicationDeployer.repoUri }}</a></p>
+          </md-list-item>
+          <md-list-item>
+            <h3 md-line>Version</h3>
+            <p md-line class="param-value">{{ applicationDetail.applicationDeployer.version }}</p>
+          </md-list-item>
+          <md-list-item>
+            <h3 md-line>Contact</h3>
+            <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
+          </md-list-item>
+          <md-list-item>
+            <h3 md-line>Available for</h3>
+            <p md-line class="param-value" *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+            {{ cloudProvider.cloudProvider }}</p>
+          </md-list-item>
+        </md-list>
+        <md-list dense>
+          <md-list-item>
+            <h3 md-line>Shared with</h3>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="param-value">ameliec@ebi.ac.uk</p>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="param-value">dario@ebi.ac.uk</p>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="param-value">gianni@ebi.ac.uk</p>
+          </md-list-item>
+          <md-list-item>
+            <p md-line class="param-value">jdianes@ebi.ac.uk</p>
+          </md-list-item>
+        </md-list>
+        </span>
+        <span class="share-application-dialog" *ngIf="applicationDetail.shareApplicationDialogShowing" open>
+          <md-card>
+            <md-card-header>
+              <md-card-title>
+                <h3>Share application</h3>
+              </md-card-title>
+            </md-card-header>
+            <md-card-content>
+              <form>
+                <md-input type="url" placeholder="Share email (required)" autofocus>
+                </md-input>
+              </form>
+            </md-card-content>
+            <md-card-actions align="end">
+              <button md-button (click)="applicationDetail.shareApplicationDialogShowing = false">
+              ADD</button>
+            </md-card-actions>
+          </md-card>
+        </span>
+      </span>
+      <md-list>
         <!--Application required volumes-->
         <h3 md-header>Volumes</h3>
         <md-divider></md-divider>
         <p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length==0">This application requires no attached volumes</p>
-        <p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>
+        <!--<p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>-->
         <md-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
           <h3 md-line>{{ aVolume }}</h3>
           <select md-line (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
@@ -44,7 +92,7 @@
         <h3 md-header>Inputs</h3>
         <md-divider></md-divider>
         <p md-subheader *ngIf="applicationDetail.applicationDeployer.inputs.length==0">This application requires no input values</p>
-        <p md-subheader *ngIf="applicationDetail.applicationDeployer.inputs.length>0">This application requires to enter the following values</p>
+        <!--<p md-subheader *ngIf="applicationDetail.applicationDeployer.inputs.length>0">This application requires to enter the following values</p>-->
         <md-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
           <md-input #{{anInput}} placeholder="{{ anInput }}" 
             (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
@@ -84,14 +132,17 @@
     <md-progress-bar *ngIf="applicationDetail.applicationDeployer.deploying || applicationDetail.applicationDeployer.destroying" mode="indeterminate"></md-progress-bar>
     
     <!--These are the action controls-->
-    <md-card-actions align="end" *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
-      <md-radio-group [(ngModel)]="applicationDetail.applicationDeployer.selectedCloudProvider">
-        <md-radio-button *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders" 
-          [value]="cloudProvider.cloudProvider">{{ cloudProvider.cloudProvider }}</md-radio-button>
-      </md-radio-group>
-      <button md-icon-button color="accent" (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
-          <md-icon class="card-action-icon">cloud_upload</md-icon>
+    <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
+      <button *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" md-raised-button 
+      (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
+          DEPLOY
       </button>
+      <button *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" md-raised-button disabled>
+          DEPLOY
+      </button>
+      <span  md-line class="param-value" *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" disabled>
+        A valid Cloud Provider needs to be selected in order to deploy this application
+      </span>
     </md-card-actions>
   </md-card>
   </div>

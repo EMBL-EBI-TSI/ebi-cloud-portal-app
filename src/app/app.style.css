@@ -11,7 +11,7 @@ html {
   background: var(--light-color);
 }
 
-body{
+body {
   min-height: 100%;
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -60,7 +60,7 @@ body{
 
 .ebi-header-link-text {
   position: relative;
-  font-size: 0.8em;
+  /*font-size: 0.8em;*/
 }
 
 .ebi-header-link-icon {
@@ -117,11 +117,6 @@ body{
   bottom: 10px;
 }
 
-.md-card-toolbar {
-  background: var(--secondary-color);
-  color: var(--dark-color);
-}
-
 button.active{
   background: #fff;
   color: #009688;
@@ -143,71 +138,144 @@ md-content{
   display: flex;
   flex-direction: column;
   /*height: 100%;*/
-  background: var(--light-color);
+  /*background: white;*/
+    background: var(--light-color);
 }
 
-.card-container {
-  display: flex;
-  flex-flow: row wrap;
-}
 
 .secondary {
   color: rgba(0,0,0,0.54);
 }
 
-.card-container md-card {
+.summary-card-toolbar {
+  background: white;
+  color: var(--dark-color);
+}
+
+/*Application summary card container*/
+.application-summary-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.application-summary-card-container md-card {
   box-sizing: border-box;
-  /*background: var(--light-color);*/
-  padding: 0px;
+  width: 25em;
+  margin: 1em;
+  padding-bottom: 2.4em;
+}
+.application-summary-card-container md-card md-card-actions {
+  padding: 0px 10px 0px 16px;
 }
 
-.application-card-container md-card {
-  width: 20em;
-	min-height: 40em;
+/* In detail card container*/
+.detail-card-container {
   margin: 1em;
 }
-
-.application-detail-card-container {
-  margin: 1em;
-  /*margin-bottom: 3em;*/
+.detail-card-container md-card {
+  padding-bottom: 2em;
+}
+.detail-card-container md-card md-card-actions {
+  padding: 25px 0px 0px 10px;
+  margin-bottom: 2em;
+}
+.detail-card-container md-card md-card-actions md-radio-group {
+  margin-left: 20px;
+}
+.detail-card-container md-card .card-type-icon {
+  margin-right: 10px;
+}
+.detail-card-container md-card md-toolbar p {
+  padding-top: 15px;
+  margin-left: 10px;
+}
+.detail-card-toolbar {
+  background: white;
+  color: var(--dark-color);
 }
 
-.deployment-card-container md-card {
-  width: 20em;
-	min-height: 40em;
+/*Deployment summary card container*/
+.deployment-summary-card-container md-card {
   margin: 1em;
 }
+.deployment-summary-card-container md-card md-card-content {
+  padding-top: 1em;
+  padding-left: 1em;
+	display: flex;
+  flex-flow: row wrap;
+}
+.deployment-summary-card-container md-card md-card-content md-list-item {
+	margin-right: 25px;
+  position: relative;
+  top: -20px;
+}
+.deployment-summary-card-container md-card md-card-content h2 {
+	margin-right: 35px;
+}
+.deployment-summary-card-container md-card md-card-content .card-type-icon {
+	top: 15px;
+  margin-right: 10px;
+}
+.deployment-summary-card-container md-card md-card-content md-progress-circle {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  top: 20px;
+  margin-right: 15px;
+  margin-left: 5px;
+}
+.deployment-summary-card-container md-card md-card-content md-card-actions {
+	position: absolute;
+  top: 40px;
+  right: 50px;
+}
 
+.credentials-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 .credentials-card-container md-card {
   width: 20em;
-	min-height: 30em;
   margin: 1em;
 }
+.credentials-card-container md-card md-card-actions {
+  padding: 0px 0px 0px 10px;
+}
+.credentials-card-container md-card md-card-actions button {
+  margin-bottom: 10px;
+}
 
+/*Volume setup card container*/
+.volume-setup-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 .volume-setup-card-container md-card {
   width: 20em;
 	min-height: 15em;
   margin: 1em;
 }
+.volume-setup-card-container md-card md-card-actions {
+  padding: 25px 0px 0px 10px;
+}
 
+/*Volume isntance card container*/
+.volume-instance-card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 .volume-instance-card-container md-card {
   width: 20em;
-	min-height: 15em;
   margin: 1em;
+}
+.volume-instance-card-container md-card md-toolbar md-progress-circle {
+  width: 2em;
+  height: 2em;
+  position: relative;
+  margin-right: 15px;
 }
 
 .card-container md-card md-card-content {
   padding: 16px;
-}
-
-.card-container md-card md-card-actions {
-  position: relative;
-  top: -20px;
-  padding: 0px 30px 0px 0px;
-}
-
-.card-container md-card md-card-actions button {
-  top: -7px;
 }
 
 .card-container md-card md-toolbar button {
@@ -272,7 +340,7 @@ md-radio-button {
   padding-right: 10px;
 }
 h1 {
-  font-size: 2.2em;
+  font-size: 2.6em;
   font-weight: lighter;
 }
 h2 {
@@ -280,15 +348,33 @@ h2 {
   font-weight: lighter;
 }
 h3 {
-  font-size: 1.2em;
+  font-size: 1.4em;
   color: var(--dark-color);
   font-weight: lighter;
 }
 p {
   font-size: 1em;
-  font-weight: lighter;
+
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
+
+.flex-container {
+  display: flex;
+  flex-flow: row grow;
+  justify-content: center;
+}
+.flex-container span {
+  max-width: 30em;
+  min-width: 20em;
+  margin: 0em 1em 2em 1em;
+}
+
+.flex-container-wide {
+  display: flex;
+  /*flex-flow: row grow;*/
+  justify-content: space-between;
+}
+
 
 footer {
   height: 60px !important;
@@ -312,24 +398,45 @@ footer {
 }
 
 .hero {
-  position: relative;
-  left: 33%;
-  max-width: 33%;
+  margin: auto auto;
   margin-bottom: 1rem;
 }
-.hero-img {
-  max-width: 100%;
+.hero-message {
+    text-align: center;
+    margin-left: 37%;
+    max-width: 280px;
 }
+.dialog-img {
+  border-radius: 100%;
+  margin-top: 2em;
+  margin-left: 37%;
+  max-width: 280px;
+}
+
+.hero-img {
+  margin-top: 2em;
+  margin-left: 37%;
+  max-width: 280px;
+}
+.hero-form {
+  margin-top: 2em;
+  margin-left: 37%;
+  max-width: 280px;
+}
+
+.thin-bottom-border {
+  border-bottom-style: solid; 
+  border-bottom-width: 1px;
+  border-color: var(--secondary-color);
+  margin-bottom: 1em;
+}
+
 .inner-toolbar-checkbox {
   padding-left: 20px;
 }
 .profile-image {
-  border-radius: 100px;
   min-width: 200px;
   min-height: 200px;
-  border: solid;
-  border-width: 1px;
-  border-color: var(--primary-color);
 }
 .logs-text-area {
   width: 100%;
@@ -338,4 +445,33 @@ footer {
   resize: none;
   background: var(--dark-color);
   font-family: Courier New, Courier, monospace; 
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+.background-card {
+  background: var(--light-color);
+  box-shadow: 0 0 0;
+}
+
+.add-dialog-form md-card-header md-card-title h2 {
+  position: relative;
+  top: -0.5em;
+}
+
+.share-application-dialog {
+  border-style: none;
+}
+.share-credentials-dialog {
+  display: flex;
+  flex-flow: row grow;
+}
+.share-credentials-dialog form {
+  flex-grow: 2;
+}
+.share-credentials-dialog button {
+  margin-left: 10px;
+  margin-top: 10px;
+  max-height: 3em;
 }
