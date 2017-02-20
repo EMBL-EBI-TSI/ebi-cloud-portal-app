@@ -4,12 +4,17 @@
     <md-toolbar class="detail-card-toolbar">
       <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
       <span class="fill-remaining-space"></span>
-      <button md-icon-button (click)="applicationDetail.shareApplicationDialogShowing=!applicationDetail.shareApplicationDialogShowing">
-        <md-icon>share</md-icon> 
-      </button>
-      <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
-        <md-icon>delete_forever</md-icon> 
-      </button>
+      <span *ngIf="!applicationDetail.applicationDeployer.isShared">
+        <button md-icon-button (click)="applicationDetail.shareApplicationDialogShowing=!applicationDetail.shareApplicationDialogShowing">
+          <md-icon>share</md-icon> 
+        </button>
+        <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
+          <md-icon>delete_forever</md-icon> 
+        </button>
+      </span>
+      <span *ngIf="applicationDetail.applicationDeployer.isShared">
+        <p>SHARED</p>
+      </span>
     </md-toolbar>
     <md-card-content>
       <span class="flex-container-wide">
@@ -38,21 +43,24 @@
           </md-list-item>
         </md-list>
         <md-list dense>
-          <md-list-item>
-            <h3 md-line>Shared with</h3>
-          </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">ameliec@ebi.ac.uk</p>
-          </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">dario@ebi.ac.uk</p>
-          </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">gianni@ebi.ac.uk</p>
-          </md-list-item>
-          <md-list-item>
-            <p md-line class="param-value">jdianes@ebi.ac.uk</p>
-          </md-list-item>
+          <span *ngIf="applicationDetail.applicationDeployer.isShared">
+            <md-list-item>
+              <h3 md-line>Owned by</h3>
+            </md-list-item>
+            <md-list-item>
+              <p md-line class="param-value">{{ applicationDetail.applicationDeployer.accountEmail }}</p>
+            </md-list-item>
+          </span>
+          <span *ngIf="!applicationDetail.applicationDeployer.isShared">
+            <md-list-item>
+              <h3 md-line>Shared with</h3>
+            </md-list-item>
+            <md-list-item *ngFor="let accountEmail of applicationDetail.applicationDeployer.sharedWithAccountEmails">
+              <p md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(accountEmail)">
+                <md-icon>highlight_off</md-icon> 
+              </button></p>
+            </md-list-item>
+          </span>
         </md-list>
         </span>
         <span class="share-application-dialog" *ngIf="applicationDetail.shareApplicationDialogShowing" open>
@@ -64,12 +72,12 @@
             </md-card-header>
             <md-card-content>
               <form>
-                <md-input type="url" placeholder="Share email (required)" autofocus>
+                <md-input type="url" placeholder="Share email (required)" [(ngModel)]="accountEmail" name="accountEmail" autofocus>
                 </md-input>
               </form>
             </md-card-content>
             <md-card-actions align="end">
-              <button md-button (click)="applicationDetail.shareApplicationDialogShowing = false">
+              <button md-button (click)="applicationDetail.share(accountEmail); applicationDetail.shareApplicationDialogShowing = false">
               ADD</button>
             </md-card-actions>
           </md-card>

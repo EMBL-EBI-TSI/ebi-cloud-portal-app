@@ -58,6 +58,25 @@
             </button>
           </md-card-actions>-->
         </md-card>
+        <!--Shared applications-->
+        <md-card [routerLink]=" ['/repository/shared/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.sharedApplicationDeployers | applicationCloudProvider:cloudProviderFilters">
+          <md-toolbar class="summary-card-toolbar">
+            <h3>{{ applicationDeployer.name }}</h3>
+            <span class="fill-remaining-space"></span>
+            <p>SHARED</p>
+          </md-toolbar>
+          <md-card-content>
+            <md-list dense>
+              <md-list-item>
+                <p>{{ applicationDeployer.about }}</p>
+              </md-list-item>
+              <md-list-item>
+                <h3 md-line>Version</h3>
+                <p md-line class="param-value">{{ applicationDeployer.version }}</p>
+              </md-list-item>
+            </md-list>
+          </md-card-content>
+        </md-card>
     </div> <!-- card-container -->
   </md-content>
 
