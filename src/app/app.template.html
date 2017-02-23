@@ -70,6 +70,10 @@
         <a class="md-main-toolbar-title" >
             {{ (getViewName() | slice:1) || 'welcome'}}
         </a>
+        <span class="fill-remaining-space"></span>
+        <!--<a class="ebi-header-link" *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] ">
+            <span>Deployments</span>
+        </a>-->
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>
