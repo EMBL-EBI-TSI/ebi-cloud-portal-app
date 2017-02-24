@@ -141,6 +141,10 @@
 								</button>
 							</md-card-actions>
 						</md-card>
+						<!--Get all the sahred credentials from each team the user is a member of??-->
+						<span *ngFor="let teamPresenter of profileComponent.teamPresenters">
+							
+						</span>
 					</span>
 				</md-content>
 			</template>
@@ -311,34 +315,6 @@
 								</span>
 							</md-card-content>
 							<md-card-actions>
-							</md-card-actions>
-						</md-card>
-
-						<md-card [routerLink]=" ['/cloudprovider/shared/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters" class="credentials-container">
-							<md-toolbar class="summary-card-toolbar">
-								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
-								<span class="fill-remaining-space"></span>
-								<p>SHARED</p>
-								</md-toolbar>
-							<md-card-content>
-								<md-list dense>
-									<span class="flex-container-wide">
-										<md-list-item>
-											<h3 md-line>Provider</h3>
-											<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
-										</md-list-item>
-										<span class="fill-remaining-space"></span>
-										<md-list-item>
-											<h3 md-line>Owner</h3>
-											<p md-line class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
-										</md-list-item>
-									</span>
-								</md-list>
-							</md-card-content>
-							<md-card-actions>
-								<button md-raised-button (click)="profileComponent.setCurrentlySelectedCloudProviderParameters(cloudProviderParametersPresenter)">
-									SELECT
-								</button>
 							</md-card-actions>
 						</md-card>
 					</span>
