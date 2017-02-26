@@ -49,9 +49,24 @@
           <button md-icon-button color="primary" (click)="sharedItemsShowing=!sharedItemsShowing">
             <md-icon>visibility</md-icon> 
           </button></h3>
-        <span *ngIf="fieldsShowing">
+        <span *ngIf="sharedItemsShowing">
           <md-divider></md-divider>
-          
+          <md-list dense *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
+            <md-list-item>
+              <h3 md-line>Applications</h3>
+            </md-list-item>
+            <md-list-item *ngFor="let applicationName of teamDetail.teamPresenter.applicationNames">
+              <p md-line class="param-value">{{ applicationName }}</p>
+            </md-list-item>
+          </md-list>
+          <md-list dense *ngIf="teamDetail.teamPresenter.cloudProviderParameterNames && teamDetail.teamPresenter.cloudProviderParameterNames.length>0">
+            <md-list-item>
+              <h3 md-line>Credentials</h3>
+            </md-list-item>
+            <md-list-item *ngFor="let cloudProviderParameterName of teamDetail.teamPresenter.cloudProviderParameterNames">
+              <p md-line class="param-value">{{ cloudProviderParameterName }}</p>
+            </md-list-item>
+          </md-list>
         </span>
       </md-list>
     </md-card-content>
