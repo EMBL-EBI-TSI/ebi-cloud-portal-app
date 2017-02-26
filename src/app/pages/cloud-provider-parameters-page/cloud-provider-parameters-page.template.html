@@ -18,7 +18,7 @@
     </md-toolbar>
     <md-card-content>
       <span class="flex-container-wide">
-        <span>
+        <span class="flex-container-wide">
         <md-list dense>
           <md-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.isShared">
             <h3 md-line>Owned by</h3>
@@ -29,12 +29,16 @@
             <p md-line class="param-value">{{ cloudProviderDetail.cloudProviderParametersPresenter.cloudProvider }}</p>
           </md-list-item>
         </md-list>
-        <md-list dense *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails.length>0">
-          <md-list-item>
+        <md-list dense>
+          <md-list-item *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails.length>0">
             <h3 md-line>Shared with</h3>
+            <p *ngFor="let accountEmail of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails" md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="cloudProviderDetail.unshare(accountEmail)">
+              <md-icon>highlight_off</md-icon> 
+            </button></p>
           </md-list-item>
-          <md-list-item *ngFor="let accountEmail of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails">
-            <p md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="cloudProviderDetail.unshare(accountEmail)">
+          <md-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames.length>0">
+            <h3 md-line>Included in teams</h3>
+            <p *ngFor="let teamName of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames" md-line class="param-value">{{ teamName }}<button md-icon-button color="warn" (click)="cloudProviderDetail.unshare(teamName)">
               <md-icon>highlight_off</md-icon> 
             </button></p>
           </md-list-item>
@@ -42,7 +46,7 @@
         </span>
         <span class="share-credentials-dialog" *ngIf="cloudProviderDetail.shareProviderDialogShowing">
           <form #shareProviderForm>
-            <md-input type="email" placeholder="Share email (required)" [(ngModel)]="accountEmail" name="accountEmail" autofocus>
+            <md-input type="email" placeholder="Share with (required)" [(ngModel)]="accountEmail" name="accountEmail" autofocus>
             </md-input>
           </form>
           <!--<span class="fill-remaining-space"></span>-->
