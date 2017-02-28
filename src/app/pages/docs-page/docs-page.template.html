@@ -1,8 +1,46 @@
 <md-content>
-	<div>
-		<span>
-			<h1>Hello World!!</h1>
-		</span>
-	</div>
+<div>
+	<span>
+		<h3>Intoduction</h3>
+		<p>This section is to help 'user' use the portal application
+			demonstrated with help of screenshots</p>
+	</span>
+</div>
+<div>
+	<span>
+		<h3>Welcome Page</h3>
+		<p>This is the usual welcome or start up page. To the top right corner you will  find 'Login' link</p>
+	</span> 
+	<span>
+		<img style="height: 27em; margin-top: 3em;" [src]="welcomePage">
+	</span>
+</div>
+<div>
+	<span>
+		<h3>Login using username/password</h3>
+		<p>If you an account, use the username passwoord combination to login,
+		else make use of the SSO (single sign on button)</p>
+	</span> 
+	<span>
+		<img style="height: 27em; margin-top: 3em;" [src]="loginUserPassword">
+	</span>
+	<span>
+		<h3>Login using SSO</h3>
+		<p>Click on SSO, you can sign in using Google, Linkedin, ORCID accounts or your institution</p>
+	</span> 
+	<span>
+		<img style="height: 27em; margin-top: 3em;" [src]="loginSSOStepOne">
+	</span>
+	<span>
+	 <p> Say for example, you have entered your institution name, you will be taken <br/>
+	  to another page where you enter your login details you use in you institution 
+	 <br/>to as follows
+	</span>
+	<span>
+		<img style="height: 27em; margin-top: 3em;" [src]="loginSSOStepTwo">
+		<p> Enter the login details and click on login </p>
+	</span>
+	
+</div>
 </md-content>
 

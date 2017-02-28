@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class DocsPage {
 
+	welcomePage = "assets/img/welcome_page.png"; 
+
  	homeMenu = 'assets/img/home_menu.png';
 	
   	loginUserPassword = 'assets/img/login_normal.png';
@@ -36,12 +38,12 @@ export class DocsPage {
   	repositorySharingApplication = 'assets/img/repository_sharing_application.png';
   
   
-  constructor() {
-
-  }
-
-  ngOnInit() {
-
-  }
+	  constructor() {
+	
+	  }
+	
+	  ngOnInit() {
+	
+	  }
 
 }
