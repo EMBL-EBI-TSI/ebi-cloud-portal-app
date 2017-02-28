@@ -29,6 +29,6 @@ export const routes: RouterConfig = [
     { path: 'error', component: ErrorPage },
     { path: 'about', component: AboutPage },
     { path: 'login', component: LoginPage },
-    { path: 'docs', component: DocsPage }
+    { path: 'docs', component: DocsPage },
     { path: '**', component: WelcomePage },
 ];
