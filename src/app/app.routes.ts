@@ -11,6 +11,8 @@ import { DeploymentPage } from './pages/deployment-page';
 import { AboutPage } from './pages/about-page';
 import { ErrorPage } from './pages/error-page';
 import { LoginPage } from './pages/login-page';
+import { TeamPage } from './pages/team-page';
+import { DocsPage } from './pages/docs-page';
 
 export const routes: RouterConfig = [
     { path: '', component: WelcomePage },
@@ -20,11 +22,13 @@ export const routes: RouterConfig = [
     { path: 'repository/shared/:id', component: ApplicationPage },
     { path: 'cloudprovider/shared/:id', component: CloudProviderParametersPage },
     { path: 'cloudprovider/:id', component: CloudProviderParametersPage },
+    { path: 'team/:id', component: TeamPage },
     { path: 'deployments/:id', component: DeploymentPage },
     { path: 'deployments', component: DeploymentsPage },
     { path: 'volumes', component: VolumesPage },
     { path: 'error', component: ErrorPage },
     { path: 'about', component: AboutPage },
     { path: 'login', component: LoginPage },
+    { path: 'docs', component: DocsPage },
     { path: '**', component: WelcomePage },
 ];

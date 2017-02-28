@@ -46,17 +46,21 @@
           <span *ngIf="applicationDetail.applicationDeployer.isShared">
             <md-list-item>
               <h3 md-line>Owned by</h3>
-            </md-list-item>
-            <md-list-item>
               <p md-line class="param-value">{{ applicationDetail.applicationDeployer.accountEmail }}</p>
             </md-list-item>
           </span>
-          <span *ngIf="!applicationDetail.applicationDeployer.isShared">
+          <span *ngIf="!applicationDetail.applicationDeployer.isShared && applicationDetail.applicationDeployer.sharedWithAccountEmails.length>0">
             <md-list-item>
               <h3 md-line>Shared with</h3>
+              <p *ngFor="let accountEmail of applicationDetail.applicationDeployer.sharedWithAccountEmails" md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(accountEmail)">
+                <md-icon>highlight_off</md-icon> 
+              </button></p>
             </md-list-item>
-            <md-list-item *ngFor="let accountEmail of applicationDetail.applicationDeployer.sharedWithAccountEmails">
-              <p md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(accountEmail)">
+          </span>
+          <span *ngIf="applicationDetail.applicationDeployer.sharedWithTeamNames && applicationDetail.applicationDeployer.sharedWithTeamNames.length>0">
+            <md-list-item>
+              <h3 md-line>Included in teams</h3>
+              <p *ngFor="let teamName of applicationDetail.applicationDeployer.sharedWithTeamNames" md-line class="param-value">{{ teamName }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(teamName)">
                 <md-icon>highlight_off</md-icon> 
               </button></p>
             </md-list-item>
@@ -72,7 +76,7 @@
             </md-card-header>
             <md-card-content>
               <form>
-                <md-input type="url" placeholder="Share email (required)" [(ngModel)]="accountEmail" name="accountEmail" autofocus>
+                <md-input type="url" placeholder="Share with (required)" [(ngModel)]="accountEmail" name="accountEmail" autofocus>
                 </md-input>
               </form>
             </md-card-content>
