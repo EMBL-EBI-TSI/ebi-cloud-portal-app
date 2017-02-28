@@ -12,6 +12,7 @@ import { AboutPage } from './pages/about-page';
 import { ErrorPage } from './pages/error-page';
 import { LoginPage } from './pages/login-page';
 import { TeamPage } from './pages/team-page';
+import { DocsPage } from './pages/docs-page';
 
 export const routes: RouterConfig = [
     { path: '', component: WelcomePage },
@@ -28,5 +29,6 @@ export const routes: RouterConfig = [
     { path: 'error', component: ErrorPage },
     { path: 'about', component: AboutPage },
     { path: 'login', component: LoginPage },
+    { path: 'docs', component: DocsPage }
     { path: '**', component: WelcomePage },
 ];
