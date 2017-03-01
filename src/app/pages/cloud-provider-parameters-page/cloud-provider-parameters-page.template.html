@@ -38,9 +38,11 @@
           </md-list-item>
           <md-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames.length>0">
             <h3 md-line>Included in teams</h3>
-            <p *ngFor="let teamName of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames" md-line class="param-value">{{ teamName }}<button md-icon-button color="warn" (click)="cloudProviderDetail.unshare(teamName)">
-              <md-icon>highlight_off</md-icon> 
-            </button></p>
+            <p *ngFor="let teamName of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
+              <button *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared" md-icon-button color="warn" (click)="cloudProviderDetail.unshare(teamName)">
+                <md-icon>highlight_off</md-icon> 
+              </button>
+            </p>
           </md-list-item>
         </md-list>
         </span>

@@ -60,9 +60,11 @@
           <span *ngIf="applicationDetail.applicationDeployer.sharedWithTeamNames && applicationDetail.applicationDeployer.sharedWithTeamNames.length>0">
             <md-list-item>
               <h3 md-line>Included in teams</h3>
-              <p *ngFor="let teamName of applicationDetail.applicationDeployer.sharedWithTeamNames" md-line class="param-value">{{ teamName }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(teamName)">
-                <md-icon>highlight_off</md-icon> 
-              </button></p>
+              <p *ngFor="let teamName of applicationDetail.applicationDeployer.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
+                <button *ngIf="!applicationDetail.applicationDeployer.isShared" md-icon-button color="warn" (click)="applicationDetail.unshare(teamName)">
+                  <md-icon>highlight_off</md-icon> 
+                </button>
+              </p>
             </md-list-item>
           </span>
         </md-list>
