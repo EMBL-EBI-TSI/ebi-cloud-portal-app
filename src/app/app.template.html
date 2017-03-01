@@ -33,6 +33,11 @@
                 <md-icon md-list-icon>vpn_key</md-icon>
                 <span md-line>Login</span>
             </a>
+                <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./docs'] " (click)="sidenav.close()">
+                <md-icon md-list-icon>info</md-icon>
+                <span md-line>User Documentation</span>
+                <span md-line>User documentation to use the portal</span>
+            </a>
         </md-nav-list>
     </md-sidenav>
     <div class="ebi-header">

@@ -8,6 +8,9 @@ import { Component } from '@angular/core';
 export class DocsPage {
 
 	welcomePage = "assets/img/welcome_page.png"; 
+	menuSymbol = "assets/img/menu.png";
+	sidebarSymbol = "assets/img/sidebar.png";
+	shareSymbol = "assets/img/share.png";
 
  	homeMenu = 'assets/img/home_menu.png';
 	
