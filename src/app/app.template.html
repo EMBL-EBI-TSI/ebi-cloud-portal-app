@@ -72,13 +72,10 @@
         <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
         </button> 
-        <a class="md-main-toolbar-title" >
-            {{ (getViewName() | slice:1) || 'welcome'}}
+        <a *ngFor="let breadcrumb of getBreadcrumb()" class="md-main-toolbar-title" [routerLink]="breadcrumb.route">
+            {{ breadcrumb.label }}
         </a>
         <span class="fill-remaining-space"></span>
-        <!--<a class="ebi-header-link" *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] ">
-            <span>Deployments</span>
-        </a>-->
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>

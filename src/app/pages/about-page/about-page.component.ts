@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'about-page',
@@ -12,12 +13,17 @@ export class AboutPage {
   ebiLogoOnly = 'assets/img/embl_logo_only.png';
   elixirLogo = 'assets/img/elixir_logo.png';
   cloudsLogo = 'assets/img/clouds_logo.png';
-  constructor() {
 
+  constructor(public breadcrumbService: BreadcrumbService) {
+    
   }
 
   ngOnInit() {
-
+    this.breadcrumbService.breadcrumb.push( {label:'About', route:'about'} );
   }
 
+  ngOnDestroy() {
+    this.breadcrumbService.breadcrumb = [];
+  }
+  
 }

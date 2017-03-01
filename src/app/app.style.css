@@ -87,6 +87,7 @@ body {
   text-decoration: none;
   color: var(--light-color);;
   padding-left: 10px;
+  margin-left: 10px;
   padding-top: 2px;
   border-left: solid;
   border-width: 1px;
