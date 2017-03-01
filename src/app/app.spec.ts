@@ -10,6 +10,7 @@ import { RootCmp, createRoot, routerTestProviders, advance } from './pages/mocks
 import { provide } from '@angular/core';
 import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 
 // Load the implementations that should be tested
 import { App } from './app.component';
@@ -25,6 +26,7 @@ describe('App', () => {
     CloudProviderParametersService,
     TokenService,
     AccountService,
+    BreadcrumbService,
     provide(ConfigService, { useValue: new ConfigService('some_url/') }),
     BaseRequestOptions,
     MockBackend,
