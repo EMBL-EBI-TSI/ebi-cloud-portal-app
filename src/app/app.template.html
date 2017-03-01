@@ -33,6 +33,11 @@
                 <md-icon md-list-icon>vpn_key</md-icon>
                 <span md-line>Login</span>
             </a>
+                <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./docs'] " (click)="sidenav.close()">
+                <md-icon md-list-icon>info</md-icon>
+                <span md-line>User Documentation</span>
+                <span md-line>User documentation to use the portal</span>
+            </a>
         </md-nav-list>
     </md-sidenav>
     <div class="ebi-header">
@@ -67,13 +72,10 @@
         <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
             <md-icon>menu</md-icon>
         </button> 
-        <a class="md-main-toolbar-title" >
-            {{ (getViewName() | slice:1) || 'welcome'}}
+        <a *ngFor="let breadcrumb of getBreadcrumb()" class="md-main-toolbar-title" [routerLink]="breadcrumb.route">
+            {{ breadcrumb.label }}
         </a>
         <span class="fill-remaining-space"></span>
-        <!--<a class="ebi-header-link" *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] ">
-            <span>Deployments</span>
-        </a>-->
     </md-toolbar>
 
     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading"></md-progress-bar>

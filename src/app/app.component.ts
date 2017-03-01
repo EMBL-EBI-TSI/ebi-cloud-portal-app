@@ -5,8 +5,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { CredentialService } from 'ng2-cloud-portal-service-lib';
 import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
 import { AccountService, Account } from 'ng2-cloud-portal-service-lib';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Data } from '@angular/router';
 import { TokenService } from 'ng2-cloud-portal-service-lib';
+import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 
 /*
  * App Component
@@ -34,7 +35,8 @@ export class App {
         public credentialService: CredentialService,
         public accountService: AccountService,
         public cloudProviderParametersService: CloudProviderParametersService,
-        public router: Router) {
+        public router: Router,
+        public breadcrumbService: BreadcrumbService) {
         if (tokenService.getToken()) {
             this.accountService.getAccount(
                 this.credentialService.getUsername(),
@@ -60,6 +62,15 @@ export class App {
     getViewName() {
         return this.router.url;
     }
+
+    public getBreadcrumb() {
+        return this.breadcrumbService.breadcrumb;
+    }
+
+    public getBreadcrumbUrl() {
+        return "#/"+this.breadcrumbService.getAsUrl();
+    }
+
 
 }
 

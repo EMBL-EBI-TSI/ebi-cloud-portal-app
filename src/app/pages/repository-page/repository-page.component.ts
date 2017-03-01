@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ApplicationCloudProviderPipe } from 'ng2-cloud-portal-presentation-lib';
 import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'repository-page',
@@ -15,7 +16,7 @@ export class RepositoryPage {
   robby = 'assets/img/Robby form@0.5x.png';
   cloudProviderFilters: string[] = ["AWS","GCP","OSTACK"];
 
-  constructor(public cloudProviderParametersService: CloudProviderParametersService) {
+  constructor(public cloudProviderParametersService: CloudProviderParametersService, public breadcrumbService: BreadcrumbService) {
     this.updateFilters();
   }
 
@@ -23,5 +24,15 @@ export class RepositoryPage {
     if (this.cloudProviderParametersService.currentlySelectedCloudProviderParameters) {
       this.cloudProviderFilters = [this.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider];
     }
+  }
+
+  ngOnInit() {
+    this.breadcrumbService.breadcrumb.push(
+      {label: 'Repository', route: 'repository'}
+    );
+  }
+
+  ngOnDestroy() {
+    this.breadcrumbService.breadcrumb = [];
   }
 }

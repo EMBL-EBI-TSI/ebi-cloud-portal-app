@@ -3,6 +3,7 @@ export * from './app.component';
 export * from './app.routes';
 
 import {provide, enableProdMode} from '@angular/core';
+import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 
 import { ApplicationService, AccountService, CredentialService, ErrorService, ConfigService,
   VolumeInstanceService, DeploymentService, TokenService,
@@ -33,5 +34,6 @@ export const APP_PROVIDERS = [
   DeploymentService,
   CloudProviderParametersService,
   TeamService,
-  ConfigurationService
+  ConfigurationService, 
+  BreadcrumbService
 ];
