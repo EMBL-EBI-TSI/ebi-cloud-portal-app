@@ -14,7 +14,7 @@ import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service'
 export class RepositoryPage {
 
   robby = 'assets/img/Robby form@0.5x.png';
-  cloudProviderFilters: string[] = ["AWS","GCP","OSTACK"];
+  cloudProviderFilters: string[] = ["AWS","GCP","OSTACK","AZURE"];
 
   constructor(public cloudProviderParametersService: CloudProviderParametersService, public breadcrumbService: BreadcrumbService) {
     this.updateFilters();
