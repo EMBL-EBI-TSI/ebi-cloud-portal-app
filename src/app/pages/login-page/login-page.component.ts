@@ -48,19 +48,19 @@ export class LoginPage {
     this.credentialService.setCredentials(tokenClaims.sub, null, tokenClaims.name);
   }
 
-  public authenticate(username: string, password: string) {
-    this._authService.authenticate(username,password).subscribe(
-      token => {
-        console.log('[LoginPage] Obtained token %O', token);
-        this.tokenService.setToken(token);
-        this.credentialService.setCredentials(username,password);
-      },
-      error => {
-        console.log('[LoginPage] Got error ');
-      },
-      () => {}
-    );
-  }
+  // public authenticate(username: string, password: string) {
+  //   this._authService.authenticate(username,password).subscribe(
+  //     token => {
+  //       console.log('[LoginPage] Obtained token %O', token);
+  //       this.tokenService.setToken(token);
+  //       this.credentialService.setCredentials(username,password);
+  //     },
+  //     error => {
+  //       console.log('[LoginPage] Got error ');
+  //     },
+  //     () => {}
+  //   );
+  // }
 
   ssoLink() {
     return this._authService.ssoLink();
