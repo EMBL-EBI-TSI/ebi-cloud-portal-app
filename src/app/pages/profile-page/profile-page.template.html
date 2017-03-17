@@ -5,7 +5,7 @@
 			<md-card-title-group>
 				<img class="profile-image" *ngIf="profileComponent.account.avatarImageUrl" md-card-sm-image src="{{ profileComponent.account.avatarImageUrl }}"/>
 				<img class="profile-image" *ngIf="!profileComponent.account.avatarImageUrl" md-card-sm-image [src]="userUrl"/>
-				<md-card-title>{{ profileComponent.account.userName }}</md-card-title>
+				<md-card-title>{{ profileComponent.account.givenName }}</md-card-title>
 				<md-card-subtitle><md-icon md-list-icon>mail_outline</md-icon> {{ profileComponent.account.email }}</md-card-subtitle>
 				<md-card-subtitle><md-icon md-list-icon>person_outline</md-icon> Joined {{ profileComponent.account.firstJoinedDate | date:'longDate'}}</md-card-subtitle>
 			</md-card-title-group>
