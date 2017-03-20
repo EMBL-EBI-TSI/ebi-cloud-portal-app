@@ -101,16 +101,13 @@
 
 							<md-progress-bar *ngIf="volumeDeployer.deploying || volumeDeployer.removing" mode="indeterminate"></md-progress-bar>
 							<md-card-actions *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing">
-								<button *ngIf="volumeDeployer.selectedCloudProvider" md-button (click)="volumesComponent.deployVolume(volumeDeployer)">
+								<button md-button (click)="volumesComponent.deployVolume(volumeDeployer)"
+								[disabled]="!volumesComponent.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
 										DEPLOY
 								</button>
-								<button *ngIf="!volumeDeployer.selectedCloudProvider" md-button disabled>
-										DEPLOY
-								</button>
-								<md-radio-group [(ngModel)]="volumeDeployer.selectedCloudProvider">
-									<md-radio-button *ngFor="let provider of volumeDeployer.cloudProviders" 
-										[value]="provider">{{ provider }}</md-radio-button>
-								</md-radio-group>
+								<span md-line class="param-value" *ngIf="!volumesComponent.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
+									A valid Cloud Provider needs to be selected in order to deploy this application
+								</span>
 							</md-card-actions>
 						</md-card>
 					</div>
