@@ -65,6 +65,14 @@
             <h3 md-line>{{ assignedInput.inputName }}</h3>
             <p md-line class="param-value">{{ assignedInput.assignedValue }}</p>
           </md-list-item>
+          <!--List assigned parameters-->
+          <h3 md-header>Deployment Parameters</h3>
+          <md-divider></md-divider>
+          <p md-subheader *ngIf="deploymentDetail.deploymentInstance.assignedParameters.length==0">There are no assigned parameters for this deployment</p>
+          <md-list-item *ngFor="let assignedParameter of deploymentDetail.deploymentInstance.assignedParameters">
+            <h3 md-line>{{ assignedParameter.parameterName }}</h3>
+            <p md-line class="param-value">{{ assignedParameter.parameterValue }}</p>
+          </md-list-item>
           <!--List generated outputs-->
           <h3 md-header>Outputs</h3>
           <md-divider></md-divider>
