@@ -130,7 +130,7 @@
           </span>
         </span>
         <br>
-		<h3 md-header>Deployment Parameters</h3>
+	  	<h3 md-header>Deployment Parameters</h3>
         <md-divider></md-divider>
         <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">This application requires no deployment
         parameters </p>
@@ -140,6 +140,12 @@
                 (blur)="applicationDetail.assignParameter(applicationDetail.applicationDeployer, aParameter, $event.target.value)">
        	  </md-input>
         </md-list-item>
+        
+        <h3 md-header>Choose Configurations</h3>
+        <md-divider></md-divider>
+         <md-input type="text" 	(keyup.enter)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, $event.target.value)"
+                (blur)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, $event.target.value)">
+         </md-input>
         <!--Application outputs-->
         <h3 md-header>Outputs</h3>
         <md-divider></md-divider>
