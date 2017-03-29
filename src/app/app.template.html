@@ -51,7 +51,7 @@
                     {{ credentialService.getGivenName() }} @ 
                 </span>
             </a>
-            <select class="cloud-privder-selector" 
+            <select *ngIf="credentialService.getUsername()" class="cloud-privder-selector" 
                 [ngModel]="selectedCloudProvider" (ngModelChange)="setCurrentlySelectedCloudProviderParameters($event)">
                 <option>SELECT PROVIDER</option>
                 <option 
