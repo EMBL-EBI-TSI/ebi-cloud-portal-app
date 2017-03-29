@@ -476,3 +476,13 @@ footer {
   margin-top: 10px;
   max-height: 2.5em;
 }
+
+select {
+  border: 0px;
+  color: var(--light-color);
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1em;
+  background: var(--primary-color);
+  -webkit-appearance: none; 
+  -moz-appearance: none;  
+}

@@ -4,7 +4,7 @@ import {
   it
 } from '@angular/core/testing';
 import { TokenService, AccountService, CloudProviderParametersService,
-  CredentialService, ConfigService } from 'ng2-cloud-portal-service-lib';
+  CredentialService, ConfigService, ErrorService } from 'ng2-cloud-portal-service-lib';
 import { Router, RouterConfig } from '@angular/router';
 import { RootCmp, createRoot, routerTestProviders, advance } from './pages/mocks/helper';
 import { provide } from '@angular/core';
@@ -26,6 +26,7 @@ describe('App', () => {
     CloudProviderParametersService,
     TokenService,
     AccountService,
+    ErrorService,
     BreadcrumbService,
     provide(ConfigService, { useValue: new ConfigService('some_url/') }),
     BaseRequestOptions,

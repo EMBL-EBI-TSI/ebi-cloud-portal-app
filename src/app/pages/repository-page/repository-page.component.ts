@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ApplicationCloudProviderPipe } from 'ng2-cloud-portal-presentation-lib';
 import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
@@ -11,7 +11,7 @@ import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service'
   styles: [require('./repository-page.style.css')],
   template: require('./repository-page.template.html')
 })
-export class RepositoryPage {
+export class RepositoryPage implements DoCheck {
 
   robby = 'assets/img/Robby form@0.5x.png';
   cloudProviderFilters: string[] = ["AWS","GCP","OSTACK","AZURE"];
@@ -35,4 +35,12 @@ export class RepositoryPage {
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
   }
+
+  ngDoCheck() {
+    if (!(this.cloudProviderFilters.length==1 &&
+      this.cloudProviderFilters.includes(this.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider))) {
+      this.updateFilters();
+    }
+  }
+
 }

@@ -49,15 +49,17 @@
                 <md-icon class="ebi-header-link-icon" *ngIf="!loggedInAccount || !loggedInAccount.avatarImageUrl" md-list-icon>face</md-icon>
                 <span md-line class="ebi-header-link-text">
                     {{ credentialService.getGivenName() }} @ 
-                    <span *ngIf="cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-                    {{ cloudProviderParametersService.currentlySelectedCloudProviderParameters.name }}
-                    </span>
-                    <span *ngIf="!cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-                    [ Select Provider ]
-                    </span>                    
                 </span>
             </a>
-           
+            <select class="cloud-privder-selector" 
+                [ngModel]="selectedCloudProvider" (ngModelChange)="setCurrentlySelectedCloudProviderParameters($event)">
+                <option>SELECT PROVIDER</option>
+                <option 
+                    *ngFor="let aCloudProvider of cloudProviderParameters"
+                    [ngValue]="aCloudProvider">
+                    {{ aCloudProvider.name }}
+                    </option>
+            </select>
             <a class="ebi-header-link-last" *ngIf="credentialService.getUsername()" (click)="logOut()">
                 <span md-line class="ebi-header-link-text">Logout</span>
             </a>
