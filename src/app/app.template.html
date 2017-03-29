@@ -52,7 +52,9 @@
                 </span>
             </a>
             <select *ngIf="credentialService.getUsername()" class="cloud-privder-selector" 
-                [ngModel]="selectedCloudProvider" (ngModelChange)="setCurrentlySelectedCloudProviderParameters($event)">
+                [ngModel]="selectedCloudProvider" 
+                (click)="updateCloudProviders($event)"
+                (ngModelChange)="setCurrentlySelectedCloudProviderParameters($event)">
                 <option>SELECT PROVIDER</option>
                 <option 
                     *ngFor="let aCloudProvider of cloudProviderParameters"
