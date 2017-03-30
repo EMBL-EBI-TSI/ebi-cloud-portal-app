@@ -140,13 +140,20 @@
                 (blur)="applicationDetail.assignParameter(applicationDetail.applicationDeployer, aParameter, $event.target.value)">
        	  </md-input>
         </md-list-item>
-        
-        <h3 md-header>Choose Configurations</h3>
-        <md-divider></md-divider>
-        <md-input type="text" (keyup.enter)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, $event.target.value)"
-                (blur)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, $event.target.value)">
-         </md-input>
-        
+
+      <h3 md-header>Choose Configurations</h3>
+       <md-divider></md-divider>
+       <br/>
+       <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">The user account has no pre set configurations</p>
+       <md-input-container>
+       <select class='configuration' (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer,$event.target.value)">
+         <option>Select Configuration</option>
+          <option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [ngValue]="config">
+                    {{config}}
+          </option>
+        </select>
+       </md-input-container>
+
         <!--Application outputs-->
         <h3 md-header>Outputs</h3>
         <md-divider></md-divider>
