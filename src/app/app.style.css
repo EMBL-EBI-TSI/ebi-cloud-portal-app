@@ -403,9 +403,13 @@ footer {
   margin-bottom: 1rem;
 }
 .hero-message {
-    text-align: center;
-    margin-left: 37%;
-    max-width: 280px;
+  text-align: center;
+  margin-left: 37%;
+  max-width: 280px;
+}
+.hero-message-left {
+  margin-left: 37%;
+  max-width: 280px;
 }
 .dialog-img {
   border-radius: 100%;

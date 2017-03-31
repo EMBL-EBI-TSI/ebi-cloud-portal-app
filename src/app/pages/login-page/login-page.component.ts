@@ -17,7 +17,8 @@ export class LoginPage {
   robby = 'assets/img/Robby form@0.5x.png';
   account: Account;
   removeMessageListener: Function;
-
+  elixirLogo = 'assets/img/elixir_logo.png';
+  
   constructor(
     private _authService: AuthService,
     public credentialService: CredentialService,
@@ -47,20 +48,6 @@ export class LoginPage {
     let tokenClaims = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(jwt.split(".")[1]));
     this.credentialService.setCredentials(tokenClaims.sub, null, tokenClaims.name);
   }
-
-  // public authenticate(username: string, password: string) {
-  //   this._authService.authenticate(username,password).subscribe(
-  //     token => {
-  //       console.log('[LoginPage] Obtained token %O', token);
-  //       this.tokenService.setToken(token);
-  //       this.credentialService.setCredentials(username,password);
-  //     },
-  //     error => {
-  //       console.log('[LoginPage] Got error ');
-  //     },
-  //     () => {}
-  //   );
-  // }
 
   ssoLink() {
     return this._authService.ssoLink();
