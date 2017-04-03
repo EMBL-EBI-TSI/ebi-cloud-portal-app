@@ -130,18 +130,8 @@
           </span>
         </span>
         <br>
-	  	<h3 md-header>Deployment Parameters</h3>
-        <md-divider></md-divider>
-        <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">This application requires no deployment
-        parameters </p>
-        <md-list-item *ngFor="let aParameter of applicationDetail.applicationDeployer.deploymentParameters">
-          <md-input #{{aParameter}} placeholder="{{ aParameter }}"
-	 			(keyup.enter)="applicationDetail.assignParameter(applicationDetail.applicationDeployer, aParameter, $event.target.value)"
-                (blur)="applicationDetail.assignParameter(applicationDetail.applicationDeployer, aParameter, $event.target.value)">
-       	  </md-input>
-        </md-list-item>
 
-      <h3 md-header>Choose Configurations</h3>
+        <h3 md-header>Choose Configurations</h3>
        <md-divider></md-divider>
        <br/>
        <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">The user account has no pre set configurations</p>
@@ -153,8 +143,18 @@
           </option>
         </select>
        </md-input-container>
-
-        <!--Application outputs-->
+       
+       	<h3 md-header>Deployment Parameters</h3>
+        <md-divider></md-divider>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">This application requires no deployment
+        parameters </p>
+        <md-list-item *ngFor="let assignedParameter of applicationDetail.applicationDeployer.assignedParameters| mapToIterable">
+            <h3 md-line>{{ assignedParameter.key}}</h3>
+            <p md-line class="param-value">{{ assignedParameter.value }}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        
+         <!--Application outputs-->
         <h3 md-header>Outputs</h3>
         <md-divider></md-divider>
         <p md-subheader *ngIf="applicationDetail.applicationDeployer.outputs.length==0">This application generates no output</p>

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { Component } from '@angular/core';
+import { ApplicationComponent, MapToIterablePipe } from 'ng2-cloud-portal-presentation-lib';
 
 @Component({
   selector: 'application-page',
   directives: [ ApplicationComponent ],
+  pipes: [ MapToIterablePipe ],
   styles: [require('./application-page.style.css')],
   template: require('./application-page.template.html')
 })
@@ -25,6 +26,4 @@ export class ApplicationPage {
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
   }
-  
-
 }
