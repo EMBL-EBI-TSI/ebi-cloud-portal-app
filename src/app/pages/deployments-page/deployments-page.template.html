@@ -52,10 +52,6 @@
 						<p md-line>{{ assignedInput.inputName }}</p>
 						<h3 md-line class="param-value">{{ assignedInput.assignedValue }}</h3>
 					</md-list-item>
-					<md-list-item *ngFor="let assignedParameter of deploymentInstance.assignedParameters">
-						<p md-line>{{ assignedParameter.parameterName }}</p>
-						<h3 md-line class="param-value">{{ assignedParameter.parameterValue }}</h3>
-					</md-list-item>
 					<!--List generated outputs-->
 					<md-list-item *ngFor="let generatedOutput of deploymentInstance.generatedOutputs">
 						<p md-line>{{ generatedOutput.outputName }}</p>
