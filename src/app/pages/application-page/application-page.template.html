@@ -152,10 +152,10 @@
         <md-divider></md-divider>
         <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">This application requires no deployment
         parameters </p>
-        <md-list>
+        <md-list *ngIf="parametersShowing">
         <md-list-item  *ngFor="let assignedParameter of applicationDetail.applicationDeployer.assignedParameters| mapToIterable">
-            <h3 md-line *ngIf="parametersShowing">{{ assignedParameter.key}}</h3>
-            <p md-line class="param-value" *ngIf="parametersShowing">{{ assignedParameter.value }}</p>
+            <h3 md-line>{{ assignedParameter.key}}</h3>
+            <p md-line class="param-value">{{ assignedParameter.value }}</p>
         </md-list-item>
         </md-list>
         <md-divider></md-divider>
