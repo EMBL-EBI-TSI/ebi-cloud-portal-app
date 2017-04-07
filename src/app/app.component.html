@@ -1,30 +1,13 @@
 <md-sidenav-container>
   <md-sidenav #sidenav mode="push">
       <md-nav-list>
-          <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] " (click)="sidenav.close()">
-              <md-icon md-list-icon>cloud</md-icon>
-              <span md-line>Deployments</span>
-              <span md-line>Currently deployed appliances</span>
-          </a>
-          <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] " (click)="sidenav.close()">
-              <md-icon md-list-icon>dashboard</md-icon>
-              <span md-line>Repository</span>
-              <span md-line>Appliances available for deployment</span>
-          </a>
-          <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
-              <md-icon md-list-icon>storage</md-icon>
-              <span md-line>Volumes</span>
-              <span md-line>Data storage units</span>
-          </a>
+          
           <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./about'] " (click)="sidenav.close()">
               <md-icon md-list-icon>info</md-icon>
               <span md-line>About</span>
               <span md-line>Information about the TSI Cloud Portal</span>
           </a>
-          <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
-              <md-icon md-list-icon>face</md-icon>
-              <span md-line>Profile</span>
-          </a>
+          
           <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" (click)="logOut(); sidenav.close()">
               <md-icon md-list-icon>vpn_key</md-icon>
               <span md-line>Logout</span>
@@ -33,11 +16,7 @@
               <md-icon md-list-icon>vpn_key</md-icon>
               <span md-line>Login</span>
           </a>
-              <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./docs'] " (click)="sidenav.close()">
-              <md-icon md-list-icon>info</md-icon>
-              <span md-line>User Documentation</span>
-              <span md-line>User documentation to use the portal</span>
-          </a>
+              
       </md-nav-list>
   </md-sidenav>
   <div class="ebi-header">

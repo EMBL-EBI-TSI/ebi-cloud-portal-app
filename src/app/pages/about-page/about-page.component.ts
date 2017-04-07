@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  selector: 'about-page',
+  templateUrl: './about-page.component.html',
+  styleUrls: ['./about-page.component.css']
 })
-export class AboutComponent implements OnInit {
+export class AboutPageComponent implements OnInit {
 
   ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
   ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';

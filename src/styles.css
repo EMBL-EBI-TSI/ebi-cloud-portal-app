@@ -377,7 +377,6 @@ p {
   justify-content: space-between;
 }
 
-
 footer {
   height: 60px !important;
   width: 100%;
@@ -391,9 +390,7 @@ footer {
 }
 
 .content {
-  background: white;
-  top: 100px;
-  bottom: 60px;
+  margin-bottom: 60px;
   width: 100%;
   overflow-x: hidden;
 }

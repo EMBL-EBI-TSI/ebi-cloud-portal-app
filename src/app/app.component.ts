@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { TokenService } from 'ng2-cloud-portal-service-lib';
+import { TokenService, CredentialService } from 'ng2-cloud-portal-service-lib';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,16 @@ export class AppComponent {
   ebiUrl = 'http://www.ebi.ac.uk/';
   tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
 
-  constructor(public tokenService: TokenService) {
+  constructor(public tokenService: TokenService,
+        public credentialService: CredentialService,
+        public router: Router) {
 
+  }
+
+  logOut() {
+    this.credentialService.clearCredentials();
+    this.tokenService.clearToken();
+    this.router.navigateByUrl('/welcome');
   }
 
 }
