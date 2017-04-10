@@ -1,0 +1,7 @@
+[md-mini-fab] {
+  position: absolute;
+  right: 20px;
+  top: 0px;
+  z-index: 20;
+  background: var(--complementary-color);
+}

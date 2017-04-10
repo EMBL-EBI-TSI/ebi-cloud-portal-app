@@ -13,7 +13,6 @@
 	<md-tab-group #configurationsTabGroup>
 		<md-tab>
 			<template md-tab-label>Cloud Providers</template>
-			<template md-tab-content>
 
 				<md-card class="background-card" *ngIf="!profileComponent.cloudProviderParametersPresenters || profileComponent.cloudProviderParametersPresenters.length==0">
 					No cloud providers registered yet
@@ -29,20 +28,18 @@
 					</md-card-header>
 					<md-card-content>
 						<form [formGroup]="profileComponent.cloudProviderParametersForm" autocomplete="off">
-              <md-input-container>
-							<input 
+							<md-input-container><input 
 								type="text" 
 								placeholder="Provider parameters name (required)" 
 								[formControl]="profileComponent.cloudProviderParametersForm.controls['name']" 
 								autofocus>
-              </md-input-container>
-              <md-input-container>
-							<input 
+							</md-input-container>
+							<md-input-container><input 
 								type="text" 
 								placeholder="Cloud provider (required)" 
 								[formControl]="profileComponent.cloudProviderParametersForm.controls['cloudProvider']" 
 								autofocus>
-              </md-input-container>
+							</md-input-container>
 							<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewCloudProviderParametersFormField()">
               <md-icon>add</md-icon> 
             	</button></h3>
@@ -108,9 +105,9 @@
 								</md-list>
 							</md-card-content>
 							<md-card-actions>
-								<button md-raised-button (click)="profileComponent.setCurrentlySelectedCloudProviderParameters(cloudProviderParametersPresenter)">
+								<!--<button md-raised-button (click)="profileComponent.setCurrentlySelectedCloudProviderParameters(cloudProviderParametersPresenter)">
 									SELECT
-								</button>
+								</button>-->
 							</md-card-actions>
 						</md-card>
 
@@ -136,9 +133,9 @@
 								</md-list>
 							</md-card-content>
 							<md-card-actions>
-								<button md-raised-button (click)="profileComponent.setCurrentlySelectedCloudProviderParameters(cloudProviderParametersPresenter)">
+								<!--<button md-raised-button (click)="profileComponent.setCurrentlySelectedCloudProviderParameters(cloudProviderParametersPresenter)">
 									SELECT
-								</button>
+								</button>-->
 							</md-card-actions>
 						</md-card>
 						<!--Get all the sahred credentials from each team the user is a member of??-->
@@ -147,11 +144,10 @@
 						</span>
 					</span>
 				</div>
-			</template>
 		</md-tab>
-		<md-tab *ngIf="False">
+		<md-tab>
 			<template md-tab-label>Configurations</template>
-			<template md-tab-content *ngIf="False">
+
 				<md-card class="background-card" *ngIf="!profileComponent.configurationPresenters || profileComponent.configurationPresenters.length==0">
 					No configurations registered yet
 				</md-card>
@@ -249,12 +245,12 @@
 					</md-card>
 				</div>
 			</div>
-		</template>
+
 		</md-tab>
 
 		<md-tab>
 			<template md-tab-label>Teams</template>
-			<template md-tab-content>
+
 				<md-card class="background-card" *ngIf="!profileComponent.teamPresenters || profileComponent.teamPresenters.length==0">
 					No teams associated with this account
 				</md-card>
@@ -319,7 +315,7 @@
 						</md-card>
 					</span>
 				</div>
-			</template>
+
 		</md-tab>
 
 	</md-tab-group>
