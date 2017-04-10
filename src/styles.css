@@ -7,15 +7,16 @@
   --dark-color: #333333;
 }
 
-html {
+html,body {
   height: 100%;
   background: var(--light-color);
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
-body {
-  min-height: 100%;
-  margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+md-sidenav-container {
+  height: 100%;
 }
 
 .ebi-header {
@@ -381,7 +382,7 @@ footer {
   height: 60px !important;
   width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   background: var(--secondary-color);
   color: var(--light-color);
   display: flex;
@@ -390,7 +391,9 @@ footer {
 }
 
 .content {
-  margin-bottom: 60px;
+  position: absolute;
+  bottom: 60px;
+  top: 100px;
   width: 100%;
   overflow-x: hidden;
 }

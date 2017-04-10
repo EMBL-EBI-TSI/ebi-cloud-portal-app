@@ -8,6 +8,10 @@
               <span md-line>Information about the TSI Cloud Portal</span>
           </a>
           
+          <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
+              <md-icon md-list-icon>vpn_key</md-icon>
+              <span md-line>Profile</span>
+          </a>
           <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" (click)="logOut(); sidenav.close()">
               <md-icon md-list-icon>vpn_key</md-icon>
               <span md-line>Logout</span>
@@ -47,5 +51,6 @@
       <span id="footerText"> Cloud Portal by <a [href]="tsiGithubUrl">@EMBL-EBI-TSI</a></span>
     </div>
   </footer>
+  
 </md-sidenav-container>
 
