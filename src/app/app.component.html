@@ -27,6 +27,19 @@
     <a class="ebi-header-logo" [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
     <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
     <span class="ebi-header-link-container">
+        <a class="ebi-header-link" *ngIf="!credentialService.getUsername()" [routerLink]=" ['./login'] ">
+          <md-icon class="ebi-header-link-icon" md-list-icon>vpn_key</md-icon>
+          <span class="ebi-header-link-text">Login</span>
+        </a>
+        <md-select *ngIf="credentialService.getUsername()" 
+          [ngModel]="selectedCloudProvider"
+          placeholder="Select provider"
+          (click)="updateCloudProviders($event)"
+          (ngModelChange)="setCurrentlySelectedCloudProviderParameters($event)">
+          <md-option *ngFor="let aCloudProvider of cloudProviderParameters" [value]="aCloudProvider">
+            {{ aCloudProvider.name }}
+          </md-option>
+        </md-select>
         
     </span>
   </div>
@@ -36,6 +49,16 @@
     </button> 
 
     <span class="fill-remaining-space"></span>
+    <span *ngIf="credentialService.getUsername()">
+          <button md-button [mdMenuTriggerFor]="menu">
+            <md-icon *ngIf="!loggedInAccount || !loggedInAccount.avatarImageUrl" md-list-icon>face</md-icon>
+            {{ credentialService.getGivenName() }}
+          </button>
+          <md-menu #menu="mdMenu">
+            <button md-menu-item [routerLink]=" ['./profile'] ">Profile</button>
+            <button md-menu-item (click)="logOut()">Logout</button>
+          </md-menu>
+        </span>
   </md-toolbar>
 
   <!-- primary content -->
@@ -51,6 +74,6 @@
       <span id="footerText"> Cloud Portal by <a [href]="tsiGithubUrl">@EMBL-EBI-TSI</a></span>
     </div>
   </footer>
-  
+
 </md-sidenav-container>
 

@@ -40,9 +40,11 @@ md-sidenav-container {
 }
 .ebi-header-link-container {
   float: right;
-  text-align: right;
-  width: auto;
-  padding-right: 55px;
+  padding-right: 15px;
+  color: var(--light-color);
+}
+.ebi-header-link-container md-select {
+  min-width: 150px;
   color: var(--light-color);
 }
 
