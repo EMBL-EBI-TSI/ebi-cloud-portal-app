@@ -40,18 +40,28 @@ export class DocsPage {
 	
 	repositoryToShareApplication = 'assets/img/repository_application_share.png';
 	repositorySharingApplication = 'assets/img/repository_sharing_application.png';
+	
+	profileBeforeAddingDP = 'assets/img/profile_adding_deployment_parameters.png';
+	profileAfterAddingDP = 'assets/img/profile_after_adding_deployment_parameters.png';
+	
+	profileBeforeAddingConfig = 'assets/img/profile_adding_configuration.png';
+	profileAfterAddingConfig = 'assets/img/profile_after_adding_configuration.png';
 
+	deployChooseApplication = 'assets/img/deploy_select_application.png';
+	deployChooseCloudProvider = 'assets/img/deploy_select_cloud_provider.png';
+	deployChooseConfiguration = 'assets/img/deploy_choose_configuration.png';
+	deployApplication = 'assets/img/deploy_application.png';
   
-  constructor(public breadcrumbService: BreadcrumbService) {
-    
-  }
+	  constructor(public breadcrumbService: BreadcrumbService) {
+	    
+	  }
 
-  ngOnInit() {
-    this.breadcrumbService.breadcrumb.push( {label:'Documentation', route:'docs'} );
-  }
-
-  ngOnDestroy() {
-    this.breadcrumbService.breadcrumb = [];
-  }
+	  ngOnInit() {
+	    this.breadcrumbService.breadcrumb.push( {label:'Documentation', route:'docs'} );
+	  }
+	
+	  ngOnDestroy() {
+	    this.breadcrumbService.breadcrumb = [];
+	  }
 
 }

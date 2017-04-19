@@ -52,7 +52,7 @@
 		add, share and remove Cloud Credentials and Teams.
 		<img style="width:70em; margin-top: 3em;" border="1" [src]="homeProfile"></p>
 	</span>
-	<div>
+		<div>
 			<span>
 				<h4><b>I. Cloud providers</b></h4>
 				<p>To add Cloud Providers, click on the 'Cloud Providers' tab in you Profile Page.<br/>
@@ -61,7 +61,7 @@
 				<br/><br/>You can add Cloud Provider Parameters , by clicking on the '+' next to the Parameters.
 				To add <br/>more parameters  just click on '+'.
 				Then hit on 'Save' button to save the information.<br/>You will be able to see the 
-				Cloud Provider added to your Profile which will look as follows
+				Cloud Provider added to your Profile which will look as follows<br/>
 				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAddedCpp">
 				</p>
 				<p>
@@ -69,11 +69,40 @@
 				<br/>on the 'green eye icon'.
 				</p>
 			</span>
-			
 		</div>
 		<div>
 			<span>
-				<h4><b>II. Teams</b></h4>
+				<h4><b>II. Configurations</b></h4>
+				<p>You can create a configuration which takes as
+				input a cloud provider name (I above) and a deployment parameter name (IV below), 
+				which can be made use of while deploying applications<br/>
+				To add configuration, click on the 'Configurations' tab To the right is a '+' symbol which will allow you to 
+				add a Configuration. You can see that the cloud provider name 'TSISTACK',<br/> was the one
+				created before using I above and the deployment parameter name is the one created using
+				III below<br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileBeforeAddingConfig">
+				<p>Click on  'SAVE' to save the deployment parameters.
+				Now the deployment parameters are displayed as follows <br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAfterAddingConfig">
+				<br/>You can click on the 'red bin icon', to delete the deployment parameters.</p>
+			</span>
+		</div>
+		<div>
+			<span>
+				<h4><b>III. Deployment Parameters</b></h4>
+				<p>To add deployment parameters (you can create a group of deployment parameters
+				at one go), click on the 'Deployment Parameters' tab in your Profile Page.<br/>
+				To the right is a '+' symbol which will allow you to add a deployment parameter.<br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileBeforeAddingDP">
+				<p>Click on  'SAVE' to save the deployment parameters.
+				Now the deployment parameters are displayed as follows <br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAfterAddingDP">
+				<br/>You can click on the 'red bin icon', to delete the deployment parameters.</p>
+			</span>
+		</div>
+		<div>
+			<span>
+				<h4><b>IV. Teams</b></h4>
 				<p>To add teams, click on the 'Teams' tab in your Profile Page.<br/>
 				To the right is a '+' symbol which will allow you to add a team.
 				Enter the team name and click on 'Save'.<br/>
@@ -129,7 +158,8 @@
 		<span>
 			<h4><b>Sharing Applications</b></h4>
 			<p>You can share your application, with another person or a team.
-			To share Applications, click on the 'Applications' you want to share.<br/>				To the right is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
+			To share Applications, click on the 'Applications' you want to share.<br/>				
+			To the right is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
 			symbol which will allow you to share a Cloud Provider.<br/>
 			<img style="width:70em; margin-top: 3em;" border="1" [src]="repositorySharingApplication">
 			<br/><br/>You can enter the email of a person you want to share with
@@ -139,6 +169,31 @@
 			</p>
 		</span>
 	</div>
+</div>
+<div>
+	<span>
+		<h4><b>Deploying Applications</b></h4>
+		<p> You can deploy your application, to be run  on a cloud provider of your choice.
+			Click on 'Repository' and click on the Application, you want to deploy as follows.
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseApplication">
+			<br/>This will then take you to the deployment page. You have to choose the cloud provider,
+			you want your application to run on. <br/>For this from the top left corner, click on
+			'Select CloudProvider' and select a cloud provider, which you have defined.<br/>
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseCloudProvider">
+			<br/>If you have deployment parameters defined for your application and you have also
+			defined a configuration providing those, you can use it. <br/>Under 'Choose Configurations' 
+			a list of Configurations you have defined will appear and you can use one of them. 
+			<br/>If the configuration you have chosen, has a deployment parameter matching the 
+			deployment parameters for the application, <br/>the value is displayed like<br/>
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseConfiguration">
+			<br/>Click on the 'green eye' icon, to view the 'Deployment Parameters' if any.
+			Enter the inputs for the application if any under 'Inputs', and then 
+			click on the 'Deploy' button
+			as follows<br/>
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployApplication">
+			<br/>Once the application is deployed, you can click on 'Deployments' from 
+			the side navigation bar, to view the deployments.
+	</span>
 </div>
 </md-content>
 
