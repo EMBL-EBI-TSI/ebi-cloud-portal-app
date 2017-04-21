@@ -1,0 +1,2 @@
+<about-page *ngIf="!tokenService.getToken()"></about-page>
+<repository-page *ngIf="tokenService.getToken()"></repository-page>

@@ -20,13 +20,16 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
+import { RepositoryPageComponent } from './pages/repository-page/repository-page.component';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
 const appRoutes: Routes = [
-  { path: '', component: AboutPageComponent },
-  { path: 'welcome', component: AboutPageComponent },
+  { path: '', component: WelcomePageComponent },
+  { path: 'welcome', component: WelcomePageComponent },
   { path: 'about', component: AboutPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'profile', component: ProfilePageComponent },
+  { path: 'repository', component: RepositoryPageComponent },
   { path: 'error', component: ErrorPageComponent }
 ];
 
@@ -42,7 +45,9 @@ export function provideConfig() {
     ProfilePageComponent,
     ProfileComponent,
     ErrorPageComponent,
-    ErrorComponent
+    ErrorComponent,
+    RepositoryPageComponent,
+    WelcomePageComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

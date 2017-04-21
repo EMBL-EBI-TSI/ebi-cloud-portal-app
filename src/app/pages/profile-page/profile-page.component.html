@@ -28,13 +28,13 @@
 					</md-card-header>
 					<md-card-content>
 						<form [formGroup]="profileComponent.cloudProviderParametersForm" autocomplete="off">
-							<md-input-container><input 
+							<md-input-container class="input-full-width"><input mdInput
 								type="text" 
 								placeholder="Provider parameters name (required)" 
 								[formControl]="profileComponent.cloudProviderParametersForm.controls['name']" 
 								autofocus>
 							</md-input-container>
-							<md-input-container><input 
+							<md-input-container class="input-full-width"><input mdInput
 								type="text" 
 								placeholder="Cloud provider (required)" 
 								[formControl]="profileComponent.cloudProviderParametersForm.controls['cloudProvider']" 
@@ -47,12 +47,12 @@
 							<div *ngFor="let fieldFormGroup of profileComponent.cloudProviderParametersForm.controls['fields'].controls">
 								<form [formGroup]="fieldFormGroup">
 									<table style="width: 100%" cellspacing="0"><tr>
-									<td><md-input-container><input 
+									<td><md-input-container class="input-full-width"><input mdInput
 										type="text" 
 										placeholder="Enter parameter key" 
 										[formControl]="fieldFormGroup.controls['key']" 
 										autofocus></md-input-container></td>
-									<td><md-input-container><input 
+									<td><md-input-container class="input-full-width"><input mdInput
 										type="text" 
 										placeholder="Enter parameter value" 
 										[formControl]="fieldFormGroup.controls['value']" 
@@ -90,7 +90,9 @@
 							<md-card-content>
 								<span class="share-credentials-dialog" *ngIf="profileComponent.shareCloudProviderParametersDialogShowing">
 									<form #shareProviderForm>
-										<md-input-container><input type="email" placeholder="Share email (required)" [(ngModel)]="userEmail" name="userEmail" autofocus>
+										<md-input-container class="input-full-width"><input mdInput
+										type="email" placeholder="Share email (required)" 
+										[(ngModel)]="userEmail" name="userEmail" autofocus>
 										</md-input-container>
 									</form>
 									<!--<span class="fill-remaining-space"></span>-->
@@ -162,19 +164,19 @@
 					</md-card-header>
 				<md-card-content>
 					<form [formGroup]="profileComponent.configurationForm" autocomplete="off">
-						<md-input-container><input 
+						<md-input-container class="input-full-width"><input mdInput
 							type="text" 
 							placeholder="Configuration name (required)" 
 							[formControl]="profileComponent.configurationForm.controls['name']" 
 							autofocus>
 						</md-input-container>
-						<md-input-container><input 
+						<md-input-container class="input-full-width"><input mdInput
 							type="text" 
 							placeholder="Cloud provider parameters name (required)" 
 							[formControl]="profileComponent.configurationForm.controls['cloudProviderParametersName']" 
 							autofocus>
 						</md-input-container>
-						<md-input-container><input 
+						<md-input-container class="input-full-width"><input mdInput
 							type="text" 
 							placeholder="SSH public key" 
 							[formControl]="profileComponent.configurationForm.controls['sshKey']" 
@@ -188,12 +190,12 @@
 						<div *ngFor="let fieldFormGroup of profileComponent.configurationForm.controls['fields'].controls">
 							<form [formGroup]="fieldFormGroup">
 								<table style="width: 100%" cellspacing="0"><tr>
-								<td><md-input-container><input 
+								<td><md-input-container class="input-full-width"><input mdInput
 									type="text" 
 									placeholder="Enter parameter key" 
 									[formControl]="fieldFormGroup.controls['key']" 
 									autofocus></md-input-container></td>
-								<td><md-input-container><input 
+								<td><md-input-container class="input-full-width"><input mdInput
 									type="text" 
 									placeholder="Enter parameter value" 
 									[formControl]="fieldFormGroup.controls['value']" 
@@ -265,7 +267,7 @@
 					</md-card-header>
 					<md-card-content>
 						<form [formGroup]="profileComponent.teamForm" autocomplete="off">
-							<md-input-container><input 
+							<md-input-container class="input-full-width"><input mdInput
 								type="text" 
 								placeholder="Team name (required)" 
 								[formControl]="profileComponent.teamForm.controls['name']" 
@@ -302,7 +304,9 @@
 							<md-card-content>
 								<span class="share-credentials-dialog" *ngIf="profileComponent.addMemberToTeamDialogShowing">
 									<form #shareProviderForm>
-										<md-input-container><input type="email" placeholder="Share email (required)" [(ngModel)]="memberAccountEmail" name="memberAccountEmail" autofocus>
+										<md-input-container class="input-full-width"><input mdInput
+										type="email" placeholder="Share email (required)" 
+										[(ngModel)]="memberAccountEmail" name="memberAccountEmail" autofocus>
 										</md-input-container>
 									</form>
 									<!--<span class="fill-remaining-space"></span>-->
