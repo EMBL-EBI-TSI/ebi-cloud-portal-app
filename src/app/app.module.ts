@@ -22,15 +22,31 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { RepositoryPageComponent } from './pages/repository-page/repository-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+import { DeploymentsPageComponent } from './pages/deployments-page/deployments-page.component';
+import { VolumesPageComponent } from './pages/volumes-page/volumes-page.component';
+import { DeploymentPageComponent } from './pages/deployment-page/deployment-page.component';
+import { ApplicationPageComponent } from './pages/application-page/application-page.component';
+import { TeamPageComponent } from './pages/team-page/team-page.component';
+import { CloudProviderParametersPageComponent } from './pages/cloud-provider-parameters-page/cloud-provider-parameters-page.component';
+import { DocsPageComponent } from './pages/docs-page/docs-page.component';
 
 const appRoutes: Routes = [
-  { path: '', component: WelcomePageComponent },
-  { path: 'welcome', component: WelcomePageComponent },
-  { path: 'about', component: AboutPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'profile', component: ProfilePageComponent },
-  { path: 'repository', component: RepositoryPageComponent },
-  { path: 'error', component: ErrorPageComponent }
+    { path: '', component: WelcomePageComponent },
+    { path: 'profile', component: ProfilePageComponent },
+    { path: 'repository', component: RepositoryPageComponent },
+    { path: 'repository/:id', component: ApplicationPageComponent },
+    { path: 'repository/shared/:id', component: ApplicationPageComponent },
+    { path: 'cloudprovider/shared/:id', component: CloudProviderParametersPageComponent },
+    { path: 'cloudprovider/:id', component: CloudProviderParametersPageComponent },
+    { path: 'team/:id', component: TeamPageComponent },
+    { path: 'deployments/:id', component: DeploymentPageComponent },
+    { path: 'deployments', component: DeploymentsPageComponent },
+    { path: 'volumes', component: VolumesPageComponent },
+    { path: 'error', component: ErrorPageComponent },
+    { path: 'about', component: AboutPageComponent },
+    { path: 'login', component: LoginPageComponent },
+    { path: 'docs', component: DocsPageComponent },
+    { path: '**', component: WelcomePageComponent },
 ];
 
 export function provideConfig() {
@@ -47,7 +63,14 @@ export function provideConfig() {
     ErrorPageComponent,
     ErrorComponent,
     RepositoryPageComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    DeploymentsPageComponent,
+    VolumesPageComponent,
+    DeploymentPageComponent,
+    ApplicationPageComponent,
+    TeamPageComponent,
+    CloudProviderParametersPageComponent,
+    DocsPageComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
