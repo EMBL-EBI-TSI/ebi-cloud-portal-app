@@ -2,18 +2,20 @@
   <md-sidenav #sidenav mode="push">
     <md-nav-list>
 
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] " (click)="sidenav.close()">
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] "
+        (click)="sidenav.close()">
         <md-icon md-list-icon>cloud</md-icon>
         <span md-line>Deployments</span>
       </a>
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] " (click)="sidenav.close()">
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] "
+        (click)="sidenav.close()">
         <md-icon md-list-icon>dashboard</md-icon>
         <span md-line>Repository</span>
       </a>
       <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
         <md-icon md-list-icon>storage</md-icon>
         <span md-line>Volumes</span>
-      </a>      
+      </a>
       <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
         <md-icon md-list-icon>face</md-icon>
         <span md-line>Profile</span>
