@@ -12,8 +12,11 @@ import { JwtHelper } from 'angular2-jwt';
 
 import { TokenService, AuthService, ConfigService,
         CredentialService, ErrorService, AccountService,
-        ConfigurationService, CloudProviderParametersService, TeamService } from 'ng2-cloud-portal-service-lib'
-import { ProfileComponent, CloudProviderParametersComponent, ErrorComponent } from 'ng2-cloud-portal-presentation-lib';
+        ConfigurationService, CloudProviderParametersService,
+        ApplicationService, VolumeInstanceService, TeamService,
+        DeploymentService } from 'ng2-cloud-portal-service-lib'
+import { ProfileComponent, CloudProviderParametersComponent, RepositoryComponent,
+        ApplicationComponent, ErrorComponent, ApplicationCloudProviderPipe } from 'ng2-cloud-portal-presentation-lib';
 
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
@@ -63,15 +66,18 @@ export function provideConfig() {
     ErrorPageComponent,
     ErrorComponent,
     RepositoryPageComponent,
+    RepositoryComponent,
     WelcomePageComponent,
     DeploymentsPageComponent,
     VolumesPageComponent,
     DeploymentPageComponent,
     ApplicationPageComponent,
+    ApplicationComponent,
     TeamPageComponent,
     CloudProviderParametersPageComponent,
     CloudProviderParametersComponent,
-    DocsPageComponent
+    DocsPageComponent,
+    ApplicationCloudProviderPipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -89,6 +95,9 @@ export function provideConfig() {
     CredentialService,
     ErrorService,
     AccountService,
+    ApplicationService,
+    DeploymentService,
+    VolumeInstanceService,
     ConfigurationService,
     TeamService,
     CloudProviderParametersService,

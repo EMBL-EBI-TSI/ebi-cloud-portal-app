@@ -1,0 +1,10 @@
+[md-mini-fab] {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  z-index: 20;
+  background: var(--complementary-color);
+}
+.input-full-width {
+  width: 100%;
+}
