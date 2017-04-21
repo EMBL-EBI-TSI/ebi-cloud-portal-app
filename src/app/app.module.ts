@@ -16,7 +16,8 @@ import { TokenService, AuthService, ConfigService,
         ApplicationService, VolumeInstanceService, TeamService,
         DeploymentService } from 'ng2-cloud-portal-service-lib'
 import { ProfileComponent, CloudProviderParametersComponent, RepositoryComponent,
-        ApplicationComponent, ErrorComponent, ApplicationCloudProviderPipe } from 'ng2-cloud-portal-presentation-lib';
+        ApplicationComponent, ErrorComponent, ApplicationCloudProviderPipe,
+        TeamComponent } from 'ng2-cloud-portal-presentation-lib';
 
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
@@ -74,6 +75,7 @@ export function provideConfig() {
     ApplicationPageComponent,
     ApplicationComponent,
     TeamPageComponent,
+    TeamComponent,
     CloudProviderParametersPageComponent,
     CloudProviderParametersComponent,
     DocsPageComponent,
