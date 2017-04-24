@@ -12,11 +12,23 @@
           <md-icon>delete_forever</md-icon> 
         </button>
       </span>
-        <span *ngIf="applicationDetail.applicationDeployer.isShared">
+      <span *ngIf="applicationDetail.applicationDeployer.isShared">
         <p>SHARED</p>
       </span>
       </md-toolbar>
+
+
+
+      <!--Application metadata-->
       <md-card-content>
+        <!--Available providers-->
+        <md-list>
+          <md-chip-list selectable="false">
+            <md-chip *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+            {{ cloudProvider.cloudProvider }}
+            </md-chip>
+          </md-chip-list>
+        </md-list>
         <span class="flex-container-wide">
         <span class="flex-container-wide">
         <md-list dense>
@@ -36,12 +48,8 @@
             <h3 md-line>Contact</h3>
             <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
           </md-list-item>
-          <md-list-item>
-            <h3 md-line>Available for</h3>
-            <p md-line class="param-value" *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-            {{ cloudProvider.cloudProvider }}</p>
-          </md-list-item>
         </md-list>
+        <!--Sharing permisions-->
         <md-list dense>
           <span *ngIf="applicationDetail.applicationDeployer.isShared">
             <md-list-item>
@@ -49,7 +57,7 @@
               <p md-line class="param-value">{{ applicationDetail.applicationDeployer.accountEmail }}</p>
             </md-list-item>
           </span>
-        <span *ngIf="!applicationDetail.applicationDeployer.isShared && applicationDetail.applicationDeployer.sharedWithAccountEmails.length>0">
+          <span *ngIf="!applicationDetail.applicationDeployer.isShared && applicationDetail.applicationDeployer.sharedWithAccountEmails.length>0">
             <md-list-item>
               <h3 md-line>Shared with</h3>
               <p *ngFor="let accountEmail of applicationDetail.applicationDeployer.sharedWithAccountEmails" md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(accountEmail)">
@@ -57,7 +65,7 @@
               </button></p>
             </md-list-item>
           </span>
-        <span *ngIf="applicationDetail.applicationDeployer.sharedWithTeamNames && applicationDetail.applicationDeployer.sharedWithTeamNames.length>0">
+          <span *ngIf="applicationDetail.applicationDeployer.sharedWithTeamNames && applicationDetail.applicationDeployer.sharedWithTeamNames.length>0">
             <md-list-item>
               <h3 md-line>Included in teams</h3>
               <p *ngFor="let teamName of applicationDetail.applicationDeployer.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
@@ -69,6 +77,7 @@
           </span>
         </md-list>
         </span>
+        
         <span class="share-application-dialog" *ngIf="applicationDetail.shareApplicationDialogShowing" open>
           <md-card>
             <md-card-header>
@@ -89,6 +98,7 @@
           </md-card>
         </span>
         </span>
+
         <md-list>
           <!--Application required volumes-->
           <h3 md-header>Volumes</h3>
