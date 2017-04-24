@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { VolumesComponent } from 'ng2-cloud-portal-presentation-lib';
+import { ActivatedRoute } from '@angular/router';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'volumes-page',
@@ -8,9 +9,16 @@ import { VolumesComponent } from 'ng2-cloud-portal-presentation-lib';
 })
 export class VolumesPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public breadcrumbService: BreadcrumbService) {  }
 
   ngOnInit() {
+    this.breadcrumbService.breadcrumb.push(
+      {label: 'Volumes', route: 'volumes'}
+    );
+  }
+
+  ngOnDestroy() {
+    this.breadcrumbService.breadcrumb = [];
   }
 
 }

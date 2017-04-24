@@ -58,7 +58,9 @@
     <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
       <md-icon>menu</md-icon>
     </button>
-
+    <a *ngFor="let breadcrumb of getBreadcrumb()" class="md-main-toolbar-title" [routerLink]="breadcrumb.route">
+        {{ breadcrumb.label }}
+    </a>
     <span class="fill-remaining-space"></span>
     <span *ngIf="credentialService.getUsername()">
           <button md-button [mdMenuTriggerFor]="menu">

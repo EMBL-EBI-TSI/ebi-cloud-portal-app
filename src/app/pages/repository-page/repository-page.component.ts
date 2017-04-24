@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'repository-page',
@@ -11,7 +12,8 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
   robby = 'assets/img/Robby form@0.5x.png';
   cloudProviderFilters: string[] = ["AWS","GCP","OSTACK","AZURE"];
 
-  constructor(public cloudProviderParametersService: CloudProviderParametersService) {
+  constructor(public cloudProviderParametersService: CloudProviderParametersService,
+              public breadcrumbService: BreadcrumbService) {
     this.updateFilters();
   }
 
@@ -22,11 +24,13 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-
+    this.breadcrumbService.breadcrumb.push(
+      {label: 'Repository', route: 'repository'}
+    );
   }
 
   ngOnDestroy() {
-
+    this.breadcrumbService.breadcrumb = [];
   }
 
   ngDoCheck() {

@@ -36,6 +36,8 @@ import { CloudProviderParametersPageComponent } from './pages/cloud-provider-par
 import { DocsPageComponent } from './pages/docs-page/docs-page.component';
 import { VolumeSetupPageComponent } from './pages/volume-setup-page/volume-setup-page.component';
 import { VolumeInstancePageComponent } from './pages/volume-instance-page/volume-instance-page.component';
+import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
+
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -113,6 +115,7 @@ export function provideConfig() {
     ConfigurationService,
     TeamService,
     CloudProviderParametersService,
+    BreadcrumbService,
     JwtHelper ],
   bootstrap: [ AppComponent ]
 })

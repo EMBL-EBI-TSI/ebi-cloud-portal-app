@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'profile-page',
@@ -8,9 +8,18 @@ import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public breadcrumbService: BreadcrumbService) {
+    
+  }
 
   ngOnInit() {
+    this.breadcrumbService.breadcrumb.push(
+      {label: 'Profile', route: 'profile'}
+    );
+  }
+
+  ngOnDestroy() {
+    this.breadcrumbService.breadcrumb = [];
   }
 
 }

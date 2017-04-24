@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeploymentsComponent } from 'ng2-cloud-portal-presentation-lib';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'deployments-page',
@@ -11,9 +11,16 @@ export class DeploymentsPageComponent implements OnInit {
   statusFilters: string[] = [];
   hideDestroyed: boolean = false;
 
-  constructor() { }
+  constructor(public breadcrumbService: BreadcrumbService) {
+    
+  }
 
   ngOnInit() {
+    this.breadcrumbService.breadcrumb.push( {label:'Deployments', route:'deployments'} );
+  }
+
+  ngOnDestroy() {
+    this.breadcrumbService.breadcrumb = [];
   }
 
   switchDestroyed() {

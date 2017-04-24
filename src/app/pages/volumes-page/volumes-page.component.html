@@ -17,7 +17,8 @@
 								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
 								<!--<md-icon *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> -->
 								<md-progress-circle *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-circle>
-								<md-icon *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon> {{ volumeDeploymentInstance.setupName }}
+								<md-icon *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon>
+                <h3>{{ volumeDeploymentInstance.setupName }}</h3>
 							</md-toolbar>
 							<md-card-content>
 								<md-list dense>
@@ -82,7 +83,8 @@
 					<div class="volume-setup-card-container">
 						<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
 							<md-toolbar class="summary-card-toolbar">
-								<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
+								<!--<md-icon class="card-type-icon">settings_application</md-icon>-->
+                <h3> {{ volumeDeployer.name }}</h3>
 								<span class="fill-remaining-space"></span>
 								<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
 									<md-icon>delete_forever</md-icon> 

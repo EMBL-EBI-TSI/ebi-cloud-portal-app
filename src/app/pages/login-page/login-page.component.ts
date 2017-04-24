@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer, OnDestroy } from '@angular/core';
 import { CredentialService, TokenService,
         AuthService, JwtToken, Account } from 'ng2-cloud-portal-service-lib';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'login-page',
@@ -18,6 +19,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     public credentialService: CredentialService,
     public tokenService: TokenService,
+    public breadcrumbService: BreadcrumbService,
     renderer: Renderer) {
 
     // We cache the function "listenGlobal" returns, as it's one that allows to cleanly unregister the event listener
@@ -37,11 +39,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    this.breadcrumbService.breadcrumb.push( {label:'Login', route:'login'} );
   }
 
   ngOnDestroy() {
     this.removeMessageListener();
-
+    this.breadcrumbService.breadcrumb = [];
   }
 }

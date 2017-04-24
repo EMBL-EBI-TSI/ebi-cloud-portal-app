@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+
 
 @Component({
   selector: 'app-deployment-page',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeploymentPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public breadcrumbService: BreadcrumbService,
+    private _route: ActivatedRoute) {
+    
+  }
 
   ngOnInit() {
+    let deploymentRef = this._route.snapshot.params['id'];
+    this.breadcrumbService.breadcrumb.push( {label:'Deployments', route:'deployments'} );
+    this.breadcrumbService.breadcrumb.push( {label:deploymentRef, route:'deployments/'+deploymentRef} );
+  }
+
+  ngOnDestroy() {
+    this.breadcrumbService.breadcrumb = [];
   }
 
 }
