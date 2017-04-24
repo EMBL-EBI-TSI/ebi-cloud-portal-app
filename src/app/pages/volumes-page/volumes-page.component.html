@@ -79,13 +79,13 @@
 				<!--List setups-->
 				<md-card class="background-card" *ngIf="volumesComponent.volumeDeployers.length==0">No volume setups for user {{ volumesComponent.credentialService.getGivenName() }} yet</md-card>
 				<div class="md-content" *ngIf="volumesComponent.volumeDeployers">
-					<div class="card-container volume-setup-card-container">
+					<div class="volume-setup-card-container">
 						<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">settings_application</md-icon> {{ volumeDeployer.name }}
-								<span class="toolbar-fill-remaining-space"></span>
+								<span class="fill-remaining-space"></span>
 								<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
-									<md-icon class="card-action-icon">clear</md-icon> 
+									<md-icon>delete_forever</md-icon> 
 								</button>
 							</md-toolbar>
 							<md-card-content>
@@ -99,13 +99,22 @@
 
 							<md-progress-bar *ngIf="volumeDeployer.deploying || volumeDeployer.removing" mode="indeterminate"></md-progress-bar>
 							<md-card-actions *ngIf="!volumeDeployer.deploying && !volumeDeployer.removing">
-								<button md-button (click)="volumesComponent.deployVolume(volumeDeployer)"
-								[disabled]="!volumesComponent.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-										DEPLOY
-								</button>
-								<span md-line class="param-value" *ngIf="!volumesComponent.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-									A valid Cloud Provider needs to be selected in order to deploy this application
-								</span>
+                <span *ngIf="!volumesComponent.cloudProviderParametersService.currentlySelectedCloudProviderParameters"
+                mdTooltip="A valid Cloud Provider needs to be selected in order to deploy this volume"
+                mdTooltipPosition="right"
+                mdTooltipHideDelay="1000">
+                  <button md-raised-button (click)="volumesComponent.deployVolume(volumeDeployer)" disabled>
+                      DEPLOY
+                  </button>
+                </span>
+                <span *ngIf="volumesComponent.cloudProviderParametersService.currentlySelectedCloudProviderParameters"
+                  mdTooltip="This volume will be deployed to {{volumesComponent.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name}}"
+                  mdTooltipPosition="right"
+                  mdTooltipHideDelay="1000">
+                  <button md-raised-button (click)="volumesComponent.deployVolume(volumeDeployer)">
+                      DEPLOY
+                  </button>
+                </span>
 							</md-card-actions>
 						</md-card>
 					</div>

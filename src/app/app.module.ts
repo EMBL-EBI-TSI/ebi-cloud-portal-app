@@ -34,6 +34,8 @@ import { ApplicationPageComponent } from './pages/application-page/application-p
 import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { CloudProviderParametersPageComponent } from './pages/cloud-provider-parameters-page/cloud-provider-parameters-page.component';
 import { DocsPageComponent } from './pages/docs-page/docs-page.component';
+import { VolumeSetupPageComponent } from './pages/volume-setup-page/volume-setup-page.component';
+import { VolumeInstancePageComponent } from './pages/volume-instance-page/volume-instance-page.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -84,7 +86,9 @@ export function provideConfig() {
     CloudProviderParametersComponent,
     DocsPageComponent,
     ApplicationCloudProviderPipe,
-    DeploymentStatusPipe
+    DeploymentStatusPipe,
+    VolumeSetupPageComponent,
+    VolumeInstancePageComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

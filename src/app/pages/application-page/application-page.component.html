@@ -161,13 +161,22 @@
 
       <!--These are the action controls-->
       <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
-        <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)" [disabled]="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-          DEPLOY
-      </button>
-        <span md-line class="param-value" *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters"
-          disabled>
-        A valid Cloud Provider needs to be selected in order to deploy this application
-      </span>
+        <span *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters"
+        mdTooltip="A valid Cloud Provider needs to be selected in order to deploy this application"
+        mdTooltipPosition="right"
+        mdTooltipHideDelay="1000">
+          <button md-raised-button disabled>
+              DEPLOY
+          </button>
+        </span>
+        <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters"
+          mdTooltip="This application will be deployed to {{applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name}}"
+          mdTooltipPosition="right"
+          mdTooltipHideDelay="1000">
+          <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
+              DEPLOY
+          </button>
+        </span>
       </md-card-actions>
     </md-card>
   </div>

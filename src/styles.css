@@ -256,7 +256,7 @@ button.active:hover{
 }
 .volume-setup-card-container md-card {
   width: 20em;
-	min-height: 15em;
+	min-height: 13em;
   margin: 1em;
 }
 .volume-setup-card-container md-card md-card-actions {
