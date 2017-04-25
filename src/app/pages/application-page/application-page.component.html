@@ -3,9 +3,16 @@
     <md-card *ngIf="applicationDetail.applicationDeployer">
       <md-toolbar class="detail-card-toolbar">
         <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
+        <!--Available providers-->
+        <md-chip-list selectable="false">
+          <md-chip *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+          {{ cloudProvider.cloudProvider }}
+          </md-chip>
+        </md-chip-list>
         <span class="fill-remaining-space"></span>
+        <!--Share and remove controls-->
         <span *ngIf="!applicationDetail.applicationDeployer.isShared">
-        <button md-icon-button (click)="applicationDetail.shareApplicationDialogShowing=!applicationDetail.shareApplicationDialogShowing">
+        <button md-icon-button (click)="openShareApplicationDialog(applicationDetail)">
           <md-icon>share</md-icon> 
         </button>
         <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
@@ -19,14 +26,7 @@
 
       <!--Application metadata-->
       <md-card-content>
-        <!--Available providers-->
-        <md-list>
-          <md-chip-list selectable="false">
-            <md-chip *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-            {{ cloudProvider.cloudProvider }}
-            </md-chip>
-          </md-chip-list>
-        </md-list>
+        
         <span class="flex-container-wide">
         <span class="flex-container-wide">
         <md-list dense>
@@ -76,7 +76,7 @@
         </md-list>
         </span>
         
-        <span class="share-application-dialog" *ngIf="applicationDetail.shareApplicationDialogShowing" open>
+        <!--<span class="share-application-dialog" *ngIf="applicationDetail.shareApplicationDialogShowing" open>
           <md-card>
             <md-card-header>
               <md-card-title>
@@ -90,11 +90,11 @@
               </form>
             </md-card-content>
             <md-card-actions align="end">
-              <button md-button (click)="applicationDetail.share(accountEmail); applicationDetail.shareApplicationDialogShowing = false">
+              <button md-button (click)="applicationDetail.share(accountEmail)">
               ADD</button>
             </md-card-actions>
           </md-card>
-        </span>
+        </span>-->
         </span>
 
         <!-- Deployment inputs and co -->

@@ -30,7 +30,7 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { DeploymentsPageComponent } from './pages/deployments-page/deployments-page.component';
 import { VolumesPageComponent } from './pages/volumes-page/volumes-page.component';
 import { DeploymentPageComponent } from './pages/deployment-page/deployment-page.component';
-import { ApplicationPageComponent } from './pages/application-page/application-page.component';
+import { ApplicationPageComponent, ShareApplicationDialog } from './pages/application-page/application-page.component';
 import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { CloudProviderParametersPageComponent } from './pages/cloud-provider-parameters-page/cloud-provider-parameters-page.component';
 import { DocsPageComponent } from './pages/docs-page/docs-page.component';
@@ -83,6 +83,7 @@ export function provideConfig() {
     DeploymentComponent,    
     ApplicationPageComponent,
     ApplicationComponent,
+    ShareApplicationDialog,
     TeamPageComponent,
     TeamComponent,
     CloudProviderParametersPageComponent,
@@ -103,7 +104,8 @@ export function provideConfig() {
     MaterialModule
   ],
   entryComponents: [
-    AddApplicationDialog
+    AddApplicationDialog,
+    ShareApplicationDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },

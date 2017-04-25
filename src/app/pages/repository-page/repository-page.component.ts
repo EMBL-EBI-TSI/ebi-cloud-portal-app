@@ -11,9 +11,7 @@ import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
 })
 export class RepositoryPageComponent implements OnInit, DoCheck {
 
-  robby = 'assets/img/Robby form@0.5x.png';
   cloudProviderFilters: string[] = ["AWS", "GCP", "OSTACK", "AZURE"];
-  selectedOption: string;
 
   constructor(public cloudProviderParametersService: CloudProviderParametersService,
     public breadcrumbService: BreadcrumbService,
