@@ -84,15 +84,14 @@
 				</md-toolbar>
 				<md-card-content>
 					<span class="share-credentials-dialog" *ngIf="profileComponent.shareCloudProviderParametersDialogShowing">
-									<form #shareProviderForm>
-										<md-input-container class="input-full-width"><input mdInput
-										type="email" placeholder="Share email (required)" 
-										[(ngModel)]="userEmail" name="userEmail" autofocus>
-										</md-input-container>
-									</form>
-									<!--<span class="fill-remaining-space"></span>-->
-					<button md-raised-button (click)="profileComponent.shareCloudProviderParameters(cloudProviderParametersPresenter, userEmail); profileComponent.shareCloudProviderParametersDialogShowing = false">
-									SHARE</button>
+						<form #shareProviderForm>
+							<md-input-container class="input-full-width"><input mdInput
+							type="email" placeholder="Share email (required)" 
+							[(ngModel)]="userEmail" name="userEmail" autofocus>
+							</md-input-container>
+						</form>
+						<button md-raised-button (click)="profileComponent.shareCloudProviderParameters(cloudProviderParametersPresenter, userEmail); profileComponent.shareCloudProviderParametersDialogShowing = false">
+							SHARE</button>
 					</span>
 					<md-list dense>
 						<md-list-item>

@@ -1,0 +1,19 @@
+<div>
+  <img [src]="robby">
+  <h2>Share cloud provider</h2>
+</div>
+<div>
+  <md-input-container class="input-full-width">
+    <input mdInput type="text" placeholder="Share with (required)" 
+    [(ngModel)]="shareWith" autofocus>
+  </md-input-container>
+</div>
+<div>
+  <button md-raised-button class="button-color-accent"
+  [disabled]="!shareWith || shareWith.length<=0"  
+  (click)="dialogRef.close(shareWith)">
+  SHARE
+  </button>
+</div>
+
+

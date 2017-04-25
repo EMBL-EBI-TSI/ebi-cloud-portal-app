@@ -7,7 +7,7 @@
         <h3>{{ cloudProviderDetail.cloudProviderParametersPresenter.name }}</h3>
         <span class="fill-remaining-space"></span>
         <span *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared">
-        <button md-icon-button (click)="cloudProviderDetail.shareProviderDialogShowing=!cloudProviderDetail.shareProviderDialogShowing">
+        <button md-icon-button (click)="openShareCloudProviderDialog(cloudProviderDetail)">
           <md-icon>share</md-icon> 
         </button>
         <button md-icon-button color="warn" (click)="cloudProviderDetail.remove()">
@@ -48,16 +48,6 @@
           </md-list-item>
         </md-list>
         </span>
-
-        <span class="share-credentials-dialog" *ngIf="cloudProviderDetail.shareProviderDialogShowing">
-          <form #shareProviderForm>
-            <md-input-container class="input-full-width"><input mdInput type="email" placeholder="Share with (required)" [(ngModel)]="accountEmail" name="accountEmail" autofocus>
-            </md-input-container>
-          </form>
-          <!--<span class="fill-remaining-space"></span>-->
-          <button md-raised-button (click)="cloudProviderDetail.share(accountEmail); cloudProviderDetail.shareProviderDialogShowing = false">
-            SHARE</button>
-          </span>
         </span>
 
         <md-list>

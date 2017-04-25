@@ -32,7 +32,7 @@ import { VolumesPageComponent } from './pages/volumes-page/volumes-page.componen
 import { DeploymentPageComponent } from './pages/deployment-page/deployment-page.component';
 import { ApplicationPageComponent, ShareApplicationDialog } from './pages/application-page/application-page.component';
 import { TeamPageComponent } from './pages/team-page/team-page.component';
-import { CloudProviderParametersPageComponent } from './pages/cloud-provider-parameters-page/cloud-provider-parameters-page.component';
+import { CloudProviderParametersPageComponent, ShareCloudProviderDialog } from './pages/cloud-provider-parameters-page/cloud-provider-parameters-page.component';
 import { DocsPageComponent } from './pages/docs-page/docs-page.component';
 import { VolumeSetupPageComponent } from './pages/volume-setup-page/volume-setup-page.component';
 import { VolumeInstancePageComponent } from './pages/volume-instance-page/volume-instance-page.component';
@@ -69,6 +69,7 @@ export function provideConfig() {
     LoginPageComponent,
     ProfilePageComponent,
     ProfileComponent,
+    ShareCloudProviderDialog,
     ErrorPageComponent,
     ErrorComponent,
     RepositoryPageComponent,
@@ -105,7 +106,8 @@ export function provideConfig() {
   ],
   entryComponents: [
     AddApplicationDialog,
-    ShareApplicationDialog
+    ShareApplicationDialog,
+    ShareCloudProviderDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
