@@ -16,7 +16,7 @@
 		<md-icon>add</md-icon>
 	</button>
 
-	<md-tab-group (click)="profileComponent.addFormShowing=false" #configurationsTabGroup>
+	<md-tab-group (selectedIndexChange)="profileComponent.addFormShowing=false" #configurationsTabGroup>
 
 		<md-tab label="Cloud Providers">
 			<md-card class="background-card" *ngIf="!profileComponent.cloudProviderParametersPresenters || profileComponent.cloudProviderParametersPresenters.length==0">
@@ -164,26 +164,11 @@
 						<md-input-container class="input-full-width"><input mdInput type="text" placeholder="SSH public key" [formControl]="profileComponent.configurationForm.controls['sshKey']"
 							 autofocus>
 						</md-input-container>
-
-						<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewConfigFormField()">
-						<md-icon>add</md-icon> 
-						</button></h3>
-						<!--Fields-->
-						<div *ngFor="let fieldFormGroup of profileComponent.configurationForm.controls['fields'].controls">
-							<form [formGroup]="fieldFormGroup">
-								<table style="width: 100%" cellspacing="0">
-									<tr>
-										<td>
-											<md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter key" [formControl]="fieldFormGroup.controls['key']" autofocus></md-input-container>
-										</td>
-										<td>
-											<md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter value" [formControl]="fieldFormGroup.controls['value']"
-												 autofocus></md-input-container>
-										</td>
-									</tr>
-								</table>
-							</form>
-						</div>
+						<md-input-container class="input-full-width"><input mdInput type="text" 
+							placeholder="Deployment Parameters Name (required)" 
+							[formControl]="profileComponent.configurationForm.controls['deploymentParametersName']" 
+							autofocus>
+						</md-input-container>
 					</form>
 				</md-card-content>
 				<md-card-actions align="end">
@@ -221,11 +206,88 @@
 									<h3 md-line>SSH Public Key</h3>
 									<p md-line class="param-value">{{ configurationPresenter.sshKey }}</p>
 								</md-list-item>
+								<md-list-item>
+									<h3 md-line>Deployment Parameters Name</h3>
+									<p md-line class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
+								</md-list-item>
+							</md-list>
+						</md-card-content>
+					</md-card>
+				</div>
+			</div>
+
+		</md-tab>
+
+		<md-tab label="Deployment Parameters">
+
+			<md-card class="add-dialog-form" *ngIf="profileComponent.addFormShowing">
+				<md-card-header>
+					<md-card-title><h2>Add Deployment Parameters</h2></md-card-title>
+				</md-card-header>
+				<md-card-content>
+					<form [formGroup]="profileComponent.deploymentParametersForm" autocomplete="off">
+						<md-input-container class="input-full-width">
+							<input mdInput 
+							type="text" 
+							placeholder="Deployment Parameters Name (required)" 
+							[formControl]="profileComponent.deploymentParametersForm.controls['name']" 
+							autofocus>
+						</md-input-container>
+						
+						<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewDeploymentParametersFormField()">
+						<md-icon>add</md-icon> 
+						</button></h3>
+						<!--Fields-->
+						<div *ngFor="let fieldFormGroup of profileComponent.deploymentParametersForm.controls['fields'].controls">
+							<form [formGroup]="fieldFormGroup">
+								<table style="width: 100%" cellspacing="0"><tr>
+								<td><md-input-container class="input-full-width"><input mdInput 
+									type="text" 
+									placeholder="Enter parameter key" 
+									[formControl]="fieldFormGroup.controls['key']" 
+									autofocus></md-input-container></td>
+								<td><md-input-container class="input-full-width"><input mdInput 
+									type="text" 
+									placeholder="Enter parameter value" 
+									[formControl]="fieldFormGroup.controls['value']" 
+									autofocus></md-input-container></td>
+								</tr></table>
+							</form>
+						</div>
+					</form>
+				</md-card-content>
+				<md-card-actions align="end">
+					<button *ngIf="profileComponent.deploymentParametersForm.controls['name'].hasError('required')"
+					md-raised-button class="button-color-accent" disabled>
+					SAVE</button>
+					<button *ngIf="!profileComponent.deploymentParametersForm.controls['name'].hasError('required')"
+					md-raised-button class="button-color-accent" 
+					(click)="profileComponent.addDeploymentParameters(profileComponent.deploymentParametersForm.value); profileComponent.addFormShowing = false">
+					SAVE</button>
+				</md-card-actions>
+			</md-card>
+
+			<md-card class="background-card" *ngIf="!profileComponent.deploymentParametersPresenters || profileComponent.deploymentParametersPresenters.length==0">
+				No deployment parameters registered yet
+			</md-card>
+
+			<div class="md-content" *ngIf="profileComponent.deploymentParametersPresenters">
+				<div class="credentials-card-container">
+					<md-card *ngFor="let deploymentParameterPresenter of profileComponent.deploymentParametersPresenters" class="credentials-container">
+						<md-toolbar class="summary-card-toolbar">
+							<md-icon class="card-type-icon">settings_applications</md-icon><h3>{{ deploymentParameterPresenter.name }}</h3>
+							<span class="fill-remaining-space"></span>
+							<button md-icon-button color="warn" (click)="profileComponent.removeDeploymentParameters(deploymentParameterPresenter)">
+								<md-icon>delete_forever</md-icon> 
+							</button>
+						</md-toolbar>
+						<md-card-content>
+							<md-list dense>
 								<h3 md-header>Parameters</h3>
 								<md-divider></md-divider>
-								<md-list-item *ngFor="let configurationField of configurationPresenter.fields">
-									<h3 md-line>{{ configurationField.key }}</h3>
-									<p md-line class="param-value">{{ configurationField.value }}</p>
+								<md-list-item *ngFor="let deploymentParameterField of deploymentParameterPresenter.fields">
+									<h3 md-line>{{ deploymentParameterField.key }}</h3>
+									<p md-line class="param-value">{{ deploymentParameterField.value }}</p>
 								</md-list-item>
 							</md-list>
 						</md-card-content>
@@ -245,7 +307,8 @@
 				</md-card-header>
 				<md-card-content>
 					<form [formGroup]="profileComponent.teamForm" autocomplete="off">
-						<md-input-container class="input-full-width"><input mdInput type="text" placeholder="Team name (required)" [formControl]="profileComponent.teamForm.controls['name']"
+						<md-input-container class="input-full-width">
+							<input mdInput type="text" placeholder="Team name (required)" [formControl]="profileComponent.teamForm.controls['name']"
 							 autofocus>
 						</md-input-container>
 					</form>
@@ -281,7 +344,8 @@
 				<md-card-content>
 					<span class="share-credentials-dialog" *ngIf="profileComponent.addMemberToTeamDialogShowing">
 									<form #shareProviderForm>
-										<md-input-container class="input-full-width"><input mdInput
+										<md-input-container class="input-full-width">
+											<input mdInput
 										type="email" placeholder="Share email (required)" 
 										[(ngModel)]="memberAccountEmail" name="memberAccountEmail" autofocus>
 										</md-input-container>
