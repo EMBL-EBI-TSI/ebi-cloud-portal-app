@@ -145,30 +145,35 @@
           </md-list-item>
 
           <h3 md-header>Deployment Parameters
-            <button md-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+            <button md-icon-button color="primary"  
+            *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0"
+            (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
               <md-icon>visibility</md-icon> 
             </button>
           </h3>
-          <span *ngIf="applicationDetail.parametersShowing">
-            <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">
-              This application requires no deployment parameters </p>
-            <span *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">
-              
-              <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
-                <md-icon md-list-icon>warning</md-icon>
-                The user account has no pre set configurations to assign deployment parameters.
-              </p>
 
-              <md-list>
-                <md-list-item>
-                  <md-select class="input-full-width" placeholder="Select Configuration" *ngIf="applicationDetail.applicationDeployer.configurations.length>0"
-                    [(ngModel)]="selectedConfig"
-                    (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
-                    <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
-                            {{ config }}
-                    </md-option>
-                  </md-select>
-                </md-list-item>
+          <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">
+            This application requires no deployment parameters 
+          </p>
+
+          <span *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">
+              
+            <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
+              <md-icon md-list-icon>warning</md-icon>
+              The user account has no pre set configurations to assign deployment parameters.
+            </p>
+
+            <md-list>
+              <md-list-item>
+                <md-select class="input-full-width" placeholder="Select Configuration" *ngIf="applicationDetail.applicationDeployer.configurations.length>0"
+                  [(ngModel)]="selectedConfig"
+                  (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
+                  <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
+                          {{ config }}
+                  </md-option>
+                </md-select>
+              </md-list-item>
+              <span *ngIf="applicationDetail.parametersShowing">
                 <md-list-item *ngFor="let aDeploymentParameter of applicationDetail.applicationDeployer.deploymentParameters">
                     <md-icon md-list-icon>settings_applications</md-icon>
                     <h4 md-line>{{ aDeploymentParameter }}</h4>
@@ -177,8 +182,8 @@
                     </p>
                     <p md-line *ngIf="!applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]">Not assigned</p>
                 </md-list-item>
-              </md-list>
-            </span>
+              </span>
+            </md-list>
           </span>   
         </md-list>
 
