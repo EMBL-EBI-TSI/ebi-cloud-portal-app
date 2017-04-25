@@ -1,10 +1,10 @@
 <cp-repository-component #repo>
 
-  <button md-mini-fab (click)="repo.addApplicationFormShowing=!repo.addApplicationFormShowing">
+  <button md-fab (click)="openAddApplicationDialog(repo)">
     <md-icon>add</md-icon>
   </button>
 
-  <md-card class="add-dialog-form" *ngIf="repo.addApplicationFormShowing">
+  <!--<md-card class="add-dialog-form" *ngIf="repo.addApplicationFormShowing">
     <md-card-header>
       <md-card-title>
         <h2>Add new application</h2>
@@ -24,7 +24,7 @@
         md-raised-button class="button-color-accent" (click)="repo.addApplication(repo.applicationForm.value); repo.addApplicationFormShowing = false">
       REGISTER</button>
     </md-card-actions>
-  </md-card>
+  </md-card>-->
 
   <div class="md-content" *ngIf="repo.applicationDeployers">
 

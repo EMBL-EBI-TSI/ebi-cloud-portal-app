@@ -25,7 +25,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
-import { RepositoryPageComponent } from './pages/repository-page/repository-page.component';
+import { RepositoryPageComponent, AddApplicationDialog } from './pages/repository-page/repository-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { DeploymentsPageComponent } from './pages/deployments-page/deployments-page.component';
 import { VolumesPageComponent } from './pages/volumes-page/volumes-page.component';
@@ -72,6 +72,7 @@ export function provideConfig() {
     ErrorPageComponent,
     ErrorComponent,
     RepositoryPageComponent,
+    AddApplicationDialog,
     RepositoryComponent,
     WelcomePageComponent,
     DeploymentsPageComponent,
@@ -100,6 +101,9 @@ export function provideConfig() {
     HttpModule,
     BrowserAnimationsModule,
     MaterialModule
+  ],
+  entryComponents: [
+    AddApplicationDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
