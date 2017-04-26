@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialog } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { AddCloudProviderDialog } from '../../dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
+import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
 
 @Component({
   selector: 'profile-page',
@@ -8,9 +11,8 @@ import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service'
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor(public breadcrumbService: BreadcrumbService) {
-    
-  }
+  constructor(public breadcrumbService: BreadcrumbService,
+    public dialog: MdDialog) { }
 
   ngOnInit() {
     this.breadcrumbService.breadcrumb.push(
@@ -22,4 +24,13 @@ export class ProfilePageComponent implements OnInit {
     this.breadcrumbService.breadcrumb = [];
   }
 
+  openAddCloudProviderDialog(profileComponent: ProfileComponent) {
+    let dialogRef = this.dialog.open(AddCloudProviderDialog);
+    dialogRef.afterClosed().subscribe(
+      cloudProviderParametersForm => {
+        if (cloudProviderParametersForm)
+          profileComponent.addCloudProviderParameters(cloudProviderParametersForm);
+      }
+    );
+  }
 }

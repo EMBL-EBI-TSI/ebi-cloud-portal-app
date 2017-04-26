@@ -418,12 +418,12 @@ footer {
   max-width: 280px;
 }
 .dialog-img {
-  border-radius: 100%;
-  margin-top: 2em;
-  margin-left: 37%;
-  max-width: 280px;
-}
 
+}
+.dialog-img-large {
+
+  margin-left: 10%;
+}
 .hero-img {
   margin-top: 2em;
   margin-left: 37%;

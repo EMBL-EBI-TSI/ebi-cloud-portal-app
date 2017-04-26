@@ -39,6 +39,7 @@ import { VolumeInstancePageComponent } from './pages/volume-instance-page/volume
 import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 import { ShareDialog } from './dialogs/share-dialog/share-dialog.component';
 import { AddRepoDialog } from './dialogs/add-repo-dialog/add-repo-dialog.component';
+import { AddCloudProviderDialog } from './dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -93,7 +94,8 @@ export function provideConfig() {
     VolumeSetupPageComponent,
     VolumeInstancePageComponent,
     ShareDialog,
-    AddRepoDialog
+    AddRepoDialog,
+    AddCloudProviderDialog
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -106,7 +108,8 @@ export function provideConfig() {
   ],
   entryComponents: [
     AddRepoDialog,
-    ShareDialog
+    ShareDialog,
+    AddCloudProviderDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
