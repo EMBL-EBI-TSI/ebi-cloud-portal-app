@@ -1,8 +1,9 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog } from '@angular/material';
 import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
+import { AddRepoDialog } from '../../dialogs/add-repo-dialog/add-repo-dialog.component';
 
 @Component({
   selector: 'repository-page',
@@ -43,20 +44,10 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
   }
 
   openAddApplicationDialog(repo: RepositoryComponent) {
-    let dialogRef = this.dialog.open(AddApplicationDialog);
+    let dialogRef = this.dialog.open(AddRepoDialog);
     dialogRef.afterClosed().subscribe(repoUri => {
       if (repoUri)
         repo.addApplication({ repoUri: repoUri });
     });
   }
-}
-
-@Component({
-  selector: 'add-application-dialog',
-  templateUrl: './add-application-dialog.html',
-})
-export class AddApplicationDialog {
-  robby = 'assets/img/Robby_form0.5x.png';
-
-  constructor(public dialogRef: MdDialogRef<AddApplicationDialog>) { }
 }

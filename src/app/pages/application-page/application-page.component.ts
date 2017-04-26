@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MdDialog } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ApplicationComponent } from 'ng2-cloud-portal-presentation-lib';
+import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 
 @Component({
   selector: 'app-application-page',
@@ -27,20 +28,10 @@ export class ApplicationPageComponent implements OnInit {
   }
 
   openShareApplicationDialog(applicationDetail: ApplicationComponent) {
-    let dialogRef = this.dialog.open(ShareApplicationDialog);
+    let dialogRef = this.dialog.open(ShareDialog);
     dialogRef.afterClosed().subscribe(shareWith => {
       if (shareWith)
         applicationDetail.share(shareWith);
     });
   }
-}
-
-@Component({
-  selector: 'share-application-dialog',
-  templateUrl: './share-application-dialog.html',
-})
-export class ShareApplicationDialog {
-  robby = 'assets/img/Robby_form0.5x.png';
-
-  constructor(public dialogRef: MdDialogRef<ShareApplicationDialog>) { }
 }

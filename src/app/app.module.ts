@@ -25,19 +25,20 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
-import { RepositoryPageComponent, AddApplicationDialog } from './pages/repository-page/repository-page.component';
+import { RepositoryPageComponent } from './pages/repository-page/repository-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { DeploymentsPageComponent } from './pages/deployments-page/deployments-page.component';
 import { VolumesPageComponent } from './pages/volumes-page/volumes-page.component';
 import { DeploymentPageComponent } from './pages/deployment-page/deployment-page.component';
-import { ApplicationPageComponent, ShareApplicationDialog } from './pages/application-page/application-page.component';
+import { ApplicationPageComponent } from './pages/application-page/application-page.component';
 import { TeamPageComponent } from './pages/team-page/team-page.component';
-import { CloudProviderParametersPageComponent, ShareCloudProviderDialog } from './pages/cloud-provider-parameters-page/cloud-provider-parameters-page.component';
+import { CloudProviderParametersPageComponent } from './pages/cloud-provider-parameters-page/cloud-provider-parameters-page.component';
 import { DocsPageComponent } from './pages/docs-page/docs-page.component';
 import { VolumeSetupPageComponent } from './pages/volume-setup-page/volume-setup-page.component';
 import { VolumeInstancePageComponent } from './pages/volume-instance-page/volume-instance-page.component';
 import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
-
+import { ShareDialog } from './dialogs/share-dialog/share-dialog.component';
+import { AddRepoDialog } from './dialogs/add-repo-dialog/add-repo-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -69,11 +70,9 @@ export function provideConfig() {
     LoginPageComponent,
     ProfilePageComponent,
     ProfileComponent,
-    ShareCloudProviderDialog,
     ErrorPageComponent,
     ErrorComponent,
     RepositoryPageComponent,
-    AddApplicationDialog,
     RepositoryComponent,
     WelcomePageComponent,
     DeploymentsPageComponent,
@@ -84,7 +83,6 @@ export function provideConfig() {
     DeploymentComponent,    
     ApplicationPageComponent,
     ApplicationComponent,
-    ShareApplicationDialog,
     TeamPageComponent,
     TeamComponent,
     CloudProviderParametersPageComponent,
@@ -93,7 +91,9 @@ export function provideConfig() {
     ApplicationCloudProviderPipe,
     DeploymentStatusPipe,
     VolumeSetupPageComponent,
-    VolumeInstancePageComponent
+    VolumeInstancePageComponent,
+    ShareDialog,
+    AddRepoDialog
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -105,9 +105,8 @@ export function provideConfig() {
     MaterialModule
   ],
   entryComponents: [
-    AddApplicationDialog,
-    ShareApplicationDialog,
-    ShareCloudProviderDialog
+    AddRepoDialog,
+    ShareDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
