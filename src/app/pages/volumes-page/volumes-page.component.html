@@ -1,7 +1,7 @@
 <cp-volumes-component #volumesComponent>
   
 	<!--Add setup button-->
-	<button *ngIf="addButtonShowing" md-mini-fab (click)="volumesComponent.addVolumeSetupFormShowing=!volumesComponent.addVolumeSetupFormShowing">
+	<button *ngIf="addButtonShowing" md-fab (click)="openAddVolumeSetupDialog(volumesComponent)">
 		<md-icon>add</md-icon>
 	</button>
 
@@ -56,7 +56,7 @@
 		<md-tab label="Setups">
 
 				<!--Add setup form-->
-				<md-card class="add-dialog-form" *ngIf="volumesComponent.addVolumeSetupFormShowing">
+				<!--<md-card class="add-dialog-form" *ngIf="volumesComponent.addVolumeSetupFormShowing">
 					<md-card-header>
 						<md-card-title><h2>Add volume setup</h2></md-card-title>
 					</md-card-header>
@@ -75,7 +75,7 @@
 						(click)="volumesComponent.addVolumeSetup(volumesComponent.volumeSetupForm.value); volumesComponent.addVolumeSetupFormShowing = false">
 						REGISTER</button>
 					</md-card-actions>
-				</md-card>
+				</md-card>-->
 
 				<!--List setups-->
 				<md-card class="background-card" *ngIf="volumesComponent.volumeDeployers.length==0">No volume setups for user {{ volumesComponent.credentialService.getGivenName() }} yet</md-card>
