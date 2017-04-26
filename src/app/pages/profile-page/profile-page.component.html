@@ -120,50 +120,6 @@
 
 		<md-tab label="Deployment Parameters">
 
-			<md-card class="add-dialog-form" *ngIf="profileComponent.addFormShowing">
-				<md-card-header>
-					<md-card-title>
-						<h2>Add Deployment Parameters</h2>
-					</md-card-title>
-				</md-card-header>
-				<md-card-content>
-					<form [formGroup]="profileComponent.deploymentParametersForm" autocomplete="off">
-						<md-input-container class="input-full-width">
-							<input mdInput type="text" placeholder="Deployment Parameters Name (required)" [formControl]="profileComponent.deploymentParametersForm.controls['name']"
-							 autofocus>
-						</md-input-container>
-
-						<h3>Parameters <button md-icon-button color="primary" (click)="profileComponent.addNewDeploymentParametersFormField()">
-						<md-icon>add</md-icon> 
-						</button></h3>
-						<!--Fields-->
-						<div *ngFor="let fieldFormGroup of profileComponent.deploymentParametersForm.controls['fields'].controls">
-							<form [formGroup]="fieldFormGroup">
-								<table style="width: 100%" cellspacing="0">
-									<tr>
-										<td>
-											<md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter key" [formControl]="fieldFormGroup.controls['key']" autofocus></md-input-container>
-										</td>
-										<td>
-											<md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter value" [formControl]="fieldFormGroup.controls['value']"
-												 autofocus></md-input-container>
-										</td>
-									</tr>
-								</table>
-							</form>
-						</div>
-					</form>
-				</md-card-content>
-				<md-card-actions align="end">
-					<button *ngIf="profileComponent.deploymentParametersForm.controls['name'].hasError('required')" md-raised-button class="button-color-accent"
-					 disabled>
-					SAVE</button>
-					<button *ngIf="!profileComponent.deploymentParametersForm.controls['name'].hasError('required')" md-raised-button class="button-color-accent"
-					 (click)="profileComponent.addDeploymentParameters(profileComponent.deploymentParametersForm.value); profileComponent.addFormShowing = false">
-					SAVE</button>
-				</md-card-actions>
-			</md-card>
-
 			<md-card class="background-card" *ngIf="!profileComponent.deploymentParametersPresenters || profileComponent.deploymentParametersPresenters.length==0">
 				No deployment parameters registered yet
 			</md-card>
@@ -195,30 +151,6 @@
 
 		<md-tab label="Teams">
 
-			<md-card class="add-dialog-form" *ngIf="profileComponent.addFormShowing">
-				<md-card-header>
-					<md-card-title>
-						<h2>Add team</h2>
-					</md-card-title>
-				</md-card-header>
-				<md-card-content>
-					<form [formGroup]="profileComponent.teamForm" autocomplete="off">
-						<md-input-container class="input-full-width">
-							<input mdInput type="text" placeholder="Team name (required)" [formControl]="profileComponent.teamForm.controls['name']"
-							 autofocus>
-						</md-input-container>
-					</form>
-				</md-card-content>
-				<md-card-actions align="end">
-					<button *ngIf="profileComponent.teamForm.controls['name'].hasError('required')" md-raised-button class="button-color-accent"
-					 disabled>
-							SAVE</button>
-					<button *ngIf="!profileComponent.teamForm.controls['name'].hasError('required')" md-raised-button class="button-color-accent"
-					 (click)="profileComponent.addTeam(profileComponent.teamForm.value); profileComponent.addFormShowing = false">
-							SAVE</button>
-				</md-card-actions>
-			</md-card>
-
 			<md-card class="background-card" *ngIf="!profileComponent.teamPresenters || profileComponent.teamPresenters.length==0">
 				No teams associated with this account
 			</md-card>
@@ -230,12 +162,6 @@
 								<md-icon class="card-type-icon">group</md-icon><h3>{{ teamPresenter.name }}</h3>
 								<span class="fill-remaining-space"></span>
 				<p *ngIf="teamPresenter.isOwner">OWNER</p>
-				<!--<button md-icon-button (click)="profileComponent.shareCloudProviderParametersDialogShowing=!profileComponent.shareCloudProviderParametersDialogShowing">
-									<md-icon>share</md-icon> 
-								</button>
-								<button md-icon-button color="warn" (click)="profileComponent.removeCloudProviderParameters(cloudProviderParametersPresenter)">
-									<md-icon>delete_forever</md-icon> 
-								</button>-->
 				</md-toolbar>
 				<md-card-content>
 					<span class="share-credentials-dialog" *ngIf="profileComponent.addMemberToTeamDialogShowing">

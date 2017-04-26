@@ -417,6 +417,13 @@ footer {
   margin-left: 37%;
   max-width: 280px;
 }
+.central-img {
+  border-radius: 100%;
+  margin-top: 2em;
+  margin-left: 37%;
+  max-width: 280px;
+}
+
 .dialog-img {
 
 }

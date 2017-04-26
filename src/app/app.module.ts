@@ -41,6 +41,8 @@ import { ShareDialog } from './dialogs/share-dialog/share-dialog.component';
 import { AddRepoDialog } from './dialogs/add-repo-dialog/add-repo-dialog.component';
 import { AddCloudProviderDialog } from './dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
 import { AddConfigurationDialog } from './dialogs/add-configuration-dialog/add-configuration-dialog.component';
+import { AddDeploymentParametersDialog } from './dialogs/add-deployment-parameters-dialog/add-deployment-parameters-dialog.component';
+import { AddTeamDialog } from './dialogs/add-team-dialog/add-team-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -97,7 +99,9 @@ export function provideConfig() {
     ShareDialog,
     AddRepoDialog,
     AddCloudProviderDialog,
-    AddConfigurationDialog
+    AddConfigurationDialog,
+    AddDeploymentParametersDialog,
+    AddTeamDialog
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -112,7 +116,9 @@ export function provideConfig() {
     AddRepoDialog,
     ShareDialog,
     AddCloudProviderDialog,
-    AddConfigurationDialog
+    AddConfigurationDialog,
+    AddDeploymentParametersDialog,
+    AddTeamDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },

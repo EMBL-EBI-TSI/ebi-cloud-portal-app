@@ -1,0 +1,20 @@
+<md-dialog-content>
+  <div>
+    <img class="dialog-img" [src]="robby">
+    <h2>Add team</h2>
+  </div>
+  <div>
+    <form [formGroup]="teamForm" autocomplete="off">
+      <md-input-container class="input-full-width">
+        <input mdInput type="text" placeholder="Team name (required)" [formControl]="teamForm.controls['name']" autofocus>
+      </md-input-container>
+    </form>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button [disabled]="teamForm.controls['name'].hasError('required')" md-raised-button 
+    class="button-color-accent" 
+    (click)="dialogRef.close(teamForm.value)">
+    SAVE
+  </button>
+</md-dialog-actions>

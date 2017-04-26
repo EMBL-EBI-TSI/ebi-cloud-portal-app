@@ -3,6 +3,8 @@ import { MdDialog } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { AddCloudProviderDialog } from '../../dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
 import { AddConfigurationDialog } from '../../dialogs/add-configuration-dialog/add-configuration-dialog.component';
+import { AddDeploymentParametersDialog } from '../../dialogs/add-deployment-parameters-dialog/add-deployment-parameters-dialog.component';
+import { AddTeamDialog } from '../../dialogs/add-team-dialog/add-team-dialog.component';
 import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
 
 @Component({
@@ -49,8 +51,22 @@ export class ProfilePageComponent implements OnInit {
         );
         break;
       case 2: 
+        dialogRef = this.dialog.open(AddDeploymentParametersDialog);
+        dialogRef.afterClosed().subscribe(
+          deploymentParametersForm => {
+            if (deploymentParametersForm)
+              profileComponent.addDeploymentParameters(deploymentParametersForm);
+          }
+        );
         break;
       case 3:
+        dialogRef = this.dialog.open(AddTeamDialog);
+        dialogRef.afterClosed().subscribe(
+          teamForm => {
+            if (teamForm)
+              profileComponent.addTeam(teamForm);
+          }
+        );
         break;
     }
 
