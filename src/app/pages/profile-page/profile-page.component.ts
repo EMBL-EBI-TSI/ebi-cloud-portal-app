@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { AddCloudProviderDialog } from '../../dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
+import { AddConfigurationDialog } from '../../dialogs/add-configuration-dialog/add-configuration-dialog.component';
 import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
 
 @Component({
@@ -24,13 +25,35 @@ export class ProfilePageComponent implements OnInit {
     this.breadcrumbService.breadcrumb = [];
   }
 
-  openAddCloudProviderDialog(profileComponent: ProfileComponent) {
-    let dialogRef = this.dialog.open(AddCloudProviderDialog);
-    dialogRef.afterClosed().subscribe(
-      cloudProviderParametersForm => {
-        if (cloudProviderParametersForm)
-          profileComponent.addCloudProviderParameters(cloudProviderParametersForm);
-      }
-    );
+  openAddDialog(profileComponent: ProfileComponent, configurationsTabGroup) {
+    console.log("Selected tab is %O", configurationsTabGroup.selectedIndex);
+
+    let dialogRef;
+    switch (configurationsTabGroup.selectedIndex) {
+      case 0:
+        dialogRef = this.dialog.open(AddCloudProviderDialog);
+        dialogRef.afterClosed().subscribe(
+          cloudProviderParametersForm => {
+            if (cloudProviderParametersForm)
+              profileComponent.addCloudProviderParameters(cloudProviderParametersForm);
+          }
+        );
+        break;
+      case 1:
+        dialogRef = this.dialog.open(AddConfigurationDialog);
+        dialogRef.afterClosed().subscribe(
+          configurationForm => {
+            if (configurationForm)
+              profileComponent.addConfiguration(configurationForm);
+          }
+        );
+        break;
+      case 2: 
+        break;
+      case 3:
+        break;
+    }
+
+    
   }
 }
