@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { ENV_TOKEN } from '../environment.base';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdDialog } from '@angular/material';
 import 'hammerjs';
 import { JwtHelper } from 'angular2-jwt';
 
@@ -110,7 +110,8 @@ export function provideConfig() {
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    MdDialog
   ],
   entryComponents: [
     AddRepoDialog,
