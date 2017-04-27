@@ -1,0 +1,83 @@
+<cp-team-component #teamDetail>
+  <div class="detail-card-container">
+    <md-card *ngIf="teamDetail.teamPresenter">
+      <md-toolbar class="detail-card-toolbar">
+        <md-icon class="card-type-icon">group</md-icon>
+        <h3>{{ teamDetail.teamPresenter.name }}</h3>
+        <span class="fill-remaining-space"></span>
+        <span *ngIf="teamDetail.teamPresenter.isOwner">
+        <button md-icon-button (click)="teamDetail.addMemberDialogShowing=!teamDetail.addMemberDialogShowing">
+          <md-icon>group_add</md-icon> 
+        </button>
+        <button md-icon-button color="warn" (click)="teamDetail.remove()">
+          <md-icon>delete_forever</md-icon> 
+        </button>
+      </span>
+      </md-toolbar>
+      <md-card-content>
+        <span class="flex-container-wide">
+        <span>
+        <md-list dense>
+          <md-list-item *ngIf="!teamDetail.teamPresenter.isOwner">
+            <h3 md-line>Owned by</h3>
+            <p md-line class="param-value">{{ teamDetail.teamPresenter.ownerAccountEmail }}</p>
+          </md-list-item>
+        </md-list>
+        <md-list dense *ngIf="teamDetail.teamPresenter.memberAccountEmails && teamDetail.teamPresenter.memberAccountEmails.length>0">
+          <md-list-item>
+            <h3 md-line>Members</h3>
+          </md-list-item>
+          <md-list-item *ngFor="let accountEmail of teamDetail.teamPresenter.memberAccountEmails">
+            <p md-line class="param-value">{{ accountEmail }}<button *ngIf="teamDetail.teamPresenter.isOwner" 
+              md-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail)">
+              <md-icon>highlight_off</md-icon> 
+            </button></p>
+          </md-list-item>
+        </md-list>
+        </span>
+        <span class="share-credentials-dialog" *ngIf="teamDetail.addMemberDialogShowing">
+          <form #addMemberForm>
+            <md-input-container class="input-full-width"><input mdInput type="email" placeholder="Member email (required)" [(ngModel)]="memberAccountEmail" name="memberAccountEmail" autofocus>
+            </md-input-container>
+          </form>
+          <!--<span class="fill-remaining-space"></span>-->
+        <button md-raised-button (click)="teamDetail.addMember(memberAccountEmail); teamDetail.addMemberDialogShowing = false">
+          ADD</button>
+        </span>
+        </span>
+        <md-list>
+          <h3 md-header>Shared items
+            <button md-icon-button color="primary" (click)="sharedItemsShowing=!sharedItemsShowing">
+            <md-icon>visibility</md-icon> 
+          </button></h3>
+          <span *ngIf="sharedItemsShowing">
+          <md-list-item *ngIf="(!teamDetail.teamPresenter.applicationNames ||  teamDetail.teamPresenter.applicationNames.length==0) && (!teamDetail.teamPresenter.cloudProviderParameterNames || teamDetail.teamPresenter.cloudProviderParameterNames.length==0)">
+            <md-icon md-list-icon>sentiment_neutral</md-icon> 
+            <p md-line class="param-value">Nothing is shared in within this team. Share some applications or cloud providers!</p>
+          </md-list-item>
+          <md-list dense *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
+            <md-list-item>
+              <h3 md-line>Applications</h3>
+            </md-list-item>
+            <md-list-item *ngFor="let applicationName of teamDetail.teamPresenter.applicationNames">
+              <p md-line class="param-value">{{ applicationName }}</p>
+            </md-list-item>
+          </md-list>
+          <md-list dense *ngIf="teamDetail.teamPresenter.cloudProviderParameterNames && teamDetail.teamPresenter.cloudProviderParameterNames.length>0">
+            <md-list-item>
+              <h3 md-line>Credentials</h3>
+            </md-list-item>
+            <md-list-item *ngFor="let cloudProviderParameterName of teamDetail.teamPresenter.cloudProviderParameterNames">
+              <p md-line class="param-value">{{ cloudProviderParameterName }}</p>
+            </md-list-item>
+          </md-list>
+        </span>
+        </md-list>
+      </md-card-content>
+
+      <!--These are the action controls-->
+      <md-card-actions>
+      </md-card-actions>
+    </md-card>
+  </div>
+</cp-team-component>

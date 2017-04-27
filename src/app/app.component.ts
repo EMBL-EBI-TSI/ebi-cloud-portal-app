@@ -1,41 +1,27 @@
-/*
- * Angular 2 decorators and services
- */
-import { Component, ViewEncapsulation } from '@angular/core';
-import { CredentialService } from 'ng2-cloud-portal-service-lib';
-import { CloudProviderParametersService, CloudProviderParameters,
-         ErrorService } from 'ng2-cloud-portal-service-lib';
-import { AccountService, Account } from 'ng2-cloud-portal-service-lib';
-import { Router, ActivatedRoute, Data } from '@angular/router';
-import { TokenService } from 'ng2-cloud-portal-service-lib';
+import { Component } from '@angular/core';
+import { TokenService, CredentialService, CloudProviderParameters,
+  CloudProviderParametersService, ErrorService, AccountService } from 'ng2-cloud-portal-service-lib';
+import { Router } from '@angular/router';
 import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 
-/*
- * App Component
- * Top Level Component
- */
+
 @Component({
-    selector: 'app',
-    encapsulation: ViewEncapsulation.None,
-    styleUrls: [
-        './app.style.css'
-    ],
-    template: require('./app.template.html')
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class App {
-    ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
-    ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
-    name = 'Cloud Portal';
-    ebiUrl = 'http://www.ebi.ac.uk/';
-    tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
-    currentView = "Welcome";
-    loggedInAccount: Account;
-    cloudProviderParameters: CloudProviderParameters[];
-    sharedCloudProviderParameters: CloudProviderParameters[];
-    selectedCloudProvider='SELECT PROVIDER';
-    
-    constructor(
-        public tokenService: TokenService,
+export class AppComponent {
+
+  ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
+  ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
+  name = 'Cloud Portal';
+  ebiUrl = 'http://www.ebi.ac.uk/';
+  tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
+  loggedInAccount: Account;
+  cloudProviderParameters: CloudProviderParameters[];
+  sharedCloudProviderParameters: CloudProviderParameters[];
+
+  constructor(public tokenService: TokenService,
         public credentialService: CredentialService,
         public accountService: AccountService,
         public cloudProviderParametersService: CloudProviderParametersService,
@@ -53,36 +39,20 @@ export class App {
             );
             this.updateCloudProviders(true);
         }
-    }
+  }
 
-    logOut() {
-        this.credentialService.clearCredentials();
-        this.tokenService.clearToken();
-        this.router.navigateByUrl('/welcome');
-    }
+  logOut() {
+    this.credentialService.clearCredentials();
+    this.tokenService.clearToken();
+    this.router.navigateByUrl('/welcome');
+  }
 
-    ngOnInit() {
-        console.log('Hello app');
-    }
+  public setCurrentlySelectedCloudProviderParameters(cloudProviderParameters: CloudProviderParameters) {
+    console.log("Set provider to %O", cloudProviderParameters);
+    this.cloudProviderParametersService.currentlySelectedCloudProviderParameters = cloudProviderParameters;
+  }
 
-    getViewName() {
-        return this.router.url;
-    }
-
-    public getBreadcrumb() {
-        return this.breadcrumbService.breadcrumb;
-    }
-
-    public getBreadcrumbUrl() {
-        return "#/"+this.breadcrumbService.getAsUrl();
-    }
-
-    public setCurrentlySelectedCloudProviderParameters(cloudProviderParameters: CloudProviderParameters) {
-        console.log("Set provider to %O", cloudProviderParameters);
-        this.cloudProviderParametersService.currentlySelectedCloudProviderParameters = cloudProviderParameters;
-    }
-
-    public updateCloudProviders(open:boolean):void {
+  public updateCloudProviders(open:boolean):void {
         if (open) {
             this.cloudProviderParametersService.getAll(
                 this.credentialService.getUsername(),
@@ -128,4 +98,11 @@ export class App {
         }
     }
 
+    public getBreadcrumb() {
+        return this.breadcrumbService.breadcrumb;
+    }
+
+    public getBreadcrumbUrl() {
+        return "#/"+this.breadcrumbService.getAsUrl();
+    }
 }

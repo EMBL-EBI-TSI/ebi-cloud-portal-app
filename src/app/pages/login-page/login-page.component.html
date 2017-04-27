@@ -1,0 +1,33 @@
+<div class="md-content">
+  <img class="hero central-img" [src]="robby">
+  <div *ngIf="tokenService.getToken()">
+    <div class="hero hero-message">
+      <h3><em>You are logged in as</em></h3>
+    </div>
+    <div class="hero hero-message">
+      <a [routerLink]=" ['/profile']"><h3><em>{{ credentialService.getGivenName() }}</em></h3></a>
+    </div>
+  </div>
+  <div *ngIf="!tokenService.getToken()">
+    <div class="hero hero-message">
+      <h3>Access the EBI Cloud Portal</h3>
+      <h5>It is very easy using your ELIXIR identity!</h5>
+    </div>
+    <div class="hero hero-message">
+      <a style="padding:0.5em;padding-right:2em;" md-raised-button href="{{ssoLink()}}" target="_blank">
+        <img style="height: 2em; position:relative; top:0.5em;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">Single Sign On
+      </a>
+    </div>
+    <br/>
+    <div class="hero hero-message-left">
+      <p>The EBI Cloud Portal is offered as a service to ELIXIR and other communities. Users 
+        need a freely available <a href="https://www.elixir-europe.org/services/compute/aai">ELIXIR identity</a>
+        to access the portal.
+      </p>
+      <p>
+        Obtain your ELIXIR identity <a href="https://www.elixir-europe.org/register">here</a>.
+      </p>
+    </div>
+
+  </div>
+</div>

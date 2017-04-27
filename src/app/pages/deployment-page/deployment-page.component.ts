@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DeploymentComponent } from 'ng2-cloud-portal-presentation-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
+
 @Component({
-  selector: 'deployments-page',
-  directives: [ DeploymentComponent ],
-  styles: [require('./deployment-page.style.css')],
-  template: require('./deployment-page.template.html')
+  selector: 'app-deployment-page',
+  templateUrl: './deployment-page.component.html',
+  styleUrls: ['./deployment-page.component.css']
 })
-export class DeploymentPage {
+export class DeploymentPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
     private _route: ActivatedRoute) {
@@ -25,6 +24,5 @@ export class DeploymentPage {
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
   }
-  
 
 }

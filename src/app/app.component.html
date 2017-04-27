@@ -1,0 +1,91 @@
+<md-sidenav-container>
+  <md-sidenav #sidenav mode="push">
+    <md-nav-list>
+      <h3 md-subheader>My Cloud</h3>
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] "
+        (click)="sidenav.close()">
+        <md-icon md-list-icon>cloud</md-icon>
+        <span md-line>Deployments</span>
+      </a>
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] "
+        (click)="sidenav.close()">
+        <md-icon md-list-icon>dashboard</md-icon>
+        <span md-line>Repository</span>
+      </a>
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
+        <md-icon md-list-icon>storage</md-icon>
+        <span md-line>Volumes</span>
+      </a>
+      <md-divider></md-divider>
+      <h3 md-subheader>My Profile</h3>
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
+        <md-icon md-list-icon>face</md-icon>
+        <span md-line>Profile</span>
+      </a>
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" (click)="logOut(); sidenav.close()">
+        <md-icon md-list-icon>vpn_key</md-icon>
+        <span md-line>Logout</span>
+      </a>
+      <a md-list-item *ngIf="!tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./login'] " (click)="sidenav.close()">
+        <md-icon md-list-icon>vpn_key</md-icon>
+        <span md-line>Login</span>
+      </a>
+      <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./about'] " (click)="sidenav.close()">
+        <md-icon md-list-icon>info</md-icon>
+        <span md-line>About</span>
+        <span md-line>Information about the TSI Cloud Portal</span>
+      </a>
+    </md-nav-list>
+  </md-sidenav>
+  <div class="ebi-header">
+    <a class="ebi-header-logo" [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
+    <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
+    <span class="ebi-header-link-container">
+        <a class="ebi-header-link" *ngIf="!credentialService.getUsername()" [routerLink]=" ['./login'] ">
+          <md-icon class="ebi-header-link-icon" md-list-icon>vpn_key</md-icon>
+          <span class="ebi-header-link-text">Login</span>
+    </a>
+    <md-select *ngIf="credentialService.getUsername()" [ngModel]="selectedCloudProvider" placeholder="Select provider" (click)="updateCloudProviders($event)"
+      (ngModelChange)="setCurrentlySelectedCloudProviderParameters($event)">
+      <md-option *ngFor="let aCloudProvider of cloudProviderParameters" [value]="aCloudProvider">
+        {{ aCloudProvider.name }}
+      </md-option>
+    </md-select>
+
+    </span>
+  </div>
+  <md-toolbar class="md-main-toolbar">
+    <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
+      <md-icon>menu</md-icon>
+    </button>
+    <a *ngFor="let breadcrumb of getBreadcrumb()" class="md-main-toolbar-title" [routerLink]="breadcrumb.route">
+        {{ breadcrumb.label }}
+    </a>
+    <span class="fill-remaining-space"></span>
+    <span *ngIf="credentialService.getUsername()">
+          <button md-button [mdMenuTriggerFor]="menu">
+            <md-icon *ngIf="!loggedInAccount || !loggedInAccount.avatarImageUrl" md-list-icon>face</md-icon>
+            {{ credentialService.getGivenName() }}
+          </button>
+          <md-menu #menu="mdMenu">
+            <button md-menu-item [routerLink]=" ['./profile'] ">Profile</button>
+            <button md-menu-item (click)="logOut()">Logout</button>
+          </md-menu>
+        </span>
+  </md-toolbar>
+
+  <!-- primary content -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer>
+    <div>
+      <img [src]="ebiLogoBlack">
+    </div>
+    <div>
+      <span id="footerText"> Cloud Portal by <a [href]="tsiGithubUrl">@EMBL-EBI-TSI</a></span>
+    </div>
+  </footer>
+
+</md-sidenav-container>

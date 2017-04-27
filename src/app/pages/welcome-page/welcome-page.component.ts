@@ -1,36 +1,16 @@
-import { Component } from '@angular/core';
-import { CORE_DIRECTIVES } from '@angular/common';
-import { Router } from '@angular/router';
-import { AboutPage } from '../about-page';
-import { RepositoryPage } from '../repository-page';
+import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'welcome-page',
-  providers: [ ],
-  directives: [ CORE_DIRECTIVES, RepositoryPage, AboutPage ],
-  pipes: [ ],
-  styles: [require('./welcome-page.style.css')],
-  template: require('./welcome-page.template.html')
+  templateUrl: './welcome-page.component.html',
+  styleUrls: ['./welcome-page.component.css']
 })
-export class WelcomePage {
+export class WelcomePageComponent implements OnInit {
 
-  constructor(
-      public tokenService: TokenService,
-      public router: Router) {
+  constructor(public tokenService: TokenService) { }
 
-    }
-
-    goToDeployments() {
-        this.router.navigateByUrl('/deployments');
-    }
-
-    goToRepository() {
-        this.router.navigateByUrl('/repository');
-    }
-
-    goToVolumes() {
-        this.router.navigateByUrl('/volumes');
-    }
+  ngOnInit() {
+  }
 
 }

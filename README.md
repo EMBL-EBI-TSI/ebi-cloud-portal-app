@@ -1,43 +1,28 @@
-# TSI Cloud Portal App
+# EBI Cloud Portal
 
-[Angular 2](https://angular.io) app for the Cloud Portal developed by the Technology and Science Integration 
-[team](https://github.com/EMBL-EBI-TSI) at [EMBL-EBI](http://www.ebi.ac.uk/).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
-## Quick Start
+## Development server
 
-**Make sure you have Node version >= 5.0 and NPM >= 3**
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-```bash
-# clone our repo
-# --depth 1 removes all but one .git commit history
-git clone --depth 1 https://github.com/EMBL-EBI-TSI/tsi-cloud-portal-app.git
+## Code scaffolding
 
-# change directory to our repo
-cd tsi-cloud-portal-app
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
-# WINDOWS ONLY
-# add required global libraries `typings webpack-dev-server rimraf webpack`
-npm install -g typings webpack-dev-server rimraf webpack
+## Build
 
-# install the repo with npm
-npm install
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-# WINDOWS ONLY
-# install typings
-npm run typings-install
+## Running unit tests
 
-# start the server
-npm start
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-The current development setup has hot code reload and all that jazz for development of the app. It also assumes you'll be 
-running the [API](https://github.com/EMBL-EBI-TSI/cloud-portal-api) locally. .. 
+## Running end-to-end tests
 
-If you just want to run the app locally, better run in production mode! Instead of `npm start` above, run:
-```bash
-npm run build:prod
-npm run server:prod
-```
-This doesn't have hot code reload etc...
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
 
-## Getting started
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

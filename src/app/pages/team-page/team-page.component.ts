@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
-import { TeamComponent } from 'ng2-cloud-portal-presentation-lib';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'team-page',
-  directives: [ TeamComponent ],
-  styles: [require('./team-page.style.css')],
-  template: require('./team-page.template.html')
+  selector: 'app-team-page',
+  templateUrl: './team-page.component.html',
+  styleUrls: ['./team-page.component.css']
 })
-export class TeamPage {
+export class TeamPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
     private _route: ActivatedRoute) {
@@ -25,5 +23,4 @@ export class TeamPage {
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
   }
-
 }

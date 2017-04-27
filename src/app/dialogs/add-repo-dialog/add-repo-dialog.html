@@ -1,0 +1,21 @@
+<md-dialog-content>
+<div>
+  <img class="dialog-img" [src]="robby">
+  <h2>Add from repo</h2>
+</div>
+<div>
+  <md-input-container class="input-full-width">
+    <input mdInput type="text" placeholder="Repo URI (required)" 
+    [formControl]="repoUriCtrl">
+  </md-input-container>
+</div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button class="button-color-accent"
+  [disabled]="!repoUriCtrl.value || repoUriCtrl.value.length<=0"  
+  (click)="dialogRef.close(repoUriCtrl.value)">
+  ADD
+  </button>
+</md-dialog-actions>
+
+

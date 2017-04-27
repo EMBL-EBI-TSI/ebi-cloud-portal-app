@@ -1,0 +1,81 @@
+<cp-deployments-component #deploymentsComponent>
+		<md-toolbar>
+			<md-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
+				<p>Hide destroyed</p>
+			</md-checkbox>
+    </md-toolbar>
+	<div class="md-content" *ngIf="deploymentsComponent.deploymentInstances">
+
+		<md-card class="background-card" *ngIf="deploymentsComponent.deploymentInstances.length==0">
+			No deployments for {{ deploymentsComponent.credentialService.getGivenName() }} yet
+		</md-card>
+
+		<div class="deployment-summary-card-container">
+			<md-card [routerLink]=" ['/deployments/', deploymentInstance.reference]" *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
+				<md-card-content>
+					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</md-icon> 
+					<md-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
+					<!--<md-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> -->
+					<md-progress-circle *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-circle>
+					
+					<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
+					<h2>{{ deploymentInstance.applicationName }}</h2>
+					<!--Deployment meta-data-->
+					<md-list-item>
+						<p md-line>Reference</p>
+						<h3 md-line class="param-value">{{ deploymentInstance.reference }}</h3>
+					</md-list-item>
+					<md-list-item>
+						<p md-line>State</p>
+						<h3 md-line class="param-value">{{ deploymentInstance.status }}</h3>
+					</md-list-item>
+					<md-list-item>
+						<p md-line>Provider</p>
+						<h3 md-line class="param-value">{{ deploymentInstance.cloudProviderParameters.name }}</h3>
+					</md-list-item>
+					<md-list-item *ngIf="deploymentInstance.status == 'STARTING'">
+						<p md-line class="param-value">Waiting for provider data...</p>
+					</md-list-item>
+					<md-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
+						<p md-line class="param-value">This deployment failed and there is no provider data</p>
+					</md-list-item>
+					<md-list-item *ngIf="deploymentInstance.accessIp">
+						<p md-line>Access IP</p>
+						<h3 md-line class="param-value">{{ deploymentInstance.accessIp }}</h3>
+					</md-list-item>
+					<!--List attached volumes
+					<h3 md-header>Volumes</h3>
+					<md-divider></md-divider>
+					<p md-subheader *ngIf="deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
+					<md-list-item *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
+						<h3 md-line>{{ attachedVolume.name }}</h3>
+						<p md-line class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</p>
+					</md-list-item>-->
+					<!--List assigned inputs-->
+					<md-list-item *ngFor="let assignedInput of deploymentInstance.assignedInputs">
+						<p md-line>{{ assignedInput.inputName }}</p>
+						<h3 md-line class="param-value">{{ assignedInput.assignedValue }}</h3>
+					</md-list-item>
+					<!--List generated outputs-->
+					<md-list-item *ngFor="let generatedOutput of deploymentInstance.generatedOutputs">
+						<p md-line>{{ generatedOutput.outputName }}</p>
+						<h3 md-line class="param-value">{{ generatedOutput.generatedValue }}</h3>
+					</md-list-item>
+
+					<!--<md-card-actions align="end">	
+						<button *ngIf="deploymentInstance.status != 'DESTROYED' && deploymentInstance.status != 'DESTROYING' && deploymentInstance.status != 'STARTING'" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
+							<md-icon class="card-action-icon">cloud_off</md-icon>
+						</button>
+						<button *ngIf="deploymentInstance.status == 'DESTROYED'" md-icon-button color="warn" (click)="deploymentsComponent.deleteDeployment(deploymentInstance)">
+							<md-icon class="card-action-icon">delete_forever</md-icon>
+						</button>
+						<button md-icon-button color="primary" [routerLink]=" ['/deployments/', deploymentInstance.reference]">
+								<md-icon>visibility</md-icon> 
+						</button>
+					</md-card-actions>-->
+				</md-card-content>
+			</md-card>
+		</div>
+	</div>
+
+</cp-deployments-component>

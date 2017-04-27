@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'docs-page',
-  styles: [require('./docs-page.style.css')],
-  template: require('./docs-page.template.html')
+  selector: 'app-docs-page',
+  templateUrl: './docs-page.component.html',
+  styleUrls: ['./docs-page.component.css']
 })
-export class DocsPage {
+export class DocsPageComponent implements OnInit {
 
 	welcomePage = "assets/img/welcome_page.png"; 
 	menuSymbol = "assets/img/menu.png";
