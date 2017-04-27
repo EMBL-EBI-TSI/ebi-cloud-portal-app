@@ -16,7 +16,7 @@
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
 								<!--<md-icon *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> -->
-								<md-progress-circle *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-circle>
+								<md-progress-spinner *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-spinner>
 								<md-icon *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon>
                 <h3>{{ volumeDeploymentInstance.setupName }}</h3>
 							</md-toolbar>
