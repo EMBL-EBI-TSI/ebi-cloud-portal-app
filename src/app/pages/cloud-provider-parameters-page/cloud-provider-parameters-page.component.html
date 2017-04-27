@@ -56,7 +56,6 @@
             <md-icon>visibility</md-icon> 
           </button></h3>
           <span *ngIf="fieldsShowing">
-          <md-divider></md-divider>
           <p md-subheader *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.fields.length==0">This Cloud Provider defines no parameters</p>
           <md-list-item *ngFor="let aParameter of cloudProviderDetail.cloudProviderParametersPresenter.fields">
             <h3 md-line>{{ aParameter.key }}</h3>

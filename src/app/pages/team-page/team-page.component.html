@@ -51,7 +51,10 @@
             <md-icon>visibility</md-icon> 
           </button></h3>
           <span *ngIf="sharedItemsShowing">
-          <md-divider></md-divider>
+          <md-list-item *ngIf="(!teamDetail.teamPresenter.applicationNames ||  teamDetail.teamPresenter.applicationNames.length==0) && (!teamDetail.teamPresenter.cloudProviderParameterNames || teamDetail.teamPresenter.cloudProviderParameterNames.length==0)">
+            <md-icon md-list-icon>sentiment_neutral</md-icon> 
+            <p md-line class="param-value">Nothing is shared in within this team. Share some applications or cloud providers!</p>
+          </md-list-item>
           <md-list dense *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
             <md-list-item>
               <h3 md-line>Applications</h3>
