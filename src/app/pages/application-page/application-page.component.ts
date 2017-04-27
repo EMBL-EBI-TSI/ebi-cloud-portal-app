@@ -34,4 +34,5 @@ export class ApplicationPageComponent implements OnInit {
         applicationDetail.share(shareWith);
     });
   }
+
 }

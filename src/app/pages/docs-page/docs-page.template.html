@@ -1,0 +1,199 @@
+<md-content style="float:left;margin-left: 27px;">
+<div>
+	<span>
+		<h3><b>Introduction</b></h3>
+		<p>This section is to help you to use the portal 
+			demonstrated with help of screenshots.</p>
+	</span>
+</div>
+<div>
+	<span>
+		<h3><b>Welcome Page</b></h3>
+		<p>This is the usual welcome or start up page. To the top right corner you will  find 'Login' link.</p>
+		<img style="height: 27em; width:50em; margin-top: 3em;" border="1" [src]="welcomePage">
+	</span>
+	<span>
+		<h3><b>Elixir Registration</b></h3>
+		<p>Register with ELIXIR: https://www.elixir-europe.org/register, using your home institution or Google, etc.<br/>
+		 This involves email verification, and finishes with a "We've got your registration" message from ELIXIR.<br/>
+		 When you first log in to the EBI Cloud Portal, you will first be asked if you allow your home institution (or Google, etc) <br/>
+		 to release your data to ELIXIR, where you can choose to allow/disallow the release of your data to the EBI Authentication Gateway.
+	</span>
+</div>
+<div>
+	<span>
+		<h4><b>I. Login using username/password</b></h4>
+		<p>If you have an account, use the username/password combination to login,
+		else make use of the SSO (single sign on) button.</p>
+		<img style="height: 27em;  margin-top: 3em;" border="1" [src]="loginUserPassword">
+	</span>
+</div>
+<div>
+	<span>
+		<h4><b>II. Login using SSO</b></h4>
+		<p>Click on 'SSO', you can sign in using Google, Linkedin, ORCID accounts or your institution login.</p>
+		<img style="height: 27em; width:50em; margin-top: 3em;" border="1" [src]="loginSSOStepOne">
+	</span>
+	<span>
+		 <p> Say for example, you have entered your institution name, you will be taken
+		  to another page, <br/> where you enter your login details you use in you institution 
+		 to as follows </p>
+		<img style="height: 27em; width:50em; margin-top: 3em;" border="1" [src]="loginSSOStepTwo">
+		<br/><br/>Enter the login details and click on 'Login'.
+	</span> 
+</div>
+<div>
+	<span>
+		<h3><b>Profile Page</b></h3>
+		<p>Click on '<img style="height: 1em; width:1em;" [src]="menuSymbol">
+		', a side navigation bar appears as follows</p>
+		<img style="width:70em; margin-top: 3em;" border="1" [src]="sidebarSymbol">
+		<p>Click on 'Profile' which will then take you to profile page where you can
+		add, share and remove Cloud Credentials and Teams.
+		<img style="width:70em; margin-top: 3em;" border="1" [src]="homeProfile"></p>
+	</span>
+		<div>
+			<span>
+				<h4><b>I. Cloud providers</b></h4>
+				<p>To add Cloud Providers, click on the 'Cloud Providers' tab in you Profile Page.<br/>
+				To the right is a '+' symbol which will allow you to add a Cloud Provider. <br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAddCppStepOne">
+				<br/><br/>You can add Cloud Provider Parameters , by clicking on the '+' next to the Parameters.
+				To add <br/>more parameters  just click on '+'.
+				Then hit on 'Save' button to save the information.<br/>You will be able to see the 
+				Cloud Provider added to your Profile which will look as follows<br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAddedCpp">
+				</p>
+				<p>
+				Once cloud provider or team(given below) is created or shared(given below), you can see the parameters by clicking 
+				<br/>on the 'green eye icon'.
+				</p>
+			</span>
+		</div>
+		<div>
+			<span>
+				<h4><b>II. Configurations</b></h4>
+				<p>You can create a configuration which takes as
+				input a cloud provider name (I above) and a deployment parameter name (IV below), 
+				which can be made use of while deploying applications<br/>
+				To add configuration, click on the 'Configurations' tab To the right is a '+' symbol which will allow you to 
+				add a Configuration. You can see that the cloud provider name 'TSISTACK',<br/> was the one
+				created before using I above and the deployment parameter name is the one created using
+				III below<br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileBeforeAddingConfig">
+				<p>Click on  'SAVE' to save the deployment parameters.
+				Now the deployment parameters are displayed as follows <br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAfterAddingConfig">
+				<br/>You can click on the 'red bin icon', to delete the deployment parameters.</p>
+			</span>
+		</div>
+		<div>
+			<span>
+				<h4><b>III. Deployment Parameters</b></h4>
+				<p>To add deployment parameters (you can create a group of deployment parameters
+				at one go), click on the 'Deployment Parameters' tab in your Profile Page.<br/>
+				To the right is a '+' symbol which will allow you to add a deployment parameter.<br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileBeforeAddingDP">
+				<p>Click on  'SAVE' to save the deployment parameters.
+				Now the deployment parameters are displayed as follows <br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAfterAddingDP">
+				<br/>You can click on the 'red bin icon', to delete the deployment parameters.</p>
+			</span>
+		</div>
+		<div>
+			<span>
+				<h4><b>IV. Teams</b></h4>
+				<p>To add teams, click on the 'Teams' tab in your Profile Page.<br/>
+				To the right is a '+' symbol which will allow you to add a team.
+				Enter the team name and click on 'Save'.<br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAddTeam">
+				<br/><br/>You can add team members, by clicking on the team now, which is displayed like</p>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAfterAddingTeam">
+				<p>You will find the 'add people icon' to the right,click on it,
+				enter the email of the person, and click on 'ADD' as shown</p>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAddTeamMembers">
+				<p>Click on  'ADD' to keep adding more members.
+				Now the team and its members are displayed as follows <br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="profileAfterAddingTeamMember">
+				<br/>You can click on the 'red cross icon', to remove members from team.</p>
+			</span>
+	</div>
+</div>
+<div>
+	<span>
+		<h3><b>Repository Page</b></h3>
+		<p>Click on '<img style="height: 1em; width:1em;" [src]="menuSymbol">'
+		,a side navigation bar appears as follows<br/>
+		<img style="width:70em; margin-top: 3em;" border="1" [src]="sidebarSymbol"></p>
+		<p>Click on repository which will then take you to repository page where you can
+		add, share and remove Applications.
+		<img style="width:70em; margin-top: 3em;" border="1" [src]="homeRepository"></p>
+	</span>
+	<div>
+		<span>
+			<h4><b>I. Applications</b></h4>
+			<p>To add applications, click on the '+' symbol in Repository Page<br/>
+				<img style="width:70em; margin-top: 3em;" border="1" [src]="repositoryAddingApplication"></p>
+			<p>You can then enter the repository URI.The application should have a file named MANIFEST.json with parameters, like the 
+				<br/>one given below https://github.com/jadianes/be-application-test. After entering the repository path, click on 'Register'.
+				<br/>Your application will be added as follows</p>
+			<img style="width:70em; margin-top: 3em;" border="1" [src]="repositoryAddedApplication">
+		</span>
+		
+	</div>
+	<div>
+		<span>
+			<h4><b>Sharing Cloud providers</b></h4>
+			<p>You can share your credentials, with another person or a team.
+			To share Cloud Providers, click on the 'Cloud Providers' you want <br/>to share.
+			To the right is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
+			symbol which will allow you to share a Cloud Provider.<br/>
+			<img style="width:70em; margin-top: 3em;" border="1" [src]="profileSharingCpp">
+			<br/><br/>You can enter the email of a person you want to share with or the name 
+			<br/>of the team you want to share with and click on 'Share'.<br/><br/>
+			Note: The email you want to share with or the team you want to share with should be,
+			<br/>registered cloud portal accounts.
+			</p>
+		</span>
+		<span>
+			<h4><b>Sharing Applications</b></h4>
+			<p>You can share your application, with another person or a team.
+			To share Applications, click on the 'Applications' you want to share.<br/>				
+			To the right is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
+			symbol which will allow you to share a Cloud Provider.<br/>
+			<img style="width:70em; margin-top: 3em;" border="1" [src]="repositorySharingApplication">
+			<br/><br/>You can enter the email of a person you want to share with
+			or the name of the team you want to share with and click on 'Share'.<br/><br/>
+			Note: The email you want to share with or the team you want to share with should be,
+			<br/>registered cloud portal accounts.
+			</p>
+		</span>
+	</div>
+</div>
+<div>
+	<span>
+		<h4><b>Deploying Applications</b></h4>
+		<p> You can deploy your application, to be run  on a cloud provider of your choice.
+			Click on 'Repository' and click on the Application, you want to deploy as follows.
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseApplication">
+			<br/>This will then take you to the deployment page. You have to choose the cloud provider,
+			you want your application to run on. <br/>For this from the top left corner, click on
+			'Select CloudProvider' and select a cloud provider, which you have defined.<br/>
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseCloudProvider">
+			<br/>If you have deployment parameters defined for your application and you have also
+			defined a configuration providing those, you can use it. <br/>Under 'Choose Configurations' 
+			a list of Configurations you have defined will appear and you can use one of them. 
+			<br/>If the configuration you have chosen, has a deployment parameter matching the 
+			deployment parameters for the application, <br/>the value is displayed like<br/>
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseConfiguration">
+			<br/>Click on the 'green eye' icon, to view the 'Deployment Parameters' if any.
+			Enter the inputs for the application if any under 'Inputs', and then 
+			click on the 'Deploy' button
+			as follows<br/>
+			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployApplication">
+			<br/>Once the application is deployed, you can click on 'Deployments' from 
+			the side navigation bar, to view the deployments.
+	</span>
+</div>
+</md-content>
+
