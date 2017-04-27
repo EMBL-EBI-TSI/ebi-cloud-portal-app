@@ -34,7 +34,7 @@
             <p md-line class="param-value">Waiting for provider data...</p>
           </md-list-item>
           <md-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED' || deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'">
-            <p md-line class="param-value">This deployment failed and there is nor provider data</p>
+            <p md-line class="param-value">This deployment failed and there is no provider data</p>
           </md-list-item>
           <md-list-item>
             <h3 md-line *ngIf="deploymentDetail.deploymentInstance.providerId">Provider ID</h3>
