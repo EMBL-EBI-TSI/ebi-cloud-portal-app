@@ -18,19 +18,16 @@
           <md-icon>delete_forever</md-icon>
         </button>
       </md-toolbar>
+
       <md-card-content>
         <md-list dense>
           <!--Deployment meta-data-->
-          <!--<md-list-item>
-            <h3 md-line>Reference</h3>
-            <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.reference }}</p>
-          </md-list-item>-->
           <md-list-item>
             <h3 md-line>State</h3>
             <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
           </md-list-item>
           <md-list-item>
-            <h3 md-line>Provider</h3>
+            <h3 md-line>Cloud Provider</h3>
             <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.cloudProviderParameters.name }}</p>
           </md-list-item>
           <md-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'">
@@ -48,42 +45,42 @@
             <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.accessIp }}</p>
           </md-list-item>
         </md-list>
-        <md-list dense>
-          <!--<md-list-item>
-            <h3 md-line>Deployment status</h3>
-            <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
-          </md-list-item>-->
+
+        <!-- Deployment inputs and co -->
+        <md-list>
           <!--List attached volumes-->
           <h3 md-header>Volumes</h3>
-          <md-divider></md-divider>
           <p md-subheader *ngIf="deploymentDetail.deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
           <md-list-item *ngFor="let attachedVolume of deploymentDetail.deploymentInstance.attachedVolumes">
+            <md-icon md-list-icon>storage</md-icon>
             <h3 md-line>{{ attachedVolume.name }}</h3>
-            <p md-line class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</p>
+            <h4 md-line class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</h4>
           </md-list-item>
           <!--List assigned inputs-->
           <h3 md-header>Inputs</h3>
-          <md-divider></md-divider>
           <p md-subheader *ngIf="deploymentDetail.deploymentInstance.assignedInputs.length==0">There are no assigned inputs for this deployment</p>
           <md-list-item *ngFor="let assignedInput of deploymentDetail.deploymentInstance.assignedInputs">
+            <md-icon md-list-icon>keyboard_arrow_right</md-icon>
             <h3 md-line>{{ assignedInput.inputName }}</h3>
-            <p md-line class="param-value">{{ assignedInput.assignedValue }}</p>
-          </md-list-item>
-          <!--List assigned parameters-->
-          <h3 md-header>Deployment Parameters</h3>
-          <md-divider></md-divider>
-          <p md-subheader *ngIf="deploymentDetail.deploymentInstance.assignedParameters.length==0">There are no assigned parameters for this deployment</p>
-          <md-list-item *ngFor="let assignedParameter of deploymentDetail.deploymentInstance.assignedParameters">
-            <h3 md-line>{{ assignedParameter.parameterName }}</h3>
-            <p md-line class="param-value">{{ assignedParameter.parameterValue }}</p>
+            <h4 md-line class="param-value">{{ assignedInput.assignedValue }}</h4>
           </md-list-item>
           <!--List generated outputs-->
           <h3 md-header>Outputs</h3>
-          <md-divider></md-divider>
           <p md-subheader *ngIf="deploymentDetail.deploymentInstance.generatedOutputs.length==0">There are no generated outputs for this deployment</p>
           <md-list-item *ngFor="let generatedOutput of deploymentDetail.deploymentInstance.generatedOutputs">
+            <md-icon md-list-icon>keyboard_arrow_left</md-icon>
             <h3 md-line>{{ generatedOutput.outputName }}</h3>
-            <p md-line class="param-value">{{ generatedOutput.generatedValue }}</p>
+            <h4 md-line class="param-value">{{ generatedOutput.generatedValue }}</h4>
+          </md-list-item>
+          <!--List assigned parameters-->
+          <h3 md-header>Deployment parameters</h3>
+          <p md-subheader *ngIf="deploymentDetail.deploymentInstance.assignedParameters.length==0">There are no assigned parameters for this deployment</p>
+          <md-list-item *ngFor="let assignedParameter of deploymentDetail.deploymentInstance.assignedParameters">
+            <md-icon *ngIf="!assignedParameter.parameterValue" md-list-icon>warning</md-icon>
+            <md-icon *ngIf="assignedParameter.parameterValue" md-list-icon>settings_applications</md-icon>
+            <h3 md-line>{{ assignedParameter.parameterName }}</h3>
+            <h4 *ngIf="!assignedParameter.parameterValue" md-line class="param-value">Value not assigned</h4>
+            <h4 md-line class="param-value">{{ assignedParameter.parameterValue }}</h4>
           </md-list-item>
           <!--Logs-->
           <h3 md-header>Deployment logs
@@ -91,7 +88,6 @@
               <md-icon>visibility</md-icon> 
             </button>
           </h3>
-          <md-divider></md-divider>
           <textarea readonly style="color: rgb(249,249,249)" class="logs-text-area" md-subheader *ngIf="logsShowing">
             {{ deploymentDetail.deploymentInstance.logs }}
           </textarea>

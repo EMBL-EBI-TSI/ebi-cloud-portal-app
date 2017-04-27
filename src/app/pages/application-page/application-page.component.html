@@ -81,7 +81,6 @@
         <md-list>
           <!--Application required volumes-->
           <h3 md-header>Volumes</h3>
-          <!--<md-divider></md-divider>-->
           <p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length==0">This application requires no attached volumes</p>
           <!--<p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>-->
           <md-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
@@ -124,7 +123,7 @@
             <h4 md-line>{{ anOutput }}</h4>
           </md-list-item>
 
-          <h3 md-header>Deployment Parameters
+          <h3 md-header>Deployment parameters
             <button md-icon-button color="primary"  
             *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0"
             (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
