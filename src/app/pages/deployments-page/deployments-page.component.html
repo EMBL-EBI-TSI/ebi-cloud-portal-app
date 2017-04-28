@@ -1,16 +1,17 @@
 <cp-deployments-component #deploymentsComponent>
-		<md-toolbar>
-			<md-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
-				<p>Hide destroyed</p>
-			</md-checkbox>
-    </md-toolbar>
+	<md-toolbar>
+		<md-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
+			<p>Hide destroyed</p>
+		</md-checkbox>
+	</md-toolbar>
+
 	<div class="md-content" *ngIf="deploymentsComponent.deploymentInstances">
 
 		<md-card class="background-card" *ngIf="deploymentsComponent.deploymentInstances.length==0">
 			No deployments for {{ deploymentsComponent.credentialService.getGivenName() }} yet
 		</md-card>
 
-		<div class="deployment-summary-card-container">
+		<div class="wide-summary-card-container">
 			<md-card [routerLink]=" ['/deployments/', deploymentInstance.reference]" *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
 				<md-card-content>
 					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</md-icon> 
@@ -33,16 +34,6 @@
 						<p md-line>Provider</p>
 						<h3 md-line class="param-value">{{ deploymentInstance.cloudProviderParameters.name }}</h3>
 					</md-list-item>
-					<md-list-item *ngIf="deploymentInstance.status == 'STARTING'">
-						<p md-line class="param-value">Waiting for provider data...</p>
-					</md-list-item>
-					<md-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
-						<p md-line class="param-value">This deployment failed and there is no provider data</p>
-					</md-list-item>
-					<md-list-item *ngIf="deploymentInstance.accessIp">
-						<p md-line>Access IP</p>
-						<h3 md-line class="param-value">{{ deploymentInstance.accessIp }}</h3>
-					</md-list-item>
 					<!--List attached volumes
 					<h3 md-header>Volumes</h3>
 					<md-divider></md-divider>
@@ -61,18 +52,16 @@
 						<p md-line>{{ generatedOutput.outputName }}</p>
 						<h3 md-line class="param-value">{{ generatedOutput.generatedValue }}</h3>
 					</md-list-item>
-
-					<!--<md-card-actions align="end">	
-						<button *ngIf="deploymentInstance.status != 'DESTROYED' && deploymentInstance.status != 'DESTROYING' && deploymentInstance.status != 'STARTING'" md-icon-button color="warn" (click)="deploymentsComponent.destroyDeployment(deploymentInstance)">
-							<md-icon class="card-action-icon">cloud_off</md-icon>
-						</button>
-						<button *ngIf="deploymentInstance.status == 'DESTROYED'" md-icon-button color="warn" (click)="deploymentsComponent.deleteDeployment(deploymentInstance)">
-							<md-icon class="card-action-icon">delete_forever</md-icon>
-						</button>
-						<button md-icon-button color="primary" [routerLink]=" ['/deployments/', deploymentInstance.reference]">
-								<md-icon>visibility</md-icon> 
-						</button>
-					</md-card-actions>-->
+					<md-list-item *ngIf="deploymentInstance.status == 'STARTING'">
+						<p md-line class="param-value">Waiting for provider data...</p>
+					</md-list-item>
+					<!--<md-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
+						<p md-line class="param-value">There is no provider data</p>
+					</md-list-item>-->
+					<md-list-item *ngIf="deploymentInstance.accessIp">
+						<p md-line>Access IP</p>
+						<h3 md-line class="param-value">{{ deploymentInstance.accessIp }}</h3>
+					</md-list-item>
 				</md-card-content>
 			</md-card>
 		</div>

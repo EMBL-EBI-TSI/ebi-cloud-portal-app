@@ -7,47 +7,47 @@
 
 	<md-tab-group #volumesTabGroup (selectChange)="addButtonShowing=(volumesTabGroup.selectedIndex==1); volumesComponent.addVolumeSetupFormShowing=false ">
 		<md-tab label="Instances">
-
 				<div class="md-content" *ngIf="volumesComponent.volumeDeploymentInstances">
-					<md-card class="background-card" *ngIf="volumesComponent.volumeDeploymentInstances.length==0">No volume deployments for {{ volumesComponent.credentialService.getGivenName() }} yet</md-card>
+					
+					<md-card class="background-card" *ngIf="volumesComponent.volumeDeploymentInstances.length==0">
+						No volume deployments for {{ volumesComponent.credentialService.getGivenName() }} yet
+					</md-card>
 
-					<div class="volume-instance-card-container">
+					<div class="wide-summary-card-container">
 						<md-card *ngFor="let volumeDeploymentInstance of volumesComponent.volumeDeploymentInstances">
-							<md-toolbar class="summary-card-toolbar">
-								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon> 
-								<!--<md-icon *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" class="card-type-icon">hourglass_empty</md-icon> -->
-								<md-progress-spinner *ngIf="volumeDeploymentInstance.destroying || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-spinner>
-								<md-icon *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">done</md-icon>
-                <h3>{{ volumeDeploymentInstance.setupName }}</h3>
-							</md-toolbar>
 							<md-card-content>
-								<md-list dense>
-									<md-list-item>
-										<h3 md-line>Reference</h3>
-										<p md-line class="param-value">{{ volumeDeploymentInstance.reference }}</p>
-									</md-list-item>
-									<md-list-item>
-										<h3 md-line>State</h3>
-										<p md-line class="param-value">{{ volumeDeploymentInstance.status }}</p>
-									</md-list-item>
-									<!--<md-list-item>
-										<h3 md-line>Provider ID</h3>
-										<p md-line>{{ volumeDeploymentInstance.providerId }}</p>
-									</md-list-item>-->
-									<md-list-item *ngIf="volumeDeploymentInstance.status == 'STARTING'">
-										<p md-line class="param-value">Waiting for provider data...</p>
-									</md-list-item>
-									<md-list-item *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'">
-										<p md-line class="param-value">This deployment failed and there is nor provider data</p>
-									</md-list-item>
-								</md-list>
+								<md-icon *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED' || volumeDeploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</md-icon> 
+								<md-icon *ngIf="volumeDeploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
+								<md-progress-spinner *ngIf="volumeDeploymentInstance.status == 'DESTROYING' || volumeDeploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-spinner>
+								<md-icon *ngIf="volumeDeploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
+                
+								<h2>{{ volumeDeploymentInstance.setupName }}</h2>
+								<md-list-item>
+									<h3 md-line>Reference</h3>
+									<p md-line class="param-value">{{ volumeDeploymentInstance.reference }}</p>
+								</md-list-item>
+								<md-list-item>
+									<h3 md-line>State</h3>
+									<p md-line class="param-value">{{ volumeDeploymentInstance.status }}</p>
+								</md-list-item>
+								<!--<md-list-item>
+									<h3 md-line>Provider ID</h3>
+									<p md-line>{{ volumeDeploymentInstance.providerId }}</p>
+								</md-list-item>-->
+								<md-list-item *ngIf="volumeDeploymentInstance.status == 'STARTING'">
+									<p md-line class="param-value">Waiting for provider data...</p>
+								</md-list-item>
+								<md-list-item *ngIf="volumeDeploymentInstance.status == 'STARTING_FAILED'">
+									<p md-line class="param-value">This deployment failed and there is nor provider data</p>
+								</md-list-item>
+								<md-card-actions align="end" *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status != 'STARTING'">
+									<button md-icon-button color="warn" (click)="volumesComponent.destroyVolume(volumeDeploymentInstance)">
+										<md-icon class="card-action-icon">delete_forever</md-icon>
+									</button>
+								</md-card-actions>
 							</md-card-content>
 
-							<md-card-actions align="end" *ngIf="!volumeDeploymentInstance.destroying && volumeDeploymentInstance.status != 'STARTING'">
-								<button md-icon-button color="warn" (click)="volumesComponent.destroyVolume(volumeDeploymentInstance)">
-								<md-icon class="card-action-icon">delete_forever</md-icon>
-							</button>
-							</md-card-actions>
+
 						</md-card>
 					</div>
 				</div>
@@ -55,35 +55,15 @@
 
 		<md-tab label="Setups">
 
-				<!--Add setup form-->
-				<!--<md-card class="add-dialog-form" *ngIf="volumesComponent.addVolumeSetupFormShowing">
-					<md-card-header>
-						<md-card-title><h2>Add volume setup</h2></md-card-title>
-					</md-card-header>
-					<md-card-content>
-						<form [formGroup]="volumesComponent.volumeSetupForm" autocomplete="off">
-							<md-input-container class="input-full-width"><input mdInput type="url" placeholder="Repository URI (required)" [formControl]="volumesComponent.volumeSetupForm.controls['repoUri']" autofocus>
-							</md-input-container>
-						</form>
-					</md-card-content>
-					<md-card-actions align="end">
-						<button *ngIf="!volumesComponent.volumeSetupForm.controls['repoUri'].valid || volumesComponent.volumeSetupForm.controls['repoUri'].hasError('required')"
-						md-raised-button class="button-color-accent" disabled>
-						REGISTER</button>
-						<button *ngIf="volumesComponent.volumeSetupForm.controls['repoUri'].valid && !volumesComponent.volumeSetupForm.controls['repoUri'].hasError('required')"
-						md-raised-button class="button-color-accent" 
-						(click)="volumesComponent.addVolumeSetup(volumesComponent.volumeSetupForm.value); volumesComponent.addVolumeSetupFormShowing = false">
-						REGISTER</button>
-					</md-card-actions>
-				</md-card>-->
-
 				<!--List setups-->
-				<md-card class="background-card" *ngIf="volumesComponent.volumeDeployers.length==0">No volume setups for user {{ volumesComponent.credentialService.getGivenName() }} yet</md-card>
+				<md-card class="background-card" *ngIf="volumesComponent.volumeDeployers.length==0">
+					No volume setups for user {{ volumesComponent.credentialService.getGivenName() }} yet
+				</md-card>
+
 				<div class="md-content" *ngIf="volumesComponent.volumeDeployers">
-					<div class="volume-setup-card-container">
+					<div class="wide-summary-card-container">
 						<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
 							<md-toolbar class="summary-card-toolbar">
-								<!--<md-icon class="card-type-icon">settings_application</md-icon>-->
                 <h3> {{ volumeDeployer.name }}</h3>
 								<span class="fill-remaining-space"></span>
 								<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
@@ -92,6 +72,9 @@
 							</md-toolbar>
 							<md-card-content>
 								<md-list dense>
+									<md-list-item>
+										<p>{{ volumeDeployer.about }}</p>
+									</md-list-item>
 									<md-list-item>
 										<h3 md-line>Source</h3>
 										<p md-line class="param-value"><a href="{{ volumeDeployer.repoUri }}">{{ volumeDeployer.repoUri }}</a></p>

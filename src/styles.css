@@ -158,18 +158,18 @@ button.active:hover{
   color: var(--dark-color);
 }
 
-/*Application summary card container*/
-.application-summary-card-container {
+/*Fixed width summary card container*/
+.fixed-width-summary-card-container {
   display: flex;
   flex-flow: row wrap;
 }
-.application-summary-card-container md-card {
+.fixed-width-summary-card-container md-card {
   box-sizing: border-box;
-  width: 25em;
+  max-width: 25em;
   margin: 1em;
   padding-bottom: 2.4em;
 }
-.application-summary-card-container md-card md-card-actions {
+.fixed-width-summary-card-container md-card md-card-actions {
   padding: 0px 10px 0px 16px;
 }
 
@@ -200,28 +200,28 @@ button.active:hover{
 }
 
 /*Deployment summary card container*/
-.deployment-summary-card-container md-card {
+.wide-summary-card-container md-card {
   margin: 1em;
 }
-.deployment-summary-card-container md-card md-card-content {
+.wide-summary-card-container md-card md-card-content {
   padding-top: 1em;
   padding-left: 1em;
 	display: flex;
   flex-flow: row wrap;
 }
-.deployment-summary-card-container md-card md-card-content md-list-item {
+.wide-summary-card-container md-card md-card-content md-list-item {
 	margin-right: 25px;
   position: relative;
   top: -20px;
 }
-.deployment-summary-card-container md-card md-card-content h2 {
+.wide-summary-card-container md-card md-card-content h2 {
 	margin-right: 35px;
 }
-.deployment-summary-card-container md-card md-card-content .card-type-icon {
+.wide-summary-card-container md-card md-card-content .card-type-icon {
 	top: 15px;
   margin-right: 10px;
 }
-.deployment-summary-card-container md-card md-card-content md-progress-circle {
+.wide-summary-card-container md-card md-card-content md-progress-spinner {
   width: 2em;
   height: 2em;
   position: relative;
@@ -229,7 +229,7 @@ button.active:hover{
   margin-right: 15px;
   margin-left: 5px;
 }
-.deployment-summary-card-container md-card md-card-content md-card-actions {
+.wide-summary-card-container md-card md-card-content md-card-actions {
 	position: absolute;
   top: 40px;
   right: 50px;
@@ -273,7 +273,7 @@ button.active:hover{
   width: 20em;
   margin: 1em;
 }
-.volume-instance-card-container md-card md-toolbar md-progress-circle {
+.volume-instance-card-container md-card md-toolbar md-progress-spinner {
   width: 2em;
   height: 2em;
   position: relative;
