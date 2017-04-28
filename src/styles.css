@@ -174,8 +174,13 @@ button.active:hover{
 }
 
 /*full width card container*/
+.wide-summary-card-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
 .wide-summary-card-container md-card {
-  margin: 1em;
+  margin: 1em 1em 0em 1em;
 }
 .wide-summary-card-container md-card md-card-content {
   padding-top: 1em;

@@ -26,11 +26,6 @@
             </md-list-item>
           </md-list>
         </md-card-content>
-        <!--<md-card-actions>
-            <button md-button [routerLink]=" ['/repository/', applicationDeployer.name]">
-              DEPLOY
-            </button>
-          </md-card-actions>-->
       </md-card>
       <!--Shared applications-->
       <md-card [routerLink]=" ['/repository/shared/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.sharedApplicationDeployers | applicationCloudProvider:cloudProviderFilters">

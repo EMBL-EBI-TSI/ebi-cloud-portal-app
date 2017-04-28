@@ -24,7 +24,7 @@
 			</md-card>
 
 			<div class="md-content" *ngIf="profileComponent.cloudProviderParametersPresenters">
-				<span class="wide-summary-card-container">
+				<div class="wide-summary-card-container">
 						<md-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]"  *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters" class="credentials-container">
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
@@ -72,7 +72,7 @@
 				<span *ngFor="let teamPresenter of profileComponent.teamPresenters">
 							
 						</span>
-				</span>
+				</div>
 			</div>
 		</md-tab>
 
@@ -152,12 +152,12 @@
 		<md-tab label="Teams">
 
 			<md-card class="background-card" *ngIf="!profileComponent.teamPresenters || profileComponent.teamPresenters.length==0">
-				No teams associated with this account
+				No teams associated with {{ profileComponent.account.givenName }}
 			</md-card>
 
 			<div class="md-content" *ngIf="profileComponent.teamPresenters">
 				<span class="wide-summary-card-container">
-					<md-card [routerLink]=" ['/team/', teamPresenter.name]"  *ngFor="let teamPresenter of profileComponent.teamPresenters" class="credentials-container">
+					<md-card [routerLink]=" ['/team/', teamPresenter.name]" *ngFor="let teamPresenter of profileComponent.teamPresenters" class="credentials-container">
 						<md-toolbar class="summary-card-toolbar">
 							<md-icon class="card-type-icon">group</md-icon><h3>{{ teamPresenter.name }}</h3>
 							<span class="fill-remaining-space"></span>
