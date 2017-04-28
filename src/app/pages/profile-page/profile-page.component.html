@@ -24,7 +24,7 @@
 			</md-card>
 
 			<div class="md-content" *ngIf="profileComponent.cloudProviderParametersPresenters">
-				<span class="credentials-card-container">
+				<span class="wide-summary-card-container">
 						<md-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]"  *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters" class="credentials-container">
 							<md-toolbar class="summary-card-toolbar">
 								<md-icon class="card-type-icon">vpn_key</md-icon><h3>{{ cloudProviderParametersPresenter.name }}</h3>
@@ -83,7 +83,7 @@
 			</md-card>
 
 			<div class="md-content" *ngIf="profileComponent.configurationPresenters">
-				<div class="credentials-card-container">
+				<span class="wide-summary-card-container">
 					<md-card *ngFor="let configurationPresenter of profileComponent.configurationPresenters" class="credentials-container">
 						<md-toolbar class="summary-card-toolbar">
 							<!--<md-icon class="card-type-icon">settings_applications</md-icon>-->
@@ -94,7 +94,7 @@
 							</button>
 						</md-toolbar>
 						<md-card-content>
-							<md-list dense>
+							<!--<md-list dense>-->
 								<md-list-item>
 									<md-icon md-list-icon class="card-type-icon">vpn_key</md-icon>
 									<h3 md-line>Cloud provider parameters</h3>
@@ -110,10 +110,10 @@
 									<h3 md-line>Parameters</h3>
 									<p md-line class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
 								</md-list-item>
-							</md-list>
+							<!--</md-list>-->
 						</md-card-content>
 					</md-card>
-				</div>
+				</span>
 			</div>
 
 		</md-tab>
@@ -125,7 +125,7 @@
 			</md-card>
 
 			<div class="md-content" *ngIf="profileComponent.deploymentParametersPresenters">
-				<div class="credentials-card-container">
+				<span class="wide-summary-card-container">
 					<md-card *ngFor="let deploymentParameterPresenter of profileComponent.deploymentParametersPresenters" class="credentials-container">
 						<md-toolbar class="summary-card-toolbar">
 							<md-icon class="card-type-icon">settings_applications</md-icon>
@@ -136,15 +136,15 @@
 							</button>
 						</md-toolbar>
 						<md-card-content>
-							<md-list dense>
+							<!--<md-list dense>-->
 								<md-list-item *ngFor="let deploymentParameterField of deploymentParameterPresenter.fields">
 									<h3 md-line>{{ deploymentParameterField.key }}</h3>
 									<p md-line class="param-value">{{ deploymentParameterField.value }}</p>
 								</md-list-item>
-							</md-list>
+							<!--</md-list>-->
 						</md-card-content>
 					</md-card>
-				</div>
+				</span>
 			</div>
 
 		</md-tab>
@@ -156,30 +156,18 @@
 			</md-card>
 
 			<div class="md-content" *ngIf="profileComponent.teamPresenters">
-				<span class="credentials-card-container">
-						<md-card [routerLink]=" ['/team/', teamPresenter.name]"  *ngFor="let teamPresenter of profileComponent.teamPresenters" class="credentials-container">
-							<md-toolbar class="summary-card-toolbar">
-								<md-icon class="card-type-icon">group</md-icon><h3>{{ teamPresenter.name }}</h3>
-								<span class="fill-remaining-space"></span>
-				<p *ngIf="teamPresenter.isOwner">OWNER</p>
-				</md-toolbar>
-				<md-card-content>
-					<span class="share-credentials-dialog" *ngIf="profileComponent.addMemberToTeamDialogShowing">
-									<form #shareProviderForm>
-										<md-input-container class="input-full-width">
-											<input mdInput
-										type="email" placeholder="Share email (required)" 
-										[(ngModel)]="memberAccountEmail" name="memberAccountEmail" autofocus>
-										</md-input-container>
-									</form>
-									<!--<span class="fill-remaining-space"></span>-->
-					<button md-raised-button (click)="profileComponent.addTeamMember(teamPresenter, memberAccountEmail); profileComponent.addMemberToTeamDialogShowing = false">
-									ADD</button>
-					</span>
-				</md-card-content>
-				<md-card-actions>
-				</md-card-actions>
-				</md-card>
+				<span class="wide-summary-card-container">
+					<md-card [routerLink]=" ['/team/', teamPresenter.name]"  *ngFor="let teamPresenter of profileComponent.teamPresenters" class="credentials-container">
+						<md-toolbar class="summary-card-toolbar">
+							<md-icon class="card-type-icon">group</md-icon><h3>{{ teamPresenter.name }}</h3>
+							<span class="fill-remaining-space"></span>
+							<p *ngIf="teamPresenter.isOwner">OWNER</p>
+						</md-toolbar>
+						<md-card-content>
+							
+						</md-card-content>
+
+					</md-card>
 				</span>
 			</div>
 

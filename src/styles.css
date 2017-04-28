@@ -173,33 +173,7 @@ button.active:hover{
   padding: 0px 10px 0px 16px;
 }
 
-/* In detail card container*/
-.detail-card-container {
-  margin: 1em;
-}
-.detail-card-container md-card {
-  padding-bottom: 2em;
-}
-.detail-card-container md-card md-card-actions {
-  padding: 25px 0px 0px 10px;
-  margin-bottom: 2em;
-}
-.detail-card-container md-card md-card-actions md-radio-group {
-  margin-left: 20px;
-}
-.detail-card-container md-card .card-type-icon {
-  margin-right: 10px;
-}
-.detail-card-container md-card md-toolbar p {
-  padding-top: 15px;
-  margin-left: 10px;
-}
-.detail-card-toolbar {
-  background: white;
-  color: var(--dark-color);
-}
-
-/*Deployment summary card container*/
+/*full width card container*/
 .wide-summary-card-container md-card {
   margin: 1em;
 }
@@ -235,49 +209,30 @@ button.active:hover{
   right: 50px;
 }
 
-.credentials-card-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-.credentials-card-container md-card {
-  width: 20em;
+/* In detail card container*/
+.detail-card-container {
   margin: 1em;
 }
-.credentials-card-container md-card md-card-actions {
-  padding: 0px 0px 0px 10px;
+.detail-card-container md-card {
+  padding-bottom: 2em;
 }
-.credentials-card-container md-card md-card-actions button {
-  margin-bottom: 10px;
-}
-
-/*Volume setup card container*/
-.volume-setup-card-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-.volume-setup-card-container md-card {
-  width: 20em;
-	min-height: 13em;
-  margin: 1em;
-}
-.volume-setup-card-container md-card md-card-actions {
+.detail-card-container md-card md-card-actions {
   padding: 25px 0px 0px 10px;
+  margin-bottom: 2em;
 }
-
-/*Volume isntance card container*/
-.volume-instance-card-container {
-  display: flex;
-  flex-flow: row wrap;
+.detail-card-container md-card md-card-actions md-radio-group {
+  margin-left: 20px;
 }
-.volume-instance-card-container md-card {
-  width: 20em;
-  margin: 1em;
+.detail-card-container md-card .card-type-icon {
+  margin-right: 10px;
 }
-.volume-instance-card-container md-card md-toolbar md-progress-spinner {
-  width: 2em;
-  height: 2em;
-  position: relative;
-  margin-right: 15px;
+.detail-card-container md-card md-toolbar p {
+  padding-top: 15px;
+  margin-left: 10px;
+}
+.detail-card-toolbar {
+  background: white;
+  color: var(--dark-color);
 }
 
 .card-container md-card md-card-content {
