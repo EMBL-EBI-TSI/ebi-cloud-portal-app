@@ -1,5 +1,6 @@
 <cp-application-component #applicationDetail>
-  <div class="detail-card-container">
+
+  <div class="content detail-card-container">
   <md-card *ngIf="applicationDetail.applicationDeployer">
     <md-toolbar class="detail-card-toolbar">
       <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
@@ -188,4 +189,5 @@
     </md-card-actions>
   </md-card>
   </div>
+
 </cp-application-component>

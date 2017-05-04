@@ -5,7 +5,7 @@
 		</md-checkbox>
 	</md-toolbar>
 
-	<div class="md-content" *ngIf="deploymentsComponent.deploymentInstances">
+	<div class="content" *ngIf="deploymentsComponent.deploymentInstances">
 
 		<md-card class="background-card" *ngIf="deploymentsComponent.deploymentInstances.length==0">
 			No deployments for {{ deploymentsComponent.credentialService.getGivenName() }} yet
