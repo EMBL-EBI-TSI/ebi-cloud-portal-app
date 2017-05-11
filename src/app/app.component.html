@@ -57,6 +57,10 @@
       <md-option *ngFor="let aCloudProvider of cloudProviderParameters" [value]="aCloudProvider">
         {{ aCloudProvider.name }}
       </md-option>
+      <md-divider></md-divider>
+      <md-option *ngFor="let aCloudProvider of sharedCloudProviderParameters" [value]="aCloudProvider">
+        {{ aCloudProvider.name }}
+      </md-option>
     </md-select>
 
     </span>
