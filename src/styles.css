@@ -426,7 +426,7 @@ footer {
   min-height: 20em; 
   border: none; 
   resize: none;
-  color: var(--light-color);
+  overflow-y: auto;
   background: var(--dark-color);
   font-family: Courier New, Courier, monospace; 
 }
