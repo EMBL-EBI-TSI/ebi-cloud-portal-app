@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
+import * as Convert from 'ansi-to-html';
 
 @Component({
   selector: 'app-deployment-page',
@@ -9,6 +10,11 @@ import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service'
   styleUrls: ['./deployment-page.component.css']
 })
 export class DeploymentPageComponent implements OnInit {
+
+  convert = new Convert({
+    newline: true,
+    fg: '#FFF',
+    bg: '#FFF' });
 
   constructor(public breadcrumbService: BreadcrumbService,
     private _route: ActivatedRoute) {
@@ -23,6 +29,10 @@ export class DeploymentPageComponent implements OnInit {
 
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
+  }
+
+  ansiToHtml(ansi: string) {
+    return this.convert.toHtml(ansi);
   }
 
 }
