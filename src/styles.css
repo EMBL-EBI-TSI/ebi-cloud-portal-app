@@ -421,7 +421,7 @@ footer {
   min-width: 120px;
   min-height: 120px;
 }
-.logs-text-area {
+.logs-text-area span {
   width: 100%;
   min-height: 20em; 
   border: none; 
