@@ -12,9 +12,8 @@ import * as Convert from 'ansi-to-html';
 export class DeploymentPageComponent implements OnInit {
 
   convert = new Convert({
-    newline: true,
-    fg: '#FFF',
-    bg: '#FFF' });
+    newline: true, 
+    stream: true });
 
   constructor(public breadcrumbService: BreadcrumbService,
     private _route: ActivatedRoute) {

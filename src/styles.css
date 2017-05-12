@@ -423,8 +423,8 @@ footer {
 }
 .logs-text-area {
   min-height: 20em; 
-  overflow: scroll;
-  background: var(--dark-color);
+  overflow: auto;
+  background: var(--light-color);
 }
 .logs-text-area span {
   font-family: Courier New, Courier, monospace; 
