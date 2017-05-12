@@ -427,7 +427,6 @@ footer {
   background: var(--dark-color);
 }
 .logs-text-area span {
-  color: var(--light-color);
   font-family: Courier New, Courier, monospace; 
 }
 
