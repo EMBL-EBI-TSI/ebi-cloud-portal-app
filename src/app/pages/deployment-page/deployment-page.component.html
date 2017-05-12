@@ -90,9 +90,9 @@
               <md-icon>visibility</md-icon> 
             </button>
             </h3>
-            <div style="color: rgb(249,249,249)" class="logs-text-area" md-subheader *ngIf="logsShowing"
+            <span class="logs-text-area" md-subheader *ngIf="logsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.logs) }}">
-            </div>
+            </span>
           </md-list>
         </md-card-content>
 

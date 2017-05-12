@@ -421,13 +421,13 @@ footer {
   min-width: 120px;
   min-height: 120px;
 }
-.logs-text-area span {
-  width: 100%;
+.logs-text-area {
   min-height: 20em; 
-  border: none; 
-  resize: none;
   overflow: scroll;
   background: var(--dark-color);
+}
+.logs-text-area span {
+  color: var(--light-color);
   font-family: Courier New, Courier, monospace; 
 }
 
