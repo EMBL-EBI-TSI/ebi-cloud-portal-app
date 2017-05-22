@@ -1,0 +1,49 @@
+<cp-deployment-parameters-component #deploymentParametersDetail>
+  <div class="content">
+    <div class="detail-card-container">
+      <md-card *ngIf="deploymentParametersDetail.deploymentParametersPresenter">
+          <md-toolbar class="detail-card-toolbar">
+             <md-icon class="card-type-icon">vpn_key</md-icon>
+             <h3>{{ deploymentParametersDetail.deploymentParametersPresenter.name }}</h3>
+             <span class="fill-remaining-space"></span>
+             <span *ngIf="!deploymentParametersDetail.deploymentParametersPresenter.isShared">
+               <button md-icon-button (click)="openShareDeploymentParametersDialog(deploymentParametersDetail)">
+                 <md-icon>share</md-icon> 
+               </button>
+               <button md-icon-button color="warn" (click)="deploymentParametersDetail.remove()">
+                 <md-icon>delete_forever</md-icon> 
+              </button>
+            </span>
+            <span *ngIf="deploymentParametersDetail.deploymentParametersPresenter.isShared">
+               <p>SHARED</p>
+            </span>
+        </md-toolbar>
+        <md-card-content>
+        <span class="flex-container-wide">
+          <span class="flex-container-wide">
+            <md-list dense>
+              <md-list-item *ngIf="deploymentParametersDetail.deploymentParametersPresenter.isShared">
+                <h3 md-line>Owned by</h3>
+                 <p md-line class="param-value">{{ deploymentParametersDetail.deploymentParametersPresenter.accountEmail }}</p>
+               </md-list-item>
+               <md-list-item *ngIf="deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames && deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames.length>0">
+                 <h3 md-line>Included in teams</h3>
+                 <p *ngFor="let teamName of deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
+                   <button *ngIf="!deploymentParametersDetail.deploymentParametersPresenter.isShared" md-icon-button color="warn" (click)="deploymentParametersDetail.unshare(teamName)">
+                     <md-icon>highlight_off</md-icon> 
+                   </button>
+                </p>
+              </md-list-item>
+              <md-list-item *ngFor="let deploymentParameterField of deploymentParametersDetail.deploymentParametersPresenter.fields">
+                <md-icon md-list-icon class="card-type-icon">settings_applications</md-icon>
+						  	<h3 md-line>{{ deploymentParameterField.key }}</h3>
+							  <p md-line class="param-value">{{ deploymentParameterField.value }}</p>
+						</md-list-item>
+        </md-list>
+        </span>
+        </span>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</cp-deployment-parameters-component>

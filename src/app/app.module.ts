@@ -46,6 +46,9 @@ import { AddCloudProviderDialog } from './dialogs/add-cloud-provider-dialog/add-
 import { AddConfigurationDialog } from './dialogs/add-configuration-dialog/add-configuration-dialog.component';
 import { AddDeploymentParametersDialog } from './dialogs/add-deployment-parameters-dialog/add-deployment-parameters-dialog.component';
 import { AddTeamDialog } from './dialogs/add-team-dialog/add-team-dialog.component';
+import { ConfigurationPageComponent } from './pages/configuration-page/configuration-page.component';
+import { ConfigurationComponent, DeploymentParametersComponent } from 'ng2-cloud-portal-presentation-lib';
+import { DeploymentParametersPageComponent } from './pages/deployment-parameters-page/deployment-parameters-page.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -55,6 +58,10 @@ const appRoutes: Routes = [
     { path: 'repository/shared/:id', component: ApplicationPageComponent },
     { path: 'cloudprovider/shared/:id', component: CloudProviderParametersPageComponent },
     { path: 'cloudprovider/:id', component: CloudProviderParametersPageComponent },
+    { path: 'configuration/shared/:id', component: ConfigurationPageComponent },
+    { path: 'configuration/:id', component: ConfigurationPageComponent},
+    { path: 'configuration/deploymentparameters/shared/:id', component: DeploymentParametersPageComponent },
+    { path: 'configuration/deploymentparameters/:id', component: DeploymentParametersPageComponent},
     { path: 'team/:id', component: TeamPageComponent },
     { path: 'deployments/:id', component: DeploymentPageComponent },
     { path: 'deployments', component: DeploymentsPageComponent },
@@ -94,6 +101,10 @@ export function provideConfig() {
     TeamComponent,
     CloudProviderParametersPageComponent,
     CloudProviderParametersComponent,
+    ConfigurationPageComponent,
+    ConfigurationComponent, 
+    DeploymentParametersComponent,
+    DeploymentParametersPageComponent,
     DocsPageComponent,
     ApplicationCloudProviderPipe,
     DeploymentStatusPipe,
