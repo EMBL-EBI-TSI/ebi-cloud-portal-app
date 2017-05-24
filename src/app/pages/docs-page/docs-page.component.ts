@@ -27,6 +27,7 @@ export class DocsPageComponent implements OnInit {
 	
 
  	profileAddTeam = 'assets/img/profile_add_team.png';
+	profileTeamDetails = 'assets/img/profile_team_details.png';
 	profileAfterAddingTeam = 'assets/img/profile_after_adding_team.png';
 	profileAddTeamMembers = 'assets/img/profile_add_team_members.png';
 	profileAfterAddingTeamMember = 'assets/img/profile_after_adding_team_member.png';
