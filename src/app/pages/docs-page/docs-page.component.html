@@ -129,56 +129,52 @@
   </div>
 
   <div>
-    <span>
-		<h3>Repository Page</h3>
-		<p>Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, a side navigation bar appears as follows<br/>
-		<img style="width:70em; margin-top: 3em;" border="1" [src]="sidebarSymbol"></p>
-		<p>Click on repository which will then take you to repository page where you can
-		add, share and remove Applications.
-		<img style="width:70em; margin-top: 3em;" border="1" [src]="homeRepository"></p>
-	</span>
     <div>
-      <span>
-			<h4><b>I. Applications</b></h4>
-			<p>To add applications, click on the '+' symbol in Repository Page<br/>
-				<img style="width:70em; margin-top: 3em;" border="1" [src]="repositoryAddingApplication"></p>
-			<p>You can then enter the repository URI.The application should have a file named MANIFEST.json with parameters, like the 
-				<br/>one given below https://github.com/jadianes/be-application-test. After entering the repository path, click on 'Register'.
-				<br/>Your application will be added as follows</p>
-			<img style="width:70em; margin-top: 3em;" border="1" [src]="repositoryAddedApplication">
-		</span>
+			<h3>Repository Page</h3>
+			<p>
+				Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, the side navigation bar appears. Click on
+				<em>Repository</em> which will then take you to repository page where you can manage <em>Applications</em>.
+			</p>
+			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="homeRepository">
+		</div>
+		<div>
+			<p>To add applications, click on the '+' symbol in Repository page</p>
+			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="repositoryAddingApplication">
+			<p>You can then enter the repository URI. The application should have a file named MANIFEST.json with parameters, like the 
+				one given below https://github.com/jadianes/be-application-test. After entering the repository path, click on 'ADD'.
+			</p>
+			<p>
+				Your application will be added to the list.
+			</p>
+		</div>
 
-    </div>
     <div>
-      <span>
-			<h4><b>Sharing Cloud providers</b></h4>
-			<p>You can share your credentials, with another person or a team.
-			To share Cloud Providers, click on the 'Cloud Providers' you want <br/>to share.
-			To the right is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
-			symbol which will allow you to share a Cloud Provider.<br/>
-			<img style="width:70em; margin-top: 3em;" border="1" [src]="profileSharingCpp">
-			<br/><br/>You can enter the email of a person you want to share with or the name 
-			<br/>of the team you want to share with and click on 'Share'.<br/><br/>
-			Note: The email you want to share with or the team you want to share with should be,
-			<br/>registered cloud portal accounts.
-			</p>
-		</span>
-      <span>
-			<h4><b>Sharing Applications</b></h4>
-			<p>You can share your application, with another person or a team.
-			To share Applications, click on the 'Applications' you want to share.<br/>				
-			To the right is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
-			symbol which will allow you to share a Cloud Provider.<br/>
-			<img style="width:70em; margin-top: 3em;" border="1" [src]="repositorySharingApplication">
-			<br/><br/>You can enter the email of a person you want to share with
-			or the name of the team you want to share with and click on 'Share'.<br/><br/>
-			Note: The email you want to share with or the team you want to share with should be,
-			<br/>registered cloud portal accounts.
-			</p>
-		</span>
+			<h3>Sharing</h3>
+      <div>
+				<h4>Sharing Cloud providers</h4>
+				<p>You can share your cloud credentials, with other users within a team.
+				To share Cloud Providers, click on the 'Cloud Provider' you want to share.
+				To the right there is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
+				symbol which will allow you to share a this item.</p>
+
+				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="profileSharingCpp">
+				<p>
+					A dialog will pop up where you can enter the the name of the team you want to share with. Then click on 'Share'.
+				</p>
+			</div>
+      <div>
+				<h4>Sharing Applications</h4>
+				<p>You can share your applications in the same way. Click on the one you want to share. To the right
+					there is the <img style="height: 1em; width:1em;"  [src]="shareSymbol"> symbol which will allow you
+					 to share it.
+				</p>
+				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="repositorySharingApplication">
+				
+			</div>
     </div>
   </div>
   <div>
+		<h3>Cloud deployment</h3>
     <span>
 		<h4><b>Deploying Applications</b></h4>
 		<p> You can deploy your application, to be run  on a cloud provider of your choice.
