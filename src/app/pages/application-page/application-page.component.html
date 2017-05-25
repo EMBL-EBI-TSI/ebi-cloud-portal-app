@@ -145,8 +145,8 @@
                 <md-select class="input-full-width" placeholder="Select Configuration" *ngIf="applicationDetail.applicationDeployer.configurations.length>0"
                   [(ngModel)]="selectedConfig"
                   (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
-                  <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
-                          {{ config }}
+                  <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations | applicationCloudProvider:cloudProviderFilters" [value]="config">
+                     {{ config.name}} 
                   </md-option>
                 </md-select>
               </md-list-item>
