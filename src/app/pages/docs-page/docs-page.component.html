@@ -177,26 +177,42 @@
 		<h3>Cloud deployment</h3>
     <span>
 		<h4><b>Deploying Applications</b></h4>
-		<p> You can deploy your application, to be run  on a cloud provider of your choice.
-			Click on 'Repository' and click on the Application, you want to deploy as follows.
-			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseApplication">
-			<br/>This will then take you to the deployment page. You have to choose the cloud provider,
-			you want your application to run on. <br/>For this from the top left corner, click on
-			'Select CloudProvider' and select a cloud provider, which you have defined.<br/>
-			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseCloudProvider">
-			<br/>If you have deployment parameters defined for your application and you have also
-			defined a configuration providing those, you can use it. <br/>Under 'Choose Configurations' 
-			a list of Configurations you have defined will appear and you can use one of them. 
-			<br/>If the configuration you have chosen, has a deployment parameter matching the 
-			deployment parameters for the application, <br/>the value is displayed like<br/>
-			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseConfiguration">
-			<br/>Click on the 'green eye' icon, to view the 'Deployment Parameters' if any.
-			Enter the inputs for the application if any under 'Inputs', and then 
-			click on the 'Deploy' button
-			as follows<br/>
-			<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployApplication">
-			<br/>Once the application is deployed, you can click on 'Deployments' from 
-			the side navigation bar, to view the deployments.
+		<p> You can deploy applications, to be run  on a selected cloud provider. Click on 'Repository' where
+			  you can find the applications that are available for deployment. The first thing you should
+			  do is to choose the Cloud Provider where the application will get deployed to. For this from the 
+				top left corner, click on <em>Select provider</em> and select a cloud provider, which 
+			  you have defined or that has been shared with you. This will filter the repository only to
+				show applications compatible with that cloud provider.
+		</p>
+
+		<img style="height: 90%; width:90%; margin-top: 1em;" border="1"  [src]="deployChooseCloudProvider">
+
+    <p>
+			Now you can click on the card of the Application you want to deploy. This will
+			take you to the application details page where you can set things ready for deployment. 
+		</p>
+
+		<img style="height: 90%; width:90%; margin-top: 1em;" border="1"  [src]="applicationDetails">
+
+		<p>If you have <em>Deployment Parameters</em> defined for the application and you have also
+		defined a <em>Configuration</em> providing those, you can use it. Under 'Choose Configurations' 
+		a list of available Configurations will appear and you can use one of them.</p>
+
+		<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseConfiguration">
+
+		<p>If the configuration you have chosen, has a deployment parameter matching the 
+		deployment parameters for the application, the value is displayed as populated.
+		Click on the 'green eye' icon, to check them.</p>
+
+		<p>
+			Additionally, you can enter the inputs for the application if any under 'Inputs', and
+			then click on the 'Deploy' button.
+		</p>
+
+		<p>From here you will be taken to the deployments section, where you can see the status
+			of each of your cloud deployments or click on any of them to see it in detail.
+		</p>
+		
 	</span>
   </div>
   </div>

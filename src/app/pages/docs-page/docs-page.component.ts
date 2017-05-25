@@ -48,6 +48,8 @@ export class DocsPageComponent implements OnInit {
 	profileBeforeAddingConfig = 'assets/img/profile_adding_configuration.png';
 	profileAfterAddingConfig = 'assets/img/profile_after_adding_configuration.png';
 
+	applicationDetails = 'assets/img/application_details.png';
+
 	deployChooseApplication = 'assets/img/deploy_select_application.png';
 	deployChooseCloudProvider = 'assets/img/deploy_select_cloud_provider.png';
 	deployChooseConfiguration = 'assets/img/deploy_choose_configuration.png';
