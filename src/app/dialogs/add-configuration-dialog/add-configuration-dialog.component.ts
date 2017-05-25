@@ -36,7 +36,7 @@ export class AddConfigurationDialog {
       'deploymentParametersName': ['', Validators.required],
     });
 
-    this.cloudProviderParametersService.getAll(this.credentialService.getUsername(), this.tokenService.getToken())
+    this.cloudProviderParametersService.getOwnedAndSharedCloudProviders(this.credentialService.getUsername(), this.tokenService.getToken())
       .subscribe(
       cloudProviders => {
         console.log('[AddConfigurationDialog] cloud providers data is %O', cloudProviders);
@@ -58,7 +58,9 @@ export class AddConfigurationDialog {
       }
       );
 
-    this.configurationService.getAllDeploymentParameters(this.credentialService.getUsername(), this.tokenService.getToken())
+     
+
+    this.configurationService.getOwnedAndSharedDeploymentParameters(this.credentialService.getUsername(), this.tokenService.getToken())
       .subscribe(
       deploymentParameters => {
         console.log('[AddConfigurationDialog] deployment parameters data is %O', deploymentParameters);
@@ -79,6 +81,8 @@ export class AddConfigurationDialog {
         console.log('[AddConfigurationDialog] Cloud provider parameters data retrieval complete');
       }
       );
+
+    
 
   }
 
