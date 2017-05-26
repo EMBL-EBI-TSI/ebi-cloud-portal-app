@@ -155,7 +155,8 @@
                   </span>
                   <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0 
                     &&  !applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-                    <md-option>Please select a cloud provider, from top right corner, to see available options</md-option>
+                    <md-option></md-option>
+                    <md-option>{{Please select a cloud provider, from top right corner}}</md-option>
                   </span>
                 </md-select>
               </md-list-item>
