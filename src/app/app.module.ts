@@ -21,7 +21,7 @@ import { TokenService, AuthService, ConfigService,
 import { ProfileComponent, CloudProviderParametersComponent, RepositoryComponent,
         ApplicationComponent, ErrorComponent, ApplicationCloudProviderPipe,
         TeamComponent, DeploymentsComponent, DeploymentComponent,
-        VolumesComponent, DeploymentStatusPipe } from 'ng2-cloud-portal-presentation-lib';
+        VolumesComponent, DeploymentStatusPipe, ConfigurationFilterPipe } from 'ng2-cloud-portal-presentation-lib';
 
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
@@ -107,6 +107,7 @@ export function provideConfig() {
     DeploymentParametersPageComponent,
     DocsPageComponent,
     ApplicationCloudProviderPipe,
+    ConfigurationFilterPipe,
     DeploymentStatusPipe,
     VolumeSetupPageComponent,
     VolumeInstancePageComponent,

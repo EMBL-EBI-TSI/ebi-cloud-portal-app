@@ -101,7 +101,7 @@
               </md-input-container>
             </md-list-item>
 
-            <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+          <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
           <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
             <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
               <md-icon md-list-icon>keyboard_arrow_right</md-icon>
@@ -142,12 +142,21 @@
 
             <md-list>
               <md-list-item>
-                <md-select class="input-full-width" placeholder="Select Configuration" *ngIf="applicationDetail.applicationDeployer.configurations.length>0"
+                <md-select class="input-full-width" placeholder="Select Configuration" 
                   [(ngModel)]="selectedConfig"
                   (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
-                  <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
-                     {{ config.name}} 
+                  <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0 
+                  &&  applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
+                  <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations | configurationFilter:applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name" [value]="config">
+                          <span *ngIf="config !== undefined">
+                            {{ config.name}} 
+                          </span> 
                   </md-option>
+                  </span>
+                  <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0 
+                    &&  !applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
+                    <md-option>Please select a cloud provider, from top right corner, to see available options</md-option>
+                  </span>
                 </md-select>
               </md-list-item>
               <span *ngIf="applicationDetail.parametersShowing">
