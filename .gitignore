@@ -40,3 +40,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+e2e/credentials/app.basic.auth.ts
