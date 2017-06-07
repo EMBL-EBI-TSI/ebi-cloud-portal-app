@@ -1,5 +1,6 @@
 import { browser } from 'protractor';
 import { LoginPage } from './page-objects/login.po';
+import { aapBasicAuth } from './credentials/aap.basic.auth';
 
 describe('Login page', () => {
   let loginPage: LoginPage;

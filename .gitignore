@@ -41,4 +41,3 @@ testem.log
 .DS_Store
 Thumbs.db
 
-e2e/credentials/app.basic.auth.ts
