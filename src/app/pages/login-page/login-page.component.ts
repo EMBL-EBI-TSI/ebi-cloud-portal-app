@@ -33,6 +33,19 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     });
   }
 
+  public authenticate(username: string, password: string): any {
+    this.authService.authenticateBasic(username,password).subscribe(
+      token => {
+        console.log('[LoginPage] Obtained token %O', token);
+        this.tokenService.setToken(token);
+        this.authService.processToken(token.token);
+      },
+      error => {
+        console.log('[LoginPage] Got error ');
+      },
+      () => {}
+    );
+  }
 
   ssoLink() {
     return this.authService.ssoLink();
