@@ -16,19 +16,19 @@
     <div class="hero hero-message">
       <span class="flex-container">
         <div style="padding-right: 3em;">
-          <form>
+          <form id="login-form">
             <div><md-input-container>
               <input mdInput placeholder="Username" 
               [(ngModel)]="username"
-              name="username">
+              name="username" id="username">
             </md-input-container></div>
             <div><md-input-container>
               <input mdInput type="password" mdInput placeholder="Password" 
               [(ngModel)]="password"
-              name="password">
+              name="password" id="password">
             </md-input-container></div>
             <div>
-              <button style="padding:0.5em;padding-right:0.5em;" md-raised-button
+              <button id="login-button" style="padding:0.5em;padding-right:0.5em;" md-raised-button
               (click)="authenticate(username, password)">
                 Login
               </button>

@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { CredentialService, TokenService,
         AuthService, JwtToken, Account } from 'ng2-cloud-portal-service-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { ErrorService, Error } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'login-page',
@@ -16,9 +18,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   elixirLogo = 'assets/img/elixir_logo.png';
   
   constructor(
+    private router: Router,
     public authService: AuthService,
     public credentialService: CredentialService,
     public tokenService: TokenService,
+    public errorService: ErrorService,
     public breadcrumbService: BreadcrumbService,
     renderer: Renderer) {
 
@@ -41,7 +45,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         this.authService.processToken(token.token);
       },
       error => {
-        console.log('[LoginPage] Got error ');
+        console.log('[LoginPage] Got error %O', error);
+        this.errorService.setCurrentError(<Error>{message:'Wrong username/password'});
+        this.router.navigateByUrl('/error');
       },
       () => {}
     );

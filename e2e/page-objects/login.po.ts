@@ -35,4 +35,21 @@ export class LoginPage {
             .element(by.tagName('h3'))
             .getText();
   }
+
+  getLoginForm() {
+    return element(by.id('login-form'));
+  }
+
+  getLoginUsername() {
+    return element(by.id('username'));
+  }
+
+  getLoginPassword() {
+    return element(by.id('password'));
+  }
+
+  getLoginButton() {
+    return element(by.id('login-button'));
+  }
+
 }
