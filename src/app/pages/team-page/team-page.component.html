@@ -24,6 +24,12 @@
             <p md-line class="param-value">{{ teamDetail.teamPresenter.ownerAccountEmail }}</p>
           </md-list-item>
         </md-list>
+        <md-list dense>
+          <md-list-item>
+            <h3 md-line>Domain Reference</h3>
+            <p md-line class="param-value">{{ teamDetail.teamPresenter.domainReference}}</p>
+          </md-list-item>
+        </md-list>
         <md-list dense *ngIf="teamDetail.teamPresenter.memberAccountEmails && teamDetail.teamPresenter.memberAccountEmails.length>0">
           <md-list-item>
             <h3 md-line>Members</h3>
