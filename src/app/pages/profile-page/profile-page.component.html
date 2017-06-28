@@ -18,10 +18,12 @@
 
 		<md-tab-group (selectedIndexChange)="profileComponent.addFormShowing=false" #configurationsTabGroup>
 
-			<md-tab label="Cloud Providers">
-				<md-card class="background-card" *ngIf="!profileComponent.cloudProviderParametersPresenters || profileComponent.cloudProviderParametersPresenters.length==0">
-					No cloud providers registered yet
+			<md-tab label="Cloud Credentials">
+				<md-card class="background-card" *ngIf="((!profileComponent.cloudProviderParametersPresenters || profileComponent.cloudProviderParametersPresenters.length==0)
+				&& (!profileComponent.sharedCloudProviderParametersPresenters || profileComponent.sharedCloudProviderParametersPresenters.length==0) )">
+						No credentials registered/shared yet
 				</md-card>
+				
 
 				<div class="md-content" *ngIf="profileComponent.cloudProviderParametersPresenters">
 					<div class="wide-summary-card-container">
@@ -79,9 +81,10 @@
 			</md-tab>
 
 			<md-tab label="Configurations">
-
-				<md-card class="background-card" *ngIf="!profileComponent.configurationPresenters || profileComponent.configurationPresenters.length==0">
-					No configurations registered yet
+				
+				<md-card class="background-card" *ngIf="((!profileComponent.configurationPresenters || profileComponent.configurationPresenters.length==0)
+				&& (!profileComponent.sharedConfigurationPresenters || profileComponent.sharedConfigurationPresenters.length==0) )">
+						No configurations registered/shared yet
 				</md-card>
 
 				<div class="md-content" *ngIf="profileComponent.configurationPresenters">
@@ -141,8 +144,9 @@
 
 			<md-tab label="Deployment Parameters">
 
-				<md-card class="background-card" *ngIf="!profileComponent.deploymentParametersPresenters || profileComponent.deploymentParametersPresenters.length==0">
-					No deployment parameters registered yet
+				<md-card class="background-card" *ngIf="((!profileComponent.deploymentParametersPresenters || profileComponent.deploymentParametersPresenters.length==0)
+				&& (!profileComponent.sharedDeploymentParametersPresenters || profileComponent.sharedDeploymentParametersPresenters.length==0) )">
+					No deployment parameters registered/shared yet
 				</md-card>
 
 				<div class="md-content" *ngIf="profileComponent.deploymentParametersPresenters">
