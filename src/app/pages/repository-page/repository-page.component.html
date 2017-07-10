@@ -1,0 +1,53 @@
+<cp-repository-component #repo>
+
+  <button md-fab (click)="openAddApplicationDialog(repo)">
+    <md-icon>add</md-icon>
+  </button>
+
+  <div class="content" *ngIf="repo.applicationDeployers">
+
+    <md-card class="background-card" *ngIf="repo.applicationDeployers.length==0">
+      No applications registered yet
+    </md-card>
+
+    <div class="wide-summary-card-container">
+      <md-card [routerLink]=" ['/repository/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
+        <md-toolbar class="summary-card-toolbar">
+          <h3>{{ applicationDeployer.name }}</h3>
+        </md-toolbar>
+        <md-card-content>
+          <md-list dense>
+            <md-list-item>
+              <p>{{ applicationDeployer.about }}</p>
+            </md-list-item>
+            <md-list-item>
+              <h3 md-line>Version</h3>
+              <p md-line class="param-value">{{ applicationDeployer.version }}</p>
+            </md-list-item>
+          </md-list>
+        </md-card-content>
+      </md-card>
+      <!--Shared applications-->
+      <md-card [routerLink]=" ['/repository/shared/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.sharedApplicationDeployers | applicationCloudProvider:cloudProviderFilters">
+        <md-toolbar class="summary-card-toolbar">
+          <h3>{{ applicationDeployer.name }}</h3>
+          <span class="fill-remaining-space"></span>
+          <p>SHARED</p>
+        </md-toolbar>
+        <md-card-content>
+          <md-list dense>
+            <md-list-item>
+              <p>{{ applicationDeployer.about }}</p>
+            </md-list-item>
+            <md-list-item>
+              <h3 md-line>Version</h3>
+              <p md-line class="param-value">{{ applicationDeployer.version }}</p>
+            </md-list-item>
+          </md-list>
+        </md-card-content>
+      </md-card>
+    </div>
+    <!-- card-container -->
+  </div>
+
+</cp-repository-component>

@@ -1,74 +1,68 @@
-import { Component, Renderer } from '@angular/core';
-import { LoginComponent } from 'ng2-cloud-portal-presentation-lib';
-import { CredentialService, TokenService, AuthService } from 'ng2-cloud-portal-service-lib';
-import { JwtToken } from 'ng2-cloud-portal-service-lib';
-import { Account } from 'ng2-cloud-portal-service-lib';
+import { Component, OnInit, Renderer, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { CredentialService, TokenService,
+        AuthService, JwtToken, Account } from 'ng2-cloud-portal-service-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { ErrorService, Error } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'login-page',
-  directives: [ LoginComponent ],
-  providers: [ AuthService, TokenService, CredentialService ],
-  styles: [require('./login-page.style.css')],
-  template: require('./login-page.template.html')
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.css']
 })
-export class LoginPage {
+export class LoginPageComponent implements OnInit, OnDestroy {
 
-  robby = 'assets/img/Robby form@0.5x.png';
+  robby = 'assets/img/Robby_form0.5x.png';
   account: Account;
   removeMessageListener: Function;
-
+  elixirLogo = 'assets/img/elixir_logo.png';
+  
   constructor(
-    private _authService: AuthService,
+    private router: Router,
+    public authService: AuthService,
     public credentialService: CredentialService,
     public tokenService: TokenService,
+    public errorService: ErrorService,
     public breadcrumbService: BreadcrumbService,
     renderer: Renderer) {
 
     // We cache the function "listenGlobal" returns, as it's one that allows to cleanly unregister the event listener
     this.removeMessageListener = renderer.listenGlobal('window', 'message', (event: MessageEvent) => {
-      if (!this._authService.canAcceptMessage(event)) {
-        console.warn("received unacceptable message! Ignoring...", event);
+      if (!this.authService.canAcceptMessage(event)) {
+        console.log("received unacceptable message! Ignoring...", event);
         return;
       }
-      this.saveToken(event.data);
+      this.authService.processToken(event.data);
       event.source.close();
     });
   }
 
-  ngOnInit() {
-    this.breadcrumbService.breadcrumb.push( {label:'Login', route:'login'} );
-  }
-
-  private saveToken(jwt: string) {
-    console.log('[LoginPage] Obtained token from saml %O', jwt);
-    let theToken: JwtToken = <JwtToken>{ token: jwt };
-    this.tokenService.setToken(theToken);
-    let tokenClaims = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(jwt.split(".")[1]));
-    this.credentialService.setCredentials(tokenClaims.name, null);
-  }
-
-  public authenticate(username: string, password: string) {
-    this._authService.authenticate(username,password).subscribe(
+  public authenticate(username: string, password: string): any {
+    this.authService.authenticateBasic(username,password).subscribe(
       token => {
         console.log('[LoginPage] Obtained token %O', token);
         this.tokenService.setToken(token);
-        this.credentialService.setCredentials(username,password);
+        this.authService.processToken(token.token);
       },
       error => {
-        console.log('[LoginPage] Got error ');
+        console.log('[LoginPage] Got error %O', error);
+        this.errorService.setCurrentError(<Error>{message:'Wrong username/password'});
+        this.router.navigateByUrl('/error');
       },
       () => {}
     );
   }
 
   ssoLink() {
-    return this._authService.ssoLink();
+    return this.authService.ssoLink();
+  }
+
+  ngOnInit() {
+    this.breadcrumbService.breadcrumb.push( {label:'Login', route:'login'} );
   }
 
   ngOnDestroy() {
     this.removeMessageListener();
     this.breadcrumbService.breadcrumb = [];
   }
-
 }

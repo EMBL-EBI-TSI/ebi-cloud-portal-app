@@ -1,5 +1,6 @@
 <cp-application-component #applicationDetail>
-  <div class="detail-card-container">
+
+  <div class="content detail-card-container">
   <md-card *ngIf="applicationDetail.applicationDeployer">
     <md-toolbar class="detail-card-toolbar">
       <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
@@ -115,6 +116,7 @@
             <!--<md-hint align="end">[some other hint]</md-hint>-->
           </md-input>
         </md-list-item>
+       
         <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
           <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
             <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
@@ -129,7 +131,37 @@
           </span>
         </span>
         <br>
-        <!--Application outputs-->
+
+       <h3 md-header>Choose Configurations</h3>
+       <md-divider></md-divider>
+       <br/>
+       <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">The user account has no pre set configurations</p>
+       <md-input-container>
+       <select class='configuration' (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer,$event.target.value)">
+         <option>Select Configuration</option>
+          <option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [ngValue]="config">
+                    {{config}}
+          </option>
+        </select>
+       </md-input-container>
+       
+      	<h3 md-header>Deployment Parameters
+            <button md-icon-button color="primary" (click)="parametersShowing=!parametersShowing">
+              <md-icon>visibility</md-icon> 
+            </button>
+        </h3>
+        <md-divider></md-divider>
+        <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">This application requires no deployment
+        parameters </p>
+        <md-list *ngIf="parametersShowing">
+        <md-list-item  *ngFor="let assignedParameter of applicationDetail.applicationDeployer.assignedParameters| mapToIterable">
+            <h3 md-line>{{ assignedParameter.key}}</h3>
+            <p md-line class="param-value">{{ assignedParameter.value }}</p>
+        </md-list-item>
+        </md-list>
+        <md-divider></md-divider>
+        
+         <!--Application outputs-->
         <h3 md-header>Outputs</h3>
         <md-divider></md-divider>
         <p md-subheader *ngIf="applicationDetail.applicationDeployer.outputs.length==0">This application generates no output</p>
@@ -146,11 +178,9 @@
     
     <!--These are the action controls-->
     <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
-      <button *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" md-raised-button 
-      (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
-          DEPLOY
-      </button>
-      <button *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" md-raised-button disabled>
+      <button md-raised-button 
+      (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)"
+      [disabled]="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
           DEPLOY
       </button>
       <span  md-line class="param-value" *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters" disabled>
@@ -159,4 +189,5 @@
     </md-card-actions>
   </md-card>
   </div>
+
 </cp-application-component>

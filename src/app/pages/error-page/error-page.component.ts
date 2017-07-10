@@ -1,16 +1,14 @@
-import { Component } from '@angular/core';
-import { ErrorComponent } from 'ng2-cloud-portal-presentation-lib';
-import { ErrorService } from 'ng2-cloud-portal-service-lib';
+import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
   selector: 'error-page',
-  directives: [ ErrorComponent ],
-  styles: [ require('./error-page.style.css') ],
-  template: require('./error-page.template.html')
+  templateUrl: './error-page.component.html',
+  styleUrls: ['./error-page.component.css']
 })
-export class ErrorPage {
-  robby = 'assets/img/Robby error@0.5x.png';
+export class ErrorPageComponent implements OnInit {
+
+  robby = 'assets/img/Robby_error0.5x.png';
 
   constructor(public breadcrumbService: BreadcrumbService) {
     
@@ -23,5 +21,6 @@ export class ErrorPage {
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
   }
+
 
 }

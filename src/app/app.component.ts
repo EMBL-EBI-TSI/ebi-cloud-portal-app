@@ -1,40 +1,31 @@
-/*
- * Angular 2 decorators and services
- */
-import { Component, ViewEncapsulation } from '@angular/core';
-import { CredentialService } from 'ng2-cloud-portal-service-lib';
-import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
-import { AccountService, Account } from 'ng2-cloud-portal-service-lib';
-import { Router, ActivatedRoute, Data } from '@angular/router';
-import { TokenService } from 'ng2-cloud-portal-service-lib';
+import { Component } from '@angular/core';
+import { TokenService, CredentialService, CloudProviderParameters,
+  CloudProviderParametersService, ErrorService, AccountService } from 'ng2-cloud-portal-service-lib';
+import { Router } from '@angular/router';
 import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 
-/*
- * App Component
- * Top Level Component
- */
-@Component({
-    selector: 'app',
-    encapsulation: ViewEncapsulation.None,
-    styleUrls: [
-        './app.style.css'
-    ],
-    template: require('./app.template.html')
-})
-export class App {
-    ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
-    ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
-    name = 'Cloud Portal';
-    ebiUrl = 'http://www.ebi.ac.uk/';
-    tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
-    currentView = "Welcome";
-    loggedInAccount: Account;
 
-    constructor(
-        public tokenService: TokenService,
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
+  ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
+  name = 'Cloud Portal';
+  ebiUrl = 'http://www.ebi.ac.uk/';
+  tsiGithubUrl = 'https://github.com/EMBL-EBI-TSI';
+  loggedInAccount: Account;
+  cloudProviderParameters: CloudProviderParameters[];
+  sharedCloudProviderParameters: CloudProviderParameters[];
+
+  constructor(public tokenService: TokenService,
         public credentialService: CredentialService,
         public accountService: AccountService,
         public cloudProviderParametersService: CloudProviderParametersService,
+        public errorService: ErrorService,
         public router: Router,
         public breadcrumbService: BreadcrumbService) {
         if (tokenService.getToken()) {
@@ -46,21 +37,65 @@ export class App {
                     this.loggedInAccount = account;
                 }
             );
+            this.updateCloudProviders(true);
         }
-    }
+  }
 
-    logOut() {
-        this.credentialService.clearCredentials();
-        this.tokenService.clearToken();
-        this.router.navigateByUrl('/welcome');
-    }
+  logOut() {
+    this.credentialService.clearCredentials();
+    this.tokenService.clearToken();
+    this.router.navigateByUrl('/welcome');
+  }
 
-    ngOnInit() {
-        console.log('Hello app');
-    }
+  public setCurrentlySelectedCloudProviderParameters(cloudProviderParameters: CloudProviderParameters) {
+    console.log("Set provider to %O", cloudProviderParameters);
+    this.cloudProviderParametersService.currentlySelectedCloudProviderParameters = cloudProviderParameters;
+  }
 
-    getViewName() {
-        return this.router.url;
+  public updateCloudProviders(open:boolean):void {
+        if (open) {
+            this.cloudProviderParametersService.getAll(
+                this.credentialService.getUsername(),
+                this.tokenService.getToken())
+            .subscribe(
+                cloudProviderParameters => {
+                    console.log('[App] cloud provider parameters data is %O', cloudProviderParameters);
+                    this.cloudProviderParameters = cloudProviderParameters
+                },
+                error => {
+                    console.log('[App] error %O', error);
+                    if (error[0]) {
+                        error = error[0];
+                    }
+                    this.errorService.setCurrentError(error);
+                    this.router.navigateByUrl('/error');
+                },
+                () => {
+                    console.log('[App] Cloud provider parameters data retrieval complete');
+                }
+            );
+
+            this.cloudProviderParametersService.getAllShared(
+                this.credentialService.getUsername(),
+                this.tokenService.getToken())
+            .subscribe(
+                cloudProviderParameters => {
+                    console.log('[App] shared cloud provider parameters data is %O', cloudProviderParameters);
+                    this.sharedCloudProviderParameters = cloudProviderParameters
+                },
+                error => {
+                    console.log('[App] error %O', error);
+                    if (error[0]) {
+                        error = error[0];
+                    }
+                    this.errorService.setCurrentError(error);
+                    this.router.navigateByUrl('/error');
+                },
+                () => {
+                    console.log('[App] shared Cloud provider parameters data retrieval complete');
+                }
+            );
+        }
     }
 
     public getBreadcrumb() {
@@ -70,14 +105,4 @@ export class App {
     public getBreadcrumbUrl() {
         return "#/"+this.breadcrumbService.getAsUrl();
     }
-
-
 }
-
-/*
- * Please review the https://github.com/AngularClass/angular2-examples/ repo for
- * more angular app examples that you may copy/paste
- * (The examples may not be updated as quickly. Please open an issue on github for us to update it)
- * For help or questions please contact us at @AngularClass on twitter
- * or our chat on Slack at https://AngularClass.com/slack-join
- */

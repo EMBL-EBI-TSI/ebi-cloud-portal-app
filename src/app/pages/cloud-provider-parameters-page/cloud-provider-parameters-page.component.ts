@@ -1,28 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CloudProviderParametersComponent } from 'ng2-cloud-portal-presentation-lib';
+import { MdDialog } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { CloudProviderParametersComponent } from 'ng2-cloud-portal-presentation-lib';
+import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 
 @Component({
-  selector: 'cloud-provider-parameters-page',
-  directives: [ CloudProviderParametersComponent ],
-  styles: [require('./cloud-provider-parameters-page.style.css')],
-  template: require('./cloud-provider-parameters-page.template.html')
+  selector: 'app-cloud-provider-parameters-page',
+  templateUrl: './cloud-provider-parameters-page.component.html',
+  styleUrls: ['./cloud-provider-parameters-page.component.css']
 })
-export class CloudProviderParametersPage {
+export class CloudProviderParametersPageComponent implements OnInit {
 
-  constructor(public breadcrumbService: BreadcrumbService, private _route: ActivatedRoute) {
-    
+  constructor(public breadcrumbService: BreadcrumbService,
+    public dialog: MdDialog, private _route: ActivatedRoute) {
+
   }
 
   ngOnInit() {
     let providerName = this._route.snapshot.params['id'];
-    this.breadcrumbService.breadcrumb.push( {label:'Profile', route:'profile'} );
-    this.breadcrumbService.breadcrumb.push( {label:providerName, route:'cloudprovider/'+providerName} );
+    this.breadcrumbService.breadcrumb.push({ label: 'Profile', route: 'profile' });
+    this.breadcrumbService.breadcrumb.push({ label: providerName, route: 'cloudprovider/' + providerName });
   }
 
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
   }
 
+  openShareCloudProviderDialog(cloudProviderDetail: CloudProviderParametersComponent) {
+    let dialogRef = this.dialog.open(ShareDialog);
+    dialogRef.afterClosed().subscribe(shareWith => {
+      if (shareWith)
+        cloudProviderDetail.share(shareWith);
+    });
+  }
 }

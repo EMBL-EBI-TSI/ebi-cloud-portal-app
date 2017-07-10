@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DeploymentComponent } from 'ng2-cloud-portal-presentation-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import * as Convert from 'ansi-to-html';
+
 @Component({
-  selector: 'deployments-page',
-  directives: [ DeploymentComponent ],
-  styles: [require('./deployment-page.style.css')],
-  template: require('./deployment-page.template.html')
+  selector: 'app-deployment-page',
+  templateUrl: './deployment-page.component.html',
+  styleUrls: ['./deployment-page.component.css']
 })
-export class DeploymentPage {
+export class DeploymentPageComponent implements OnInit {
+
+  convert = new Convert({
+    newline: true, 
+    stream: true });
 
   constructor(public breadcrumbService: BreadcrumbService,
-    private _route: ActivatedRoute) {
+    private _route: ActivatedRoute,
+    private cdRef:ChangeDetectorRef) {
     
   }
 
@@ -25,6 +30,13 @@ export class DeploymentPage {
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
   }
-  
+
+  ansiToHtml(ansi: string) {
+    return this.convert.toHtml(ansi);
+  }
+
+  ngAfterViewChecked(){
+  this.cdRef.detectChanges();
+}
 
 }

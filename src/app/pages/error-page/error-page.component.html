@@ -1,0 +1,9 @@
+<cp-error-component #errorComponent>
+	<div class="content">
+		<img class="hero central-img" [src]="robby">
+		<div class="hero hero-message">
+			<h2><em>There is a problem...</em></h2>
+			<h3><em>{{ errorComponent.getErrorMessage() }}</em></h3>
+		</div>
+	</div>
+</cp-error-component>

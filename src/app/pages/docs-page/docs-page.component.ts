@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 
 @Component({
-  selector: 'docs-page',
-  styles: [require('./docs-page.style.css')],
-  template: require('./docs-page.template.html')
+  selector: 'app-docs-page',
+  templateUrl: './docs-page.component.html',
+  styleUrls: ['./docs-page.component.css']
 })
-export class DocsPage {
+export class DocsPageComponent implements OnInit {
 
 	welcomePage = "assets/img/welcome_page.png"; 
 	menuSymbol = "assets/img/menu.png";
@@ -27,6 +27,7 @@ export class DocsPage {
 	
 
  	profileAddTeam = 'assets/img/profile_add_team.png';
+	profileTeamDetails = 'assets/img/profile_team_details.png';
 	profileAfterAddingTeam = 'assets/img/profile_after_adding_team.png';
 	profileAddTeamMembers = 'assets/img/profile_add_team_members.png';
 	profileAfterAddingTeamMember = 'assets/img/profile_after_adding_team_member.png';
@@ -40,18 +41,30 @@ export class DocsPage {
 	
 	repositoryToShareApplication = 'assets/img/repository_application_share.png';
 	repositorySharingApplication = 'assets/img/repository_sharing_application.png';
+	
+	profileBeforeAddingDP = 'assets/img/profile_adding_deployment_parameters.png';
+	profileAfterAddingDP = 'assets/img/profile_after_adding_deployment_parameters.png';
+	
+	profileBeforeAddingConfig = 'assets/img/profile_adding_configuration.png';
+	profileAfterAddingConfig = 'assets/img/profile_after_adding_configuration.png';
 
+	applicationDetails = 'assets/img/application_details.png';
+
+	deployChooseApplication = 'assets/img/deploy_select_application.png';
+	deployChooseCloudProvider = 'assets/img/deploy_select_cloud_provider.png';
+	deployChooseConfiguration = 'assets/img/deploy_choose_configuration.png';
+	deployApplication = 'assets/img/deploy_application.png';
   
-  constructor(public breadcrumbService: BreadcrumbService) {
-    
-  }
+	  constructor(public breadcrumbService: BreadcrumbService) {
+	    
+	  }
 
-  ngOnInit() {
-    this.breadcrumbService.breadcrumb.push( {label:'Documentation', route:'docs'} );
-  }
-
-  ngOnDestroy() {
-    this.breadcrumbService.breadcrumb = [];
-  }
+	  ngOnInit() {
+	    this.breadcrumbService.breadcrumb.push( {label:'Documentation', route:'docs'} );
+	  }
+	
+	  ngOnDestroy() {
+	    this.breadcrumbService.breadcrumb = [];
+	  }
 
 }

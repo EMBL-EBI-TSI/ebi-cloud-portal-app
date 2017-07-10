@@ -9,7 +9,9 @@ export class BreadcrumbService {
   constructor() {
 
   }
+
   public getAsUrl(): string {
     return this.breadcrumb.map(b => b.route).join("/");
   }
+  
 }

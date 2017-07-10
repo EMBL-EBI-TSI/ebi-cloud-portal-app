@@ -1,0 +1,10 @@
+[md-fab] {
+  position: absolute;
+  right: 1em;
+  bottom: 2em;
+  z-index: 20;
+  background: var(--complementary-color);
+}
+.input-full-width {
+  width: 100%;
+}
