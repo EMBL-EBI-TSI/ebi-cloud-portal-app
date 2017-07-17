@@ -193,7 +193,7 @@ button.active:hover{
   position: relative;
   top: -20px;
 }
-.wide-summary-card-container md-card md-card-content h2 {
+.wide-summary-card-container md-card md-card-content h3 {
 	margin-right: 35px;
 }
 .wide-summary-card-container md-card md-card-content .card-type-icon {
