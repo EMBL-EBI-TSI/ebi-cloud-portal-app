@@ -317,7 +317,7 @@ h2 {
   font-size: 1.8em;
   font-weight: lighter;
 }
-h3 {
+h3, md-toolbar h3 {
   font-size: 1.4em;
   color: var(--dark-color);
   font-weight: lighter;
