@@ -20,7 +20,7 @@
 					<md-progress-spinner *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-spinner>
 					
 					<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
-					<h2>{{ deploymentInstance.applicationName }}</h2>
+					<h3>{{ deploymentInstance.applicationName }}</h3>
 					<!--Deployment meta-data-->
 					<md-list-item>
 						<p md-line>Reference</p>
