@@ -57,7 +57,7 @@
               <button md-icon-button color="primary" (click)="sharedItemsShowing=!sharedItemsShowing">
             <md-icon>visibility</md-icon> 
           </button></h3>
-            <span *ngIf="sharedItemsShowing">
+          <span *ngIf="sharedItemsShowing">
           <md-list-item *ngIf="(!teamDetail.teamPresenter.applicationNames ||  teamDetail.teamPresenter.applicationNames.length==0) && (!teamDetail.teamPresenter.cloudProviderParameterNames || teamDetail.teamPresenter.cloudProviderParameterNames.length==0)">
             <md-icon md-list-icon>sentiment_neutral</md-icon> 
             <p md-line class="param-value">Nothing is shared in within this team. Share some applications or cloud providers!</p>
@@ -78,8 +78,24 @@
               <p md-line class="param-value">{{ cloudProviderParameterName }}</p>
             </md-list-item>
           </md-list>
-        </span>
+          <md-list dense *ngIf="teamDetail.teamPresenter.configurationNames && teamDetail.teamPresenter.configurationNames.length>0">
+            <md-list-item>
+              <h3 md-line>Configurations</h3>
+            </md-list-item>
+            <md-list-item *ngFor="let configurationName of teamDetail.teamPresenter.configurationNames">
+              <p md-line class="param-value">{{ configurationName }}</p>
+            </md-list-item>
           </md-list>
+          <md-list dense *ngIf="teamDetail.teamPresenter.configurationDeploymentParameterNames && teamDetail.teamPresenter.configurationDeploymentParameterNames.length>0">
+            <md-list-item>
+              <h3 md-line>Configuration Deployment Parameters</h3>
+            </md-list-item>
+            <md-list-item *ngFor="let configurationDeploymentParameterName of teamDetail.teamPresenter.configurationDeploymentParameterNames">
+              <p md-line class="param-value">{{ configurationDeploymentParameterName }}</p>
+            </md-list-item>
+          </md-list>
+        </span>
+        </md-list>
         </md-card-content>
 
         <!--These are the action controls-->
