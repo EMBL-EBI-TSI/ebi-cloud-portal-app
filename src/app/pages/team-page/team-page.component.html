@@ -2,19 +2,19 @@
   <div class="content">
     <div class="detail-card-container">
       <md-card *ngIf="teamDetail.teamPresenter">
-        <md-toolbar class="detail-card-toolbar">
+        <span class="md-toolbar flex-container-wide">
           <md-icon class="card-type-icon">group</md-icon>
           <h3>{{ teamDetail.teamPresenter.name }}</h3>
           <span class="fill-remaining-space"></span>
           <span *ngIf="teamDetail.teamPresenter.isOwner">
-        <button md-icon-button (click)="teamDetail.addMemberDialogShowing=!teamDetail.addMemberDialogShowing">
-          <md-icon>group_add</md-icon> 
-        </button>
-        <button md-icon-button color="warn" (click)="teamDetail.remove()">
-          <md-icon>delete_forever</md-icon> 
-        </button>
-      </span>
-        </md-toolbar>
+            <button md-icon-button (click)="teamDetail.addMemberDialogShowing=!teamDetail.addMemberDialogShowing">
+              <md-icon>group_add</md-icon> 
+            </button>
+            <button md-icon-button color="warn" (click)="teamDetail.remove()">
+              <md-icon>delete_forever</md-icon> 
+            </button>
+          </span>
+        </span>
         <md-card-content>
           <span class="flex-container-wide">
         <span>
