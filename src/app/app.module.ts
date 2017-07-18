@@ -43,6 +43,7 @@ import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 import { ShareDialog } from './dialogs/share-dialog/share-dialog.component';
 import { AddRepoDialog } from './dialogs/add-repo-dialog/add-repo-dialog.component';
 import { AddCloudProviderDialog } from './dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
+import { EditCloudProviderDialog } from './dialogs/edit-cloud-provider-dialog/edit-cloud-provider-dialog.component';
 import { AddConfigurationDialog } from './dialogs/add-configuration-dialog/add-configuration-dialog.component';
 import { AddDeploymentParametersDialog } from './dialogs/add-deployment-parameters-dialog/add-deployment-parameters-dialog.component';
 import { AddTeamDialog } from './dialogs/add-team-dialog/add-team-dialog.component';
@@ -114,6 +115,7 @@ export function provideConfig() {
     ShareDialog,
     AddRepoDialog,
     AddCloudProviderDialog,
+    EditCloudProviderDialog,    
     AddConfigurationDialog,
     AddDeploymentParametersDialog,
     AddTeamDialog
@@ -134,6 +136,7 @@ export function provideConfig() {
     AddRepoDialog,
     ShareDialog,
     AddCloudProviderDialog,
+    EditCloudProviderDialog,    
     AddConfigurationDialog,
     AddDeploymentParametersDialog,
     AddTeamDialog
