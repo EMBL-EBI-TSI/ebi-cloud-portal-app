@@ -2,8 +2,8 @@
   <div class="content">
     <div class="detail-card-container">
       <md-card *ngIf="configurationDetail.configurationPresenter">
-          <md-toolbar class="detail-card-toolbar">
-             <md-icon class="card-type-icon">vpn_key</md-icon>
+          <span class="md-toolbar flex-container-wide">
+             <md-icon class="card-type-icon">extension</md-icon>
              <h3>{{ configurationDetail.configurationPresenter.name }}</h3>
              <span class="fill-remaining-space"></span>
              <span *ngIf="!configurationDetail.configurationPresenter.isShared">
@@ -17,7 +17,7 @@
             <span *ngIf="configurationDetail.configurationPresenter.isShared">
                <p>SHARED</p>
             </span>
-        </md-toolbar>
+        </span>
         <md-card-content>
         <span class="flex-container-wide">
           <span class="flex-container-wide">

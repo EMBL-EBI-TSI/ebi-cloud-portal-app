@@ -2,24 +2,24 @@
   <div class="content">
     <div class="detail-card-container">
       <md-card *ngIf="deploymentDetail.deploymentInstance">
-        <md-toolbar class="detail-card-toolbar">
+
+        <span class="md-toolbar flex-container-wide">
           <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon>
           <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon>
           <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
             class="card-type-icon">cloud_queue</md-icon>
           <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon>
-          <span class="flex-container-wide">
           <h3>{{ deploymentDetail.deploymentInstance.applicationName }}</h3>
           <p>{{ deploymentDetail.deploymentInstance.reference }}</p>
-        </span>
           <span class="fill-remaining-space"></span>
           <button md-icon-button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" color="warn" (click)="deploymentDetail.deleteDeployment(deploymentDetail.deploymentInstance)">
-          <md-icon>delete_forever</md-icon>
-        </button>
+            <md-icon>delete_forever</md-icon>
+          </button>
           <button md-icon-button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" disabled>
-          <md-icon>delete_forever</md-icon>
-        </button>
-        </md-toolbar>
+            <md-icon>delete_forever</md-icon>
+          </button>
+        </span>
+
 
         <md-card-content>
           <md-list dense>

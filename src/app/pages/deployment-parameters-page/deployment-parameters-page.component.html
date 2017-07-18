@@ -2,22 +2,22 @@
   <div class="content">
     <div class="detail-card-container">
       <md-card *ngIf="deploymentParametersDetail.deploymentParametersPresenter">
-          <md-toolbar class="detail-card-toolbar">
-             <md-icon class="card-type-icon">vpn_key</md-icon>
-             <h3>{{ deploymentParametersDetail.deploymentParametersPresenter.name }}</h3>
-             <span class="fill-remaining-space"></span>
-             <span *ngIf="!deploymentParametersDetail.deploymentParametersPresenter.isShared">
-               <button md-icon-button (click)="openShareDeploymentParametersDialog(deploymentParametersDetail)">
-                 <md-icon>share</md-icon> 
-               </button>
-               <button md-icon-button color="warn" (click)="deploymentParametersDetail.remove()">
-                 <md-icon>delete_forever</md-icon> 
+        <span class="md-toolbar flex-container-wide">
+            <md-icon class="card-type-icon">settings_applications</md-icon>
+            <h3>{{ deploymentParametersDetail.deploymentParametersPresenter.name }}</h3>
+            <span class="fill-remaining-space"></span>
+            <span *ngIf="!deploymentParametersDetail.deploymentParametersPresenter.isShared">
+              <button md-icon-button (click)="openShareDeploymentParametersDialog(deploymentParametersDetail)">
+                <md-icon>share</md-icon> 
+              </button>
+              <button md-icon-button color="warn" (click)="deploymentParametersDetail.remove()">
+                <md-icon>delete_forever</md-icon> 
               </button>
             </span>
             <span *ngIf="deploymentParametersDetail.deploymentParametersPresenter.isShared">
                <p>SHARED</p>
             </span>
-        </md-toolbar>
+        </span>
         <md-card-content>
         <span class="flex-container-wide">
           <span class="flex-container-wide">
@@ -35,7 +35,6 @@
                 </p>
               </md-list-item>
               <md-list-item *ngFor="let deploymentParameterField of deploymentParametersDetail.deploymentParametersPresenter.fields">
-                <md-icon md-list-icon class="card-type-icon">settings_applications</md-icon>
 						  	<h3 md-line>{{ deploymentParameterField.key }}</h3>
 							  <p md-line class="param-value">{{ deploymentParameterField.value }}</p>
 						</md-list-item>
