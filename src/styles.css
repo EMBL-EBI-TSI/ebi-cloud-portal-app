@@ -195,7 +195,7 @@ button.active:hover{
 	top: 15px;
   margin-right: 10px;
 }
-.wide-summary-card-container md-card md-card-content md-progress-spinner {
+.wide-summary-card-container md-card .md-toolbar md-progress-spinner {
   width: 2em;
   height: 2em;
   position: relative;
