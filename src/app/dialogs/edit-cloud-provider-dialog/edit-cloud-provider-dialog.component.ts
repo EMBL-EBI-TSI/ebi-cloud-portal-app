@@ -25,6 +25,13 @@ export class EditCloudProviderDialog {
       'cloudProvider': [cloudProviderParameters.cloudProvider, Validators.required],
       'fields': this.fb.array([])
     });
+    cloudProviderParameters.fields.forEach( field => {
+      let newGroup = this.fb.group({
+        key: [field.key, Validators.required],
+        value: [field.value, Validators.required]
+      });
+      (<FormArray>this.cloudProviderParametersForm.controls['fields']).push(newGroup);
+    });
   }
 
   public addNewCloudProviderParametersFormField() {
@@ -35,6 +42,11 @@ export class EditCloudProviderDialog {
     });
     console.log('[EditCloudProviderDialog] created new Cloud Provider parameter form group %O', newGroup);
     (<FormArray>this.cloudProviderParametersForm.controls['fields']).push(newGroup);
+  }
+
+  public removeCloudProviderParametersFormField(fieldIndex: number) {
+    console.log('[EditCloudProviderDialog] removing Cloud Provider parameter field at pos %O', fieldIndex);
+    (<FormArray>this.cloudProviderParametersForm.controls['fields']).removeAt(fieldIndex);
   }
 
 }
