@@ -23,7 +23,7 @@ class MockConfig {
 }
 @Component({
   selector: 'cp-application-component',
-  template: ''
+  template: '<ng-content></ng-content>'
 })
 class MockApplicationComponent {
 

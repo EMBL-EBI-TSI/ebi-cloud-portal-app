@@ -1,6 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Component } from '@angular/core';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ErrorPageComponent } from './error-page.component';
+
+@Component({
+  selector: 'cp-error-component',
+  template: '<ng-content></ng-content>'
+})
+class MockErrorComponent {
+  // public getErrorMessage() {
+  //   return "Some error cause";
+  // }
+}
 
 describe('ErrorComponentComponent', () => {
   let component: ErrorPageComponent;
@@ -8,7 +19,10 @@ describe('ErrorComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorPageComponent ]
+      declarations: [ ErrorPageComponent, MockErrorComponent ],
+      providers: [
+        BreadcrumbService
+      ]
     })
     .compileComponents();
   }));

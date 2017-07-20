@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { DocsPageComponent } from './docs-page.component';
 
 describe('DocsPageComponent', () => {
@@ -8,7 +8,8 @@ describe('DocsPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DocsPageComponent ]
+      declarations: [ DocsPageComponent ],
+      providers: [ BreadcrumbService ]
     })
     .compileComponents();
   }));
