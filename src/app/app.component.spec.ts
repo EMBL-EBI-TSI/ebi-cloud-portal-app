@@ -2,7 +2,7 @@ import { TestBed, async, fakeAsync, tick} from '@angular/core/testing';
 import { BaseRequestOptions, ConnectionBackend, Http, RequestOptions } from '@angular/http';
 import { Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
