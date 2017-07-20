@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { ApplicationPageComponent } from './application-page.component';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { CommonModule } from '@angular/common';
+import { MdChipsModule, MdIconModule, MdSelectModule,
+    MdInputModule, MdCoreModule } from '@angular/material';
 
 describe('ApplicationPageComponent', () => {
   let component: ApplicationPageComponent;
@@ -8,7 +12,10 @@ describe('ApplicationPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplicationPageComponent ]
+      imports: [ CommonModule, MdChipsModule, MdIconModule,
+          MdSelectModule, MdInputModule, MdCoreModule, FormsModule ],
+      declarations: [ ApplicationPageComponent ],
+      providers: [ BreadcrumbService ]
     })
     .compileComponents();
   }));

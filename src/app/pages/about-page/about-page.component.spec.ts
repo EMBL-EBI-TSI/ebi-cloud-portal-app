@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CommonModule } from '@angular/common';
 import { AboutPageComponent } from './about-page.component';
+import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+
 
 describe('AboutPageComponent', () => {
   let component: AboutPageComponent;
@@ -8,7 +10,9 @@ describe('AboutPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AboutPageComponent ]
+      imports: [ CommonModule ],
+      declarations: [ AboutPageComponent ],
+      providers: [ BreadcrumbService ]
     })
     .compileComponents();
   }));
