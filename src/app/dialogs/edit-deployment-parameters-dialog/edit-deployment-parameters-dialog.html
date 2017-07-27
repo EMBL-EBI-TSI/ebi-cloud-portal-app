@@ -1,0 +1,47 @@
+<md-dialog-content>
+  <div>
+    <img class="dialog-img-large" [src]="robby">
+    <h2>Edit deployment parameters</h2>
+  </div>
+  <div>
+    <form [formGroup]="deploymentParametersForm" autocomplete="off">
+      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Deployment parameters name (can't be changed)" [formControl]="deploymentParametersForm.controls['name']"
+          [readonly]="true" disabled>
+      </md-input-container>
+      <!--Fields-->
+      <h3>Parameters
+        <button md-icon-button color="primary" (click)="addNewDeploymentParametersFormField()">
+              <md-icon>add</md-icon> 
+        </button>
+      </h3>
+      <div *ngFor="let fieldFormGroup of deploymentParametersForm.controls['fields'].controls; let i=index" [attr.data-index]="i">
+        <form [formGroup]="fieldFormGroup">
+          <table style="width: 100%" cellspacing="0">
+            <tr>
+              <td>
+                <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter key" [formControl]="fieldFormGroup.controls['key']"
+                    autofocus></md-input-container>
+              </td>
+              <td>
+                <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter value" [formControl]="fieldFormGroup.controls['value']"
+                    autofocus></md-input-container>
+              </td>
+              <td>
+                <button md-icon-button (click)="removeDeploymentParametersField(i)">
+                <md-icon>highlight_off</md-icon> 
+            </button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+
+    </form>
+
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button class="button-color-accent" [disabled]="deploymentParametersForm.controls['name'].hasError('required')"
+    (click)="dialogRef.close(deploymentParametersForm.value)">
+							UPDATE</button>
+</md-dialog-actions>

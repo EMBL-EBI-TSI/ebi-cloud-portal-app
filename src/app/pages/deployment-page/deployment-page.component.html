@@ -93,6 +93,17 @@
             <span class="logs-text-area" md-subheader *ngIf="logsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.logs) }}">
             </span>
+            <!-- Destroy Logs-->
+            <span *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED' || deploymentDetail.deploymentInstance.status == 'DESTROYING'">
+            <h3 md-header>Deployment destroy logs
+              <button md-icon-button color="primary" (click)="destroylogsShowing=!destroylogsShowing">
+              <md-icon>visibility</md-icon> 
+            </button>
+            </h3>
+            <span class="logs-text-area" md-subheader *ngIf="destroylogsShowing"
+            innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.destroylogs) }}">
+            </span>
+            </span>
           </md-list>
         </md-card-content>
 

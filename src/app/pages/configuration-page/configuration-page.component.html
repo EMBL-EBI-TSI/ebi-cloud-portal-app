@@ -7,7 +7,10 @@
              <h3>{{ configurationDetail.configurationPresenter.name }}</h3>
              <span class="fill-remaining-space"></span>
              <span *ngIf="!configurationDetail.configurationPresenter.isShared">
-               <button md-icon-button (click)="openShareConfigurationDialog(configurationDetail)">
+             <button md-icon-button (click)="openEditConfigurationDialog(configurationDetail)">
+              <md-icon>edit</md-icon> 
+             </button> 
+             <button md-icon-button (click)="openShareConfigurationDialog(configurationDetail)">
                  <md-icon>share</md-icon> 
                </button>
                <button md-icon-button color="warn" (click)="configurationDetail.remove()">

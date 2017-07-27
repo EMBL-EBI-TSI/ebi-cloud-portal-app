@@ -50,6 +50,8 @@ import { AddTeamDialog } from './dialogs/add-team-dialog/add-team-dialog.compone
 import { ConfigurationPageComponent } from './pages/configuration-page/configuration-page.component';
 import { ConfigurationComponent, DeploymentParametersComponent } from 'ng2-cloud-portal-presentation-lib';
 import { DeploymentParametersPageComponent } from './pages/deployment-parameters-page/deployment-parameters-page.component';
+import { EditConfigurationDialog } from './dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
+import { EditDeploymentParametersDialog } from './dialogs/edit-deployment-parameters-dialog/edit-deployment-parameters-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -117,7 +119,9 @@ export function provideConfig() {
     AddCloudProviderDialog,
     EditCloudProviderDialog,    
     AddConfigurationDialog,
+    EditConfigurationDialog,
     AddDeploymentParametersDialog,
+    EditDeploymentParametersDialog,
     AddTeamDialog
   ],
   imports: [
@@ -138,7 +142,9 @@ export function provideConfig() {
     AddCloudProviderDialog,
     EditCloudProviderDialog,    
     AddConfigurationDialog,
+    EditConfigurationDialog,
     AddDeploymentParametersDialog,
+    EditDeploymentParametersDialog,
     AddTeamDialog
   ],
   providers: [

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ConfigurationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
+import { EditConfigurationDialog } from '../../dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
 
 @Component({
   selector: 'app-configuration-page',
@@ -34,4 +35,16 @@ export class ConfigurationPageComponent implements OnInit {
         configurationDetail.share(shareWith);
     });
   }
+
+  openEditConfigurationDialog(configurationDetail: ConfigurationComponent) {
+    let dialogRef:MdDialogRef<EditConfigurationDialog>  = this.dialog.open(EditConfigurationDialog);
+    dialogRef.componentInstance.setConfiguration(configurationDetail.configurationPresenter);
+    dialogRef.afterClosed().subscribe(
+      configurationForm => {
+        if (configurationForm)
+          configurationDetail.updateConfiguration(configurationForm);
+      }
+    );
+  }
+  
 }
