@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogRef } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { CloudProviderParametersComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
+import { EditCloudProviderDialog } from '../../dialogs/edit-cloud-provider-dialog/edit-cloud-provider-dialog.component';
 
 @Component({
-  selector: 'app-cloud-provider-parameters-page',
+  selector: 'cloud-provider-parameters-page',
   templateUrl: './cloud-provider-parameters-page.component.html',
   styleUrls: ['./cloud-provider-parameters-page.component.css']
 })
@@ -33,5 +34,16 @@ export class CloudProviderParametersPageComponent implements OnInit {
       if (shareWith)
         cloudProviderDetail.share(shareWith);
     });
+  }
+
+  openEditCloudProviderDialog(cloudProviderDetail: CloudProviderParametersComponent) {
+    let dialogRef:MdDialogRef<EditCloudProviderDialog>  = this.dialog.open(EditCloudProviderDialog);
+    dialogRef.componentInstance.setCloudProviderParameters(cloudProviderDetail.cloudProviderParametersPresenter);
+    dialogRef.afterClosed().subscribe(
+      cloudProviderParametersForm => {
+        if (cloudProviderParametersForm)
+          cloudProviderDetail.updateCloudProviderParameters(cloudProviderParametersForm);
+      }
+    );
   }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogRef} from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-import { DeploymentParametersComponent } from 'ng2-cloud-portal-presentation-lib';
+import { EditDeploymentParametersDialog  } from '../../dialogs/edit-deployment-parameters-dialog/edit-deployment-parameters-dialog.component';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
+import { DeploymentParametersComponent } from 'ng2-cloud-portal-presentation-lib';
 
 @Component({
   selector: 'app-deployment-parameters-page',
@@ -33,5 +34,16 @@ export class DeploymentParametersPageComponent implements OnInit {
       if (shareWith)
         deploymentParametersDetail.share(shareWith);
     });
+  }
+
+  openEditDeploymentParametersDialog(deploymentParametersDetail: DeploymentParametersComponent ){
+    let dialogRef:MdDialogRef<EditDeploymentParametersDialog> = this.dialog.open(EditDeploymentParametersDialog);
+    dialogRef.componentInstance.setDeploymentParameters(deploymentParametersDetail.deploymentParametersPresenter);
+    dialogRef.afterClosed().subscribe(
+      deploymentParametersForm => {
+        if(deploymentParametersForm)
+          deploymentParametersDetail.updateDeploymentParameters(deploymentParametersForm);
+      }
+    );
   }
 }

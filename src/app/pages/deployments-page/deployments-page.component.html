@@ -13,14 +13,17 @@
 
 		<div class="wide-summary-card-container">
 			<md-card [routerLink]=" ['/deployments/', deploymentInstance.reference]" *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
-				<md-card-content>
+				<span class="md-toolbar flex-container-wide">
 					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</md-icon> 
 					<md-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
 					<!--<md-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> -->
 					<md-progress-spinner *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-spinner>
 					
 					<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
-					<h2>{{ deploymentInstance.applicationName }}</h2>
+					<h3>{{ deploymentInstance.applicationName }}</h3>
+					<span class="fill-remaining-space"></span>
+				</span>
+				<md-card-content>
 					<!--Deployment meta-data-->
 					<md-list-item>
 						<p md-line>Reference</p>

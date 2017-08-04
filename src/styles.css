@@ -153,11 +153,6 @@ button.active:hover{
   color: rgba(0,0,0,0.54);
 }
 
-.summary-card-toolbar {
-  background: white;
-  color: var(--dark-color);
-}
-
 /*Fixed width summary card container*/
 .fixed-width-summary-card-container {
   display: flex;
@@ -193,14 +188,14 @@ button.active:hover{
   position: relative;
   top: -20px;
 }
-.wide-summary-card-container md-card md-card-content h2 {
+.wide-summary-card-container md-card md-card-content h3 {
 	margin-right: 35px;
 }
 .wide-summary-card-container md-card md-card-content .card-type-icon {
 	top: 15px;
   margin-right: 10px;
 }
-.wide-summary-card-container md-card md-card-content md-progress-spinner {
+.wide-summary-card-container md-card .md-toolbar md-progress-spinner {
   width: 2em;
   height: 2em;
   position: relative;
@@ -228,25 +223,30 @@ button.active:hover{
 .detail-card-container md-card md-card-actions md-radio-group {
   margin-left: 20px;
 }
-.detail-card-container md-card .card-type-icon {
-  margin-right: 10px;
+
+.md-toolbar h3 {
+  font-size: 1.4em;
+  color: var(--dark-color);
+  font-weight: lighter;
 }
-.detail-card-container md-card md-toolbar p {
-  padding-top: 15px;
+.md-toolbar p {
+  position: relative;
+  top: 10px;
   margin-left: 10px;
 }
-.detail-card-toolbar {
-  background: white;
-  color: var(--dark-color);
+.md-toolbar button {
+  right: 10px;
+}
+.md-toolbar .card-type-icon {
+  top: 15px;
+  margin-right: 10px;
 }
 
 .card-container md-card md-card-content {
   padding: 16px;
 }
 
-.card-container md-card md-toolbar button {
-  right: -10px;
-}
+
 
 .card-container md-card md-card-title {
   color: var(--complementary-color);
@@ -322,9 +322,11 @@ h3 {
   color: var(--dark-color);
   font-weight: lighter;
 }
+
+
+
 p {
   font-size: 1em;
-
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 

@@ -65,13 +65,13 @@
 				<div class="md-content" *ngIf="volumesComponent.volumeDeployers">
 					<div class="wide-summary-card-container">
 						<md-card *ngFor="let volumeDeployer of volumesComponent.volumeDeployers">
-							<md-toolbar class="summary-card-toolbar">
+							<span class="md-toolbar flex-container-wide">
 								<h3> {{ volumeDeployer.name }}</h3>
 								<span class="fill-remaining-space"></span>
 								<button md-icon-button color="warn" (click)="volumesComponent.removeVolumeSetup(volumeDeployer)">
 									<md-icon>delete_forever</md-icon> 
 								</button>
-							</md-toolbar>
+							</span>
 							<md-card-content>
 								<md-list dense>
 									<md-list-item>

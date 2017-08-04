@@ -2,7 +2,7 @@
   <div class="content">
     <div class="detail-card-container">
       <md-card *ngIf="applicationDetail.applicationDeployer">
-        <md-toolbar class="detail-card-toolbar">
+        <span class="md-toolbar flex-container-wide">
           <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
           <!--Available providers-->
           <md-chip-list selectable="false">
@@ -23,7 +23,7 @@
           <span *ngIf="applicationDetail.applicationDeployer.isShared">
         <p>SHARED</p>
       </span>
-        </md-toolbar>
+        </span>
 
         <!--Application metadata-->
         <md-card-content>

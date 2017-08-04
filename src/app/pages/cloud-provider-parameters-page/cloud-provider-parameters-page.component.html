@@ -2,22 +2,25 @@
   <div class="content">
     <div class="detail-card-container">
       <md-card *ngIf="cloudProviderDetail.cloudProviderParametersPresenter">
-        <md-toolbar class="detail-card-toolbar">
+        <span class="md-toolbar flex-container-wide">
           <md-icon class="card-type-icon">vpn_key</md-icon>
           <h3>{{ cloudProviderDetail.cloudProviderParametersPresenter.name }}</h3>
           <span class="fill-remaining-space"></span>
           <span *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared">
-        <button md-icon-button (click)="openShareCloudProviderDialog(cloudProviderDetail)">
-          <md-icon>share</md-icon> 
-        </button>
-        <button md-icon-button color="warn" (click)="cloudProviderDetail.remove()">
-          <md-icon>delete_forever</md-icon> 
-        </button>
-      </span>
+            <button md-icon-button (click)="openEditCloudProviderDialog(cloudProviderDetail)">
+              <md-icon>edit</md-icon> 
+            </button>            
+            <button md-icon-button (click)="openShareCloudProviderDialog(cloudProviderDetail)">
+              <md-icon>share</md-icon> 
+            </button>
+            <button md-icon-button color="warn" (click)="cloudProviderDetail.remove()">
+              <md-icon>delete_forever</md-icon> 
+            </button>
+          </span>
           <span *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.isShared">
-        <p>SHARED</p>
-      </span>
-        </md-toolbar>
+            <p>SHARED</p>
+          </span>
+        </span>
         <md-card-content>
           <span class="flex-container-wide">
         <span class="flex-container-wide">

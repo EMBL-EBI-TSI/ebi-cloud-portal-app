@@ -43,12 +43,15 @@ import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 import { ShareDialog } from './dialogs/share-dialog/share-dialog.component';
 import { AddRepoDialog } from './dialogs/add-repo-dialog/add-repo-dialog.component';
 import { AddCloudProviderDialog } from './dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
+import { EditCloudProviderDialog } from './dialogs/edit-cloud-provider-dialog/edit-cloud-provider-dialog.component';
 import { AddConfigurationDialog } from './dialogs/add-configuration-dialog/add-configuration-dialog.component';
 import { AddDeploymentParametersDialog } from './dialogs/add-deployment-parameters-dialog/add-deployment-parameters-dialog.component';
 import { AddTeamDialog } from './dialogs/add-team-dialog/add-team-dialog.component';
 import { ConfigurationPageComponent } from './pages/configuration-page/configuration-page.component';
 import { ConfigurationComponent, DeploymentParametersComponent } from 'ng2-cloud-portal-presentation-lib';
 import { DeploymentParametersPageComponent } from './pages/deployment-parameters-page/deployment-parameters-page.component';
+import { EditConfigurationDialog } from './dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
+import { EditDeploymentParametersDialog } from './dialogs/edit-deployment-parameters-dialog/edit-deployment-parameters-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -114,8 +117,11 @@ export function provideConfig() {
     ShareDialog,
     AddRepoDialog,
     AddCloudProviderDialog,
+    EditCloudProviderDialog,    
     AddConfigurationDialog,
+    EditConfigurationDialog,
     AddDeploymentParametersDialog,
+    EditDeploymentParametersDialog,
     AddTeamDialog
   ],
   imports: [
@@ -134,8 +140,11 @@ export function provideConfig() {
     AddRepoDialog,
     ShareDialog,
     AddCloudProviderDialog,
+    EditCloudProviderDialog,    
     AddConfigurationDialog,
+    EditConfigurationDialog,
     AddDeploymentParametersDialog,
+    EditDeploymentParametersDialog,
     AddTeamDialog
   ],
   providers: [

@@ -1,13 +1,40 @@
-import { TestBed, async } from '@angular/core/testing';
-
+import { TestBed, async, fakeAsync, tick} from '@angular/core/testing';
+import { BaseRequestOptions, ConnectionBackend, Http, RequestOptions } from '@angular/http';
+import { Response, ResponseOptions } from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from "@angular/router";
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { MaterialModule, MdSelectModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
+import { TokenService, CredentialService, AccountService,
+    ConfigService, ErrorService, CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
+import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
+
+class MockConfig {
+  
+}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ 
+        MaterialModule, MdSelectModule, RouterModule, CommonModule, FormsModule,
+        RouterTestingModule ],
       declarations: [
         AppComponent
       ],
+      providers: [ 
+        TokenService, CredentialService, AccountService,
+        ErrorService, CloudProviderParametersService,
+        BreadcrumbService,
+        { provide: ConfigService, useClass: MockConfig },
+        { provide: ConnectionBackend, useClass: MockBackend },
+        { provide: RequestOptions, useClass: BaseRequestOptions },
+        Http 
+      ]
     }).compileComponents();
   }));
 
@@ -17,16 +44,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
-  }));
 });
