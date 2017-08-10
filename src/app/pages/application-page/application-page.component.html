@@ -186,7 +186,7 @@
         <!--These are the action controls-->
         <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
         <span *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters
-          || (applicationDetail.application.deploymentParameters && !applicationDetail.selectedConfiguration)" 
+          || (applicationDetail.application.deploymentParameters.length>0 && !applicationDetail.selectedConfiguration)" 
           mdTooltip="A valid Cloud Provider and a configuration(if deployment parameters are present)needs to be selected in order to deploy this application"
           mdTooltipPosition="right" mdTooltipHideDelay="1000">
           <button md-raised-button disabled>
@@ -195,7 +195,7 @@
         </span>
        
        <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters
-          && (applicationDetail.application.deploymentParameters && applicationDetail.selectedConfiguration && applicationDetail.emptyAssigment)"
+          && (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && applicationDetail.emptyAssigment)"
            mdTooltip="This application, should have deployment parameters with value to be deployed to {{applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name}}"
             mdTooltipPosition="right" mdTooltipHideDelay="1000">
           <button md-raised-button disabled>
@@ -204,7 +204,7 @@
         </span>
 
           <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters
-          && (applicationDetail.application.deploymentParameters && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment)" mdTooltip="This application will be deployed to {{applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name}}"
+          && ((applicationDetail.application.deploymentParameters==0) || (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment))" mdTooltip="This application will be deployed to {{applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name}}"
             mdTooltipPosition="right" mdTooltipHideDelay="1000">
           <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
               DEPLOY
