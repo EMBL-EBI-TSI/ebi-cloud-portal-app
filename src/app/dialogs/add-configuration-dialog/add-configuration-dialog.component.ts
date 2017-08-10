@@ -30,7 +30,10 @@ export class AddConfigurationDialog {
     public errorService: ErrorService,
     public dialogRef: MdDialogRef<AddConfigurationDialog>) {
     this.configurationForm = this.fb.group({
-      'name': ['', Validators.required],
+      'name': ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^[a-zA-Z0-9]+([\\s\\.\\-\\_]?[a-zA-Z0-9]+)*")]
+      )],
       'cloudProviderParametersName': ['', Validators.required],
       'sshKey': ['', Validators.required],
       'deploymentParametersName': ['', Validators.required],

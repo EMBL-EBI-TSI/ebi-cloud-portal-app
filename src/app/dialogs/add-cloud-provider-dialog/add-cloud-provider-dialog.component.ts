@@ -16,7 +16,10 @@ export class AddCloudProviderDialog {
   constructor(private fb: FormBuilder,
               public dialogRef: MdDialogRef<AddCloudProviderDialog>) { 
     this.cloudProviderParametersForm = this.fb.group({
-      'name': ['', Validators.required],
+      'name': ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^[a-zA-Z0-9]+([\\s\\.\\-\\_]?[a-zA-Z0-9]+)*")]
+      )],
       'cloudProvider': ['', Validators.required],
       'fields': fb.array([])
     });
