@@ -1,9 +1,11 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
-import { CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
+import { Component, OnInit, DoCheck, ViewChild, ElementRef } from '@angular/core';
+import { CloudProviderParametersService, TokenService, CredentialService } from 'ng2-cloud-portal-service-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
 import { AddRepoDialog } from '../../dialogs/add-repo-dialog/add-repo-dialog.component';
+import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
+
 
 @Component({
   selector: 'repository-page',
@@ -12,12 +14,52 @@ import { AddRepoDialog } from '../../dialogs/add-repo-dialog/add-repo-dialog.com
 })
 export class RepositoryPageComponent implements OnInit, DoCheck {
 
+  @ViewChild('repo') repo: ElementRef;
+
   cloudProviderFilters: string[] = ["AWS", "GCP", "OSTACK", "AZURE"];
 
   constructor(public cloudProviderParametersService: CloudProviderParametersService,
+    public credentialService: CredentialService,
+    public tokenService: TokenService,
     public breadcrumbService: BreadcrumbService,
     public dialog: MdDialog) {
     this.updateFilters();
+  }
+
+  ngAfterViewInit() {
+    (<RepositoryComponent>this.repo)._applicationService.getAll(
+      this.credentialService.getUsername(),
+      this.tokenService.getToken())
+      .subscribe(
+      applications => {
+        console.log('[RepositoryPageComponent] Applications data is %O', applications);
+        if (applications.length==0) {
+          (<RepositoryComponent>this.repo)._applicationService.getAllShared(
+            this.credentialService.getUsername(),
+            this.tokenService.getToken())
+            .subscribe(
+            sharedApplications => {
+              console.log('[RepositoryPageComponent] Shared applications data is %O', sharedApplications);
+              if (sharedApplications.length==0) {
+                this.openSuggestAddApplicationDialog(this.repo);
+              }
+            },
+            error => {
+              
+            },
+            () => {
+                console.log('[RepositoryPageComponent] Shared applications data retrieval complete');
+            }
+          );
+        }
+      },
+      error => {
+        
+      },
+      () => {
+          console.log('[RepositoryPageComponent] Applications data retrieval complete');
+      }
+    );
   }
 
   updateFilters() {
@@ -50,4 +92,19 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
         repo.addApplication({ repoUri: repoUri });
     });
   }
+
+  openSuggestAddApplicationDialog(repo: RepositoryComponent) {
+    const config = new MdDialogConfig();
+
+    config.data = [
+      'It seems you have no applications registered. Do you want to add your own?',
+      'GO'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken=='add')
+        this.openAddApplicationDialog(repo);
+    });
+  }
+
 }
