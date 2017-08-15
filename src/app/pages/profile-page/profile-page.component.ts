@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { MdDialog, MdDialogConfig, MdTabGroup } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { AddCloudProviderDialog } from '../../dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
 import { AddConfigurationDialog } from '../../dialogs/add-configuration-dialog/add-configuration-dialog.component';
 import { AddDeploymentParametersDialog } from '../../dialogs/add-deployment-parameters-dialog/add-deployment-parameters-dialog.component';
 import { AddTeamDialog } from '../../dialogs/add-team-dialog/add-team-dialog.component';
 import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
+import { CloudProviderParametersService, TokenService, CredentialService } from 'ng2-cloud-portal-service-lib';
+import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
+
 
 @Component({
   selector: 'profile-page',
@@ -14,7 +17,14 @@ import { ProfileComponent } from 'ng2-cloud-portal-presentation-lib';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor(public breadcrumbService: BreadcrumbService,
+  @ViewChild('profileComponent') profileComponent: ElementRef;
+  @ViewChild('configurationsTabGroup') configurationsTabGroup: MdTabGroup;
+
+  constructor(
+    public cloudProviderParametersService: CloudProviderParametersService,
+    public credentialService: CredentialService,
+    public tokenService: TokenService,
+    public breadcrumbService: BreadcrumbService,
     public dialog: MdDialog) { }
 
   ngOnInit() {
@@ -25,6 +35,134 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
+  }
+
+  ngAfterViewInit() {
+    this.checkForCPP();
+  }
+
+  private checkForCPP() {
+    (<ProfileComponent>this.profileComponent)._cloudProviderParametersService.getAll(
+      this.credentialService.getUsername(),
+      this.tokenService.getToken())
+      .subscribe(
+      cpps => {
+        console.log('[ProfilePageComponent] CPPs data is %O', cpps);
+        if (cpps.length==0) {
+          (<ProfileComponent>this.profileComponent)._cloudProviderParametersService.getAllShared(
+            this.credentialService.getUsername(),
+            this.tokenService.getToken())
+            .subscribe(
+            sharedCpps => {
+              console.log('[ProfilePageComponent] Shared CPPs data is %O', sharedCpps);
+              if (sharedCpps.length==0) {
+                this.configurationsTabGroup.selectedIndex=0;
+                this.openSuggestAddCPPDialog(this.profileComponent, this.configurationsTabGroup,
+                'It seems you still need some Cloud Provider to deploy to. Do you want to set one?', 0);
+              } else {
+                this.checkForDP();
+              }
+            },
+            error => {
+              
+            },
+            () => {
+                console.log('[ProfilePageComponent] Shared CPPs data retrieval complete');
+            }
+          );
+        } else {
+          this.checkForDP()
+        }
+        
+      },
+      error => {
+        
+      },
+      () => {
+          console.log('[ProfilePageComponent] DPs data retrieval complete');
+      }
+    );
+  }
+
+  private checkForDP() {
+    (<ProfileComponent>this.profileComponent)._configurationService.getAllDeploymentParameters(
+      this.credentialService.getUsername(),
+      this.tokenService.getToken())
+      .subscribe(
+      dps => {
+        console.log('[ProfilePageComponent] DPs data is %O', dps);
+        if (dps.length==0) {
+          (<ProfileComponent>this.profileComponent)._configurationService.getAllSharedConfigurationDeploymentParameters(
+            this.credentialService.getUsername(),
+            this.tokenService.getToken())
+            .subscribe(
+            sharedDps => {
+              console.log('[ProfilePageComponent] Shared DPs data is %O', sharedDps);
+              if (sharedDps.length==0) {
+                
+                this.openSuggestAddCPPDialog(this.profileComponent, this.configurationsTabGroup,
+                'It seems you still need some Deployment Parameters to include in an application Configuration. Do you want to add some?', 2);
+              } else {
+                this.checkForConfigs();
+              }
+            },
+            error => {
+              
+            },
+            () => {
+                console.log('[ProfilePageComponent] Shared DPs data retrieval complete');
+            }
+          );
+        } else {
+          this.checkForConfigs();
+        }
+        
+      },
+      error => {
+        
+      },
+      () => {
+          console.log('[RepositoryPageComponent] Applications data retrieval complete');
+      }
+    );
+  }
+
+  private checkForConfigs() {
+    (<ProfileComponent>this.profileComponent)._configurationService.getAll(
+      this.credentialService.getUsername(),
+      this.tokenService.getToken())
+      .subscribe(
+      dps => {
+        console.log('[ProfilePageComponent] DPs data is %O', dps);
+        if (dps.length==0) {
+          (<ProfileComponent>this.profileComponent)._configurationService.getAllSharedConfigurationDeploymentParameters(
+            this.credentialService.getUsername(),
+            this.tokenService.getToken())
+            .subscribe(
+            sharedDps => {
+              console.log('[ProfilePageComponent] Shared DPs data is %O', sharedDps);
+              if (sharedDps.length==0) {
+                
+                this.openSuggestAddCPPDialog(this.profileComponent, this.configurationsTabGroup,
+                'It seems you still need some Configuration in order to deploy applicatios. Do you want to add one?', 1);
+              }
+            },
+            error => {
+              
+            },
+            () => {
+                console.log('[ProfilePageComponent] Shared Configurations data retrieval complete');
+            }
+          );
+        }         
+      },
+      error => {
+        
+      },
+      () => {
+          console.log('[RepositoryPageComponent] Configurations data retrieval complete');
+      }
+    );
   }
 
   openAddDialog(profileComponent: ProfileComponent, configurationsTabGroup) {
@@ -71,5 +209,23 @@ export class ProfilePageComponent implements OnInit {
     }
 
     
+  }
+
+  openSuggestAddCPPDialog(profileComponent: ProfileComponent, configurationsTabGroup, message: string, tab: number) {
+    this.configurationsTabGroup.selectedIndex=tab;
+    const config = new MdDialogConfig();
+
+    config.data = [
+      message,
+      'GO'
+    ];
+
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken=='add') {
+        
+        this.openAddDialog(profileComponent, configurationsTabGroup);
+      }
+    });
   }
 }
