@@ -38,7 +38,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.checkForCPP();
+    this.checkForConfigs();
   }
 
   private checkForCPP() {
@@ -60,7 +60,7 @@ export class ProfilePageComponent implements OnInit {
                 this.openSuggestAddCPPDialog(this.profileComponent, this.configurationsTabGroup,
                 'It seems you still need some Cloud Provider to deploy to. Do you want to set one?', 0);
               } else {
-                this.checkForDP();
+                
               }
             },
             error => {
@@ -71,7 +71,7 @@ export class ProfilePageComponent implements OnInit {
             }
           );
         } else {
-          this.checkForDP()
+          
         }
         
       },
@@ -103,7 +103,7 @@ export class ProfilePageComponent implements OnInit {
                 this.openSuggestAddCPPDialog(this.profileComponent, this.configurationsTabGroup,
                 'It seems you still need some Deployment Parameters to include in an application Configuration. Do you want to add some?', 2);
               } else {
-                this.checkForConfigs();
+                
               }
             },
             error => {
@@ -114,7 +114,7 @@ export class ProfilePageComponent implements OnInit {
             }
           );
         } else {
-          this.checkForConfigs();
+          
         }
         
       },
@@ -132,17 +132,18 @@ export class ProfilePageComponent implements OnInit {
       this.credentialService.getUsername(),
       this.tokenService.getToken())
       .subscribe(
-      dps => {
-        console.log('[ProfilePageComponent] DPs data is %O', dps);
-        if (dps.length==0) {
-          (<ProfileComponent>this.profileComponent)._configurationService.getAllSharedConfigurationDeploymentParameters(
+      configs => {
+        console.log('[ProfilePageComponent] Configs data is %O', configs);
+        if (configs.length==0) {
+          (<ProfileComponent>this.profileComponent)._configurationService.getAllSharedConfigurations(
             this.credentialService.getUsername(),
             this.tokenService.getToken())
             .subscribe(
-            sharedDps => {
-              console.log('[ProfilePageComponent] Shared DPs data is %O', sharedDps);
-              if (sharedDps.length==0) {
-                
+            sharedConfigs => {
+              console.log('[ProfilePageComponent] shared Configs data is %O', sharedConfigs);
+              if (sharedConfigs.length==0) {
+                this.checkForCPP();
+                this.checkForDP();
                 this.openSuggestAddCPPDialog(this.profileComponent, this.configurationsTabGroup,
                 'It seems you still need some Configuration in order to deploy applicatios. Do you want to add one?', 1);
               }
