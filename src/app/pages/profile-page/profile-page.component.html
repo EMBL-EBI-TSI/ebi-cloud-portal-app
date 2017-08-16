@@ -16,69 +16,7 @@
 			</md-card-content>
 		</md-card>
 
-		<md-tab-group (selectedIndexChange)="profileComponent.addFormShowing=false" #configurationsTabGroup>
-
-			<md-tab label="Cloud Credentials">
-				<md-card class="background-card" *ngIf="((!profileComponent.cloudProviderParametersPresenters || profileComponent.cloudProviderParametersPresenters.length==0)
-				&& (!profileComponent.sharedCloudProviderParametersPresenters || profileComponent.sharedCloudProviderParametersPresenters.length==0) )">
-						No credentials registered/shared yet
-				</md-card>
-				
-
-				<div class="md-content" *ngIf="profileComponent.cloudProviderParametersPresenters">
-					<div class="wide-summary-card-container">
-						<md-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters"
-						 class="credentials-container">
-							<span class="md-toolbar flex-container-wide">
-								<md-icon class="card-type-icon">vpn_key</md-icon>
-								<h3>{{ cloudProviderParametersPresenter.name }}</h3>
-								<span class="fill-remaining-space"></span>
-							</span>
-							<md-card-content>
-								<md-list dense>
-									<md-list-item>
-										<h3 md-line>Provider</h3>
-										<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
-									</md-list-item>
-								</md-list>
-							</md-card-content>
-							<md-card-actions>
-							</md-card-actions>
-						</md-card>
-
-						<md-card [routerLink]=" ['/cloudprovider/shared/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters"
-						 class="credentials-container">
-							<span class="md-toolbar flex-container-wide">
-								<md-icon class="card-type-icon">vpn_key</md-icon>
-								<h3>{{ cloudProviderParametersPresenter.name }}</h3>
-								<span class="fill-remaining-space"></span>
-								<p>SHARED</p>
-							</span>
-							<md-card-content>
-								<md-list dense>
-									<span class="flex-container-wide">
-										<md-list-item>
-											<h3 md-line>Provider</h3>
-											<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
-										</md-list-item>
-										<span class="fill-remaining-space"></span>
-									<md-list-item>
-										<h3 md-line>Owner</h3>
-										<p md-line class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
-									</md-list-item>
-									</span>
-								</md-list>
-							</md-card-content>
-							<md-card-actions>
-							</md-card-actions>
-						</md-card>
-						<!--Get all the sahred credentials from each team the user is a member of??-->
-						<span *ngFor="let teamPresenter of profileComponent.teamPresenters">
-							
-						</span>
-					</div>
-				</div>
-			</md-tab>
+		<md-tab-group (selectedIndexChange)="profileComponent.addFormShowing=false; checkForParams()" #configurationsTabGroup>
 
 			<md-tab label="Configurations">
 				
@@ -145,6 +83,68 @@
 					</span>
 				</div>
 
+			</md-tab>
+
+			<md-tab label="Cloud Credentials">
+				<md-card class="background-card" *ngIf="((!profileComponent.cloudProviderParametersPresenters || profileComponent.cloudProviderParametersPresenters.length==0)
+				&& (!profileComponent.sharedCloudProviderParametersPresenters || profileComponent.sharedCloudProviderParametersPresenters.length==0) )">
+						No credentials registered/shared yet
+				</md-card>
+				
+
+				<div class="md-content" *ngIf="profileComponent.cloudProviderParametersPresenters">
+					<div class="wide-summary-card-container">
+						<md-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters"
+						 class="credentials-container">
+							<span class="md-toolbar flex-container-wide">
+								<md-icon class="card-type-icon">vpn_key</md-icon>
+								<h3>{{ cloudProviderParametersPresenter.name }}</h3>
+								<span class="fill-remaining-space"></span>
+							</span>
+							<md-card-content>
+								<md-list dense>
+									<md-list-item>
+										<h3 md-line>Provider</h3>
+										<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
+									</md-list-item>
+								</md-list>
+							</md-card-content>
+							<md-card-actions>
+							</md-card-actions>
+						</md-card>
+
+						<md-card [routerLink]=" ['/cloudprovider/shared/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters"
+						 class="credentials-container">
+							<span class="md-toolbar flex-container-wide">
+								<md-icon class="card-type-icon">vpn_key</md-icon>
+								<h3>{{ cloudProviderParametersPresenter.name }}</h3>
+								<span class="fill-remaining-space"></span>
+								<p>SHARED</p>
+							</span>
+							<md-card-content>
+								<md-list dense>
+									<span class="flex-container-wide">
+										<md-list-item>
+											<h3 md-line>Provider</h3>
+											<p md-line class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
+										</md-list-item>
+										<span class="fill-remaining-space"></span>
+									<md-list-item>
+										<h3 md-line>Owner</h3>
+										<p md-line class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
+									</md-list-item>
+									</span>
+								</md-list>
+							</md-card-content>
+							<md-card-actions>
+							</md-card-actions>
+						</md-card>
+						<!--Get all the sahred credentials from each team the user is a member of??-->
+						<span *ngFor="let teamPresenter of profileComponent.teamPresenters">
+							
+						</span>
+					</div>
+				</div>
 			</md-tab>
 
 			<md-tab label="Deployment Parameters">
