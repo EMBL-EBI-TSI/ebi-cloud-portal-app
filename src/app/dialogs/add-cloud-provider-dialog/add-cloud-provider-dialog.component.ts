@@ -11,7 +11,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 export class AddCloudProviderDialog {
   robby = 'assets/img/Robby_form0.5x.png';
   cloudProviderParametersForm: FormGroup;
-  cloudProviderNames: string[] = ['AWS','GCP','OSTACK'];
+  cloudProviderNames: string[] = ['AWS','GCP','OSTACK', 'AZURE'];
 
   constructor(private fb: FormBuilder,
               public dialogRef: MdDialogRef<AddCloudProviderDialog>) { 
