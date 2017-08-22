@@ -9,8 +9,8 @@
         <input mdInput type="text" placeholder="Team name (required)" [formControl]="teamForm.controls['name']" autofocus>
       </md-input-container>
       <div *ngIf="teamForm.controls['name'].hasError('pattern')">
-         <span style='color:red'>Names should start and end with an alphabet or number. 
-          Names may contain one of '_' o r'-' or space followed by  alphabets or number </span>
+         <span style='color:red'>Names should start and end with a letter or number. 
+          Names may contain one of '_','-' or space followed by  letters or numbers </span>
    </div>
     </form>
   </div>

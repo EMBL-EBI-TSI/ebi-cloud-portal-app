@@ -10,8 +10,8 @@
           autofocus>
       </md-input-container>
       <div *ngIf="configurationForm.controls['name'].hasError('pattern')">
-         <span style='color:red'>Names should start and end with an alphabet or number. 
-          Names may contain one of '.' ,'_', '-' or space followed by  alphabets or number </span>
+         <span style='color:red'>Names should start and end with a letter or number. 
+          Names may contain one of '.' ,'_', '-' or a space followed by  letters or numbers </span>
      </div>
       <!--The cloud provider-->
       <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Cloud provider (required)" [formControl]="configurationForm.controls['cloudProviderParametersName']"
