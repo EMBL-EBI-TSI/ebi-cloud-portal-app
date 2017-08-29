@@ -190,30 +190,6 @@
 
 			</md-tab>
 
-			<md-tab label="Teams">
-
-				<md-card class="background-card" *ngIf="!profileComponent.teamPresenters || profileComponent.teamPresenters.length==0">
-					No teams associated with this account
-				</md-card>
-
-				<div class="md-content" *ngIf="profileComponent.teamPresenters">
-					<span class="wide-summary-card-container">
-					<md-card [routerLink]=" ['/team/', teamPresenter.name]" *ngFor="let teamPresenter of profileComponent.teamPresenters" class="credentials-container">
-						<span class="md-toolbar flex-container-wide">
-							<md-icon class="card-type-icon">group</md-icon><h3>{{ teamPresenter.name }}</h3>
-							<span class="fill-remaining-space"></span>
-							<p *ngIf="teamPresenter.isOwner">OWNER</p>
-						</span>
-					<md-card-content>
-
-					</md-card-content>
-
-					</md-card>
-					</span>
-				</div>
-
-			</md-tab>
-
 		</md-tab-group>
 	</div>
 </cp-profile-component>

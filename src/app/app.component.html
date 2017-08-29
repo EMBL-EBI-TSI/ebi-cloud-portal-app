@@ -17,6 +17,12 @@
         <span md-line>Volumes</span>
       </a>
       <md-divider></md-divider>
+      <h3 md-subheader>EBI Cloud Portal Community</h3>
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./teams'] " (click)="sidenav.close()">
+        <md-icon md-list-icon>group</md-icon>
+        <span md-line>Teams</span>
+      </a>
+      <md-divider></md-divider>
       <h3 md-subheader>My Profile</h3>
       <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
         <md-icon md-list-icon>face</md-icon>

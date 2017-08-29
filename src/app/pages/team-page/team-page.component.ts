@@ -16,7 +16,7 @@ export class TeamPageComponent implements OnInit {
 
   ngOnInit() {
     let teamName = this._route.snapshot.params['id'];
-    this.breadcrumbService.breadcrumb.push( {label:'Profile', route:'profile'} );
+    this.breadcrumbService.breadcrumb.push( {label:'Teams', route:'teams'} );
     this.breadcrumbService.breadcrumb.push( {label:teamName, route:'teams/'+teamName} );
   }
 
