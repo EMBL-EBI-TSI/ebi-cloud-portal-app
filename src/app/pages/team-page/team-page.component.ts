@@ -34,7 +34,7 @@ export class TeamPageComponent implements OnInit {
     // Show dialog
     const config = new MdDialogConfig();
     config.data = [
-      'Do you want to join ' + this.teamDetail.teamPresenter.name + '?',
+      'Do you want send a join request to ' + this.teamDetail.teamPresenter.name + '?',
       'YES'
     ];
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
