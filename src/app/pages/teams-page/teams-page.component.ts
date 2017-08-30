@@ -8,7 +8,7 @@ import { AddTeamDialog } from '../../dialogs/add-team-dialog/add-team-dialog.com
 import { TeamsComponent } from 'ng2-cloud-portal-presentation-lib';
 import { CloudProviderParametersService, TokenService, CredentialService } from 'ng2-cloud-portal-service-lib';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
-
+import { TeamNameFilterPipe } from './team-name-filter.pipe';
 
 @Component({
   selector: 'teams-page',

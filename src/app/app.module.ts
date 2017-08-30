@@ -22,6 +22,7 @@ import { ProfileComponent, CloudProviderParametersComponent, RepositoryComponent
         ApplicationComponent, ErrorComponent, ApplicationCloudProviderPipe,
         TeamComponent, DeploymentsComponent, DeploymentComponent,
         VolumesComponent, TeamsComponent, DeploymentStatusPipe, ConfigurationFilterPipe } from 'ng2-cloud-portal-presentation-lib';
+import { TeamNameFilterPipe } from './pages/teams-page/team-name-filter.pipe';
 
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
@@ -118,6 +119,7 @@ export function provideConfig() {
     ApplicationCloudProviderPipe,
     ConfigurationFilterPipe,
     DeploymentStatusPipe,
+    TeamNameFilterPipe,
     VolumeSetupPageComponent,
     VolumeInstancePageComponent,
     ShareDialog,
