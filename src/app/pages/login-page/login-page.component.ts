@@ -35,7 +35,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       this.authService.processToken(event.data);
       event.source.close();
       if (tokenService.getToken()) {
-        this.router.navigateByUrl('/profile');
+        this.router.navigateByUrl('/');
       }
     });
   }
