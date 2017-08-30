@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdDialog, MdDialogConfig, MdTabGroup } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { AddCloudProviderDialog } from '../../dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
