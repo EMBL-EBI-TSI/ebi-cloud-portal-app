@@ -1,22 +1,8 @@
 <div class="content">
+	
   <div style="margin-left: 5%; width: 90%;">
-	<div>
-    <span>
-		<h3>Introduction</h3>
-		<p>This section is to help you to use the portal 
-			demonstrated with help of screenshots.</p>
-	</span>
-  </div>
 
-  <div>
-    <span>
-			<h3>Welcome Page</h3>
-			<p>This is the usual welcome or start up page. To the top right corner you will  find 'Login' link.</p>
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="welcomePage">
-		</span>
-	</div>
-
-	<div>
+		<div class="flex-container thin-bottom-border">
 		<span>
 			<h3>Single Sign On</h3>
 			<p>If you don't have an <a href="https://www.elixir-europe.org/register">ELIXIR</a> associated account, you need to
@@ -27,196 +13,64 @@
 			When you first log in to the EBI Cloud Portal, you will first be asked if you allow your home institution (or Google, etc)
 			to release your data to ELIXIR, where you can choose to allow/disallow the release of your data to the EBI Authentication Gateway.
 			</p>
-			<p>Let's review the process step by step</p>
-			<p>Here you make use of the SSO (single sign on) button.</p>
-
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="loginUserPassword">
-
-			<p>You can sign in using Google, Linkedin, ORCID accounts or your institution login.</p>
-
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="loginSSOStepOne">
-
-		 <p> Say for example, you have entered your institution name, you will be taken
-		  to another page, where you enter your login details you use in you institution 
-		 to as follows </p>
-
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="loginSSOStepTwo">
-
-			<p>Enter the login details and click on 'Login'. You will be redirected to the portal page.</p>
+			<p>Let's review the process step by step in the following videos.</p>
+			</span>
+		<span>
+			<iframe width="480" height="320" src="https://www.youtube.com/embed/h3KU4DKMG9o" frameborder="0" allowfullscreen></iframe>
 		</span>
   </div>
 
-  <div>
-    <span>
-			<h3>Profile Page</h3>
-			<p>Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, a side navigation bar appears as follows</p>
-
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="sidebarSymbol">
-
-			<p>Click on 'Profile' which will then take you to profile page where you can
-			add, share and remove Cloud Providers, Configurations, Deployment Parameters, and Teams.
-			</p>
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="homeProfile">
-		</span>
-    <div>
-      <span>
-				<h4>I. Cloud providers</h4>
-				<p>To add Cloud Providers, click on the 'Cloud Providers' tab in you Profile Page.
-				To the right is a '+' symbol which will allow you to add a Cloud Provider. 
-				</p>
-				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="profileAddCppStepOne">
-				<p>
-				You can add Cloud Provider Parameters , by clicking on the '+' next to the Parameters.
-				To add more parameters  just click on '+'.
-				Then hit on 'ADD' button to save the information. You will be able to see the 
-				Cloud Provider added to your Profile.
-				</p>
-				<p>
-				Once cloud provider or team (given below) is created or shared (given below), you 
-				can see the parameters by clicking on the 'green eye icon'.
-				</p>
-			</span>
-    </div>
-    <div>
-      <span>
-				<h4>II. Configurations</h4>
-				<p>You can create a <em>Configuration</em> which takes as
-				input a <em>Cloud Provider</em> name and a <em>Deployment Parameter</em> name, 
-				which can be made use of while deploying applications.
-				To add a Configuration, click on the 'Configurations' tab To the right is a '+' symbol which will allow you to 
-				add a Configuration. The Cloud Provider and other entries allow you to select from your previously added elements.
-				</p>
-				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="profileBeforeAddingConfig">
-				<p>Click on 'ADD' to save.</p>
-				
-				<p>You can click on the 'red bin icon', to delete the deployment parameters.</p>
-			</span>
-    </div>
-    <div>
-      <span>
-				<h4>III. Deployment Parameters</h4>
-				<p><em>Deployment Parameters</em> can be added in a similar way to the previous entities. 
-				 Click on 'ADD' to save the deployment parameters as usual. You can also click on the 'bin icon', 
-				 to delete the deployment parameters.</p>
-			</span>
-    </div>
-    <div>
-      <span>
-				<h4>IV. Teams</h4>
-
-				<p><em>Teams</em> are an essential part to the EBI Cloud Portal. Through teams we can share items such as applications
-				or Configurations with its members. To add teams, go to the 'Teams' tab in your Profile Page.
-				</p>
-
-				<p>
-				Use the '+' button to open the <em>add team</em> dialog. Enter the team name and click on 'ADD'.
-				</p>
-				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="profileAddTeam">
-
-				<p>
-					You can add team members, by clicking on your new team card. that will take you to the team
-				details page.
-				</p>
-				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="profileTeamDetails">
-				
-				<p>There you will find the 'add people icon' to the right, click on it,
-				enter the email of the person, and click on 'ADD'. Click on  'ADD' to keep adding more members.</p>
-				
-				<p>You can click on the 'red cross icon', to remove members from team.</p>
-				<p>Sharing items iwthin teams is done through the card of the item we want to share (e.g. Application, Configuration, etc).</p>
-			</span>
-    </div>
-  </div>
-
-  <div>
-    <div>
-			<h3>Repository Page</h3>
+	<div class="flex-container thin-bottom-border">
+		<span>
+			<h3>Adding your own Applications</h3>
 			<p>
 				Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, the side navigation bar appears. Click on
 				<em>Repository</em> which will then take you to repository page where you can manage <em>Applications</em>.
 			</p>
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="homeRepository">
-		</div>
-		<div>
-			<p>To add applications, click on the '+' symbol in Repository page</p>
-			<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="repositoryAddingApplication">
-			<p>You can then enter the repository URI. The application should have a file named MANIFEST.json with parameters, like the 
-				one given below https://github.com/jadianes/be-application-test. After entering the repository path, click on 'ADD'.
-			</p>
-			<p>
-				Your application will be added to the list.
-			</p>
-		</div>
+			<p>The following video explains how to add your own application from a GitHub repository.</p>
+		</span>
+		<span>
+			<iframe width="480" height="320" src="https://www.youtube.com/embed/5XD2qaaA7cY" frameborder="0" allowfullscreen></iframe>
+		</span>
+	</div>
 
-    <div>
-			<h3>Sharing</h3>
-      <div>
-				<h4>Sharing Cloud providers</h4>
-				<p>You can share your cloud credentials, with other users within a team.
-				To share Cloud Providers, click on the 'Cloud Provider' you want to share.
-				To the right there is a <img style="height: 1em; width:1em;"  [src]="shareSymbol">
-				symbol which will allow you to share a this item.</p>
-
-				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="profileSharingCpp">
-				<p>
-					A dialog will pop up where you can enter the the name of the team you want to share with. Then click on 'Share'.
-				</p>
-			</div>
-      <div>
-				<h4>Sharing Applications</h4>
-				<p>You can share your applications in the same way. Click on the one you want to share. To the right
-					there is the <img style="height: 1em; width:1em;"  [src]="shareSymbol"> symbol which will allow you
-					 to share it.
-				</p>
-				<img style="height: 90%; width:90%; margin-top: 1em;" border="1" [src]="repositorySharingApplication">
-				
-			</div>
-    </div>
-  </div>
-  <div>
-		<h3>Cloud deployment</h3>
+  <div class="flex-container thin-bottom-border">
     <span>
-		<h4><b>Deploying Applications</b></h4>
-		<p> You can deploy applications, to be run  on a selected cloud provider. Click on 'Repository' where
-			  you can find the applications that are available for deployment. The first thing you should
-			  do is to choose the Cloud Provider where the application will get deployed to. For this from the 
-				top left corner, click on <em>Select provider</em> and select a cloud provider, which 
-			  you have defined or that has been shared with you. This will filter the repository only to
-				show applications compatible with that cloud provider.
-		</p>
-
-		<img style="height: 90%; width:90%; margin-top: 1em;" border="1"  [src]="deployChooseCloudProvider">
-
-    <p>
-			Now you can click on the card of the Application you want to deploy. This will
-			take you to the application details page where you can set things ready for deployment. 
-		</p>
-
-		<img style="height: 90%; width:90%; margin-top: 1em;" border="1"  [src]="applicationDetails">
-
-		<p>If you have <em>Deployment Parameters</em> defined for the application and you have also
-		defined a <em>Configuration</em> providing those, you can use it. Under 'Choose Configurations' 
-		a list of available Configurations will appear and you can use one of them.</p>
-
-		<img style="width:70em; margin-top: 3em;" border="1"  [src]="deployChooseConfiguration">
-
-		<p>If the configuration you have chosen, has a deployment parameter matching the 
-		deployment parameters for the application, the value is displayed as populated.
-		Click on the 'green eye' icon, to check them.</p>
-
-		<p>
-			Additionally, you can enter the inputs for the application if any under 'Inputs', and
-			then click on the 'Deploy' button.
-		</p>
-
-		<p>From here you will be taken to the deployments section, where you can see the status
-			of each of your cloud deployments or click on any of them to see it in detail.
-		</p>
-		
-		<p>
-			More documentation to come...stay tuned.
-		</p>
-	</span>
+			<h3>Creating a Configuration, from scratch</h3>
+			<p>Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, a side navigation bar appears. Click on 'Profile' which
+				 will then take you to profile page where you can
+			add, share and remove Cloud Providers, Configurations, and Deployment Parameters.
+		  </p>
+			<p>The following video guides you through the whole process.</p>
+		</span>
+    <span>
+				
+		</span>
   </div>
+
+	<div class="flex-container thin-bottom-border">
+    <span>
+			<h3>Your first Deployment</h3>
+			<p>
+				Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, the side navigation bar appears. Click on
+				<em>Repository</em> which will then take you to repository page where you can manage <em>Applications</em>.
+		  </p>
+			<p>The following video guides you through the process of Deploying an Application using a previously created Configuration (see previous videos).</p>
+		</span>
+    <span>
+				
+		</span>
+	</div>
+	
+	<div class="flex-container thin-bottom-border">
+    <span>
+			<h3>Sharing and the EBI Cloud Portal Community</h3>
+			
+		</span>
+    <span>
+				
+		</span>
+	</div>
+
   </div>
 </div>
