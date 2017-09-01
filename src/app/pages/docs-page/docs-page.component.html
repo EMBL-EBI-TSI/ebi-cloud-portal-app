@@ -5,15 +5,18 @@
 		<div class="flex-container thin-bottom-border">
 		<span>
 			<h3>Single Sign On</h3>
-			<p>If you don't have an <a href="https://www.elixir-europe.org/register">ELIXIR</a> associated account, you need to
-			create one using one of the supported providers (Google, institutional account, etc.).
+			<p>
+				To access the EBI Cloud Portal you can use Single Sign On with an
+				<a href="https://www.elixir-europe.org/register">ELIXIR</a> associated account. If you don't
+				have an ELIXIR associated account, you need to create one using one of the supported
+				providers (Google, ORCID, LinkedIn, institutional accounts, etc.).
 			</p>
 			<p>
-			This involves email verification, and finishes with a "We've got your registration" message from ELIXIR.
+			The Single Sign On process involves email verification, and finishes with a "We've got your registration" message from ELIXIR.
 			When you first log in to the EBI Cloud Portal, you will first be asked if you allow your home institution (or Google, etc)
 			to release your data to ELIXIR, where you can choose to allow/disallow the release of your data to the EBI Authentication Gateway.
 			</p>
-			<p>Let's review the process step by step in the following videos.</p>
+			<p>Let's review the process step by step in the following video.</p>
 			</span>
 		<span>
 			<iframe width="480" height="320" src="https://www.youtube.com/embed/h3KU4DKMG9o" frameborder="0" allowfullscreen></iframe>
@@ -24,10 +27,19 @@
 		<span>
 			<h3>Adding your own Applications</h3>
 			<p>
-				Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, the side navigation bar appears. Click on
+				Although the EBI Cloud Portal community lists many well known applications, including both 
+				infrastructure and bioinformatics ones, you can also add applications developed by you if they
+				are properly packaged for the EBI Cloud Portal to use. See the Application developer 
+				documentation <a href="">here</a>.
+			</p>
+			<p>
+				Applications are added from the Repository section of the portal.Click on
+				<img style="height: 1em; width:1em;" [src]="menuSymbol">, the side navigation bar appears. Click on
 				<em>Repository</em> which will then take you to repository page where you can manage <em>Applications</em>.
 			</p>
-			<p>The following video explains how to add your own application from a GitHub repository.</p>
+			<p>
+				The following video explains how to add your own application from a GitHub repository.
+			</p>
 		</span>
 		<span>
 			<iframe width="480" height="320" src="https://www.youtube.com/embed/5XD2qaaA7cY" frameborder="0" allowfullscreen></iframe>
@@ -37,11 +49,24 @@
   <div class="flex-container thin-bottom-border">
     <span>
 			<h3>Creating a Configuration, from scratch</h3>
-			<p>Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, a side navigation bar appears. Click on 'Profile' which
-				 will then take you to profile page where you can
-			add, share and remove Cloud Providers, Configurations, and Deployment Parameters.
+			<p>
+				A <em>Configuration</em> is a way of reusing and sharing cloud credentials and parameters for Applications. In order to be able to 
+				deploy an Application in a cloud resource, we need to provide cloud credentials (<em>Cloud Provider</em> parameters) and possibly
+				additional parameters (<em>Deployment Parameters</em>) that are specific to the cloud resource (e.g. network IDs, etc).
+			</p>
+			<p>It can be a tedious process to introduce these parameters each time we want to deploy an Application. Moreover, some of these
+				are technical details that can be provided by the user managing the cloud resource we are going to deploy to. For that
+				reason, the EBI Cloud Portal introduces the concept of Configuration as a way of encapsulating all that information 
+				so it is easy to define, reuse, and share.
+			</p>
+			<p>
+				Configurations can be shared with you by other users, but you can also create your own. Let's see how. Click on
+				 <img style="height: 1em; width:1em;" [src]="menuSymbol">, a side navigation bar appears. Click on 'Profile' which
+				 will then take you to profile page where you can add, share and remove Cloud Providers, Configurations, and Deployment Parameters.
 		  </p>
-			<p>The following video guides you through the whole process.</p>
+			<p>
+				The following video guides you through the whole process.
+			</p>
 		</span>
     <span>
 				<iframe width="480" height="320" src="https://www.youtube.com/embed/rUP0IrXrZvg" frameborder="0" allowfullscreen></iframe>
@@ -52,13 +77,20 @@
     <span>
 			<h3>Your first Deployment</h3>
 			<p>
+				The final goal of the EBI Cloud Portal is to make easy to deploy useful applications into the cloud. Once we have 
+				available both, the Application we want to deploy, together with a working Configuration, we can proceed to deploy
+				just with a few clicks.
+			</p>
+			<p>
 				Click on <img style="height: 1em; width:1em;" [src]="menuSymbol">, the side navigation bar appears. Click on
 				<em>Repository</em> which will then take you to repository page where you can manage <em>Applications</em>.
 		  </p>
-			<p>The following video guides you through the process of Deploying an Application using a previously created Configuration (see previous videos).</p>
+			<p>
+				The following video guides you through the process of Deploying an Application using the previously created Configuration (see previous videos).
+			</p>
 		</span>
     <span>
-				
+				<iframe width="480" height="320" src="https://www.youtube.com/embed/f2csE-ye_0E" frameborder="0" allowfullscreen></iframe>
 		</span>
 	</div>
 	
