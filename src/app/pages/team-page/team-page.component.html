@@ -100,7 +100,7 @@
 
         <!--These are the action controls-->
         <md-card-actions>
-          <span *ngIf="!teamDetail.teamPresenter.isOwner">
+          <span *ngIf="!teamDetail.teamPresenter.isOwner && !teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())">
             <button md-raised-button (click)="requestJoin()">
               JOIN
             </button>
