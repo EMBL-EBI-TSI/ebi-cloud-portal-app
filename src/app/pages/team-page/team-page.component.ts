@@ -43,9 +43,6 @@ export class TeamPageComponent implements OnInit {
         this.teamDetail.requestAddMember(this.teamDetail.credentialService.getEmail(),'/error');
       }
     });
-
-    
-
     
   }
 }
