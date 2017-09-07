@@ -10,7 +10,7 @@
             <button md-icon-button (click)="teamDetail.addMemberDialogShowing=!teamDetail.addMemberDialogShowing">
               <md-icon>group_add</md-icon> 
             </button>
-            <button md-icon-button color="warn" (click)="teamDetail.remove()">
+            <button md-icon-button color="warn" (click)="teamDetail.remove('/teams','/error')">
               <md-icon>delete_forever</md-icon> 
             </button>
           </span>
@@ -36,7 +36,7 @@
           </md-list-item>
           <md-list-item *ngFor="let accountEmail of teamDetail.teamPresenter.memberAccountEmails">
             <p md-line class="param-value">{{ accountEmail }}<button *ngIf="teamDetail.teamPresenter.isOwner" 
-              md-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail)">
+              md-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail, '/error')">
               <md-icon>highlight_off</md-icon> 
             </button></p>
           </md-list-item>
@@ -48,7 +48,7 @@
             </md-input-container>
           </form>
           <!--<span class="fill-remaining-space"></span>-->
-          <button md-raised-button (click)="teamDetail.addMember(memberAccountEmail); teamDetail.addMemberDialogShowing = false">
+          <button md-raised-button (click)="teamDetail.addMember(memberAccountEmail, '/error'); teamDetail.addMemberDialogShowing = false">
           ADD</button>
           </span>
           </span>
@@ -100,6 +100,11 @@
 
         <!--These are the action controls-->
         <md-card-actions>
+          <span *ngIf="!teamDetail.teamPresenter.isOwner && !teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())">
+            <button md-raised-button (click)="requestJoin()">
+              JOIN
+            </button>
+          </span>
         </md-card-actions>
       </md-card>
     </div>

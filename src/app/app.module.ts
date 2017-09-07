@@ -21,12 +21,14 @@ import { TokenService, AuthService, ConfigService,
 import { ProfileComponent, CloudProviderParametersComponent, RepositoryComponent,
         ApplicationComponent, ErrorComponent, ApplicationCloudProviderPipe,
         TeamComponent, DeploymentsComponent, DeploymentComponent,
-        VolumesComponent, DeploymentStatusPipe, ConfigurationFilterPipe } from 'ng2-cloud-portal-presentation-lib';
+        VolumesComponent, TeamsComponent, DeploymentStatusPipe, ConfigurationFilterPipe } from 'ng2-cloud-portal-presentation-lib';
+import { TeamNameFilterPipe } from './pages/teams-page/team-name-filter.pipe';
 
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { TeamsPageComponent } from './pages/teams-page/teams-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { RepositoryPageComponent } from './pages/repository-page/repository-page.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
@@ -43,6 +45,7 @@ import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 import { ShareDialog } from './dialogs/share-dialog/share-dialog.component';
 import { AddRepoDialog } from './dialogs/add-repo-dialog/add-repo-dialog.component';
 import { SuggestActionDialog } from './dialogs/suggest-action-dialog/suggest-action-dialog.component';
+import { ErrorMessageDialog } from './dialogs/error-message-dialog/error-message-dialog.component';
 import { AddCloudProviderDialog } from './dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
 import { EditCloudProviderDialog } from './dialogs/edit-cloud-provider-dialog/edit-cloud-provider-dialog.component';
 import { AddConfigurationDialog } from './dialogs/add-configuration-dialog/add-configuration-dialog.component';
@@ -57,6 +60,7 @@ import { EditDeploymentParametersDialog } from './dialogs/edit-deployment-parame
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
     { path: 'profile', component: ProfilePageComponent },
+    { path: 'teams', component: TeamsPageComponent },
     { path: 'repository', component: RepositoryPageComponent },
     { path: 'repository/:id', component: ApplicationPageComponent },
     { path: 'repository/shared/:id', component: ApplicationPageComponent },
@@ -88,6 +92,10 @@ export function provideConfig() {
     LoginPageComponent,
     ProfilePageComponent,
     ProfileComponent,
+    TeamsPageComponent,
+    TeamsComponent,
+    TeamPageComponent,
+    TeamComponent,
     ErrorPageComponent,
     ErrorComponent,
     RepositoryPageComponent,
@@ -101,8 +109,6 @@ export function provideConfig() {
     DeploymentComponent,    
     ApplicationPageComponent,
     ApplicationComponent,
-    TeamPageComponent,
-    TeamComponent,
     CloudProviderParametersPageComponent,
     CloudProviderParametersComponent,
     ConfigurationPageComponent,
@@ -113,11 +119,13 @@ export function provideConfig() {
     ApplicationCloudProviderPipe,
     ConfigurationFilterPipe,
     DeploymentStatusPipe,
+    TeamNameFilterPipe,
     VolumeSetupPageComponent,
     VolumeInstancePageComponent,
     ShareDialog,
     AddRepoDialog,
     SuggestActionDialog,
+    ErrorMessageDialog,
     AddCloudProviderDialog,
     EditCloudProviderDialog,    
     AddConfigurationDialog,
@@ -141,6 +149,7 @@ export function provideConfig() {
   entryComponents: [
     AddRepoDialog,
     SuggestActionDialog,
+    ErrorMessageDialog,
     ShareDialog,
     AddCloudProviderDialog,
     EditCloudProviderDialog,    

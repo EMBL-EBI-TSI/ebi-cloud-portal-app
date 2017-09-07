@@ -1,0 +1,37 @@
+<cp-teams-component #teamsComponent>
+
+	<button md-fab (click)="openAddTeamDialog()">
+		<md-icon>add</md-icon>
+	</button>
+
+	<div class="content">
+
+		<md-toolbar>
+			<span class="fill-remaining-space"></span>
+			<md-icon class="card-type-icon" style="color: gray">search</md-icon>
+			<md-input-container>
+				<input mdInput #searchBox placeholder="Search">
+			</md-input-container>
+		</md-toolbar>
+
+		<md-card class="background-card" *ngIf="!teamsComponent.teamPresenters || teamsComponent.teamPresenters.length==0">
+			No teams in this community
+		</md-card>
+
+		<div class="md-content" *ngIf="teamsComponent.teamPresenters">
+			<span class="wide-summary-card-container">
+			<md-card [routerLink]=" ['/team/', teamPresenter.name]" *ngFor="let teamPresenter of teamsComponent.teamPresenters | teamName:searchBox.value" class="credentials-container">
+				<span class="md-toolbar flex-container-wide">
+					<md-icon class="card-type-icon">group</md-icon><h3>{{ teamPresenter.name }}</h3>
+					<span class="fill-remaining-space"></span>
+					<p *ngIf="teamPresenter.isOwner">OWNER</p>
+				</span>
+				<md-card-content>
+
+				</md-card-content>
+			</md-card>
+			</span>
+		</div> <!-- md-content -->
+	</div> <!-- content -->
+
+</cp-teams-component>

@@ -102,7 +102,7 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
     ];
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
     dialogRef.afterClosed().subscribe(actionTaken => {
-      if (actionTaken=='add')
+      if (actionTaken=='GO')
         this.openAddApplicationDialog(repo);
     });
   }
