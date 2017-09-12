@@ -23,6 +23,7 @@ md-sidenav-container {
 .ebi-header {
   background-color: var(--primary-color);
   padding: 0px 0px 0px 10px;
+  height: 40px;
 }
 
 .ebi-header-logo {
@@ -42,12 +43,13 @@ md-sidenav-container {
 .ebi-header-link-container {
   float: right;
   padding-right: 15px;
-  position: relative;
-  top: -11px;
   color: var(--light-color);
 }
 .ebi-header-link-container md-select {
-  min-width: 150px;
+
+  position: relative;
+  top:-11px;
+  margin-bottom: -15px;
   color: var(--light-color);
 }
 
@@ -66,13 +68,12 @@ md-sidenav-container {
 }
 
 .ebi-header-link-text {
-  position: relative;
+
   /*font-size: 0.8em;*/
 }
 
 .ebi-header-link-icon {
-  position: relative;
-  top: 8px;
+
 }
 
 .ebi-header-avatar {
@@ -86,9 +87,7 @@ md-sidenav-container {
 .md-main-toolbar {
   background: var(--primary-color);
   color: var(--light-color);
-  position: relative;
-  top: -11px;
-  min-height: 65px;
+  height: 60px;
   /*box-shadow: 0 2px 1px rgba(0,0,0,.4);*/
 }
 
@@ -125,6 +124,14 @@ md-sidenav-container {
 .md-main-toolbar-link-icon {
   position: relative;
   bottom: 10px;
+}
+
+.content {
+  position: absolute;
+  bottom: 60px;
+  top: 105px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 button.active{
@@ -361,14 +368,6 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.content {
-  position: absolute;
-  bottom: 60px;
-  top: 100px;
-  width: 100%;
-  overflow-x: hidden;
 }
 
 .hero {
