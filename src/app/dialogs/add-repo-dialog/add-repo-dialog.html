@@ -1,4 +1,4 @@
-<md-dialog-content>
+<div md-dialog-content>
 <div>
   <img class="dialog-img" [src]="robby">
   <h2>Add from repo</h2>
@@ -9,13 +9,18 @@
     [formControl]="repoUriCtrl">
   </md-input-container>
 </div>
-</md-dialog-content>
-<md-dialog-actions>
+</div>
+<div md-dialog-actions>
   <button md-raised-button class="button-color-accent"
   [disabled]="!repoUriCtrl.value || repoUriCtrl.value.length<=0"  
   (click)="dialogRef.close(repoUriCtrl.value)">
   ADD
   </button>
-</md-dialog-actions>
+  <span class="fill-remaining-space"></span>
+  <button md-button
+  (click)="dialogRef.close()">
+  CANCEL
+  </button>
+</div>
 
 

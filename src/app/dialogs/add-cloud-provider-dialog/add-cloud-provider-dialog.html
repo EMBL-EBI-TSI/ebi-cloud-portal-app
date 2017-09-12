@@ -59,5 +59,10 @@
    || cloudProviderParametersForm.controls['name'].hasError('required')
    || cloudProviderParametersForm.controls['name'].hasError('pattern')"
     (click)="dialogRef.close(cloudProviderParametersForm.value)">
-							ADD</button>
+              ADD</button>
+  <span class="fill-remaining-space"></span>
+  <button md-button
+  (click)="dialogRef.close()">
+  CANCEL
+  </button>
 </md-dialog-actions>
