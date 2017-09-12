@@ -90,6 +90,7 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
     dialogRef.afterClosed().subscribe(repoUri => {
       if (repoUri)
         repo.addApplication({ repoUri: repoUri });
+      
     });
   }
 
@@ -98,7 +99,7 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
 
     config.data = [
       'It seems you have no applications registered. Do you want to add your own?',
-      'GO'
+      'GO',
     ];
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
     dialogRef.afterClosed().subscribe(actionTaken => {
