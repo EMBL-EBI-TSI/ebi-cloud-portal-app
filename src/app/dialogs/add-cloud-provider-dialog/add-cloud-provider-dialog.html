@@ -7,13 +7,11 @@
     <form [formGroup]="cloudProviderParametersForm" autocomplete="off">
       <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Provider parameters name (required)" [formControl]="cloudProviderParametersForm.controls['name']"
           autofocus>
+        <md-error *ngIf="cloudProviderParametersForm.controls['name'].hasError('pattern')">
+            Only letters, numbers and middle '_', '-' or space
+        </md-error>
       </md-input-container>
-      <div *ngIf="cloudProviderParametersForm.controls['name'].hasError('pattern')">
-        <p style='color:red;'>
-          Names should start, end with a letter or number.<br/>
-          Names may contain one of '.' ,'_', '-' or a space<br/>
-          followed by letters or numbers </p>
-      </div>
+      
       <md-input-container class="input-full-width"><input mdInput 
         type="text" 
         placeholder="Cloud provider (required)" 
