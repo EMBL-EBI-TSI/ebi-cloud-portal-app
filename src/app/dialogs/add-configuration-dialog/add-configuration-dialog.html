@@ -6,15 +6,14 @@
   <div>
     <form [formGroup]="configurationForm" autocomplete="off">
       <!--The config name-->
-      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Configuration name (required)" [formControl]="configurationForm.controls['name']"
+      <md-input-container class="input-full-width">
+        <input mdInput type="text" placeholder="Configuration name (required)" [formControl]="configurationForm.controls['name']"
           autofocus>
+        <md-error *ngIf="configurationForm.controls['name'].hasError('pattern')">
+            Only letters, numbers and middle '_', '-' or space
+        </md-error>
       </md-input-container>
-      <div *ngIf="configurationForm.controls['name'].hasError('pattern')">
-          <p style='color:red;'>
-            Names should start, end with a letter or number.
-            Names may contain one of '.' ,'_', '-' or a space<br/>
-            followed by letters or numbers </p>
-      </div>
+
       <!--The cloud provider-->
       <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Cloud provider (required)" [formControl]="configurationForm.controls['cloudProviderParametersName']"
           [mdAutocomplete]="cloudProvidersAuto">
