@@ -29,7 +29,7 @@
 					<span class="wide-summary-card-container">
 					<md-card [routerLink]=" ['/configuration/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.configurationPresenters" class="credentials-container">
 					<span class="md-toolbar flex-container-wide">
-						<md-icon class="card-type-icon">extension</md-icon>
+						<md-icon class="card-type-icon">settings_applications</md-icon>
 						<h3><md-icon *ngIf="configurationPresenter.obsolete" mdTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
 							It is advisable to delete this."
             				mdTooltipPosition="right" mdTooltipHideDelay="1000">not_interested</md-icon>{{configurationPresenter.name}}</h3>
@@ -47,7 +47,7 @@
 							<p md-line class="param-value">{{ configurationPresenter.sshKey }}</p>
 						</md-list-item>
 						<md-list-item>
-							<md-icon md-list-icon class="card-type-icon">settings_applications</md-icon>
+							<md-icon md-list-icon class="card-type-icon">extension</md-icon>
 							<h3 md-line>Parameters</h3>
 							<p md-line class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
 						</md-list-item>
@@ -56,6 +56,7 @@
 
 					<md-card [routerLink]=" ['/configuration/shared/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.sharedConfigurationPresenters" class="credentials-container">
 					<span class="md-toolbar flex-container-wide">
+						<md-icon class="card-type-icon">settings_applications</md-icon>
     						<h3><md-icon *ngIf="configurationPresenter.obsolete" mdTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
 							It is advisable to delete this."
             				mdTooltipPosition="right" mdTooltipHideDelay="1000">not_interested</md-icon>{{configurationPresenter.name}}</h3>
@@ -74,7 +75,7 @@
 							<p md-line class="param-value">{{ configurationPresenter.sshKey }}</p>
 						</md-list-item>
 						<md-list-item>
-							<md-icon md-list-icon class="card-type-icon">settings_applications</md-icon>
+							<md-icon md-list-icon class="card-type-icon">extension</md-icon>
 							<h3 md-line>Parameters</h3>
 							<p md-line class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
 						</md-list-item>
@@ -158,7 +159,7 @@
 					<span class="wide-summary-card-container">
 					<md-card [routerLink]=" ['/configuration/deploymentparameters/', deploymentParameterPresenter.name]"  *ngFor="let deploymentParameterPresenter of profileComponent.deploymentParametersPresenters" class="credentials-container">
 						<span class="md-toolbar flex-container-wide">
-							<md-icon class="card-type-icon">settings_applications</md-icon>
+							<md-icon class="card-type-icon">extension</md-icon>
 							<h3>{{ deploymentParameterPresenter.name }}</h3>
 							<span class="fill-remaining-space"></span>
 						</span>
@@ -172,7 +173,7 @@
 
 					<md-card  [routerLink]=" ['/configuration/deploymentparameters/shared/', deploymentParameterPresenter.name]" *ngFor="let deploymentParameterPresenter of profileComponent.sharedDeploymentParametersPresenters" class="credentials-container">
 						<span class="md-toolbar flex-container-wide">
-							<md-icon class="card-type-icon">settings_applications</md-icon>
+							<md-icon class="card-type-icon">extension</md-icon>
 							<h3>{{ deploymentParameterPresenter.name }}</h3>
 							<span class="fill-remaining-space"></span>
 						    <p>SHARED</p>

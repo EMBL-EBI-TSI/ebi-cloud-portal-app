@@ -11,8 +11,11 @@
             </md-chip>
           </md-chip-list>
           <span class="fill-remaining-space"></span>
-          <!--Share and remove controls-->
+          <!--Info, share, and remove controls-->
           <span *ngIf="!applicationDetail.applicationDeployer.isShared">
+            <button md-icon-button (click)="openInfoApplicationDialog(applicationDetail)">
+              <md-icon>info</md-icon> 
+            </button>
             <button md-icon-button (click)="openShareApplicationDialog(applicationDetail)">
               <md-icon>share</md-icon> 
             </button>
@@ -25,156 +28,94 @@
           </span>
         </span>
 
-        <!--Application metadata-->
+        <!--Application data-->
         <md-card-content>
-
-          <span class="flex-container-wide">
-        <span class="flex-container-wide">
-        <md-list dense>
-          <md-list-item>
-            <p>{{ applicationDetail.applicationDeployer.about }}</p>
-          </md-list-item>
-          <!--Application source-->
-          <md-list-item>
-            <h3 md-line>Source</h3>
-            <p md-line class="param-value"><a href="{{ applicationDetail.applicationDeployer.repoUri }}">{{ applicationDetail.applicationDeployer.repoUri }}</a></p>
-          </md-list-item>
-          <md-list-item>
-            <h3 md-line>Version</h3>
-            <p md-line class="param-value">{{ applicationDetail.applicationDeployer.version }}</p>
-          </md-list-item>
-          <md-list-item>
-            <h3 md-line>Contact</h3>
-            <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
-          </md-list-item>
-        </md-list>
-        <!--Sharing permisions-->
-        <md-list dense>
-          <span *ngIf="applicationDetail.applicationDeployer.isShared">
-            <md-list-item>
-              <h3 md-line>Owned by</h3>
-              <p md-line class="param-value">{{ applicationDetail.applicationDeployer.accountEmail }}</p>
-            </md-list-item>
-          </span>
-          <span *ngIf="!applicationDetail.applicationDeployer.isShared && applicationDetail.applicationDeployer.sharedWithAccountEmails.length>0">
-            <md-list-item>
-              <h3 md-line>Shared with</h3>
-              <p *ngFor="let accountEmail of applicationDetail.applicationDeployer.sharedWithAccountEmails" md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(accountEmail)">
-                <md-icon>highlight_off</md-icon> 
-              </button></p>
-            </md-list-item>
-          </span>
-          <span *ngIf="applicationDetail.applicationDeployer.sharedWithTeamNames && applicationDetail.applicationDeployer.sharedWithTeamNames.length>0">
-            <md-list-item>
-              <h3 md-line>Included in teams</h3>
-              <p *ngFor="let teamName of applicationDetail.applicationDeployer.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
-                <button *ngIf="!applicationDetail.applicationDeployer.isShared" md-icon-button color="warn" (click)="applicationDetail.unshare(teamName)">
-                  <md-icon>highlight_off</md-icon> 
-                </button>
-              </p>
-            </md-list-item>
-          </span>
-          </md-list>
-          </span>
-          </span>
-
-          <!-- Deployment inputs and co -->
+          <!-- Configs and Deployment inputs -->
           <md-list>
-            <!--Application required volumes-->
-            <h3 md-header>Volumes</h3>
-            <p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length==0">This application requires no attached volumes</p>
-            <!--<p md-subheader *ngIf="applicationDetail.applicationDeployer.volumes.length>0">This application requires to attach the following volumes</p>-->
-            <md-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
-              <md-icon md-list-icon>storage</md-icon>
-              <md-select placeholder="{{ aVolume }}" md-line (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
-                <!--<md-option value="null">None</md-option>-->
-                <md-option *ngFor="let volumeInstance of applicationDetail.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</md-option>
-              </md-select>
-            </md-list-item>
-            <!--Application required inputs-->
-            <h3 md-header>Inputs</h3>
-            <p md-subheader *ngIf="applicationDetail.applicationDeployer.inputs.length==0">This application requires no input values</p>
-            <md-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
-              <md-icon md-list-icon>keyboard_arrow_right</md-icon>
-              <md-input-container md-line class="input-full-width"><input mdInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
-                  (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
-              </md-input-container>
-            </md-list-item>
-
-          <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-          <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
-            <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
-              <md-icon md-list-icon>keyboard_arrow_right</md-icon>
-              <md-input-container md-line class="input-full-width"><input mdInput #{{anInput}} placeholder="{{ anInput }}" 
-                (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
-                (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
-          </md-input-container>
-          </md-list-item>
-          </span>
-            </span>
-            <br>
-
-            <!--Application outputs-->
-            <h3 md-header>Outputs</h3>
-            <p md-subheader *ngIf="applicationDetail.applicationDeployer.outputs.length==0">This application generates no output</p>
-            <!--<p md-subheader *ngIf="applicationDetail.applicationDeployer.outputs.length>0">This application will generate the following values</p>-->
-            <md-list-item *ngFor="let anOutput of applicationDetail.applicationDeployer.outputs">
-              <md-icon md-list-icon>keyboard_arrow_left</md-icon>
-              <h4 md-line>{{ anOutput }}</h4>
-            </md-list-item>
-
-            <h3 md-header>Deployment parameters
-              <button md-icon-button color="primary" *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-              <md-icon>visibility</md-icon> 
-            </button>
-            </h3>
-
-            <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">
-              This application requires no deployment parameters
-            </p>
-
             <span *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">
               
-            <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
-              <md-icon md-list-icon>warning</md-icon>
-              The user account has no pre set configurations to assign deployment parameters.
-            </p>
+              <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
+                <md-icon md-list-icon>warning</md-icon>
+                The user account has no pre set configurations to assign deployment parameters.
+              </p>
 
-            <md-list>
-              <md-list-item>
-                <md-select class="input-full-width" placeholder="Select Configuration" 
-                  [(ngModel)]="selectedConfig"
-                  (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
-                  <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0 
-                  &&  applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-                  <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations | configurationFilter:applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name" [value]="config">
-                          <span *ngIf="config !== undefined">
-                            {{ config.name}} 
-                          </span> 
-                  </md-option>
-                  </span>
-                  <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0 
-                    &&  !applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters">
-                    <md-option></md-option>
-                    <md-option>Please select a cloud provider, from top right corner</md-option>
-                  </span>
-                </md-select>
-                
-              </md-list-item>
-              <span *ngIf="applicationDetail.parametersShowing">
-                <md-list-item *ngFor="let aDeploymentParameter of applicationDetail.applicationDeployer.deploymentParameters">
-                    <md-icon md-list-icon>settings_applications</md-icon>
-                    <h4 md-line>{{ aDeploymentParameter }}</h4>
-                    <p md-line *ngIf="applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]" class="param-value">
-                      {{ applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter] }}
-                    </p>
-                    <p md-line *ngIf="!applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]">
-                      Not assigned
-                    </p>
+              <md-list>
+                <md-list-item>
+                  <md-icon md-list-icon>settings_applications</md-icon>
+                   <div md-line class="input-full-width"> 
+                    <md-select class="input-full-width" placeholder="Select Configuration" 
+                      [(ngModel)]="selectedConfig"
+                      (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
+                      <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0">
+                      <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
+                              <span *ngIf="config !== undefined">
+                                {{ config.name }} | @({{ config.cloudProviderParametersName }})
+                              </span> 
+                      </md-option>
+                      </span>
+                    </md-select>
+                   </div> 
                 </md-list-item>
+                <p md-subheader>Deployment parameters
+                  <button md-icon-button color="primary" *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+                    <md-icon>visibility</md-icon> 
+                  </button>
+                </p>
+
+                <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">
+                  This application requires no deployment parameters
+                </p>
+
+                <span *ngIf="applicationDetail.parametersShowing">
+                  <md-list-item *ngFor="let aDeploymentParameter of applicationDetail.applicationDeployer.deploymentParameters">
+                      <md-icon md-list-icon>extension</md-icon>
+                      <h4 md-line>{{ aDeploymentParameter }}</h4>
+                      <p md-line *ngIf="applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]" class="param-value">
+                        {{ applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter] }}
+                      </p>
+                      <p md-line *ngIf="!applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]">
+                        Not assigned
+                      </p>
+                  </md-list-item>
+                </span>
+              </md-list>
+            </span>
+
+            <!--Application required inputs-->
+            <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration">
+              <h3 md-header>Inputs</h3>
+              <md-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
+                <md-icon md-list-icon>keyboard_arrow_right</md-icon>
+                <md-input-container md-line class="input-full-width"><input mdInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+                    (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
+                </md-input-container>
+              </md-list-item>
+
+              <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+                <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
+                  <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
+                    <md-icon md-list-icon>keyboard_arrow_right</md-icon>
+                    <md-input-container md-line class="input-full-width"><input mdInput #{{anInput}} placeholder="{{ anInput }}" 
+                      (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+                      (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
+                    </md-input-container>
+                  </md-list-item>
+                </span>
               </span>
-          </md-list>
-          </span>
+            </span>
+
+            <!--Application required volumes-->
+            <span *ngIf="!applicationDetail.applicationDeployer.volumes.length==0 && applicationDetail.selectedConfiguration">
+              <h3 md-header>Volumes</h3>
+              <md-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
+                <md-icon md-list-icon>storage</md-icon>
+                <md-select placeholder="{{ aVolume }}" md-line (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
+                  <!--<md-option value="null">None</md-option>-->
+                  <md-option *ngFor="let volumeInstance of applicationDetail.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</md-option>
+                </md-select>
+              </md-list-item>
+            </span>
+            
           </md-list>
 
         </md-card-content>
@@ -185,26 +126,24 @@
 
         <!--These are the action controls-->
         <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
-        <span *ngIf="!applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters
-          || (applicationDetail.application.deploymentParameters.length>0 && !applicationDetail.selectedConfiguration)" 
-          mdTooltip="A valid Cloud Provider and a configuration(if deployment parameters are present)needs to be selected in order to deploy this application"
+        <span *ngIf="(applicationDetail.application.deploymentParameters.length>0 && !applicationDetail.selectedConfiguration)" 
+          mdTooltip="A valid configuration needs to be selected in order to deploy this application1"
           mdTooltipPosition="right" mdTooltipHideDelay="1000">
           <button md-raised-button disabled>
               DEPLOY
           </button>
         </span>
        
-       <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters
-          && (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && applicationDetail.emptyAssigment)"
-           mdTooltip="This application, should have deployment parameters with value to be deployed to {{applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name}}"
+       <span *ngIf="(applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && applicationDetail.emptyAssigment)"
+           mdTooltip="This application, should have deployment parameters with value to be deployed with {{ applicationDetail.selectedConfiguration.name }}"
             mdTooltipPosition="right" mdTooltipHideDelay="1000">
           <button md-raised-button disabled>
               DEPLOY
           </button>
         </span>
 
-          <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters
-          && ((applicationDetail.application.deploymentParameters==0) || (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment))" mdTooltip="This application will be deployed to {{applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.name}}"
+          <span *ngIf="((applicationDetail.application.deploymentParameters==0) || (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment))" 
+            mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.deploymentParametersName }}"
             mdTooltipPosition="right" mdTooltipHideDelay="1000">
           <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
               DEPLOY

@@ -1,0 +1,66 @@
+<md-dialog-content>
+
+  <span class="flex-container-wide">
+    <md-list dense>
+      <md-list-item>
+        <p>{{ applicationDetail.applicationDeployer.about }}</p>
+      </md-list-item>
+      <!--Application source-->
+      <md-list-item>
+        <h3 md-line>Source</h3>
+        <p md-line class="param-value"><a href="{{ applicationDetail.applicationDeployer.repoUri }}">{{ applicationDetail.applicationDeployer.repoUri }}</a></p>
+      </md-list-item>
+      <md-list-item>
+        <h3 md-line>Version</h3>
+        <p md-line class="param-value">{{ applicationDetail.applicationDeployer.version }}</p>
+      </md-list-item>
+      <md-list-item>
+        <h3 md-line>Contact</h3>
+        <p md-line class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
+      </md-list-item>
+      <!--Application outputs-->
+      <h3 md-header>Outputs</h3>
+      <p md-subheader *ngIf="applicationDetail.applicationDeployer.outputs.length==0">This application generates no output</p>
+      <md-list-item *ngFor="let anOutput of applicationDetail.applicationDeployer.outputs">
+        <md-icon md-list-icon>keyboard_arrow_left</md-icon>
+        <h4 md-line>{{ anOutput }}</h4>
+      </md-list-item>
+    </md-list>
+
+    <!--Sharing permisions-->
+    <md-list dense>
+      <span *ngIf="applicationDetail.applicationDeployer.isShared">
+        <md-list-item>
+          <h3 md-line>Owned by</h3>
+          <p md-line class="param-value">{{ applicationDetail.applicationDeployer.accountEmail }}</p>
+        </md-list-item>
+      </span>
+      <span *ngIf="!applicationDetail.applicationDeployer.isShared && applicationDetail.applicationDeployer.sharedWithAccountEmails.length>0">
+        <md-list-item>
+          <h3 md-line>Shared with</h3>
+          <p *ngFor="let accountEmail of applicationDetail.applicationDeployer.sharedWithAccountEmails" md-line class="param-value">{{ accountEmail }}<button md-icon-button color="warn" (click)="applicationDetail.unshare(accountEmail)">
+            <md-icon>highlight_off</md-icon> 
+          </button></p>
+        </md-list-item>
+      </span>
+      <span *ngIf="applicationDetail.applicationDeployer.sharedWithTeamNames && applicationDetail.applicationDeployer.sharedWithTeamNames.length>0">
+        <md-list-item>
+          <h3 md-line>Included in teams</h3>
+          <p *ngFor="let teamName of applicationDetail.applicationDeployer.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
+            <button *ngIf="!applicationDetail.applicationDeployer.isShared" md-icon-button color="warn" (click)="applicationDetail.unshare(teamName)">
+              <md-icon>highlight_off</md-icon> 
+            </button>
+          </p>
+        </md-list-item>
+      </span>
+    </md-list>
+  </span>
+</md-dialog-content>
+<span class="fill-remaining-space"></span>
+<md-dialog-actions>
+  <button md-button
+  (click)="dialogRef.close()">CLOSE
+  </button>
+</md-dialog-actions>
+
+
