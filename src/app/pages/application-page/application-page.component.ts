@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { MdDialog, MdDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ApplicationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
+import { ApplicationInfoDialog } from './application-info-dialog.component';
 
 @Component({
   selector: 'app-application-page',
@@ -33,6 +34,14 @@ export class ApplicationPageComponent implements OnInit {
       if (shareWith)
         applicationDetail.share(shareWith);
     });
+  }
+
+  openInfoApplicationDialog(applicationDetail: ApplicationComponent) {
+    const config = new MdDialogConfig();
+    config.data = [
+      applicationDetail
+    ];
+    let dialogRef = this.dialog.open(ApplicationInfoDialog, config);
   }
 
 }

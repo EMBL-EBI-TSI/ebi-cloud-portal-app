@@ -58,18 +58,6 @@
           <md-icon class="ebi-header-link-icon" md-list-icon>vpn_key</md-icon>
           <span class="ebi-header-link-text">Login</span>
         </a>
-        
-        <md-select *ngIf="credentialService.getUsername()" [(ngModel)]="selectedCloudProvider" placeholder="Select provider" (click)="updateCloudProviders($event)"
-          (ngModelChange)="setCurrentlySelectedCloudProviderParameters($event)">
-          <md-option *ngFor="let aCloudProvider of cloudProviderParameters" [value]="aCloudProvider">
-            {{ aCloudProvider.name }}
-          </md-option>
-          <md-divider></md-divider>
-          <md-option *ngFor="let aCloudProvider of sharedCloudProviderParameters" [value]="aCloudProvider">
-            {{ aCloudProvider.name }}
-          </md-option>
-        </md-select>
-
     </span>
   </div>
   <md-toolbar class="md-main-toolbar">

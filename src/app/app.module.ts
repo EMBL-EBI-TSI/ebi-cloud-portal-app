@@ -56,6 +56,8 @@ import { ConfigurationComponent, DeploymentParametersComponent } from 'ng2-cloud
 import { DeploymentParametersPageComponent } from './pages/deployment-parameters-page/deployment-parameters-page.component';
 import { EditConfigurationDialog } from './dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
 import { EditDeploymentParametersDialog } from './dialogs/edit-deployment-parameters-dialog/edit-deployment-parameters-dialog.component';
+import { ApplicationInfoDialog } from './pages/application-page/application-info-dialog.component';
+
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -132,7 +134,8 @@ export function provideConfig() {
     EditConfigurationDialog,
     AddDeploymentParametersDialog,
     EditDeploymentParametersDialog,
-    AddTeamDialog
+    AddTeamDialog,
+    ApplicationInfoDialog
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -157,7 +160,8 @@ export function provideConfig() {
     EditConfigurationDialog,
     AddDeploymentParametersDialog,
     EditDeploymentParametersDialog,
-    AddTeamDialog
+    AddTeamDialog,
+    ApplicationInfoDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
