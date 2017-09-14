@@ -21,7 +21,7 @@ export class AppComponent {
   cloudProviderParameters: CloudProviderParameters[];
   sharedCloudProviderParameters: CloudProviderParameters[];
 
-  constructor(public tokenService: TokenService,
+    constructor(public tokenService: TokenService,
         public credentialService: CredentialService,
         public accountService: AccountService,
         public cloudProviderParametersService: CloudProviderParametersService,
@@ -37,66 +37,15 @@ export class AppComponent {
                     this.loggedInAccount = account;
                 }
             );
-            this.updateCloudProviders(true);
-        }
-  }
-
-  logOut() {
-    this.credentialService.clearCredentials();
-    this.tokenService.clearToken();
-    this.router.navigateByUrl('/welcome');
-  }
-
-  public setCurrentlySelectedCloudProviderParameters(cloudProviderParameters: CloudProviderParameters) {
-    console.log("Set provider to %O", cloudProviderParameters);
-    this.cloudProviderParametersService.currentlySelectedCloudProviderParameters = cloudProviderParameters;
-  }
-
-  public updateCloudProviders(open:boolean):void {
-        if (open) {
-            this.cloudProviderParametersService.getAll(
-                this.credentialService.getUsername(),
-                this.tokenService.getToken())
-            .subscribe(
-                cloudProviderParameters => {
-                    console.log('[App] cloud provider parameters data is %O', cloudProviderParameters);
-                    this.cloudProviderParameters = cloudProviderParameters
-                },
-                error => {
-                    console.log('[App] error %O', error);
-                    if (error[0]) {
-                        error = error[0];
-                    }
-                    this.errorService.setCurrentError(error);
-                    this.router.navigateByUrl('/error');
-                },
-                () => {
-                    console.log('[App] Cloud provider parameters data retrieval complete');
-                }
-            );
-
-            this.cloudProviderParametersService.getAllShared(
-                this.credentialService.getUsername(),
-                this.tokenService.getToken())
-            .subscribe(
-                cloudProviderParameters => {
-                    console.log('[App] shared cloud provider parameters data is %O', cloudProviderParameters);
-                    this.sharedCloudProviderParameters = cloudProviderParameters
-                },
-                error => {
-                    console.log('[App] error %O', error);
-                    if (error[0]) {
-                        error = error[0];
-                    }
-                    this.errorService.setCurrentError(error);
-                    this.router.navigateByUrl('/error');
-                },
-                () => {
-                    console.log('[App] shared Cloud provider parameters data retrieval complete');
-                }
-            );
         }
     }
+
+    logOut() {
+        this.credentialService.clearCredentials();
+        this.tokenService.clearToken();
+        this.router.navigateByUrl('/welcome');
+    }
+
 
     public getBreadcrumb() {
         return this.breadcrumbService.breadcrumb;
