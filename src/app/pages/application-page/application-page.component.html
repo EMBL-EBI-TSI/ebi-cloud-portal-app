@@ -143,7 +143,7 @@
         </span>
 
           <span *ngIf="((applicationDetail.application.deploymentParameters==0) || (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment))" 
-            mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.deploymentParametersName }}"
+            mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
             mdTooltipPosition="right" mdTooltipHideDelay="1000">
           <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
               DEPLOY
