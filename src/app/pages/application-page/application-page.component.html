@@ -12,10 +12,10 @@
           </md-chip-list>
           <span class="fill-remaining-space"></span>
           <!--Info, share, and remove controls-->
-          <span *ngIf="!applicationDetail.applicationDeployer.isShared">
-            <button md-icon-button (click)="openInfoApplicationDialog(applicationDetail)">
+          <button md-icon-button (click)="openInfoApplicationDialog(applicationDetail)">
               <md-icon>info_outline</md-icon> 
-            </button>
+          </button>
+          <span *ngIf="!applicationDetail.applicationDeployer.isShared">
             <button md-icon-button (click)="openShareApplicationDialog(applicationDetail)">
               <md-icon>share</md-icon> 
             </button>
