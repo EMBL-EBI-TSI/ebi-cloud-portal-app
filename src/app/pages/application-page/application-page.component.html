@@ -32,7 +32,7 @@
         <md-card-content>
           <!-- Configs and Deployment inputs -->
           <md-list>
-            <span *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">
+            <span>
               
               <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
                 <md-icon md-list-icon>warning</md-icon>
@@ -126,29 +126,23 @@
 
         <!--These are the action controls-->
         <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
-        <span *ngIf="(applicationDetail.application.deploymentParameters.length>0 && !applicationDetail.selectedConfiguration)" 
-          mdTooltip="A valid configuration needs to be selected in order to deploy this application1"
-          mdTooltipPosition="right" mdTooltipHideDelay="1000">
-          <button md-raised-button disabled>
-              DEPLOY
-          </button>
-        </span>
-       
-       <span *ngIf="(applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && applicationDetail.emptyAssigment)"
-           mdTooltip="This application, should have deployment parameters with value to be deployed with {{ applicationDetail.selectedConfiguration.name }}"
-            mdTooltipPosition="right" mdTooltipHideDelay="1000">
-          <button md-raised-button disabled>
-              DEPLOY
-          </button>
-        </span>
+        
+          <span *ngIf="!applicationDetail.selectedConfiguration || (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.emptyAssigment)"
+            mdTooltip="Please, select a valid configuration"
+              mdTooltipPosition="right" mdTooltipHideDelay="1000">
+            <button md-raised-button disabled>
+                DEPLOY
+            </button>
+          </span>
 
-          <span *ngIf="((applicationDetail.application.deploymentParameters==0) || (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment))" 
-            mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
-            mdTooltipPosition="right" mdTooltipHideDelay="1000">
-          <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
-              DEPLOY
-          </button>
-        </span>
+          <span *ngIf="applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment" 
+              mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
+              mdTooltipPosition="right" mdTooltipHideDelay="1000">
+            <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
+                DEPLOY
+            </button>
+          </span>
+
         </md-card-actions>
       </md-card>
     </div>
