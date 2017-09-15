@@ -32,7 +32,7 @@
       <span *ngIf="applicationDetail.applicationDeployer.isShared">
         <md-list-item>
           <h3 md-line>Owned by</h3>
-          <p md-line class="param-value">{{ applicationDetail.applicationDeployer.accountEmail }}</p>
+          <p md-line class="param-value">{{ applicationDetail.applicationDeployer.accountUsername }}</p>
         </md-list-item>
       </span>
       <span *ngIf="!applicationDetail.applicationDeployer.isShared && applicationDetail.applicationDeployer.sharedWithAccountEmails.length>0">
