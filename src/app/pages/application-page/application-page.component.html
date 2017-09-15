@@ -56,14 +56,10 @@
                     </md-select>
                    </div> 
                 </md-list-item>
-                <p md-subheader>Deployment parameters
-                  <button md-icon-button color="primary" *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+                <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
+                  <button md-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
                     <md-icon>visibility</md-icon> 
                   </button>
-                </p>
-
-                <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length==0">
-                  This application requires no deployment parameters
                 </p>
 
                 <span *ngIf="applicationDetail.parametersShowing">
