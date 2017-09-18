@@ -4,6 +4,8 @@ import { MdDialog, MdDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { TeamComponent } from 'ng2-cloud-portal-presentation-lib';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
+import { TeamInfoDialog } from './team-info-dialog.component';
+import { AddMemberDialog } from './add-member-dialog.component';
 
 @Component({
   selector: 'app-team-page',
@@ -45,4 +47,21 @@ export class TeamPageComponent implements OnInit {
     });
     
   }
+
+  openAddMemberDialog() {
+    let dialogRef = this.dialog.open(AddMemberDialog);
+    dialogRef.afterClosed().subscribe(memberAccountEmail => {
+      if (memberAccountEmail)
+        this.teamDetail.addMember(memberAccountEmail, '/error');
+    });
+  }
+
+  openInfoTeamDialog(t) {
+    const config = new MdDialogConfig();
+    config.data = [
+      this.teamDetail
+    ];
+    let dialogRef = this.dialog.open(TeamInfoDialog, config);
+  }
+
 }

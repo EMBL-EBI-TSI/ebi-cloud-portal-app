@@ -7,8 +7,11 @@
           <md-icon class="card-type-icon">group</md-icon>
           <h3>{{ teamDetail.teamPresenter.name }}</h3>
           <span class="fill-remaining-space"></span>
+          <button md-icon-button (click)="openInfoTeamDialog()">
+            <md-icon>info_outline</md-icon> 
+          </button>
           <span *ngIf="teamDetail.teamPresenter.isOwner">
-            <button md-icon-button (click)="teamDetail.addMemberDialogShowing=!teamDetail.addMemberDialogShowing">
+            <button md-icon-button (click)="openAddMemberDialog()">
               <md-icon>group_add</md-icon> 
             </button>
             <button md-icon-button color="warn" (click)="teamDetail.remove('/teams','/error')">
@@ -24,16 +27,6 @@
                 <md-list-item *ngIf="!teamDetail.teamPresenter.isOwner">
                   <h3 md-line>Owned by</h3>
                   <p md-line class="param-value">{{ teamDetail.teamPresenter.ownerAccountEmail }}</p>
-                </md-list-item>
-              </md-list>
-              <md-list dense>
-                <md-list-item>
-                  <h3 md-line>AAP Domain Reference
-                    <button md-icon-button color="primary" (click)="domainRefShowing=!domainRefShowing">
-                    <md-icon>visibility</md-icon> 
-                    </button>
-                  </h3>
-                  <p *ngIf="domainRefShowing" md-line class="param-value">{{ teamDetail.teamPresenter.domainReference}}</p>
                 </md-list-item>
               </md-list>
             </span> <!-- metadata span -->
@@ -117,28 +110,17 @@
 
           <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())"> <!-- members span -->
             <h3>Members</h3>
-              <span *ngIf="(!teamDetail.teamPresenter.memberAccountEmails ||  teamDetail.teamPresenter.memberAccountEmails.length==0)">
-                <md-icon>sentiment_neutral</md-icon> 
-                <p>There are no additional members in this team...</p>
-              </span>
-              <md-card *ngFor="let accountEmail of teamDetail.teamPresenter.memberAccountEmails">
-                <p>{{ accountEmail }}<button *ngIf="teamDetail.teamPresenter.isOwner" 
-                  md-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail, '/error')">
-                  <md-icon>highlight_off</md-icon> 
-                </button></p>
-              </md-card>
-
+            <span *ngIf="(!teamDetail.teamPresenter.memberAccountEmails ||  teamDetail.teamPresenter.memberAccountEmails.length==0)">
+              <md-icon>sentiment_neutral</md-icon> 
+              <p>There are no additional members in this team...</p>
+            </span>
+            <md-card *ngFor="let accountEmail of teamDetail.teamPresenter.memberAccountEmails">
+              <p>{{ accountEmail }}<button *ngIf="teamDetail.teamPresenter.isOwner" 
+                md-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail, '/error')">
+                <md-icon>highlight_off</md-icon> 
+              </button></p>
+            </md-card>
           </span> <!-- members span -->
-
-          <span class="share-credentials-dialog" *ngIf="teamDetail.addMemberDialogShowing"> <!-- share controls span -->
-            <form #addMemberForm>
-              <md-input-container class="input-full-width"><input mdInput type="email" placeholder="Member email (required)" [(ngModel)]="memberAccountEmail" name="memberAccountEmail" autofocus>
-              </md-input-container>
-            </form>
-            <!--<span class="fill-remaining-space"></span>-->
-            <button md-raised-button (click)="teamDetail.addMember(memberAccountEmail, '/error'); teamDetail.addMemberDialogShowing = false">
-            ADD</button>
-          </span> <!-- share controls span -->
           
         </span> <!-- card content span -->
         

@@ -1,0 +1,24 @@
+<md-dialog-content>
+  <span>
+    <md-list dense>
+      <md-list-item *ngIf="!teamDetail.teamPresenter.isOwner">
+        <h3 md-line>Owned by</h3>
+        <p md-line class="param-value">{{ teamDetail.teamPresenter.ownerAccountEmail }}</p>
+      </md-list-item>
+    </md-list>
+    <md-list dense>
+      <md-list-item>
+        <h3 md-line>AAP Domain Reference</h3>
+        <p md-line class="param-value">{{ teamDetail.teamPresenter.domainReference}}</p>
+      </md-list-item>
+    </md-list>
+  </span>
+</md-dialog-content>
+<span class="fill-remaining-space"></span>
+<md-dialog-actions>
+  <button md-button
+  (click)="dialogRef.close()">CLOSE
+  </button>
+</md-dialog-actions>
+
+

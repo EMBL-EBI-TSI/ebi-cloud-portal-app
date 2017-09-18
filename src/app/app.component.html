@@ -2,19 +2,19 @@
   <md-sidenav #sidenav mode="push">
     <md-nav-list>
       <h3 md-subheader *ngIf="tokenService.getToken()">My Cloud</h3>
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] "
-        (click)="sidenav.close()">
-        <md-icon md-list-icon>cloud</md-icon>
-        <span md-line>Deployments</span>
-      </a>
       <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] "
         (click)="sidenav.close()">
         <md-icon md-list-icon>dashboard</md-icon>
-        <span md-line>Repository</span>
+        <span md-line>Application Repository</span>
       </a>
+      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] "
+        (click)="sidenav.close()">
+        <md-icon md-list-icon>cloud</md-icon>
+        <span md-line>Running Deployments</span>
+      </a>      
       <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
         <md-icon md-list-icon>storage</md-icon>
-        <span md-line>Volumes</span>
+        <span md-line>Data Volumes</span>
       </a>
       <md-divider *ngIf="tokenService.getToken()"></md-divider>
       <h3 md-subheader *ngIf="tokenService.getToken()">EBI Cloud Portal Community</h3>

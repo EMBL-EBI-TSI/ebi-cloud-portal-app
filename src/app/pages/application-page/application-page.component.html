@@ -13,7 +13,7 @@
           <span class="fill-remaining-space"></span>
           <!--Info, share, and remove controls-->
           <button md-icon-button (click)="openInfoApplicationDialog(applicationDetail)">
-              <md-icon>info_outline</md-icon> 
+            <md-icon>info_outline</md-icon> 
           </button>
           <span *ngIf="!applicationDetail.applicationDeployer.isShared">
             <button md-icon-button (click)="openShareApplicationDialog(applicationDetail)">

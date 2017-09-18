@@ -57,6 +57,8 @@ import { DeploymentParametersPageComponent } from './pages/deployment-parameters
 import { EditConfigurationDialog } from './dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
 import { EditDeploymentParametersDialog } from './dialogs/edit-deployment-parameters-dialog/edit-deployment-parameters-dialog.component';
 import { ApplicationInfoDialog } from './pages/application-page/application-info-dialog.component';
+import { TeamInfoDialog } from './pages/team-page/team-info-dialog.component';
+import { AddMemberDialog } from './pages/team-page/add-member-dialog.component';
 
 
 const appRoutes: Routes = [
@@ -135,7 +137,9 @@ export function provideConfig() {
     AddDeploymentParametersDialog,
     EditDeploymentParametersDialog,
     AddTeamDialog,
-    ApplicationInfoDialog
+    ApplicationInfoDialog,
+    TeamInfoDialog,
+    AddMemberDialog
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -161,7 +165,9 @@ export function provideConfig() {
     AddDeploymentParametersDialog,
     EditDeploymentParametersDialog,
     AddTeamDialog,
-    ApplicationInfoDialog
+    ApplicationInfoDialog,
+    TeamInfoDialog,
+    AddMemberDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
