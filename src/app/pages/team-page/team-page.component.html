@@ -38,7 +38,11 @@
               </md-list>
             </span> <!-- metadata span -->
 
-            <span> <!-- Resources span -->
+            <span *ngIf="!teamDetail.teamPresenter.isOwner && !teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())">
+              <p>Join <em>{{ teamDetail.teamPresenter.name }}</em> and get access to the team resources</p>
+            </span>
+
+            <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())"> <!-- Resources span -->
               <md-list>
                 <span class="flex-container-left">
                   <div *ngIf="(!teamDetail.teamPresenter.applicationNames ||  teamDetail.teamPresenter.applicationNames.length==0) && (!teamDetail.teamPresenter.cloudProviderParameterNames || teamDetail.teamPresenter.cloudProviderParameterNames.length==0)">
@@ -48,7 +52,7 @@
                   </div>
 
                   <!-- Applications -->
-                  <span class="resource-summary-column" *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
+                  <span class="resource-summary-column-double" *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
                     <h3>Applications</h3>
                     <span *ngFor="let applicationName of teamDetail.teamPresenter.applicationNames">
                       <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/repository/', applicationName]">
@@ -63,7 +67,7 @@
                   </span>
                   
                   <!-- Configurations -->
-                  <span class="resource-summary-column" *ngIf="teamDetail.teamPresenter.configurationNames && teamDetail.teamPresenter.configurationNames.length>0">
+                  <span class="resource-summary-column-double" *ngIf="teamDetail.teamPresenter.configurationNames && teamDetail.teamPresenter.configurationNames.length>0">
                     <h3>Configurations</h3>
                     <span *ngFor="let configurationName of teamDetail.teamPresenter.configurationNames">
                       <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/', configurationName]">
@@ -111,7 +115,7 @@
             </md-list> <!-- Resources list -->
           </span> <!-- Resources span -->
 
-          <span> <!-- members span -->
+          <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())"> <!-- members span -->
             <h3>Members</h3>
               <span *ngIf="(!teamDetail.teamPresenter.memberAccountEmails ||  teamDetail.teamPresenter.memberAccountEmails.length==0)">
                 <md-icon>sentiment_neutral</md-icon> 

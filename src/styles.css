@@ -179,9 +179,14 @@ button.active:hover{
   padding: 0px 10px 0px 16px;
 }
 
+.resource-summary-column-double {
+  flex-grow: 2;
+}
+
 .resource-summary-column {
   flex-grow: 1;
 }
+
 .resource-summary-card {
   display: flex;
   flex-grow: 1;
