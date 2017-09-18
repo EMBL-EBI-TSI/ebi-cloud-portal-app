@@ -179,6 +179,16 @@ button.active:hover{
   padding: 0px 10px 0px 16px;
 }
 
+.resource-summary-column {
+  flex-grow: 1;
+}
+.resource-summary-card {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  margin: 1em 1em 0em 0em;
+}
+
 /*full width card container*/
 .wide-summary-card-container {
   display: flex;
@@ -356,6 +366,10 @@ p {
   display: flex;
   /*flex-flow: row grow;*/
   justify-content: space-between;
+}
+
+.flex-container-left {
+  display: flex;
 }
 
 footer {
