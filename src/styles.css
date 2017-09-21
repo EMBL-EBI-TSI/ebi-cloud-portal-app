@@ -179,8 +179,8 @@ button.active:hover{
   padding: 0px 10px 0px 16px;
 }
 
-.resource-summary-column-double {
-  flex-grow: 2;
+.resource-summary-column-bigger {
+  flex-grow: 3;
 }
 
 .resource-summary-column {

@@ -45,7 +45,7 @@
                   </div>
 
                   <!-- Applications -->
-                  <span class="resource-summary-column-double" *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
+                  <span class="resource-summary-column-bigger" *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
                     <h3>Applications</h3>
                     <span *ngFor="let applicationName of teamDetail.teamPresenter.applicationNames">
                       <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/repository/', applicationName]">
@@ -60,7 +60,7 @@
                   </span>
                   
                   <!-- Configurations -->
-                  <span class="resource-summary-column-double" *ngIf="teamDetail.teamPresenter.configurationNames && teamDetail.teamPresenter.configurationNames.length>0">
+                  <span class="resource-summary-column-bigger" *ngIf="teamDetail.teamPresenter.configurationNames && teamDetail.teamPresenter.configurationNames.length>0">
                     <h3>Configurations</h3>
                     <span *ngFor="let configurationName of teamDetail.teamPresenter.configurationNames">
                       <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/', configurationName]">
