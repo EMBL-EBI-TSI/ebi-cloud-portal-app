@@ -111,7 +111,7 @@
           mode="indeterminate"></md-progress-bar>
 
         <md-card-actions *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
-          <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-raised-button (click)="deploymentDetail.destroyDeployment(deploymentDetail.deploymentInstance)">
+          <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
           DESTROY
         </button>
           <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-raised-button disabled>

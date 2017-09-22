@@ -134,7 +134,7 @@
           <span *ngIf="applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment" 
               mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
               mdTooltipPosition="right" mdTooltipHideDelay="1000">
-            <button md-raised-button (click)="applicationDetail.deployApplication(applicationDetail.applicationDeployer)">
+            <button md-raised-button (click)="openConfirmDeploymentDialog(applicationDetail)">
                 DEPLOY
             </button>
           </span>
