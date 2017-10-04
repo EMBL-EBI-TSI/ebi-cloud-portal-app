@@ -30,7 +30,7 @@
             </md-list-item>
             <md-list-item>
               <h3 md-line>Cloud Provider</h3>
-              <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.cloudProviderParameters.name }}</p>
+              <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.cloudProviderParametersCopy.name }}</p>
             </md-list-item>
             <md-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'">
               <p md-line class="param-value">Waiting for provider data...</p>
