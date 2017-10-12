@@ -34,8 +34,12 @@
 						<h3 md-line class="param-value">{{ deploymentInstance.status }}</h3>
 					</md-list-item>
 					<md-list-item>
-						<p md-line>Provider</p>
+						<p md-line>Cloud Provider</p>
 						<h3 md-line class="param-value">{{ deploymentInstance.cloudProviderParametersCopy.name }}</h3>
+					</md-list-item>
+					<md-list-item>
+						<p md-line>Configuration</p>
+						<h3 md-line class="param-value">{{ deploymentInstance.configurationName }}</h3>
 					</md-list-item>
 					<!--List attached volumes
 					<h3 md-header>Volumes</h3>
