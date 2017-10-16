@@ -36,13 +36,19 @@ export class TeamPageComponent implements OnInit {
     // Show dialog
     const config = new MdDialogConfig();
     config.data = [
-      'Do you want send a join request to ' + this.teamDetail.teamPresenter.name + '?',
+      'Do you want to send a join request to ' + this.teamDetail.teamPresenter.name + '?',
       'YES'
     ];
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
     dialogRef.afterClosed().subscribe(actionTaken => {
       if (actionTaken=='YES') {
         this.teamDetail.requestAddMember(this.teamDetail.credentialService.getEmail(),'/error');
+        const closeConfirmation = new MdDialogConfig();
+        closeConfirmation.data = ["Your request has been sent.", "OK", "Request Sent"];
+        let closeConfirmationDialogRef = this.dialog.open(SuggestActionDialog, closeConfirmation);
+        closeConfirmationDialogRef.afterClosed().subscribe(
+          success => {}
+        );
       }
     });
     
