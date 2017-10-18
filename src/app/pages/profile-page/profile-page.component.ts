@@ -39,7 +39,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.checkForConfigs();
+    // this.checkForConfigs();
   }
 
   private checkForParams() {
