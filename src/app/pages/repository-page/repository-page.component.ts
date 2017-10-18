@@ -41,7 +41,7 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
             sharedApplications => {
               console.log('[RepositoryPageComponent] Shared applications data is %O', sharedApplications);
               if (sharedApplications.length==0) {
-                this.openSuggestAddApplicationDialog(this.repo);
+                // this.openSuggestAddApplicationDialog(this.repo);
               }
             },
             error => {
