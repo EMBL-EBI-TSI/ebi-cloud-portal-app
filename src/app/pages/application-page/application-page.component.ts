@@ -4,6 +4,7 @@ import { MdDialog, MdDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ApplicationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
+import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 import { ApplicationInfoDialog } from './application-info-dialog.component';
 
 @Component({
@@ -44,4 +45,18 @@ export class ApplicationPageComponent implements OnInit {
     let dialogRef = this.dialog.open(ApplicationInfoDialog, config);
   }
 
+  openConfirmDeploymentDialog(applicationDetail: ApplicationComponent) {
+    const config = new MdDialogConfig();
+    config.data = [
+      'You are about to deploy \'' + applicationDetail.applicationDeployer.name + '\' using \'' + applicationDetail.selectedConfiguration.name +'\'',
+      'DEPLOY',
+      'Please confirm'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DEPLOY')
+        applicationDetail.deployApplication(applicationDetail.applicationDeployer)
+    });
+    
+  }
 }

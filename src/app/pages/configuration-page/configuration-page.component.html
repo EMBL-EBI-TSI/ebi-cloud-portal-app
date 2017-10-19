@@ -3,7 +3,7 @@
     <div class="detail-card-container">
       <md-card *ngIf="configurationDetail.configurationPresenter">
           <span class="md-toolbar flex-container-wide">
-             <md-icon class="card-type-icon">extension</md-icon>
+             <md-icon class="card-type-icon">settings_applications</md-icon>
              <h3>{{ configurationDetail.configurationPresenter.name }}</h3>
              <span class="fill-remaining-space"></span>
              <span *ngIf="!configurationDetail.configurationPresenter.isShared">
@@ -13,7 +13,7 @@
              <button md-icon-button (click)="openShareConfigurationDialog(configurationDetail)">
                  <md-icon>share</md-icon> 
                </button>
-               <button md-icon-button color="warn" (click)="configurationDetail.remove()">
+             <button md-icon-button color="warn" (click)="configurationDetail.remove()">
                  <md-icon>delete_forever</md-icon> 
               </button>
             </span>

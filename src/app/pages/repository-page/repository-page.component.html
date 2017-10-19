@@ -6,7 +6,7 @@
 
   <div class="content" *ngIf="repo.applicationDeployers">
 
-    <md-card class="background-card" *ngIf="repo.applicationDeployers.length==0">
+    <md-card class="background-card" *ngIf="repo.applicationDeployers.length==0 && repo.sharedApplicationDeployers.length==0">
       No applications registered yet
     </md-card>
 

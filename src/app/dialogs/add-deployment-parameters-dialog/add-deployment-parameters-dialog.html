@@ -7,7 +7,7 @@
     <form [formGroup]="deploymentParametersForm" autocomplete="off">
       <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Deployment parameters name (required)" [formControl]="deploymentParametersForm.controls['name']"
           autofocus>
-        <md-error *ngIf="cloudProviderParametersForm.controls['name'].hasError('pattern')">
+        <md-error *ngIf="deploymentParametersForm.controls['name'].hasError('pattern')">
             Only letters, numbers and middle '_', '-' or space
         </md-error>
       </md-input-container>

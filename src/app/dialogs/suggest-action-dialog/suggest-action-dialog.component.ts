@@ -8,6 +8,7 @@ import { MD_DIALOG_DATA, MdDialog, MdDialogRef } from '@angular/material';
 })
 export class SuggestActionDialog {
   robby = 'assets/img/Robby_form0.5x.png';
+  suggestionTitle: string = 'A suggestion';
   suggestionMessage: string = 'Maybe you want to...';
   actionButtonMessage: string = 'Do it';
   actionTaken: string = 'add';
@@ -21,5 +22,8 @@ export class SuggestActionDialog {
   ngOnInit(): void {
     this.suggestionMessage = this.dialogData[0];
     this.actionButtonMessage = this.dialogData[1];
+    if (this.dialogData[2]) {
+      this.suggestionTitle = this.dialogData[2];
+    }
   }
 }

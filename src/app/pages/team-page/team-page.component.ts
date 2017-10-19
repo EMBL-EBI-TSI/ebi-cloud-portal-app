@@ -4,6 +4,8 @@ import { MdDialog, MdDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { TeamComponent } from 'ng2-cloud-portal-presentation-lib';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
+import { TeamInfoDialog } from './team-info-dialog.component';
+import { AddMemberDialog } from './add-member-dialog.component';
 
 @Component({
   selector: 'app-team-page',
@@ -34,15 +36,38 @@ export class TeamPageComponent implements OnInit {
     // Show dialog
     const config = new MdDialogConfig();
     config.data = [
-      'Do you want send a join request to ' + this.teamDetail.teamPresenter.name + '?',
+      'Do you want to send a join request to ' + this.teamDetail.teamPresenter.name + '?',
       'YES'
     ];
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
     dialogRef.afterClosed().subscribe(actionTaken => {
       if (actionTaken=='YES') {
         this.teamDetail.requestAddMember(this.teamDetail.credentialService.getEmail(),'/error');
+        const closeConfirmation = new MdDialogConfig();
+        closeConfirmation.data = ["Your request has been sent.", "OK", "Request Sent"];
+        let closeConfirmationDialogRef = this.dialog.open(SuggestActionDialog, closeConfirmation);
+        closeConfirmationDialogRef.afterClosed().subscribe(
+          success => {}
+        );
       }
     });
     
   }
+
+  openAddMemberDialog() {
+    let dialogRef = this.dialog.open(AddMemberDialog);
+    dialogRef.afterClosed().subscribe(memberAccountEmail => {
+      if (memberAccountEmail)
+        this.teamDetail.addMember(memberAccountEmail, '/error');
+    });
+  }
+
+  openInfoTeamDialog(t) {
+    const config = new MdDialogConfig();
+    config.data = [
+      this.teamDetail
+    ];
+    let dialogRef = this.dialog.open(TeamInfoDialog, config);
+  }
+
 }
