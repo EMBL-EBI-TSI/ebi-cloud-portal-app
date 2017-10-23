@@ -68,12 +68,13 @@ md-sidenav-container {
 }
 
 .ebi-header-link-text {
-
-  /*font-size: 0.8em;*/
+  position: relative;
+  top: 4px;
 }
 
 .ebi-header-link-icon {
-
+  position: relative;
+  top: 8px;
 }
 
 .ebi-header-avatar {
