@@ -77,6 +77,18 @@
               </md-list>
             </span>
 
+            <!--Optional SSH key-->
+            <span *ngIf="applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment">
+              <h3 md-header>User SSH key (optional)</h3>
+              <md-list-item>
+                <md-icon md-list-icon>vpn_key</md-icon>
+                <md-input-container md-line class="input-full-width">
+                  <input mdInput #sshkey placeholder="SSH key"
+                  (keyup.enter)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)"
+                  (blur)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)">
+                </md-input-container>
+              </md-list-item>
+            </span>
             <!--Application required inputs-->
             <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment">
               <h3 md-header>Inputs</h3>
