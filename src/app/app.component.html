@@ -63,7 +63,7 @@
         </a>
     </span>
   </div>
-  <md-toolbar class="md-main-toolbar">
+  <md-toolbar class="md-main-toolbar" *ngIf="credentialService.getUsername()">
     <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
       <md-icon>menu</md-icon>
     </button>
