@@ -54,7 +54,7 @@ export class TeamPageComponent implements OnInit {
     
   }
     
-  public exitTeam() {
+  public leaveTeam() {
     // Show dialog
     const config = new MdDialogConfig();
     config.data = [
@@ -64,7 +64,7 @@ export class TeamPageComponent implements OnInit {
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
     dialogRef.afterClosed().subscribe(actionTaken => {
       if (actionTaken=='YES') {
-        this.teamDetail.exitTeam(this.teamDetail.credentialService.getEmail(),'/error');
+        this.teamDetail.leaveTeam(this.teamDetail.credentialService.getEmail(),'/error');
         const closeConfirmation = new MdDialogConfig();
         closeConfirmation.data = ["You have exited the team successfully.", "OK", "Exit Team"];
         let closeConfirmationDialogRef = this.dialog.open(SuggestActionDialog, closeConfirmation);
