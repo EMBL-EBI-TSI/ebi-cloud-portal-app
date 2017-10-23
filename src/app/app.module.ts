@@ -27,6 +27,7 @@ import { TeamNameFilterPipe } from './pages/teams-page/team-name-filter.pipe';
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignonPageComponent } from './pages/signon-page/signon-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { TeamsPageComponent } from './pages/teams-page/teams-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
@@ -81,6 +82,7 @@ const appRoutes: Routes = [
     { path: 'error', component: ErrorPageComponent },
     { path: 'about', component: AboutPageComponent },
     { path: 'login', component: LoginPageComponent },
+    { path: 'signon', component: SignonPageComponent },    
     { path: 'docs', component: DocsPageComponent },
     { path: '**', component: WelcomePageComponent },
 ];
@@ -94,6 +96,7 @@ export function provideConfig() {
     AppComponent,
     AboutPageComponent,
     LoginPageComponent,
+    SignonPageComponent,
     ProfilePageComponent,
     ProfileComponent,
     TeamsPageComponent,
