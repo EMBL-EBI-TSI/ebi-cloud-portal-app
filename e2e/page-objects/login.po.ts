@@ -29,6 +29,14 @@ export class LoginPage {
   }
 
   getMessageText() {
+    return element(by.css('.content-out'))
+            .element(by.tagName('div'))
+            .element(by.css('.hero-message'))
+            .element(by.tagName('h3'))
+            .getText();
+  }
+
+  getWelcomeMessageText() {
     return element(by.css('.content'))
             .element(by.tagName('div'))
             .element(by.css('.hero-message'))
