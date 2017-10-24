@@ -35,10 +35,9 @@ md-sidenav-container {
 .ebi-header-title {
   text-decoration: none;
   color: var(--light-color);;
-  padding-left: 9px;
+  padding-left: 10px;
   position: relative;
-  font-size: 1.3em;
-  font-weight: lighter;
+  font-size: 1.4em;
 }
 .ebi-header-link-container {
   float: right;
