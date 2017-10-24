@@ -10,6 +10,7 @@ describe('Profile page', () => {
   beforeAll(() => {
     // clear token
     browser.executeScript('localStorage.removeItem("token");');
+    browser.get('/');
   })
 
   beforeEach(() => {
