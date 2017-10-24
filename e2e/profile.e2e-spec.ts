@@ -10,7 +10,7 @@ describe('Profile page', () => {
   beforeAll(() => {
     // clear token
     browser.executeScript('localStorage.removeItem("token");');
-    browser.get('/');
+    browser.executeScript('localStorage.removeItem("username");');
   })
 
   beforeEach(() => {
@@ -31,8 +31,6 @@ describe('Profile page', () => {
   })
 
   it('should get a profile page with given name', () => {
-    browser.executeScript('localStorage.removeItem("token");');
-    browser.get('/');
     // We can now navigate to the login page
     loginPage.navigateTo();
     // expect to see the login message
