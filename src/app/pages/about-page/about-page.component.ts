@@ -15,7 +15,8 @@ export class AboutPageComponent implements OnInit {
   ebiLogoOnly = 'assets/img/embl_logo_only.png';
   elixirLogo = 'assets/img/elixir_logo.png';
   cloudsLogo = 'assets/img/clouds_logo.png';
-  
+  ecpMainInfographic = 'assets/img/ecp_main_infographic.png';
+
   constructor(public breadcrumbService: BreadcrumbService) { }
 
   ngOnInit() {
