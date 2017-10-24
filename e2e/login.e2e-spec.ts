@@ -46,7 +46,7 @@ describe('Login page', () => {
     // We can now navigate to the login page
     loginPage.navigateTo();
     // expect to see the login message
-    expect(loginPage.getWelcomeMessageText()).toEqual('Access the EBI Cloud Portal');
+    expect(loginPage.getMessageText()).toEqual('Access the EBI Cloud Portal');
     // set username
     let username = loginPage.getLoginUsername();
     username.sendKeys(aapBasicAuth.username);
@@ -57,7 +57,7 @@ describe('Login page', () => {
     let loginButton = loginPage.getLoginButton();
     loginButton.click();
     // expect to get welcome message
-    expect(loginPage.getMessageText()).toEqual('You are logged in as');
+    expect(loginPage.getWelcomeMessageText()).toEqual('You are logged in as');
   });
 
   it('should get a valid token when using the right username and password', () => {
