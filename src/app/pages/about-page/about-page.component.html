@@ -1,4 +1,5 @@
-<div class="content">
+<div 
+	[ngClass]="{'content': credentialService.getUsername(), 'content-out': !credentialService.getUsername()}">
 	<div class="flex-container">
 		<span style="padding-right: 1em;">
 			<img style="height: 32em;" [src]="ecpMainInfographic">

@@ -130,7 +130,15 @@ md-sidenav-container {
 .content {
   position: absolute;
   bottom: 60px;
-  top: 105px;
+  top: 110px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.content-out {
+  position: absolute;
+  bottom: 60px;
+  top: 45px;
   width: 100%;
   overflow-x: hidden;
 }
