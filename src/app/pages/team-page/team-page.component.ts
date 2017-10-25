@@ -66,7 +66,7 @@ export class TeamPageComponent implements OnInit {
       if (actionTaken=='YES') {
         this.teamDetail.leaveTeam(this.teamDetail.credentialService.getEmail(),'/error');
         const closeConfirmation = new MdDialogConfig();
-        closeConfirmation.data = ["You have exited the team successfully.", "OK", "Exit Team"];
+        closeConfirmation.data = ["You have left the team successfully.", "OK", "Leave Team"];
         let closeConfirmationDialogRef = this.dialog.open(SuggestActionDialog, closeConfirmation);
         closeConfirmationDialogRef.afterClosed().subscribe(
           success => {}
