@@ -47,10 +47,15 @@ export class ApplicationPageComponent implements OnInit {
 
   openConfirmDeploymentDialog(applicationDetail: ApplicationComponent) {
     const config = new MdDialogConfig();
+    let extraInfo: string = '';
+    if (applicationDetail.emptyAssigment) {
+      extraInfo = extraInfo + 'Some deployment parameters remain unassigned.';
+    }
     config.data = [
-      'You are about to deploy \'' + applicationDetail.applicationDeployer.name + '\' using \'' + applicationDetail.selectedConfiguration.name +'\'',
+      'You are about to deploy \'' + applicationDetail.applicationDeployer.name + '\' using \'' + applicationDetail.selectedConfiguration.name +'\'. ',
       'DEPLOY',
-      'Please confirm'
+      'Please confirm',
+      extraInfo
     ];
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
     dialogRef.afterClosed().subscribe(actionTaken => {

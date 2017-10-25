@@ -57,8 +57,13 @@
                    </div> 
                 </md-list-item>
                 <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
-                  <button md-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                    <md-icon>visibility</md-icon> 
+                  <button *ngIf="!applicationDetail.emptyAssigment" md-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+                    <md-icon>visibility</md-icon>
+                  </button>
+                  <button *ngIf="applicationDetail.emptyAssigment" 
+                    md-icon-button color="warn" mdTooltip="Some deployment parameters remain unassigned"
+                    (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+                    <md-icon>visibility</md-icon><md-icon>warning</md-icon>  
                   </button>
                 </p>
 
@@ -70,7 +75,7 @@
                         {{ applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter] }}
                       </p>
                       <p md-line *ngIf="!applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]">
-                        Not assigned
+                        <em style="color: red;">Not assigned</em>
                       </p>
                   </md-list-item>
                 </span>
@@ -78,7 +83,7 @@
             </span>
 
             <!--Optional SSH key-->
-            <span *ngIf="applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment">
+            <span *ngIf="applicationDetail.selectedConfiguration">
               <h3 md-header>User SSH key (optional)</h3>
               <md-list-item>
                 <md-icon md-list-icon>vpn_key</md-icon>
@@ -90,7 +95,7 @@
               </md-list-item>
             </span>
             <!--Application required inputs-->
-            <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment">
+            <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration">
               <h3 md-header>Inputs</h3>
               <md-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
                 <md-icon md-list-icon>keyboard_arrow_right</md-icon>
@@ -135,7 +140,7 @@
         <!--These are the action controls-->
         <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
         
-          <span *ngIf="!applicationDetail.selectedConfiguration || (applicationDetail.application.deploymentParameters.length>0 && applicationDetail.emptyAssigment)"
+          <span *ngIf="!applicationDetail.selectedConfiguration"
             mdTooltip="Please, select a valid configuration"
               mdTooltipPosition="right" mdTooltipHideDelay="1000">
             <button md-raised-button disabled>
@@ -143,7 +148,7 @@
             </button>
           </span>
 
-          <span *ngIf="applicationDetail.selectedConfiguration && !applicationDetail.emptyAssigment" 
+          <span *ngIf="applicationDetail.selectedConfiguration" 
               mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
               mdTooltipPosition="right" mdTooltipHideDelay="1000">
             <button md-raised-button (click)="openConfirmDeploymentDialog(applicationDetail)">

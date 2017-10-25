@@ -109,14 +109,28 @@
 
         <md-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
           mode="indeterminate"></md-progress-bar>
+        <md-card-actions *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
+            FORCE DESTROY
+          </button>
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING'" md-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+            FORCE DELETE
+          </button>
+        </md-card-actions>
 
         <md-card-actions *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
-          <button *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYED'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
-          DESTROY
-        </button>
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-raised-button disabled>
-          DESTROY
-        </button>
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
+            DESTROY
+          </button>
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+            DELETE
+          </button>           
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
+            FORCE DESTROY
+          </button>
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'" md-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+            FORCE DELETE
+          </button>          
         </md-card-actions>
       </md-card>
     </div>

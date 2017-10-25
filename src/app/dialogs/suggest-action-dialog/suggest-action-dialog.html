@@ -6,6 +6,10 @@
 <div>
     {{ suggestionMessage }}
 </div>
+<br/>
+<div *ngIf="extraInfoMessage!=''">
+    <em>{{ extraInfoMessage }}</em>
+</div>
 </md-dialog-content>
 <md-dialog-actions>
   <button md-raised-button class="button-color-accent"

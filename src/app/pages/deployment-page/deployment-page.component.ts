@@ -57,4 +57,19 @@ export class DeploymentPageComponent implements OnInit {
     
   }
 
+  openConfirmDeleteDialog(deploymentDetail: DeploymentComponent) {
+    const config = new MdDialogConfig();
+    config.data = [
+      'You are about to permanently delete the deployment \'' + deploymentDetail.deploymentInstance.reference +'\' (' + deploymentDetail.deploymentInstance.applicationName + ')',
+      'DELETE',
+      'Please confirm'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DELETE')
+        deploymentDetail.deleteDeployment(deploymentDetail.deploymentInstance)
+    });
+    
+  }
+
 }
