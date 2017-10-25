@@ -12,6 +12,7 @@ import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 })
 export class AppComponent {
 
+  ecpLogoWhite = 'assets/img/ecp_logo_white.png';
   ebiLogoBlack = 'assets/img/EMBL_EBI_Logo_black.png';
   ebiLogoWhite = 'assets/img/EMBL_EBI_Logo_white.png';
   name = 'Cloud Portal';

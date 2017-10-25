@@ -1,7 +1,11 @@
-<div class="content">
-	<div class="flex-container thin-bottom-border">
-		<span>
-			<h1>EMBL-EBI Cloud Portal</h1>
+<div 
+	[ngClass]="{'content': credentialService.getUsername(), 'content-out': !credentialService.getUsername()}">
+	<div style="display:flex; flex-wrap: nowrap; justify-content: center; margin: 0em 1em 2em 1em;">
+		<span style="flex-grow:0.5; flex-shrink:1.5; padding-right: 1em; padding-left: 1em;">
+			<img style="width: 100%;" [src]="ecpMainInfographic">
+		</span>
+		<span style="flex-grow:0.5; flex-shrink:2;">
+			<h1>A platform for better science</h1>
 			<p>The EMBL-EBI Cloud Portal has been developed by the 
 				<a href="https://www.ebi.ac.uk/about/people/steven-newhouse">Technology and Science Integration 
 				</a> team at EMBL-EBI	to simplify the experience for researchers when running their workloads 
@@ -22,9 +26,7 @@
 				<li>Scale when you need to, securely.</li>
 			</ul>
 		</span>
-		<span>
-			<img style="height: 14em; margin-top: 3em;" [src]="ebiLogoOnly">
-		</span>
+		
 	</div>
 	<div class="flex-container">
 		<span>

@@ -57,7 +57,7 @@ describe('Login page', () => {
     let loginButton = loginPage.getLoginButton();
     loginButton.click();
     // expect to get welcome message
-    expect(loginPage.getMessageText()).toEqual('You are logged in as');
+    expect(loginPage.getWelcomeMessageText()).toEqual('You are logged in as');
   });
 
   it('should get a valid token when using the right username and password', () => {

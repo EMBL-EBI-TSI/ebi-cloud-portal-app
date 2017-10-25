@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-
+import { CredentialService } from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'about-page',
@@ -15,8 +15,10 @@ export class AboutPageComponent implements OnInit {
   ebiLogoOnly = 'assets/img/embl_logo_only.png';
   elixirLogo = 'assets/img/elixir_logo.png';
   cloudsLogo = 'assets/img/clouds_logo.png';
-  
-  constructor(public breadcrumbService: BreadcrumbService) { }
+  ecpMainInfographic = 'assets/img/ecp_main_infographic.png';
+
+  constructor(public breadcrumbService: BreadcrumbService,
+    public credentialService: CredentialService) { }
 
   ngOnInit() {
     this.breadcrumbService.breadcrumb.push( {label:'About', route:'about'} );
