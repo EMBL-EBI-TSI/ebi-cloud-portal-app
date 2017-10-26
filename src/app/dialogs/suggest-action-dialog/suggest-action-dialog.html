@@ -1,4 +1,4 @@
-<md-dialog-content>
+<mat-dialog-content>
 <div>
   <img class="dialog-img-center" [src]="robby">
   <h2>{{ suggestionTitle }}</h2>
@@ -10,17 +10,17 @@
 <div *ngIf="extraInfoMessage!=''">
     <em>{{ extraInfoMessage }}</em>
 </div>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button class="button-color-accent"
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button class="button-color-accent"
   (click)="dialogRef.close(actionButtonMessage)">
   {{ actionButtonMessage }}
   </button>
   <span class="fill-remaining-space"></span>
-  <button md-button
+  <button mat-button
   (click)="dialogRef.close()">
   CANCEL
   </button>
-</md-dialog-actions>
+</mat-dialog-actions>
 
 

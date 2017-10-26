@@ -9,9 +9,9 @@ import { ApplicationPageComponent } from './application-page.component';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { CommonModule } from '@angular/common';
 import { 
-  MdChipsModule, MdIconModule, MdSelectModule,
-  MdInputModule, MdCoreModule, MdTooltipModule,
-  MdDialogModule } from '@angular/material';
+  MatChipsModule, MatIconModule, MatSelectModule,
+  MatInputModule, MatCoreModule, MatTooltipModule,
+  MatDialogModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { 
   TokenService, CredentialService, AccountService,
@@ -38,9 +38,9 @@ describe('ApplicationPageComponent', () => {
       imports: [ 
         CommonModule, RouterModule, FormsModule,
         RouterTestingModule,
-        MdChipsModule, MdIconModule, MdCoreModule,
-        MdSelectModule, MdInputModule, MdDialogModule,
-        MdTooltipModule 
+        MatChipsModule, MatIconModule, MatCoreModule,
+        MatSelectModule, MatInputModule, MatDialogModule,
+        MatTooltipModule 
       ],
       declarations: [ ApplicationPageComponent, MockApplicationComponent, ConfigurationFilterPipe ],
       providers: [ 

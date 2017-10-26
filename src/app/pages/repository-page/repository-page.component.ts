@@ -1,7 +1,7 @@
 import { Component, OnInit, DoCheck, ViewChild, ElementRef } from '@angular/core';
 import { CloudProviderParametersService, TokenService, CredentialService } from 'ng2-cloud-portal-service-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { RepositoryComponent } from 'ng2-cloud-portal-presentation-lib';
 import { AddRepoDialog } from '../../dialogs/add-repo-dialog/add-repo-dialog.component';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
@@ -22,7 +22,7 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
     public credentialService: CredentialService,
     public tokenService: TokenService,
     public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog) {
+    public dialog: MatDialog) {
     this.updateFilters();
   }
 
@@ -95,7 +95,7 @@ export class RepositoryPageComponent implements OnInit, DoCheck {
   }
 
   openSuggestAddApplicationDialog(repo: RepositoryComponent) {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
 
     config.data = [
       'It seems you have no applications registered. Do you want to add your own?',

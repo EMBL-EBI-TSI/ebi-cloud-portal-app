@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ApplicationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
@@ -15,7 +15,7 @@ import { ApplicationInfoDialog } from './application-info-dialog.component';
 export class ApplicationPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog, private _route: ActivatedRoute) {
+    public dialog: MatDialog, private _route: ActivatedRoute) {
 
   }
 
@@ -38,7 +38,7 @@ export class ApplicationPageComponent implements OnInit {
   }
 
   openInfoApplicationDialog(applicationDetail: ApplicationComponent) {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.data = [
       applicationDetail
     ];
@@ -46,7 +46,7 @@ export class ApplicationPageComponent implements OnInit {
   }
 
   openConfirmDeploymentDialog(applicationDetail: ApplicationComponent) {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     let extraInfo: string = '';
     if (applicationDetail.emptyAssigment) {
       extraInfo = extraInfo + 'Some deployment parameters remain unassigned.';

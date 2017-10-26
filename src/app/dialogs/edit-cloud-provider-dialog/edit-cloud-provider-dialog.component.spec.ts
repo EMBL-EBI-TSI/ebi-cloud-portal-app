@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditCloudProviderDialog } from './edit-cloud-provider-dialog.component';
 import { FormsModule, ReactiveFormsModule, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { MaterialModule, MdDialogModule, MdDialogRef } from '@angular/material';
+import { MaterialModule, MatDialogModule, MatDialogRef } from '@angular/material';
 import { CommonModule } from '@angular/common';
 
 class MdDialogRefMock {
@@ -19,10 +19,10 @@ describe('EditCloudProviderDialog', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ CommonModule,  FormsModule, ReactiveFormsModule, MaterialModule, MdDialogModule ],
+      imports: [ CommonModule,  FormsModule, ReactiveFormsModule, MaterialModule, MatDialogModule ],
       declarations: [ EditCloudProviderDialog ],
       providers: [ 
-        { provide: MdDialogRef, useClass: MdDialogRefMock },
+        { provide: MatDialogRef, useClass: MdDialogRefMock },
         { provide: FormControl, useClass: FormControlMock },
         { provide: FormGroup, useClass: FormGroupMock },
         FormBuilder

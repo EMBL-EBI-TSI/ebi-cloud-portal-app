@@ -1,87 +1,87 @@
-<md-sidenav-container>
-  <md-sidenav #sidenav mode="push">
-    <md-nav-list>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="push">
+    <mat-nav-list>
 
-      <h3 md-subheader *ngIf="tokenService.getToken()">EBI Cloud Portal Community</h3>
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] "
+      <h3 matSubheader *ngIf="tokenService.getToken()">EBI Cloud Portal Community</h3>
+      <a mat-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./repository'] "
         (click)="sidenav.close()">
-        <md-icon md-list-icon>settings_system_daydream</md-icon>
-        <span md-line>Application Repository</span>
+        <mat-icon mat-list-icon>settings_system_daydream</mat-icon>
+        <span matLine>Application Repository</span>
       </a>
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./teams'] " (click)="sidenav.close()">
-        <md-icon md-list-icon>group</md-icon>
-        <span md-line>Teams</span>
+      <a mat-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./teams'] " (click)="sidenav.close()">
+        <mat-icon mat-list-icon>group</mat-icon>
+        <span matLine>Teams</span>
       </a>
-      <md-divider *ngIf="tokenService.getToken()"></md-divider>
+      <mat-divider *ngIf="tokenService.getToken()"></mat-divider>
 
-      <h3 md-subheader *ngIf="tokenService.getToken()">My Cloud</h3>
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] "
+      <h3 matSubheader *ngIf="tokenService.getToken()">My Cloud</h3>
+      <a mat-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./deployments'] "
         (click)="sidenav.close()">
-        <md-icon md-list-icon>cloud_done</md-icon>
-        <span md-line>Cloud Deployments</span>
+        <mat-icon mat-list-icon>cloud_done</mat-icon>
+        <span matLine>Cloud Deployments</span>
       </a>      
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
-        <md-icon md-list-icon>storage</md-icon>
-        <span md-line>Data Volumes</span>
+      <a mat-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
+        <mat-icon mat-list-icon>storage</mat-icon>
+        <span matLine>Data Volumes</span>
       </a>
-      <md-divider *ngIf="tokenService.getToken()"></md-divider>
+      <mat-divider *ngIf="tokenService.getToken()"></mat-divider>
 
-      <h3 md-subheader *ngIf="tokenService.getToken()">My Profile</h3>
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
-        <md-icon md-list-icon>face</md-icon>
-        <span md-line>Profile</span>
+      <h3 matSubheader *ngIf="tokenService.getToken()">My Profile</h3>
+      <a mat-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./profile'] " (click)="sidenav.close()">
+        <mat-icon mat-list-icon>face</mat-icon>
+        <span matLine>Profile</span>
       </a>
-      <a md-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" (click)="logOut(); sidenav.close()">
-        <md-icon md-list-icon>vpn_key</md-icon>
-        <span md-line>Logout</span>
+      <a mat-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" (click)="logOut(); sidenav.close()">
+        <mat-icon mat-list-icon>vpn_key</mat-icon>
+        <span matLine>Logout</span>
       </a>
-      <a md-list-item *ngIf="!tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./signon'] " (click)="sidenav.close()">
-        <md-icon md-list-icon>vpn_key</md-icon>
-        <span md-line>Sign On</span>
+      <a mat-list-item *ngIf="!tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./signon'] " (click)="sidenav.close()">
+        <mat-icon mat-list-icon>vpn_key</mat-icon>
+        <span matLine>Sign On</span>
       </a>
-      <md-divider></md-divider>
+      <mat-divider></mat-divider>
 
-      <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./docs'] " (click)="sidenav.close()">
-        <md-icon md-list-icon>help</md-icon>
-        <span md-line>Documentation</span>
-        <span md-line>How to use the EBI Cloud Portal</span>
+      <a mat-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./docs'] " (click)="sidenav.close()">
+        <mat-icon mat-list-icon>help</mat-icon>
+        <span matLine>Documentation</span>
+        <span matLine>How to use the EBI Cloud Portal</span>
       </a>
-      <a md-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./about'] " (click)="sidenav.close()">
-        <md-icon md-list-icon>info</md-icon>
-        <span md-line>About</span>
-        <span md-line>Information about the TSI Cloud Portal</span>
+      <a mat-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./about'] " (click)="sidenav.close()">
+        <mat-icon mat-list-icon>info</mat-icon>
+        <span matLine>About</span>
+        <span matLine>Information about the TSI Cloud Portal</span>
       </a>
-    </md-nav-list>
-  </md-sidenav>
+    </mat-nav-list>
+  </mat-sidenav>
   <div class="ebi-header">
     <a class="ebi-header-logo" [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
     <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
     <span class="ebi-header-link-container">
         <a class="ebi-header-link" *ngIf="!credentialService.getUsername()" [routerLink]=" ['./signon'] ">
-          <md-icon class="ebi-header-link-icon" md-list-icon>vpn_key</md-icon>
+          <mat-icon class="ebi-header-link-icon" mat-list-icon>vpn_key</mat-icon>
           <span class="ebi-header-link-text">Sign On</span>
         </a>
     </span>
   </div>
-  <md-toolbar class="md-main-toolbar" *ngIf="credentialService.getUsername()">
-    <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
-      <md-icon>menu</md-icon>
+  <mat-toolbar class="mat-main-toolbar" *ngIf="credentialService.getUsername()">
+    <button class="mat-main-toolbar-sidebar-button" mat-icon-button (click)="sidenav.open()">
+      <mat-icon>menu</mat-icon>
     </button>
-    <a *ngFor="let breadcrumb of getBreadcrumb()" class="md-main-toolbar-title" [routerLink]="breadcrumb.route">
+    <a *ngFor="let breadcrumb of getBreadcrumb()" class="mat-main-toolbar-title" [routerLink]="breadcrumb.route">
         {{ breadcrumb.label }}
     </a>
     <span class="fill-remaining-space"></span>
     <span *ngIf="credentialService.getUsername()">
-      <button md-button [mdMenuTriggerFor]="menu">
-        <md-icon *ngIf="!loggedInAccount || !loggedInAccount.avatarImageUrl" md-list-icon>face</md-icon>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon *ngIf="!loggedInAccount || !loggedInAccount.avatarImageUrl" mat-list-icon>face</mat-icon>
         {{ credentialService.getGivenName() }}
       </button>
-      <md-menu #menu="mdMenu">
-        <button md-menu-item [routerLink]=" ['./profile'] ">Profile</button>
-        <button md-menu-item (click)="logOut()">Logout</button>
-      </md-menu>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]=" ['./profile'] ">Profile</button>
+        <button mat-menu-item (click)="logOut()">Logout</button>
+      </mat-menu>
     </span>
-  </md-toolbar>
+  </mat-toolbar>
 
   <!-- primary content -->
   <router-outlet></router-outlet>
@@ -95,4 +95,4 @@
     </div>
   </footer>
 
-</md-sidenav-container>
+</mat-sidenav-container>

@@ -1,32 +1,32 @@
-<md-dialog-content>
+<mat-dialog-content>
   <div>
     <img class="dialog-img-large" [src]="robby">
     <h2>Add cloud provider</h2>
   </div>
   <div>
     <form [formGroup]="cloudProviderParametersForm" autocomplete="off">
-      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Provider parameters name (required)" [formControl]="cloudProviderParametersForm.controls['name']"
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Provider parameters name (required)" [formControl]="cloudProviderParametersForm.controls['name']"
           autofocus>
-        <md-error *ngIf="cloudProviderParametersForm.controls['name'].hasError('pattern')">
+        <mat-error *ngIf="cloudProviderParametersForm.controls['name'].hasError('pattern')">
             Only letters, numbers and middle '_', '-' or space
-        </md-error>
-      </md-input-container>
+        </mat-error>
+      </mat-form-field>
       
-      <md-input-container class="input-full-width"><input mdInput 
+      <mat-form-field class="input-full-width"><input matInput 
         type="text" 
         placeholder="Cloud provider (required)" 
-        [mdAutocomplete]="providerNamesAuto"
+        [matAutocomplete]="providerNamesAuto"
         [formControl]="cloudProviderParametersForm.controls['cloudProvider']"
           autofocus>
-      </md-input-container>
-      <md-autocomplete #providerNamesAuto="mdAutocomplete">
-        <md-option *ngFor="let aCloudProviderName of cloudProviderNames" [value]="aCloudProviderName">
+      </mat-form-field>
+      <mat-autocomplete #providerNamesAuto="matAutocomplete">
+        <mat-option *ngFor="let aCloudProviderName of cloudProviderNames" [value]="aCloudProviderName">
           {{ aCloudProviderName }}
-        </md-option>
-      </md-autocomplete>
+        </mat-option>
+      </mat-autocomplete>
       <h3>Parameters
-        <button md-icon-button color="primary" (click)="addNewCloudProviderParametersFormField()">
-              <md-icon>add</md-icon> 
+        <button mat-icon-button color="primary" (click)="addNewCloudProviderParametersFormField()">
+              <mat-icon>add</mat-icon> 
         </button>
       </h3>
       <!--Fields-->
@@ -35,12 +35,12 @@
           <table style="width: 100%" cellspacing="0">
             <tr>
               <td>
-                <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter key" [formControl]="fieldFormGroup.controls['key']"
-                    autofocus></md-input-container>
+                <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Enter parameter key" [formControl]="fieldFormGroup.controls['key']"
+                    autofocus></mat-form-field>
               </td>
               <td>
-                <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter value" [formControl]="fieldFormGroup.controls['value']"
-                    autofocus></md-input-container>
+                <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Enter parameter value" [formControl]="fieldFormGroup.controls['value']"
+                    autofocus></mat-form-field>
               </td>
             </tr>
           </table>
@@ -50,17 +50,17 @@
     </form>
 
   </div>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button class="button-color-accent" 
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button class="button-color-accent" 
   [disabled]="cloudProviderParametersForm.controls['cloudProvider'].hasError('required')
    || cloudProviderParametersForm.controls['name'].hasError('required')
    || cloudProviderParametersForm.controls['name'].hasError('pattern')"
     (click)="dialogRef.close(cloudProviderParametersForm.value)">
               ADD</button>
   <span class="fill-remaining-space"></span>
-  <button md-button
+  <button mat-button
   (click)="dialogRef.close()">
   CANCEL
   </button>
-</md-dialog-actions>
+</mat-dialog-actions>

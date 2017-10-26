@@ -16,10 +16,10 @@ export class ProfilePage {
   getGivenName() {
     return element(by.tagName('cp-profile-component'))
             .element(by.css('.content'))
-            .element(by.tagName('md-card'))
-            .element(by.tagName('md-card-content'))
-            .element(by.tagName('md-card-title-group'))
-            .element(by.tagName('md-card-title'))
+            .element(by.tagName('mat-card'))
+            .element(by.tagName('mat-card-content'))
+            .element(by.tagName('mat-card-title-group'))
+            .element(by.tagName('mat-card-title'))
             .getText();
   }
 

@@ -1,132 +1,132 @@
 <cp-deployment-component #deploymentDetail>
   <div class="content">
     <div class="detail-card-container">
-      <md-card *ngIf="deploymentDetail.deploymentInstance">
+      <mat-card *ngIf="deploymentDetail.deploymentInstance">
 
-        <span class="md-toolbar flex-container-wide">
-          <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</md-icon>
-          <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon>
-          <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
-            class="card-type-icon">cloud_queue</md-icon>
-          <md-icon *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon>
+        <span class="mat-toolbar flex-container-wide">
+          <mat-icon *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</mat-icon>
+          <mat-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</mat-icon>
+          <mat-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
+            class="card-type-icon">cloud_queue</mat-icon>
+          <mat-icon *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</mat-icon>
           <h3>{{ deploymentDetail.deploymentInstance.applicationName }}</h3>
           <p>{{ deploymentDetail.deploymentInstance.reference }}</p>
           <span class="fill-remaining-space"></span>
         </span>
 
 
-        <md-card-content>
-          <md-list dense>
+        <mat-card-content>
+          <mat-list dense>
             <!--Deployment meta-data-->
-            <md-list-item>
-              <h3 md-line>State</h3>
-              <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
-            </md-list-item>
-            <md-list-item>
-              <h3 md-line>Cloud Provider</h3>
-              <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.cloudProviderParametersCopy.name }}</p>
-            </md-list-item>
-            <md-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'">
-              <p md-line class="param-value">Waiting for provider data...</p>
-            </md-list-item>
-            <md-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED' || deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'">
-              <p md-line class="param-value">This deployment failed and there is no provider data</p>
-            </md-list-item>
-            <md-list-item>
-              <h3 md-line *ngIf="deploymentDetail.deploymentInstance.providerId">Provider ID</h3>
-              <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.providerId }}</p>
-            </md-list-item>
-            <md-list-item *ngIf="deploymentDetail.deploymentInstance.accessIp">
-              <h3 md-line>Access IP</h3>
-              <p md-line class="param-value">{{ deploymentDetail.deploymentInstance.accessIp }}</p>
-            </md-list-item>
-          </md-list>
+            <mat-list-item>
+              <h3 matLine>State</h3>
+              <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Cloud Provider</h3>
+              <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.cloudProviderParametersCopy.name }}</p>
+            </mat-list-item>
+            <mat-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'">
+              <p matLine class="param-value">Waiting for provider data...</p>
+            </mat-list-item>
+            <mat-list-item *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED' || deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'">
+              <p matLine class="param-value">This deployment failed and there is no provider data</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine *ngIf="deploymentDetail.deploymentInstance.providerId">Provider ID</h3>
+              <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.providerId }}</p>
+            </mat-list-item>
+            <mat-list-item *ngIf="deploymentDetail.deploymentInstance.accessIp">
+              <h3 matLine>Access IP</h3>
+              <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.accessIp }}</p>
+            </mat-list-item>
+          </mat-list>
 
           <!-- Deployment inputs and co -->
-          <md-list>
+          <mat-list>
             <!--List attached volumes-->
-            <h3 md-header>Volumes</h3>
-            <p md-subheader *ngIf="deploymentDetail.deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
-            <md-list-item *ngFor="let attachedVolume of deploymentDetail.deploymentInstance.attachedVolumes">
-              <md-icon md-list-icon>storage</md-icon>
-              <h3 md-line>{{ attachedVolume.name }}</h3>
-              <h4 md-line class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</h4>
-            </md-list-item>
+            <h3 mat-header>Volumes</h3>
+            <p matSubheader *ngIf="deploymentDetail.deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
+            <mat-list-item *ngFor="let attachedVolume of deploymentDetail.deploymentInstance.attachedVolumes">
+              <mat-icon mat-list-icon>storage</mat-icon>
+              <h3 matLine>{{ attachedVolume.name }}</h3>
+              <h4 matLine class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</h4>
+            </mat-list-item>
             <!--List assigned inputs-->
-            <h3 md-header>Inputs</h3>
-            <p md-subheader *ngIf="deploymentDetail.deploymentInstance.assignedInputs.length==0">There are no assigned inputs for this deployment</p>
-            <md-list-item *ngFor="let assignedInput of deploymentDetail.deploymentInstance.assignedInputs">
-              <md-icon md-list-icon>keyboard_arrow_right</md-icon>
-              <h3 md-line>{{ assignedInput.inputName }}</h3>
-              <h4 md-line class="param-value">{{ assignedInput.assignedValue }}</h4>
-            </md-list-item>
+            <h3 mat-header>Inputs</h3>
+            <p matSubheader *ngIf="deploymentDetail.deploymentInstance.assignedInputs.length==0">There are no assigned inputs for this deployment</p>
+            <mat-list-item *ngFor="let assignedInput of deploymentDetail.deploymentInstance.assignedInputs">
+              <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+              <h3 matLine>{{ assignedInput.inputName }}</h3>
+              <h4 matLine class="param-value">{{ assignedInput.assignedValue }}</h4>
+            </mat-list-item>
             <!--List generated outputs-->
-            <h3 md-header>Outputs</h3>
-            <p md-subheader *ngIf="deploymentDetail.deploymentInstance.generatedOutputs.length==0">There are no generated outputs for this deployment</p>
-            <md-list-item *ngFor="let generatedOutput of deploymentDetail.deploymentInstance.generatedOutputs">
-              <md-icon md-list-icon>keyboard_arrow_left</md-icon>
-              <h3 md-line>{{ generatedOutput.outputName }}</h3>
-              <h4 md-line class="param-value">{{ generatedOutput.generatedValue }}</h4>
-            </md-list-item>
+            <h3 mat-header>Outputs</h3>
+            <p matSubheader *ngIf="deploymentDetail.deploymentInstance.generatedOutputs.length==0">There are no generated outputs for this deployment</p>
+            <mat-list-item *ngFor="let generatedOutput of deploymentDetail.deploymentInstance.generatedOutputs">
+              <mat-icon mat-list-icon>keyboard_arrow_left</mat-icon>
+              <h3 matLine>{{ generatedOutput.outputName }}</h3>
+              <h4 matLine class="param-value">{{ generatedOutput.generatedValue }}</h4>
+            </mat-list-item>
             <!--List assigned parameters-->
-            <h3 md-header>Deployment parameters</h3>
-            <p md-subheader *ngIf="deploymentDetail.deploymentInstance.assignedParameters.length==0">There are no assigned parameters for this deployment</p>
-            <md-list-item *ngFor="let assignedParameter of deploymentDetail.deploymentInstance.assignedParameters">
-              <md-icon *ngIf="!assignedParameter.parameterValue" md-list-icon>warning</md-icon>
-              <md-icon *ngIf="assignedParameter.parameterValue" md-list-icon>settings_applications</md-icon>
-              <h3 md-line>{{ assignedParameter.parameterName }}</h3>
-              <h4 *ngIf="!assignedParameter.parameterValue" md-line class="param-value">Value not assigned</h4>
-              <h4 md-line class="param-value">{{ assignedParameter.parameterValue }}</h4>
-            </md-list-item>
+            <h3 mat-header>Deployment parameters</h3>
+            <p matSubheader *ngIf="deploymentDetail.deploymentInstance.assignedParameters.length==0">There are no assigned parameters for this deployment</p>
+            <mat-list-item *ngFor="let assignedParameter of deploymentDetail.deploymentInstance.assignedParameters">
+              <mat-icon *ngIf="!assignedParameter.parameterValue" mat-list-icon>warning</mat-icon>
+              <mat-icon *ngIf="assignedParameter.parameterValue" mat-list-icon>settings_applications</mat-icon>
+              <h3 matLine>{{ assignedParameter.parameterName }}</h3>
+              <h4 *ngIf="!assignedParameter.parameterValue" matLine class="param-value">Value not assigned</h4>
+              <h4 matLine class="param-value">{{ assignedParameter.parameterValue }}</h4>
+            </mat-list-item>
             <!--Logs-->
-            <h3 md-header>Deployment logs
-              <button md-icon-button color="primary" (click)="logsShowing=!logsShowing">
-              <md-icon>visibility</md-icon> 
+            <h3 mat-header>Deployment logs
+              <button mat-icon-button color="primary" (click)="logsShowing=!logsShowing">
+              <mat-icon>visibility</mat-icon> 
             </button>
             </h3>
-            <span class="logs-text-area" md-subheader *ngIf="logsShowing"
+            <span class="logs-text-area" matSubheader *ngIf="logsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.logs) }}">
             </span>
             <!-- Destroy Logs-->
             <span *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED' || deploymentDetail.deploymentInstance.status == 'DESTROYING'">
-            <h3 md-header>Deployment destroy logs
-              <button md-icon-button color="primary" (click)="destroylogsShowing=!destroylogsShowing">
-              <md-icon>visibility</md-icon> 
+            <h3 mat-header>Deployment destroy logs
+              <button mat-icon-button color="primary" (click)="destroylogsShowing=!destroylogsShowing">
+              <mat-icon>visibility</mat-icon> 
             </button>
             </h3>
-            <span class="logs-text-area" md-subheader *ngIf="destroylogsShowing"
+            <span class="logs-text-area" matSubheader *ngIf="destroylogsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.destroylogs) }}">
             </span>
             </span>
-          </md-list>
-        </md-card-content>
+          </mat-list>
+        </mat-card-content>
 
-        <md-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
-          mode="indeterminate"></md-progress-bar>
-        <md-card-actions *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'">
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
+        <mat-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
+          mode="indeterminate"></mat-progress-bar>
+        <mat-card-actions *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
             FORCE DESTROY
           </button>
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING'" md-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
             FORCE DELETE
           </button>
-        </md-card-actions>
+        </mat-card-actions>
 
-        <md-card-actions *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
+        <mat-card-actions *ngIf="deploymentDetail.deploymentInstance.status != 'DESTROYING' && deploymentDetail.deploymentInstance.status != 'STARTING'">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
             DESTROY
           </button>
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" md-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
             DELETE
           </button>           
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" md-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
             FORCE DESTROY
           </button>
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'" md-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
             FORCE DELETE
           </button>          
-        </md-card-actions>
-      </md-card>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </cp-deployment-component>

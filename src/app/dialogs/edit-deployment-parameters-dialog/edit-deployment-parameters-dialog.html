@@ -1,17 +1,17 @@
-<md-dialog-content>
+<mat-dialog-content>
   <div>
     <img class="dialog-img-large" [src]="robby">
     <h2>Edit deployment parameters</h2>
   </div>
   <div>
     <form [formGroup]="deploymentParametersForm" autocomplete="off">
-      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Deployment parameters name (can't be changed)" [formControl]="deploymentParametersForm.controls['name']"
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Deployment parameters name (can't be changed)" [formControl]="deploymentParametersForm.controls['name']"
           [readonly]="true" disabled>
-      </md-input-container>
+      </mat-form-field>
       <!--Fields-->
       <h3>Parameters
-        <button type="button" md-icon-button color="primary" (click)="addNewDeploymentParametersFormField()">
-              <md-icon>add</md-icon> 
+        <button type="button" mat-icon-button color="primary" (click)="addNewDeploymentParametersFormField()">
+              <mat-icon>add</mat-icon> 
         </button>
       </h3>
       <div *ngFor="let fieldFormGroup of deploymentParametersForm.controls['fields'].controls; let i=index" [attr.data-index]="i">
@@ -19,16 +19,16 @@
           <table style="width: 100%" cellspacing="0">
             <tr>
               <td>
-                <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter key" [formControl]="fieldFormGroup.controls['key']"
-                    autofocus></md-input-container>
+                <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Enter parameter key" [formControl]="fieldFormGroup.controls['key']"
+                    autofocus></mat-form-field>
               </td>
               <td>
-                <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Enter parameter value" [formControl]="fieldFormGroup.controls['value']"
-                    autofocus></md-input-container>
+                <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Enter parameter value" [formControl]="fieldFormGroup.controls['value']"
+                    autofocus></mat-form-field>
               </td>
               <td>
-                <button type="button" md-icon-button (click)="removeDeploymentParametersField(i)">
-                <md-icon>highlight_off</md-icon> 
+                <button type="button" mat-icon-button (click)="removeDeploymentParametersField(i)">
+                <mat-icon>highlight_off</mat-icon> 
             </button>
               </td>
             </tr>
@@ -39,14 +39,14 @@
     </form>
 
   </div>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button class="button-color-accent" [disabled]="deploymentParametersForm.controls['name'].hasError('required')"
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button class="button-color-accent" [disabled]="deploymentParametersForm.controls['name'].hasError('required')"
     (click)="dialogRef.close(deploymentParametersForm.value)">
               UPDATE</button>
   <span class="fill-remaining-space"></span>
-  <button md-button
+  <button mat-button
   (click)="dialogRef.close()">
   CANCEL
   </button>
-</md-dialog-actions>
+</mat-dialog-actions>

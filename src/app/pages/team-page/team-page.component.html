@@ -1,34 +1,34 @@
 <cp-team-component #teamDetail>
   <div class="content">
     <div class="detail-card-container">
-      <md-card *ngIf="teamDetail.teamPresenter">
+      <mat-card *ngIf="teamDetail.teamPresenter">
         
-        <span class="md-toolbar flex-container-wide">
-          <md-icon class="card-type-icon">group</md-icon>
+        <span class="mat-toolbar flex-container-wide">
+          <mat-icon class="card-type-icon">group</mat-icon>
           <h3>{{ teamDetail.teamPresenter.name }}</h3>
           <span class="fill-remaining-space"></span>
-          <button md-icon-button (click)="openInfoTeamDialog()">
-            <md-icon>info_outline</md-icon> 
+          <button mat-icon-button (click)="openInfoTeamDialog()">
+            <mat-icon>info_outline</mat-icon> 
           </button>
           <span *ngIf="teamDetail.teamPresenter.isOwner">
-            <button md-icon-button (click)="openAddMemberDialog()">
-              <md-icon>group_add</md-icon> 
+            <button mat-icon-button (click)="openAddMemberDialog()">
+              <mat-icon>group_add</mat-icon> 
             </button>
-            <button md-icon-button color="warn" (click)="teamDetail.remove('/teams','/error')">
-              <md-icon>delete_forever</md-icon> 
+            <button mat-icon-button color="warn" (click)="teamDetail.remove('/teams','/error')">
+              <mat-icon>delete_forever</mat-icon> 
             </button>
           </span>
         </span>
 
-        <md-card-content>
+        <mat-card-content>
           <span> <!-- card content span -->
             <span> <!-- metadata span -->
-              <md-list dense>
-                <md-list-item *ngIf="!teamDetail.teamPresenter.isOwner">
-                  <h3 md-line>Owned by</h3>
-                  <p md-line class="param-value">{{ teamDetail.teamPresenter.ownerAccountEmail }}</p>
-                </md-list-item>
-              </md-list>
+              <mat-list dense>
+                <mat-list-item *ngIf="!teamDetail.teamPresenter.isOwner">
+                  <h3 matLine>Owned by</h3>
+                  <p matLine class="param-value">{{ teamDetail.teamPresenter.ownerAccountEmail }}</p>
+                </mat-list-item>
+              </mat-list>
             </span> <!-- metadata span -->
 
             <span *ngIf="!teamDetail.teamPresenter.isOwner && !teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())">
@@ -36,11 +36,11 @@
             </span>
 
             <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())"> <!-- Resources span -->
-              <md-list>
+              <mat-list>
                 <span class="flex-container-left">
                   <div *ngIf="(!teamDetail.teamPresenter.applicationNames ||  teamDetail.teamPresenter.applicationNames.length==0) && (!teamDetail.teamPresenter.cloudProviderParameterNames || teamDetail.teamPresenter.cloudProviderParameterNames.length==0)">
-                    <h3 md-header>Resources</h3>
-                    <md-icon>sentiment_neutral</md-icon> 
+                    <h3 mat-header>Resources</h3>
+                    <mat-icon>sentiment_neutral</mat-icon> 
                     <p>Nothing is shared in within this team...</p>
                   </div>
 
@@ -48,14 +48,14 @@
                   <span class="resource-summary-column-bigger" *ngIf="teamDetail.teamPresenter.applicationNames && teamDetail.teamPresenter.applicationNames.length>0">
                     <h3>Applications</h3>
                     <span *ngFor="let applicationName of teamDetail.teamPresenter.applicationNames">
-                      <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/repository/', applicationName]">
-                        <md-icon>cloud_queue</md-icon>
+                      <mat-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/repository/', applicationName]">
+                        <mat-icon>cloud_queue</mat-icon>
                         <p>{{ applicationName }}</p>
-                      </md-card>
-                      <md-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/repository/shared/', applicationName]">
-                        <md-icon>cloud_queue</md-icon>
+                      </mat-card>
+                      <mat-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/repository/shared/', applicationName]">
+                        <mat-icon>cloud_queue</mat-icon>
                         <p>{{ applicationName }}</p>
-                      </md-card>
+                      </mat-card>
                     </span>
                   </span>
                   
@@ -63,14 +63,14 @@
                   <span class="resource-summary-column-bigger" *ngIf="teamDetail.teamPresenter.configurationNames && teamDetail.teamPresenter.configurationNames.length>0">
                     <h3>Configurations</h3>
                     <span *ngFor="let configurationName of teamDetail.teamPresenter.configurationNames">
-                      <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/', configurationName]">
-                        <md-icon>settings_applications</md-icon>
+                      <mat-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/', configurationName]">
+                        <mat-icon>settings_applications</mat-icon>
                         <p>{{ configurationName }}</p>
-                      </md-card >
-                      <md-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/shared/', configurationName]">
-                        <md-icon>settings_applications</md-icon>
+                      </mat-card >
+                      <mat-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/shared/', configurationName]">
+                        <mat-icon>settings_applications</mat-icon>
                         <p>{{ configurationName }}</p>
-                      </md-card>
+                      </mat-card>
                     </span>
                   </span>
 
@@ -78,14 +78,14 @@
                   <span class="resource-summary-column" *ngIf="teamDetail.teamPresenter.cloudProviderParameterNames && teamDetail.teamPresenter.cloudProviderParameterNames.length>0">
                     <h3>Cloud Providers</h3>
                     <span *ngFor="let cloudProviderParameterName of teamDetail.teamPresenter.cloudProviderParameterNames">
-                      <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/cloudprovider/', cloudProviderParameterName]">
-                        <md-icon>vpn_key</md-icon>
+                      <mat-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/cloudprovider/', cloudProviderParameterName]">
+                        <mat-icon>vpn_key</mat-icon>
                         <p>{{ cloudProviderParameterName }}</p>
-                      </md-card>
-                        <md-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/cloudprovider/shared/', cloudProviderParameterName]">
-                        <md-icon>vpn_key</md-icon>
+                      </mat-card>
+                        <mat-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/cloudprovider/shared/', cloudProviderParameterName]">
+                        <mat-icon>vpn_key</mat-icon>
                         <p>{{ cloudProviderParameterName }}</p>
-                      </md-card>
+                      </mat-card>
                     </span>
                   </span>
 
@@ -93,57 +93,57 @@
                   <span class="resource-summary-column" *ngIf="teamDetail.teamPresenter.configurationDeploymentParameterNames && teamDetail.teamPresenter.configurationDeploymentParameterNames.length>0">
                     <h3>Deployment Parameters</h3>
                     <span *ngFor="let configurationDeploymentParameterName of teamDetail.teamPresenter.configurationDeploymentParameterNames">
-                      <md-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/deploymentparameters/', configurationDeploymentParameterName]">
-                        <md-icon>extension</md-icon>
-                        <p md-line class="param-value">{{ configurationDeploymentParameterName }}</p>
-                      </md-card>
-                      <md-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/deploymentparameters/shared/', configurationDeploymentParameterName]">
-                        <md-icon>extension</md-icon>
-                        <p md-line class="param-value">{{ configurationDeploymentParameterName }}</p>
-                      </md-card>
+                      <mat-card *ngIf="teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/deploymentparameters/', configurationDeploymentParameterName]">
+                        <mat-icon>extension</mat-icon>
+                        <p matLine class="param-value">{{ configurationDeploymentParameterName }}</p>
+                      </mat-card>
+                      <mat-card *ngIf="!teamDetail.teamPresenter.isOwner" class="resource-summary-card" [routerLink]=" ['/configuration/deploymentparameters/shared/', configurationDeploymentParameterName]">
+                        <mat-icon>extension</mat-icon>
+                        <p matLine class="param-value">{{ configurationDeploymentParameterName }}</p>
+                      </mat-card>
                     </span>
                   </span>
 
                 </span>
-            </md-list> <!-- Resources list -->
+            </mat-list> <!-- Resources list -->
           </span> <!-- Resources span -->
 
           <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())"> <!-- members span -->
             <h3>Members</h3>
             <span *ngIf="(!teamDetail.teamPresenter.memberAccountEmails ||  teamDetail.teamPresenter.memberAccountEmails.length==0)">
-              <md-icon>sentiment_neutral</md-icon> 
+              <mat-icon>sentiment_neutral</mat-icon> 
               <p>There are no additional members in this team...</p>
             </span>
-            <md-card *ngFor="let accountEmail of teamDetail.teamPresenter.memberAccountEmails">
+            <mat-card *ngFor="let accountEmail of teamDetail.teamPresenter.memberAccountEmails">
               <p>{{ accountEmail }}<button *ngIf="teamDetail.teamPresenter.isOwner" 
-                md-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail, '/error')">
-                <md-icon>highlight_off</md-icon> 
+                mat-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail, '/error')">
+                <mat-icon>highlight_off</mat-icon> 
               </button></p>
-            </md-card>
+            </mat-card>
           </span> <!-- members span -->
           
         </span> <!-- card content span -->
         
-      </md-card-content>
+      </mat-card-content>
 
       <!--These are the action controls-->
-      <md-card-actions>
+      <mat-card-actions>
         <span *ngIf="!teamDetail.teamPresenter.isOwner && !teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())">
-          <button md-raised-button (click)="requestJoin()">
+          <button mat-raised-button (click)="requestJoin()">
             JOIN
           </button>
         </span>
-      </md-card-actions>
+      </mat-card-actions>
 
-      <!--md-card-actions>
+      <!--mat-card-actions>
         <span *ngIf="!teamDetail.teamPresenter.isOwner && teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())">
-          <button md-raised-button (click)="leaveTeam()">
+          <button mat-raised-button (click)="leaveTeam()">
             LEAVE
           </button>
         </span>
-      </md-card-actions-->
+      </mat-card-actions-->
 
-    </md-card>
+    </mat-card>
   </div>
 </div>
 </cp-team-component>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'add-team-dialog',
@@ -11,7 +11,7 @@ export class AddTeamDialog {
   teamForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-      public dialogRef: MdDialogRef<AddTeamDialog>) { 
+      public dialogRef: MatDialogRef<AddTeamDialog>) { 
     this.teamForm = this.fb.group({
       'name': ['', Validators.compose([
         Validators.required,

@@ -1,51 +1,51 @@
 <cp-deployment-parameters-component #deploymentParametersDetail>
   <div class="content">
     <div class="detail-card-container">
-      <md-card *ngIf="deploymentParametersDetail.deploymentParametersPresenter">
-        <span class="md-toolbar flex-container-wide">
-            <md-icon class="card-type-icon">extension</md-icon>
+      <mat-card *ngIf="deploymentParametersDetail.deploymentParametersPresenter">
+        <span class="flex-container-wide">
+            <mat-icon class="card-type-icon">extension</mat-icon>
             <h3>{{ deploymentParametersDetail.deploymentParametersPresenter.name }}</h3>
             <span class="fill-remaining-space"></span>
             <span *ngIf="!deploymentParametersDetail.deploymentParametersPresenter.isShared">
-              <button md-icon-button (click)="openEditDeploymentParametersDialog(deploymentParametersDetail)">
-              <md-icon>edit</md-icon> 
+              <button mat-icon-button (click)="openEditDeploymentParametersDialog(deploymentParametersDetail)">
+              <mat-icon>edit</mat-icon> 
              </button>
-              <button md-icon-button (click)="openShareDeploymentParametersDialog(deploymentParametersDetail)">
-                <md-icon>share</md-icon> 
+              <button mat-icon-button (click)="openShareDeploymentParametersDialog(deploymentParametersDetail)">
+                <mat-icon>share</mat-icon> 
               </button>
-             <button md-icon-button color="warn" (click)="deploymentParametersDetail.remove()">
-                <md-icon>delete_forever</md-icon> 
+             <button mat-icon-button color="warn" (click)="deploymentParametersDetail.remove()">
+                <mat-icon>delete_forever</mat-icon> 
               </button>
             </span>
             <span *ngIf="deploymentParametersDetail.deploymentParametersPresenter.isShared">
                <p>SHARED</p>
             </span>
         </span>
-        <md-card-content>
+        <mat-card-content>
         <span class="flex-container-wide">
           <span class="flex-container-wide">
-            <md-list dense>
-              <md-list-item *ngIf="deploymentParametersDetail.deploymentParametersPresenter.isShared">
-                <h3 md-line>Owned by</h3>
-                 <p md-line class="param-value">{{ deploymentParametersDetail.deploymentParametersPresenter.accountEmail }}</p>
-               </md-list-item>
-               <md-list-item *ngIf="deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames && deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames.length>0">
-                 <h3 md-line>Included in teams</h3>
-                 <p *ngFor="let teamName of deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
-                   <button *ngIf="!deploymentParametersDetail.deploymentParametersPresenter.isShared" md-icon-button color="warn" (click)="deploymentParametersDetail.unshare(teamName)">
-                     <md-icon>highlight_off</md-icon> 
+            <mat-list dense>
+              <mat-list-item *ngIf="deploymentParametersDetail.deploymentParametersPresenter.isShared">
+                <h3 matLine>Owned by</h3>
+                 <p matLine class="param-value">{{ deploymentParametersDetail.deploymentParametersPresenter.accountEmail }}</p>
+               </mat-list-item>
+               <mat-list-item *ngIf="deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames && deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames.length>0">
+                 <h3 matLine>Included in teams</h3>
+                 <p *ngFor="let teamName of deploymentParametersDetail.deploymentParametersPresenter.sharedWithTeamNames" matLine class="param-value">{{ teamName }}
+                   <button *ngIf="!deploymentParametersDetail.deploymentParametersPresenter.isShared" mat-icon-button color="warn" (click)="deploymentParametersDetail.unshare(teamName)">
+                     <mat-icon>highlight_off</mat-icon> 
                    </button>
                 </p>
-              </md-list-item>
-              <md-list-item *ngFor="let deploymentParameterField of deploymentParametersDetail.deploymentParametersPresenter.fields">
-						  	<h3 md-line>{{ deploymentParameterField.key }}</h3>
-							  <p md-line class="param-value">{{ deploymentParameterField.value }}</p>
-						</md-list-item>
-        </md-list>
+              </mat-list-item>
+              <mat-list-item *ngFor="let deploymentParameterField of deploymentParametersDetail.deploymentParametersPresenter.fields">
+						  	<h3 matLine>{{ deploymentParameterField.key }}</h3>
+							  <p matLine class="param-value">{{ deploymentParameterField.value }}</p>
+						</mat-list-item>
+        </mat-list>
         </span>
         </span>
-        </md-card-content>
-      </md-card>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </cp-deployment-parameters-component>

@@ -1,51 +1,51 @@
 <cp-repository-component #repo>
 
-  <button md-fab (click)="openAddApplicationDialog(repo)">
-    <md-icon>add</md-icon>
+  <button mat-fab (click)="openAddApplicationDialog(repo)">
+    <mat-icon>add</mat-icon>
   </button>
 
   <div class="content" *ngIf="repo.applicationDeployers">
 
-    <md-card class="background-card" *ngIf="repo.applicationDeployers.length==0 && repo.sharedApplicationDeployers.length==0">
+    <mat-card class="background-card" *ngIf="repo.applicationDeployers.length==0 && repo.sharedApplicationDeployers.length==0">
       No applications registered yet
-    </md-card>
+    </mat-card>
 
     <div class="wide-summary-card-container">
-      <md-card [routerLink]=" ['/repository/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
-        <span class="md-toolbar flex-container-wide">
-          <h3>{{ applicationDeployer.name }}</h3>
+      <mat-card [routerLink]=" ['/repository/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
+        <span class="flex-container-wide">
+        <h3>{{ applicationDeployer.name }}</h3>
         </span>
-        <md-card-content>
-          <md-list dense>
-            <md-list-item>
+        <mat-card-content>
+          <mat-list dense>
+            <mat-list-item>
               <p>{{ applicationDeployer.about }}</p>
-            </md-list-item>
-            <md-list-item>
-              <h3 md-line>Version</h3>
-              <p md-line class="param-value">{{ applicationDeployer.version }}</p>
-            </md-list-item>
-          </md-list>
-        </md-card-content>
-      </md-card>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Version</h3>
+              <p matLine class="param-value">{{ applicationDeployer.version }}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
       <!--Shared applications-->
-      <md-card [routerLink]=" ['/repository/shared/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.sharedApplicationDeployers | applicationCloudProvider:cloudProviderFilters">
-        <span class="md-toolbar flex-container-wide">
+      <mat-card [routerLink]=" ['/repository/shared/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.sharedApplicationDeployers | applicationCloudProvider:cloudProviderFilters">
+        <span class="mat-toolbar flex-container-wide">
           <h3>{{ applicationDeployer.name }}</h3>
           <span class="fill-remaining-space"></span>
           <p>SHARED</p>
         </span>
-        <md-card-content>
-          <md-list dense>
-            <md-list-item>
+        <mat-card-content>
+          <mat-list dense>
+            <mat-list-item>
               <p>{{ applicationDeployer.about }}</p>
-            </md-list-item>
-            <md-list-item>
-              <h3 md-line>Version</h3>
-              <p md-line class="param-value">{{ applicationDeployer.version }}</p>
-            </md-list-item>
-          </md-list>
-        </md-card-content>
-      </md-card>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Version</h3>
+              <p matLine class="param-value">{{ applicationDeployer.version }}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
     </div>
     <!-- card-container -->
   </div>

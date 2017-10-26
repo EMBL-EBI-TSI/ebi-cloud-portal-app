@@ -1,4 +1,4 @@
-<md-dialog-content>
+<mat-dialog-content>
   <div>
     <img class="dialog-img-xlarge" [src]="robby">
     <h2>Edit configuration</h2>
@@ -6,42 +6,42 @@
   <div>
     <form [formGroup]="configurationForm" autocomplete="off">
       <!--The config name-->
-      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Configuration name (can't be changed)" [formControl]="configurationForm.controls['name']"
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Configuration name (can't be changed)" [formControl]="configurationForm.controls['name']"
           [readonly]="true" disabled>
-      </md-input-container>
+      </mat-form-field>
       <!--The cloud provider-->
-      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Cloud provider (required)" [formControl]="configurationForm.controls['cloudProviderParametersName']"
-          [mdAutocomplete]="cloudProvidersAuto">
-      </md-input-container>
-      <md-autocomplete #cloudProvidersAuto="mdAutocomplete">
-        <md-option *ngFor="let aCloudProvider of filteredCloudProviderNames | async" [value]="aCloudProvider">
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Cloud provider (required)" [formControl]="configurationForm.controls['cloudProviderParametersName']"
+          [matAutocomplete]="cloudProvidersAuto">
+      </mat-form-field>
+      <mat-autocomplete #cloudProvidersAuto="matAutocomplete">
+        <mat-option *ngFor="let aCloudProvider of filteredCloudProviderNames | async" [value]="aCloudProvider">
           {{ aCloudProvider }}
-        </md-option>
-      </md-autocomplete>
+        </mat-option>
+      </mat-autocomplete>
       <!--The SSH key-->
-      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="SSH public key" [formControl]="configurationForm.controls['sshKey']" autofocus>
-      </md-input-container>
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="SSH public key" [formControl]="configurationForm.controls['sshKey']" autofocus>
+      </mat-form-field>
       <!--The deployment params-->
-      <md-input-container class="input-full-width"><input mdInput type="text" placeholder="Deployment Parameters Name (required)" [formControl]="configurationForm.controls['deploymentParametersName']"
-          [mdAutocomplete]="deploymentParametersAuto">
-      </md-input-container>
-      <md-autocomplete #deploymentParametersAuto="mdAutocomplete">
-        <md-option *ngFor="let aDeploymentParameters of filteredDeploymentParametersNames | async" [value]="aDeploymentParameters">
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Deployment Parameters Name (required)" [formControl]="configurationForm.controls['deploymentParametersName']"
+          [matAutocomplete]="deploymentParametersAuto">
+      </mat-form-field>
+      <mat-autocomplete #deploymentParametersAuto="matAutocomplete">
+        <mat-option *ngFor="let aDeploymentParameters of filteredDeploymentParametersNames | async" [value]="aDeploymentParameters">
           {{ aDeploymentParameters }}
-        </md-option>
-      </md-autocomplete>
+        </mat-option>
+      </mat-autocomplete>
     </form>
   </div>
-</md-dialog-content>
+</mat-dialog-content>
 
-<md-dialog-actions>
+<mat-dialog-actions>
   <button [disabled]="configurationForm.controls['name'].hasError('required') || configurationForm.controls['cloudProviderParametersName'].hasError('required')"
-    (click)="dialogRef.close(configurationForm.value)" md-raised-button class="button-color-accent">
+    (click)="dialogRef.close(configurationForm.value)" mat-raised-button class="button-color-accent">
     UPDATE
   </button>
   <span class="fill-remaining-space"></span>
-  <button md-button
+  <button mat-button
   (click)="dialogRef.close()">
   CANCEL
   </button>
-</md-dialog-actions>
+</mat-dialog-actions>

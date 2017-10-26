@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { TeamComponent } from 'ng2-cloud-portal-presentation-lib';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
@@ -18,7 +18,7 @@ export class TeamPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
     private _route: ActivatedRoute,
-    public dialog: MdDialog) {
+    public dialog: MatDialog) {
     
   }
 
@@ -34,7 +34,7 @@ export class TeamPageComponent implements OnInit {
 
   public requestJoin() {
     // Show dialog
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.data = [
       'Do you want to send a join request to ' + this.teamDetail.teamPresenter.name + '?',
       'YES'
@@ -43,7 +43,7 @@ export class TeamPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(actionTaken => {
       if (actionTaken=='YES') {
         this.teamDetail.requestAddMember(this.teamDetail.credentialService.getEmail(),'/error');
-        const closeConfirmation = new MdDialogConfig();
+        const closeConfirmation = new MatDialogConfig();
         closeConfirmation.data = ["Your request has been sent.", "OK", "Request Sent"];
         let closeConfirmationDialogRef = this.dialog.open(SuggestActionDialog, closeConfirmation);
         closeConfirmationDialogRef.afterClosed().subscribe(
@@ -56,7 +56,7 @@ export class TeamPageComponent implements OnInit {
     
   public leaveTeam() {
     // Show dialog
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.data = [
       'Do you want to leave the team ' + this.teamDetail.teamPresenter.name + '?',
       'YES'
@@ -65,7 +65,7 @@ export class TeamPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(actionTaken => {
       if (actionTaken=='YES') {
         this.teamDetail.leaveTeam(this.teamDetail.credentialService.getEmail(),'/error');
-        const closeConfirmation = new MdDialogConfig();
+        const closeConfirmation = new MatDialogConfig();
         closeConfirmation.data = ["You have left the team successfully.", "OK", "Leave Team"];
         let closeConfirmationDialogRef = this.dialog.open(SuggestActionDialog, closeConfirmation);
         closeConfirmationDialogRef.afterClosed().subscribe(
@@ -85,7 +85,7 @@ export class TeamPageComponent implements OnInit {
   }
 
   openInfoTeamDialog(t) {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.data = [
       this.teamDetail
     ];
