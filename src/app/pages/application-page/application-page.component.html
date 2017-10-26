@@ -30,8 +30,8 @@
 
         <!--Application data-->
         <mat-card-content>
-          <!-- Configs and Deployment inputs -->
           <mat-vertical-stepper>
+            <!-- Configs and Deployment inputs -->
             <mat-step label="Select configuration">
               <p matSubheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
                 <mat-icon mat-list-icon>warning</mat-icon>
@@ -41,19 +41,21 @@
               <mat-list>
                 <mat-list-item>
                   <mat-icon mat-list-icon>settings_applications</mat-icon>
-                   <div matLine class="input-full-width"> 
-                    <mat-select class="input-full-width" placeholder="Select Configuration" 
-                      [(ngModel)]="selectedConfig"
-                      (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
-                      <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0">
-                      <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
-                              <span *ngIf="config !== undefined">
-                                {{ config.name }} | @({{ config.cloudProviderParametersName }})
-                              </span> 
-                      </mat-option>
-                      </span>
-                    </mat-select>
-                   </div> 
+                  <mat-form-field class="input-full-width">
+
+                      <mat-select class="input-full-width" placeholder="Select Configuration" 
+                        [(ngModel)]="selectedConfig"
+                        (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
+                        <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0">
+                        <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
+                                <span *ngIf="config !== undefined">
+                                  {{ config.name }} | @({{ config.cloudProviderParametersName }})
+                                </span> 
+                        </mat-option>
+                        </span>
+                      </mat-select>
+  
+                  </mat-form-field>
                 </mat-list-item>
 
                 <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
@@ -100,8 +102,9 @@
               </mat-list>
             </mat-step>
             <!--Application required inputs-->
-            <mat-step *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration" label="Inputs">
-              <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration">
+            <mat-step label="Inputs">
+              <!-- <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration"> -->
+              <span>
                 <h3 mat-header>Inputs</h3>
                 <mat-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
                   <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
