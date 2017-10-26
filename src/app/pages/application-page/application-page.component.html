@@ -31,14 +31,13 @@
         <!--Application data-->
         <mat-card-content>
           <!-- Configs and Deployment inputs -->
-          <mat-list>
-            <span>
-              
+          <mat-vertical-stepper>
+            <mat-step label="Select configuration">
               <p matSubheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
                 <mat-icon mat-list-icon>warning</mat-icon>
                 The user account has no pre set configurations to assign deployment parameters.
               </p>
-
+              
               <mat-list>
                 <mat-list-item>
                   <mat-icon mat-list-icon>settings_applications</mat-icon>
@@ -56,6 +55,7 @@
                     </mat-select>
                    </div> 
                 </mat-list-item>
+
                 <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
                   <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
                     <mat-icon>visibility</mat-icon>
@@ -80,56 +80,64 @@
                   </mat-list-item>
                 </span>
               </mat-list>
-            </span>
+
+            </mat-step>
+
 
             <!--Optional SSH key-->
-            <span *ngIf="applicationDetail.selectedConfiguration">
+            <mat-step [optional]="true" label="SSH Key">
+              
               <h3 mat-header>User SSH key (optional)</h3>
-              <mat-list-item>
-                <mat-icon mat-list-icon>vpn_key</mat-icon>
-                <mat-form-field matLine class="input-full-width">
-                  <input matInput #sshkey placeholder="SSH key"
-                  (keyup.enter)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)"
-                  (blur)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)">
-                </mat-form-field>
-              </mat-list-item>
-            </span>
+              <mat-list>
+                <mat-list-item>
+                  <mat-icon mat-list-icon>vpn_key</mat-icon>
+                  <mat-form-field matLine class="input-full-width">
+                    <input matInput #sshkey placeholder="SSH key"
+                    (keyup.enter)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)"
+                    (blur)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)">
+                  </mat-form-field>
+                </mat-list-item>
+              </mat-list>
+            </mat-step>
             <!--Application required inputs-->
-            <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration">
-              <h3 mat-header>Inputs</h3>
-              <mat-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
-                <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
-                <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
-                    (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
-                </mat-form-field>
-              </mat-list-item>
-
-              <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-                <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
-                  <mat-list-item *ngFor="let anInput of aCloudProvider.inputs">
-                    <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
-                    <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" 
-                      (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+            <mat-step *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration" label="Inputs">
+              <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration">
+                <h3 mat-header>Inputs</h3>
+                <mat-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
+                  <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                  <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
                       (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
-                    </mat-form-field>
-                  </mat-list-item>
+                  </mat-form-field>
+                </mat-list-item>
+
+                <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+                  <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
+                    <mat-list-item *ngFor="let anInput of aCloudProvider.inputs">
+                      <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                      <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" 
+                        (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+                        (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
+                      </mat-form-field>
+                    </mat-list-item>
+                  </span>
                 </span>
               </span>
-            </span>
-
+            </mat-step>
             <!--Application required volumes-->
-            <span *ngIf="!applicationDetail.applicationDeployer.volumes.length==0 && applicationDetail.selectedConfiguration">
-              <h3 mat-header>Volumes</h3>
-              <mat-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
-                <mat-icon mat-list-icon>storage</mat-icon>
-                <mat-select placeholder="{{ aVolume }}" matLine (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
-                  <!--<mat-option value="null">None</mat-option>-->
-                  <mat-option *ngFor="let volumeInstance of applicationDetail.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</mat-option>
-                </mat-select>
-              </mat-list-item>
-            </span>
-            
-          </mat-list>
+            <mat-step *ngIf="!applicationDetail.applicationDeployer.volumes.length==0 && applicationDetail.selectedConfiguration" label="Set volumes">
+              <span *ngIf="!applicationDetail.applicationDeployer.volumes.length==0 && applicationDetail.selectedConfiguration">
+                <h3 mat-header>Volumes</h3>
+                <mat-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
+                  <mat-icon mat-list-icon>storage</mat-icon>
+                  <mat-select placeholder="{{ aVolume }}" matLine (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
+                    <!--<mat-option value="null">None</mat-option>-->
+                    <mat-option *ngFor="let volumeInstance of applicationDetail.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</mat-option>
+                  </mat-select>
+                </mat-list-item>
+              </span>
+            </mat-step>
+          </mat-vertical-stepper>
+
 
         </mat-card-content>
 

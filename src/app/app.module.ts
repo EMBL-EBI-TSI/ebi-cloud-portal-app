@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
   MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
   MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
-  MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
+  MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule, MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 import 'hammerjs';
 import { JwtHelper } from 'angular2-jwt';
 
@@ -154,7 +154,7 @@ export function provideConfig() {
     MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
     MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
     MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
-    MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule
+    MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule
   ],
   entryComponents: [
     AddRepoDialog,
