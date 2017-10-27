@@ -1,12 +1,12 @@
 <mat-dialog-content>
   <span>
-    <mat-list dense>
+    <mat-list>
       <mat-list-item *ngIf="!teamDetail.teamPresenter.isOwner">
         <h3 matLine>Owned by</h3>
         <p matLine class="param-value">{{ teamDetail.teamPresenter.ownerAccountEmail }}</p>
       </mat-list-item>
     </mat-list>
-    <mat-list dense>
+    <mat-list>
       <mat-list-item>
         <h3 matLine>AAP Domain Reference</h3>
         <p matLine class="param-value">{{ teamDetail.teamPresenter.domainReference}}</p>

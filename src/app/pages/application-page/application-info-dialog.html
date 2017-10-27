@@ -1,7 +1,7 @@
 <mat-dialog-content>
 
   <span class="flex-container-wide">
-    <mat-list dense>
+    <mat-list>
       <mat-list-item>
         <p>{{ applicationDetail.applicationDeployer.about }}</p>
       </mat-list-item>
@@ -28,7 +28,7 @@
     </mat-list>
 
     <!--Sharing permisions-->
-    <mat-list dense>
+    <mat-list>
       <span *ngIf="applicationDetail.applicationDeployer.isShared">
         <mat-list-item>
           <h3 matLine>Owned by</h3>
