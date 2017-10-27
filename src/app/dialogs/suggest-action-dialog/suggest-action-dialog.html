@@ -12,15 +12,13 @@
 </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <span></span>
-  <button mat-button
-  (click)="dialogRef.close()">
-  CANCEL
-  </button>
   <button mat-raised-button class="button-color-accent"
   (click)="dialogRef.close(actionButtonMessage)">
   {{ actionButtonMessage }}
   </button>
+  <span class="fill-remaining-space"></span>
+  <button mat-button
+  (click)="dialogRef.close()">
+  CANCEL
+  </button>
 </mat-dialog-actions>
-
-

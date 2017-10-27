@@ -25,64 +25,68 @@
 						No configurations registered/shared yet
 				</mat-card>
 
-				<div class="mat-content" *ngIf="profileComponent.configurationPresenters">
-					<span class="wide-summary-card-container">
-					<mat-card [routerLink]=" ['/configuration/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.configurationPresenters" class="credentials-container">
-					<span class="flex-container-wide">
-						<mat-icon class="card-type-icon">settings_applications</mat-icon>
-						<h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
-							It is advisable to delete this."
-            				matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
-							<span class="fill-remaining-space"></span>
-					</span>
-					<mat-card-content>
-						<mat-list-item>
-							<mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
-							<h3 matLine>Cloud provider parameters</h3>
-							<p matLine class="param-value">{{ configurationPresenter.cloudProviderParametersName }}</p>
-						</mat-list-item>
-						<mat-list-item>
-							<mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
-							<h3 matLine>SSH Public Key</h3>
-							<p matLine class="param-value">{{ configurationPresenter.sshKey }}</p>
-						</mat-list-item>
-						<mat-list-item>
-							<mat-icon mat-list-icon class="card-type-icon">extension</mat-icon>
-							<h3 matLine>Parameters</h3>
-							<p matLine class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
-						</mat-list-item>
-					</mat-card-content>
-					</mat-card>
+				<span class="mat-content" *ngIf="profileComponent.configurationPresenters">
+					<div class="summary-card-container">
+						<mat-card [routerLink]=" ['/configuration/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.configurationPresenters">
+							<span class="flex-container-wide">
+								<mat-icon class="card-type-icon">settings_applications</mat-icon>
+								<h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
+									It is advisable to delete this."
+												matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
+									<span class="fill-remaining-space"></span>
+							</span>
+							<mat-card-content>
+								<mat-list>
+									<mat-list-item>
+										<mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
+										<h3 matLine>Cloud provider parameters</h3>
+										<p matLine class="param-value">{{ configurationPresenter.cloudProviderParametersName }}</p>
+									</mat-list-item>
+									<mat-list-item>
+										<mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
+										<h3 matLine>SSH Public Key</h3>
+										<p matLine class="param-value">{{ configurationPresenter.sshKey }}</p>
+									</mat-list-item>
+									<mat-list-item>
+										<mat-icon mat-list-icon class="card-type-icon">extension</mat-icon>
+										<h3 matLine>Parameters</h3>
+										<p matLine class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
+									</mat-list-item>
+								</mat-list>
+							</mat-card-content>
+						</mat-card>
 
-					<mat-card [routerLink]=" ['/configuration/shared/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.sharedConfigurationPresenters" class="credentials-container">
-					<span class="flex-container-wide">
-						<mat-icon class="card-type-icon">settings_applications</mat-icon>
-    						<h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
-							It is advisable to delete this."
-            				matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
-							<span class="fill-remaining-space"></span>
-							<p>SHARED</p>
-					</span>
-					<mat-card-content>
-						<mat-list-item>
-							<mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
-							<h3 matLine>Cloud provider parameters</h3>
-							<p matLine class="param-value">{{ configurationPresenter.cloudProviderParametersName }}</p>
-						</mat-list-item>
-						<mat-list-item>
-							<mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
-							<h3 matLine>SSH Public Key</h3>
-							<p matLine class="param-value">{{ configurationPresenter.sshKey }}</p>
-						</mat-list-item>
-						<mat-list-item>
-							<mat-icon mat-list-icon class="card-type-icon">extension</mat-icon>
-							<h3 matLine>Parameters</h3>
-							<p matLine class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
-						</mat-list-item>
-					</mat-card-content>
-					</mat-card>
-					</span>
-				</div>
+						<mat-card [routerLink]=" ['/configuration/shared/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.sharedConfigurationPresenters">
+							<span class="flex-container-wide">
+								<mat-icon class="card-type-icon">settings_applications</mat-icon>
+									<h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
+									It is advisable to delete this."
+												matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
+									<span class="fill-remaining-space"></span>
+									<p>SHARED</p>
+							</span>
+							<mat-card-content>
+								<mat-list>
+									<mat-list-item>
+										<mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
+										<h3 matLine>Cloud provider parameters</h3>
+										<p matLine class="param-value">{{ configurationPresenter.cloudProviderParametersName }}</p>
+									</mat-list-item>
+									<mat-list-item>
+										<mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
+										<h3 matLine>SSH Public Key</h3>
+										<p matLine class="param-value">{{ configurationPresenter.sshKey }}</p>
+									</mat-list-item>
+									<mat-list-item>
+										<mat-icon mat-list-icon class="card-type-icon">extension</mat-icon>
+										<h3 matLine>Parameters</h3>
+										<p matLine class="param-value">{{ configurationPresenter.deploymentParametersName }}</p>
+									</mat-list-item>
+								</mat-list>
+							</mat-card-content>
+						</mat-card>
+					</div>
+				</span>
 
 			</mat-tab>
 
@@ -94,16 +98,15 @@
 				
 
 				<div class="mat-content" *ngIf="profileComponent.cloudProviderParametersPresenters">
-					<div class="wide-summary-card-container">
-						<mat-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters"
-						 class="credentials-container">
+					<div class="summary-card-container">
+						<mat-card [routerLink]=" ['/cloudprovider/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.cloudProviderParametersPresenters">
 							<span class="flex-container-wide">
 								<mat-icon class="card-type-icon">vpn_key</mat-icon>
 								<h3>{{ cloudProviderParametersPresenter.name }}</h3>
 								<span class="fill-remaining-space"></span>
 							</span>
 							<mat-card-content>
-								<mat-list dense>
+								<mat-list>
 									<mat-list-item>
 										<h3 matLine>Provider</h3>
 										<p matLine class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
@@ -114,8 +117,7 @@
 							</mat-card-actions>
 						</mat-card>
 
-						<mat-card [routerLink]=" ['/cloudprovider/shared/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters"
-						 class="credentials-container">
+						<mat-card [routerLink]=" ['/cloudprovider/shared/', cloudProviderParametersPresenter.name]" *ngFor="let cloudProviderParametersPresenter of profileComponent.sharedCloudProviderParametersPresenters">
 							<span class="flex-container-wide">
 								<mat-icon class="card-type-icon">vpn_key</mat-icon>
 								<h3>{{ cloudProviderParametersPresenter.name }}</h3>
@@ -123,7 +125,7 @@
 								<p>SHARED</p>
 							</span>
 							<mat-card-content>
-								<mat-list dense>
+								<mat-list>
 									<span class="flex-container-wide">
 										<mat-list-item>
 											<h3 matLine>Provider</h3>
@@ -156,22 +158,24 @@
 				</mat-card>
 
 				<div class="mat-content" *ngIf="profileComponent.deploymentParametersPresenters">
-					<span class="wide-summary-card-container">
-					<mat-card [routerLink]=" ['/configuration/deploymentparameters/', deploymentParameterPresenter.name]"  *ngFor="let deploymentParameterPresenter of profileComponent.deploymentParametersPresenters" class="credentials-container">
+					<span class="summary-card-container">
+					<mat-card [routerLink]=" ['/configuration/deploymentparameters/', deploymentParameterPresenter.name]"  *ngFor="let deploymentParameterPresenter of profileComponent.deploymentParametersPresenters">
 						<span class="flex-container-wide">
 							<mat-icon class="card-type-icon">extension</mat-icon>
 							<h3>{{ deploymentParameterPresenter.name }}</h3>
 							<span class="fill-remaining-space"></span>
 						</span>
 						<mat-card-content>
-							<mat-list-item *ngFor="let deploymentParameterField of deploymentParameterPresenter.fields">
-								<h3 matLine>{{ deploymentParameterField.key }}</h3>
-								<p matLine class="param-value">{{ deploymentParameterField.value }}</p>
-							</mat-list-item>
+							<mat-list>
+								<mat-list-item *ngFor="let deploymentParameterField of deploymentParameterPresenter.fields">
+									<h3 matLine>{{ deploymentParameterField.key }}</h3>
+									<p matLine class="param-value">{{ deploymentParameterField.value }}</p>
+								</mat-list-item>
+							</mat-list>
 						</mat-card-content>
 					</mat-card>
 
-					<mat-card  [routerLink]=" ['/configuration/deploymentparameters/shared/', deploymentParameterPresenter.name]" *ngFor="let deploymentParameterPresenter of profileComponent.sharedDeploymentParametersPresenters" class="credentials-container">
+					<mat-card  [routerLink]=" ['/configuration/deploymentparameters/shared/', deploymentParameterPresenter.name]" *ngFor="let deploymentParameterPresenter of profileComponent.sharedDeploymentParametersPresenters">
 						<span class="mat-toolbar flex-container-wide">
 							<mat-icon class="card-type-icon">extension</mat-icon>
 							<h3>{{ deploymentParameterPresenter.name }}</h3>
@@ -179,10 +183,12 @@
 						    <p>SHARED</p>
 						</span>
 						<mat-card-content>
-							<mat-list-item *ngFor="let deploymentParameterField of deploymentParameterPresenter.fields">
-								<h3 matLine>{{ deploymentParameterField.key }}</h3>
-								<p matLine class="param-value">{{ deploymentParameterField.value }}</p>
-							</mat-list-item>
+							<mat-list>
+								<mat-list-item *ngFor="let deploymentParameterField of deploymentParameterPresenter.fields">
+									<h3 matLine>{{ deploymentParameterField.key }}</h3>
+									<p matLine class="param-value">{{ deploymentParameterField.value }}</p>
+								</mat-list-item>
+							</mat-list>
 						</mat-card-content>
 					</mat-card>
 

@@ -10,7 +10,7 @@
       No applications registered yet
     </mat-card>
 
-    <div class="wide-summary-card-container">
+    <div class="summary-card-container">
       <mat-card [routerLink]=" ['/repository/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.applicationDeployers | applicationCloudProvider:cloudProviderFilters">
         <span class="flex-container-wide">
         <h3>{{ applicationDeployer.name }}</h3>

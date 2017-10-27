@@ -3,10 +3,10 @@
     <div class="detail-card-container">
       <mat-card *ngIf="configurationDetail.configurationPresenter">
         <span class="flex-container-wide">
-            <mat-icon class="card-type-icon">settings_applications</mat-icon>
-            <h3>{{ configurationDetail.configurationPresenter.name }}</h3>
-            <span class="fill-remaining-space"></span>
-            <span *ngIf="!configurationDetail.configurationPresenter.isShared">
+          <mat-icon class="card-type-icon">settings_applications</mat-icon>
+          <h3>{{ configurationDetail.configurationPresenter.name }}</h3>
+          <span class="fill-remaining-space"></span>
+          <span *ngIf="!configurationDetail.configurationPresenter.isShared">
             <button mat-icon-button (click)="openEditConfigurationDialog(configurationDetail)">
             <mat-icon>edit</mat-icon> 
             </button> 
@@ -18,43 +18,39 @@
             </button>
           </span>
           <span *ngIf="configurationDetail.configurationPresenter.isShared">
-              <p>SHARED</p>
+            <p>SHARED</p>
           </span>
         </span>
         <mat-card-content>
-        <span class="flex-container-wide">
-          <span class="flex-container-wide">
-            <mat-list dense>
-              <mat-list-item *ngIf="configurationDetail.configurationPresenter.isShared">
-                <h3 matLine>Owned by</h3>
-                 <p matLine class="param-value">{{ configurationDetail.configurationPresenter.accountEmail }}</p>
-               </mat-list-item>
-               <mat-list-item *ngIf="configurationDetail.configurationPresenter.sharedWithTeamNames && configurationDetail.configurationPresenter.sharedWithTeamNames.length>0">
-                 <h3 matLine>Included in teams</h3>
-                 <p *ngFor="let teamName of configurationDetail.configurationPresenter.sharedWithTeamNames" matLine class="param-value">{{ teamName }}
-                   <button *ngIf="!configurationDetail.configurationPresenter.isShared" mat-icon-button color="warn" (click)="configurationDetail.unshare(teamName)">
-                     <mat-icon>highlight_off</mat-icon> 
-                   </button>
-                </p>
+          <mat-list>
+            <mat-list-item *ngIf="configurationDetail.configurationPresenter.isShared">
+              <h3 matLine>Owned by</h3>
+              <p matLine class="param-value">{{ configurationDetail.configurationPresenter.accountEmail }}</p>
               </mat-list-item>
-             <mat-list-item>
-				      	<mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
-				      	<h3 matLine>Cloud provider parameters</h3>
-				      	<p matLine class="param-value">{{ configurationDetail.configurationPresenter.cloudProviderParametersName }}</p>
-			       </mat-list-item>
-			    	<mat-list-item>
-				    	<mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
-				    	<h3 matLine>SSH Public Key</h3>
-				    	<p matLine class="param-value">{{ configurationDetail.configurationPresenter.sshKey }}</p>
-			      </mat-list-item>
-				   <mat-list-item>
-						  <mat-icon mat-list-icon class="card-type-icon">settings_applications</mat-icon>
-        	  	<h3 matLine>Parameters</h3>
-					  	<p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
-			  	</mat-list-item>
-        </mat-list>
-        </span>
-        </span>
+              <mat-list-item *ngIf="configurationDetail.configurationPresenter.sharedWithTeamNames && configurationDetail.configurationPresenter.sharedWithTeamNames.length>0">
+                <h3 matLine>Included in teams</h3>
+                <p *ngFor="let teamName of configurationDetail.configurationPresenter.sharedWithTeamNames" matLine class="param-value">{{ teamName }}
+                  <button *ngIf="!configurationDetail.configurationPresenter.isShared" mat-icon-button color="warn" (click)="configurationDetail.unshare(teamName)">
+                    <mat-icon>highlight_off</mat-icon> 
+                  </button>
+              </p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
+                <h3 matLine>Cloud provider parameters</h3>
+                <p matLine class="param-value">{{ configurationDetail.configurationPresenter.cloudProviderParametersName }}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
+              <h3 matLine>SSH Public Key</h3>
+              <p matLine class="param-value">{{ configurationDetail.configurationPresenter.sshKey }}</p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon class="card-type-icon">settings_applications</mat-icon>
+                <h3 matLine>Parameters</h3>
+                <p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
+            </mat-list-item>
+          </mat-list>
         </mat-card-content>
       </mat-card>
     </div>

@@ -22,49 +22,46 @@
           </span>
         </span>
         <mat-card-content>
-          <span class="flex-container-wide">
-        <span class="flex-container-wide">
-        <mat-list dense>
-          <mat-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.isShared">
-            <h3 matLine>Owned by</h3>
-            <p matLine class="param-value">{{ cloudProviderDetail.cloudProviderParametersPresenter.accountEmail }}</p>
-          </mat-list-item>
-          <mat-list-item>
-            <h3 matLine>Provider</h3>
-            <p matLine class="param-value">{{ cloudProviderDetail.cloudProviderParametersPresenter.cloudProvider }}</p>
-          </mat-list-item>
-        </mat-list>
-        <mat-list dense>
-          <mat-list-item *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails.length>0">
-            <h3 matLine>Shared with</h3>
-            <p *ngFor="let accountEmail of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails" matLine class="param-value">{{ accountEmail }}<button mat-icon-button color="warn" (click)="cloudProviderDetail.unshare(accountEmail)">
-              <mat-icon>highlight_off</mat-icon> 
-            </button></p>
-          </mat-list-item>
-          <mat-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames.length>0">
-            <h3 matLine>Included in teams</h3>
-            <p *ngFor="let teamName of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames" matLine class="param-value">{{ teamName }}
-              <button *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared" mat-icon-button color="warn" (click)="cloudProviderDetail.unshare(teamName)">
+
+          <mat-list>
+            <mat-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.isShared">
+              <h3 matLine>Owned by</h3>
+              <p matLine class="param-value">{{ cloudProviderDetail.cloudProviderParametersPresenter.accountEmail }}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>Provider</h3>
+              <p matLine class="param-value">{{ cloudProviderDetail.cloudProviderParametersPresenter.cloudProvider }}</p>
+            </mat-list-item>
+          </mat-list>
+          <mat-list>
+            <mat-list-item *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails.length>0">
+              <h3 matLine>Shared with</h3>
+              <p *ngFor="let accountEmail of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithAccountEmails" matLine class="param-value">{{ accountEmail }}<button mat-icon-button color="warn" (click)="cloudProviderDetail.unshare(accountEmail)">
                 <mat-icon>highlight_off</mat-icon> 
-              </button>
-            </p>
-          </mat-list-item>
-        </mat-list>
-        </span>
-          </span>
+              </button></p>
+            </mat-list-item>
+            <mat-list-item *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames && cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames.length>0">
+              <h3 matLine>Included in teams</h3>
+              <p *ngFor="let teamName of cloudProviderDetail.cloudProviderParametersPresenter.sharedWithTeamNames" matLine class="param-value">{{ teamName }}
+                <button *ngIf="!cloudProviderDetail.cloudProviderParametersPresenter.isShared" mat-icon-button color="warn" (click)="cloudProviderDetail.unshare(teamName)">
+                  <mat-icon>highlight_off</mat-icon> 
+                </button>
+              </p>
+            </mat-list-item>
+          </mat-list>
 
           <mat-list>
             <h3 mat-header>Parameters
-              <button mat-icon-button color="primary" (click)="fieldsShowing=!fieldsShowing">
-            <mat-icon>visibility</mat-icon> 
-          </button></h3>
+            <button mat-icon-button color="primary" (click)="fieldsShowing=!fieldsShowing">
+              <mat-icon>visibility</mat-icon> 
+            </button></h3>
             <span *ngIf="fieldsShowing">
-          <p matSubheader *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.fields.length==0">This Cloud Provider defines no parameters</p>
-          <mat-list-item *ngFor="let aParameter of cloudProviderDetail.cloudProviderParametersPresenter.fields">
-            <h3 matLine>{{ aParameter.key }}</h3>
-            <p matLine class="param-value">{{ aParameter.value }}</p>
-          </mat-list-item>
-        </span>
+              <p matSubheader *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.fields.length==0">This Cloud Provider defines no parameters</p>
+              <mat-list-item *ngFor="let aParameter of cloudProviderDetail.cloudProviderParametersPresenter.fields">
+                <h3 matLine>{{ aParameter.key }}</h3>
+                <p matLine class="param-value">{{ aParameter.value }}</p>
+              </mat-list-item>
+            </span>
           </mat-list>
         </mat-card-content>
 
