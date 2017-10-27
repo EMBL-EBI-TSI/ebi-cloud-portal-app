@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ConfigurationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
@@ -14,7 +14,7 @@ import { EditConfigurationDialog } from '../../dialogs/edit-configuration-dialog
 export class ConfigurationPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog, private _route: ActivatedRoute) {
+    public dialog: MatDialog, private _route: ActivatedRoute) {
 
   }
 
@@ -37,7 +37,7 @@ export class ConfigurationPageComponent implements OnInit {
   }
 
   openEditConfigurationDialog(configurationDetail: ConfigurationComponent) {
-    let dialogRef:MdDialogRef<EditConfigurationDialog>  = this.dialog.open(EditConfigurationDialog);
+    let dialogRef:MatDialogRef<EditConfigurationDialog>  = this.dialog.open(EditConfigurationDialog);
     dialogRef.componentInstance.setConfiguration(configurationDetail.configurationPresenter);
     dialogRef.afterClosed().subscribe(
       configurationForm => {

@@ -1,37 +1,37 @@
 <cp-teams-component #teamsComponent>
 
-	<button md-fab (click)="openAddTeamDialog()">
-		<md-icon>add</md-icon>
+	<button mat-fab (click)="openAddTeamDialog()">
+		<mat-icon>add</mat-icon>
 	</button>
 
 	<div class="content">
 
-		<md-toolbar>
+		<mat-toolbar>
 			<span class="fill-remaining-space"></span>
-			<md-icon class="card-type-icon" style="color: gray">search</md-icon>
-			<md-input-container>
-				<input mdInput #searchBox placeholder="Search">
-			</md-input-container>
-		</md-toolbar>
+			<mat-icon class="card-type-icon" style="color: gray">search</mat-icon>
+			<mat-form-field>
+				<input matInput #searchBox placeholder="Search">
+			</mat-form-field>
+		</mat-toolbar>
 
-		<md-card class="background-card" *ngIf="!teamsComponent.teamPresenters || teamsComponent.teamPresenters.length==0">
+		<mat-card class="background-card" *ngIf="!teamsComponent.teamPresenters || teamsComponent.teamPresenters.length==0">
 			No teams in this community
-		</md-card>
+		</mat-card>
 
-		<div class="md-content" *ngIf="teamsComponent.teamPresenters">
+		<div class="mat-content" *ngIf="teamsComponent.teamPresenters">
 			<span class="wide-summary-card-container">
-			<md-card [routerLink]=" ['/team/', teamPresenter.name]" *ngFor="let teamPresenter of teamsComponent.teamPresenters | teamName:searchBox.value" class="credentials-container">
-				<span class="md-toolbar flex-container-wide">
-					<md-icon class="card-type-icon">group</md-icon><h3>{{ teamPresenter.name }}</h3>
+			<mat-card [routerLink]=" ['/team/', teamPresenter.name]" *ngFor="let teamPresenter of teamsComponent.teamPresenters | teamName:searchBox.value" class="credentials-container">
+				<span class="flex-container-wide">
+					<mat-icon class="card-type-icon">group</mat-icon><h3>{{ teamPresenter.name }}</h3>
 					<span class="fill-remaining-space"></span>
 					<p *ngIf="teamPresenter.isOwner">OWNER</p>
 				</span>
-				<md-card-content>
+				<mat-card-content>
 
-				</md-card-content>
-			</md-card>
+				</mat-card-content>
+			</mat-card>
 			</span>
-		</div> <!-- md-content -->
+		</div> <!-- mat-content -->
 	</div> <!-- content -->
 
 </cp-teams-component>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { Router } from '@angular/router';
-import { MD_DIALOG_DATA, MdDialog, MdDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'suggest-action-dialog',
@@ -15,8 +15,8 @@ export class SuggestActionDialog {
   actionTaken: string = 'add';
 
   constructor(private _router: Router,
-              @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
-              public dialogRef: MdDialogRef<SuggestActionDialog>) { 
+              @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
+              public dialogRef: MatDialogRef<SuggestActionDialog>) { 
     
   }
 

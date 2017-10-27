@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/startWith';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import {
   TeamService, TokenService, ErrorService,
   CloudProviderParametersService, CredentialService,
@@ -28,7 +28,7 @@ export class EditConfigurationDialog {
     public configurationService: ConfigurationService,
     public credentialService: CredentialService,
     public errorService: ErrorService,
-    public dialogRef: MdDialogRef<EditConfigurationDialog>) {
+    public dialogRef: MatDialogRef<EditConfigurationDialog>) {
 
     this.cloudProviderParametersService.getOwnedAndSharedCloudProviders(this.credentialService.getUsername(), this.tokenService.getToken())
       .subscribe(

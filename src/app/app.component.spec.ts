@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { MaterialModule, MdSelectModule } from '@angular/material';
+import { MaterialModule, MatSelectModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { TokenService, CredentialService, AccountService,
     ConfigService, ErrorService, CloudProviderParametersService } from 'ng2-cloud-portal-service-lib';
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ 
-        MaterialModule, MdSelectModule, RouterModule, CommonModule, FormsModule,
+        MaterialModule, MatSelectModule, RouterModule, CommonModule, FormsModule,
         RouterTestingModule ],
       declarations: [
         AppComponent

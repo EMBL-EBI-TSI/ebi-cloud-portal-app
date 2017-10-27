@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/startWith';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { CloudProviderParameters } from 'ng2-cloud-portal-service-lib';
 
 @Component({
@@ -15,7 +15,7 @@ export class EditCloudProviderDialog {
   cloudProviderNames: string[] = ['AWS','GCP','OSTACK'];
 
   constructor(private fb: FormBuilder,
-              public dialogRef: MdDialogRef<EditCloudProviderDialog>) { 
+              public dialogRef: MatDialogRef<EditCloudProviderDialog>) { 
 
   }
 
