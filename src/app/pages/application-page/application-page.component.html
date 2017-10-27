@@ -32,7 +32,7 @@
         <mat-card-content>
           <mat-horizontal-stepper linear>
             <!-- Configs and Deployment inputs -->
-            <mat-step label="Select configuration" [stepControl]="configFormGroup">
+            <mat-step [stepControl]="configFormGroup">
               <form [formGroup]="configFormGroup">
                 <ng-template matStepLabel>Select configuration</ng-template>
                 <p matSubheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
@@ -63,12 +63,12 @@
 
                   <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
                     <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                      <mat-icon>visibility</mat-icon>
+                      <mat-icon style="margin: 10px;">visibility</mat-icon>
                     </button>
                     <button *ngIf="applicationDetail.emptyAssigment" 
                       mat-icon-button color="warn" matTooltip="Some deployment parameters remain unassigned"
                       (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                      <mat-icon>visibility</mat-icon><mat-icon>warning</mat-icon>  
+                      <mat-icon style="margin: 10px;">visibility</mat-icon><mat-icon>warning</mat-icon>  
                     </button>
                   </p>
 
@@ -168,19 +168,22 @@
 
             <mat-step>
               <ng-template matStepLabel>Deploy</ng-template>
-              Your application is not ready to deploy.
-
+              <mat-list>
+                <mat-list-item>
+                  Your application is now ready to deploy.
+                </mat-list-item>
+              </mat-list>
               <!--A progress bar-->
               <mat-progress-bar *ngIf="applicationDetail.applicationDeployer.deploying || applicationDetail.applicationDeployer.destroying"
               mode="indeterminate"></mat-progress-bar>
 
-              <!--These are the action controls-->
-              <mat-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
+              <!--Deploy button-->
+              <div *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
                 <button mat-button matStepperPrevious>Back</button>
                 <span *ngIf="!applicationDetail.selectedConfiguration"
                   matTooltip="Please, select a valid configuration"
                     matTooltipPosition="right" matTooltipHideDelay="1000">
-                  <button mat-raised-button disabled>
+                  <button mat-button disabled>
                       DEPLOY
                   </button>
                 </span>
@@ -188,12 +191,12 @@
                 <span *ngIf="applicationDetail.selectedConfiguration" 
                     matTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
                     matTooltipPosition="right" matTooltipHideDelay="1000">
-                  <button mat-raised-button (click)="openConfirmDeploymentDialog(applicationDetail)">
+                  <button mat-button color="primary" (click)="openConfirmDeploymentDialog(applicationDetail)">
                       DEPLOY
                   </button>
                 </span>
 
-              </mat-card-actions>
+              </div>
             </mat-step>
 
           </mat-horizontal-stepper>
