@@ -32,7 +32,7 @@
       <span *ngIf="applicationDetail.applicationDeployer.isShared">
         <mat-list-item>
           <h3 matLine>Owned by</h3>
-          <p matLine class="param-value">{{ applicationDetail.applicationDeployer.userName }}</p>
+          <p matLine class="param-value">{{ applicationDetail.applicationDeployer.accountUsername }}</p>
         </mat-list-item>
       </span>
       <span *ngIf="!applicationDetail.applicationDeployer.isShared && applicationDetail.applicationDeployer.sharedWithAccountEmails.length>0">
