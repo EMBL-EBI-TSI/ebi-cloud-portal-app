@@ -29,7 +29,7 @@
       </mat-card>
       <!--Shared applications-->
       <mat-card [routerLink]=" ['/repository/shared/', applicationDeployer.name]" *ngFor="let applicationDeployer of repo.sharedApplicationDeployers | applicationCloudProvider:cloudProviderFilters">
-        <span class="mat-toolbar flex-container-wide">
+        <span class="flex-container-wide">
           <h3>{{ applicationDeployer.name }}</h3>
           <span class="fill-remaining-space"></span>
           <p>SHARED</p>
