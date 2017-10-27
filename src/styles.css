@@ -172,20 +172,6 @@ button.active:hover{
   color: rgba(0,0,0,0.54);
 }
 
-/*Fixed width summary card container*/
-.fixed-width-summary-card-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-.fixed-width-summary-card-container mat-card {
-  box-sizing: border-box;
-  max-width: 25em;
-  margin: 1em;
-  padding-bottom: 2.4em;
-}
-.fixed-width-summary-card-container mat-card mat-card-actions {
-  padding: 0px 10px 0px 16px;
-}
 
 .resource-summary-column-bigger {
   flex-grow: 3;
@@ -208,7 +194,7 @@ button.active:hover{
   flex-direction: column;
   margin-bottom: 1em;
 }
-mat-card .mat-toolbar {
+mat-card .flex-container-wide {
   background: white;
 }
 .wide-summary-card-container mat-card {
@@ -228,17 +214,18 @@ mat-card .mat-toolbar {
 .wide-summary-card-container mat-card mat-card-content h3 {
 	margin-right: 35px;
 }
-.wide-summary-card-container mat-card mat-card-content .card-type-icon {
-	top: 15px;
-  margin-right: 10px;
-}
-.wide-summary-card-container mat-card .mat-toolbar mat-progress-spinner {
-  width: 2em;
-  height: 2em;
+
+mat-progress-spinner {
+  max-width: 25px;
+  max-height: 25px;
   position: relative;
   top: 20px;
-  margin-right: 15px;
-  margin-left: 5px;
+
+}
+mat-progress-spinner svg {
+  max-width: 25px;
+  max-height: 25px;
+
 }
 .wide-summary-card-container mat-card mat-card-content mat-card-actions {
 	position: absolute;
@@ -261,24 +248,21 @@ mat-card .mat-toolbar {
   margin-left: 20px;
 }
 
-.mat-toolbar h3 {
-  font-size: 1.4em;
+.flex-container-wide h3 {
   color: var(--dark-color);
   font-weight: lighter;
-  margin-left: 40px;
+  margin-left: 25px;
 }
-.mat-toolbar p {
+.flex-container-wide p {
   position: relative;
-  top: 10px;
+  top: 12px;
   margin-left: 10px;
 }
-.mat-toolbar button {
+.flex-container-wide button {
   right: 10px;
 }
-.mat-toolbar .card-type-icon {
-  top: 15px;
-  margin-right: 10px;
-}
+
+
 
 .card-container mat-card mat-card-content {
   padding: 16px;
@@ -321,18 +305,9 @@ mat-input {
   color: rgba(0,0,0,0.50);
 }
 
-mat-icon.card-type-icon {
-  font-size: 36px;
-  padding: 0px 14px 0px 0px;
-  position: relative;
-  top: -7px;
-}
 
-mat-icon.card-action-icon {
-  font-size: 36px;
-  padding: 0px 14px 0px 0px;
-  position: relative;
-  top: -7px;
+.flex-container-wide mat-icon {
+  margin-top: 22px;
 }
 
 mat-card-subtitle.indented-subtitle {
@@ -360,8 +335,6 @@ h3 {
   color: var(--dark-color);
   font-weight: lighter;
 }
-
-
 
 p {
   font-size: 1em;

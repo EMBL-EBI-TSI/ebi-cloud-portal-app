@@ -13,7 +13,7 @@
 
 		<div class="wide-summary-card-container">
 			<mat-card [routerLink]=" ['/deployments/', deploymentInstance.reference]" *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
-				<span class="mat-toolbar flex-container-wide">
+				<span class="flex-container-wide">
 					<mat-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</mat-icon> 
 					<mat-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</mat-icon> 
 					<!--<mat-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</mat-icon> -->

@@ -158,7 +158,7 @@
 				<div class="mat-content" *ngIf="profileComponent.deploymentParametersPresenters">
 					<span class="wide-summary-card-container">
 					<mat-card [routerLink]=" ['/configuration/deploymentparameters/', deploymentParameterPresenter.name]"  *ngFor="let deploymentParameterPresenter of profileComponent.deploymentParametersPresenters" class="credentials-container">
-						<span class="mat-toolbar flex-container-wide">
+						<span class="flex-container-wide">
 							<mat-icon class="card-type-icon">extension</mat-icon>
 							<h3>{{ deploymentParameterPresenter.name }}</h3>
 							<span class="fill-remaining-space"></span>

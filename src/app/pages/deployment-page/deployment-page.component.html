@@ -2,8 +2,7 @@
   <div class="content">
     <div class="detail-card-container">
       <mat-card *ngIf="deploymentDetail.deploymentInstance">
-
-        <span class="mat-toolbar flex-container-wide">
+        <span class="flex-container-wide">
           <mat-icon *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" class="card-type-icon">error</mat-icon>
           <mat-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</mat-icon>
           <mat-icon *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
@@ -13,7 +12,6 @@
           <p>{{ deploymentDetail.deploymentInstance.reference }}</p>
           <span class="fill-remaining-space"></span>
         </span>
-
 
         <mat-card-content>
           <mat-list dense>
