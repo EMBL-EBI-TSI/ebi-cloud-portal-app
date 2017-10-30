@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <div class="content">
+=======
+<div [ngClass]="{'content': credentialService.getUsername(), 'content-out': !credentialService.getUsername()}">
+>>>>>>> dev
   <img class="hero central-img" [src]="robby">
   <div *ngIf="tokenService.getToken()">
     <div class="hero hero-message">
@@ -20,8 +24,8 @@
             <p>Single Sign On using your ELIXIR identity!</p>
           </div>
           <div>
-            <a style="padding:0.5em; padding-right:1em;" md-raised-button href="{{ssoLink()}}" target="_blank">
-              <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
+            <a style="padding:0.5em; padding-right:1em;" mat-raised-button href="{{ssoLink()}}" target="_blank">
+            <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
               SSO
             </a>
           </div>

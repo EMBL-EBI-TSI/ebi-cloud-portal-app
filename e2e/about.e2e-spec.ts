@@ -9,6 +9,6 @@ describe('About page', () => {
 
   it('should display About page title', () => {
     aboutPage.navigateTo();
-    expect(aboutPage.getTitleText()).toEqual('EMBL-EBI Cloud Portal');
+    expect(aboutPage.getTitleText()).toEqual('A platform for better science');
   });
 });

@@ -1,5 +1,5 @@
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { DeploymentComponent } from 'ng2-cloud-portal-presentation-lib';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
@@ -18,7 +18,7 @@ export class DeploymentPageComponent implements OnInit {
     stream: true });
 
   constructor(public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private _route: ActivatedRoute,
     private cdRef:ChangeDetectorRef) {
     
@@ -43,7 +43,7 @@ export class DeploymentPageComponent implements OnInit {
   }
 
   openConfirmDestroyDialog(deploymentDetail: DeploymentComponent) {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.data = [
       'You are about to destroy the deployment \'' + deploymentDetail.deploymentInstance.reference +'\' (' + deploymentDetail.deploymentInstance.applicationName + ')',
       'DESTROY',
@@ -53,6 +53,21 @@ export class DeploymentPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(actionTaken => {
       if (actionTaken == 'DESTROY')
         deploymentDetail.destroyDeployment(deploymentDetail.deploymentInstance)
+    });
+    
+  }
+
+  openConfirmDeleteDialog(deploymentDetail: DeploymentComponent) {
+    const config = new MatDialogConfig();
+    config.data = [
+      'You are about to permanently delete the deployment \'' + deploymentDetail.deploymentInstance.reference +'\' (' + deploymentDetail.deploymentInstance.applicationName + ')',
+      'DELETE',
+      'Please confirm'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DELETE')
+        deploymentDetail.deleteDeployment(deploymentDetail.deploymentInstance)
     });
     
   }

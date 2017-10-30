@@ -1,27 +1,27 @@
-<md-dialog-content>
+<mat-dialog-content>
 <div>
   <img class="dialog-img" [src]="robby">
   <h2>Add member</h2>
 </div>
 <div>
-  <md-input-container class="input-full-width">
-    <input mdInput type="text" placeholder="Member email (required)" 
+  <mat-form-field class="input-full-width">
+    <input matInput type="text" placeholder="Member email (required)" 
     [formControl]="addMemberCtrl"
     tabindex="-1">
-  </md-input-container>
+  </mat-form-field>
 </div>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button class="button-color-accent"
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button class="button-color-accent"
   [disabled]="!addMemberCtrl.value || addMemberCtrl.value.length<=0"  
   (click)="dialogRef.close(addMemberCtrl.value)">
   ADD
   </button>
   <span class="fill-remaining-space"></span>
-  <button md-button
+  <button mat-button
   (click)="dialogRef.close()">
   CANCEL
   </button>
-</md-dialog-actions>
+</mat-dialog-actions>
 
 

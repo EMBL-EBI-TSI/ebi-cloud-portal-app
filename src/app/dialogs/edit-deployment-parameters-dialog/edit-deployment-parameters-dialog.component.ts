@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { ConfigurationDeploymentParameters } from 'ng2-cloud-portal-service-lib/dist';
 import 'rxjs/add/operator/startWith';
@@ -14,14 +14,15 @@ export class EditDeploymentParametersDialog {
   deploymentParametersForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              public dialogRef: MdDialogRef<EditDeploymentParametersDialog>) { 
+              public dialogRef: MatDialogRef<EditDeploymentParametersDialog>) { 
     }
 
   public setDeploymentParameters(deploymentParameters: ConfigurationDeploymentParameters){
-    console.log('[EditDeploymentParametersDialog] editing deployment parameter field');
+    console.log('[EditDeploymentParametersDialog] editing deployment parameter field' + deploymentParameters.reference);
     this.deploymentParametersForm = this.fb.group({
       'name': [deploymentParameters.name, Validators.required],
-      'fields': this.fb.array([])
+      'fields': this.fb.array([]),
+      'reference':[deploymentParameters.reference]
     });
 
     deploymentParameters.fields.forEach(field =>{

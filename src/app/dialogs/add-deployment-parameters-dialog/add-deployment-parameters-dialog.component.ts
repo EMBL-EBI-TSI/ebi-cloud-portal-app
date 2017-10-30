@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/startWith';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'add-deployment-parameters-dialog',
@@ -13,7 +13,7 @@ export class AddDeploymentParametersDialog {
   deploymentParametersForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              public dialogRef: MdDialogRef<AddDeploymentParametersDialog>) { 
+              public dialogRef: MatDialogRef<AddDeploymentParametersDialog>) { 
     this.deploymentParametersForm = this.fb.group({
       'name': ['', Validators.compose([
         Validators.required,

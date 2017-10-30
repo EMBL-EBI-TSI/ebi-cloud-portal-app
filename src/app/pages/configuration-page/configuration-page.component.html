@@ -1,62 +1,58 @@
 <cp-configuration-component #configurationDetail>
   <div class="content">
     <div class="detail-card-container">
-      <md-card *ngIf="configurationDetail.configurationPresenter">
-          <span class="md-toolbar flex-container-wide">
-             <md-icon class="card-type-icon">settings_applications</md-icon>
-             <h3>{{ configurationDetail.configurationPresenter.name }}</h3>
-             <span class="fill-remaining-space"></span>
-             <span *ngIf="!configurationDetail.configurationPresenter.isShared">
-             <button md-icon-button (click)="openEditConfigurationDialog(configurationDetail)">
-              <md-icon>edit</md-icon> 
-             </button> 
-             <button md-icon-button (click)="openShareConfigurationDialog(configurationDetail)">
-                 <md-icon>share</md-icon> 
-               </button>
-             <button md-icon-button color="warn" (click)="configurationDetail.remove()">
-                 <md-icon>delete_forever</md-icon> 
-              </button>
-            </span>
-            <span *ngIf="configurationDetail.configurationPresenter.isShared">
-               <p>SHARED</p>
-            </span>
-        </span>
-        <md-card-content>
+      <mat-card *ngIf="configurationDetail.configurationPresenter">
         <span class="flex-container-wide">
-          <span class="flex-container-wide">
-            <md-list dense>
-              <md-list-item *ngIf="configurationDetail.configurationPresenter.isShared">
-                <h3 md-line>Owned by</h3>
-                 <p md-line class="param-value">{{ configurationDetail.configurationPresenter.accountEmail }}</p>
-               </md-list-item>
-               <md-list-item *ngIf="configurationDetail.configurationPresenter.sharedWithTeamNames && configurationDetail.configurationPresenter.sharedWithTeamNames.length>0">
-                 <h3 md-line>Included in teams</h3>
-                 <p *ngFor="let teamName of configurationDetail.configurationPresenter.sharedWithTeamNames" md-line class="param-value">{{ teamName }}
-                   <button *ngIf="!configurationDetail.configurationPresenter.isShared" md-icon-button color="warn" (click)="configurationDetail.unshare(teamName)">
-                     <md-icon>highlight_off</md-icon> 
-                   </button>
-                </p>
-              </md-list-item>
-             <md-list-item>
-				      	<md-icon md-list-icon class="card-type-icon">vpn_key</md-icon>
-				      	<h3 md-line>Cloud provider parameters</h3>
-				      	<p md-line class="param-value">{{ configurationDetail.configurationPresenter.cloudProviderParametersName }}</p>
-			       </md-list-item>
-			    	<md-list-item>
-				    	<md-icon md-list-icon class="card-type-icon">lock_open</md-icon>
-				    	<h3 md-line>SSH Public Key</h3>
-				    	<p md-line class="param-value">{{ configurationDetail.configurationPresenter.sshKey }}</p>
-			      </md-list-item>
-				   <md-list-item>
-						  <md-icon md-list-icon class="card-type-icon">settings_applications</md-icon>
-        	  	<h3 md-line>Parameters</h3>
-					  	<p md-line class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
-			  	</md-list-item>
-        </md-list>
+          <mat-icon class="card-type-icon">settings_applications</mat-icon>
+          <h3>{{ configurationDetail.configurationPresenter.name }}</h3>
+          <span class="fill-remaining-space"></span>
+          <span *ngIf="!configurationDetail.configurationPresenter.isShared">
+            <button mat-icon-button (click)="openEditConfigurationDialog(configurationDetail)">
+            <mat-icon>edit</mat-icon> 
+            </button> 
+            <button mat-icon-button (click)="openShareConfigurationDialog(configurationDetail)">
+                <mat-icon>share</mat-icon> 
+              </button>
+            <button mat-icon-button color="warn" (click)="configurationDetail.remove()">
+                <mat-icon>delete_forever</mat-icon> 
+            </button>
+          </span>
+          <span *ngIf="configurationDetail.configurationPresenter.isShared">
+            <p>SHARED</p>
+          </span>
         </span>
-        </span>
-        </md-card-content>
-      </md-card>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item *ngIf="configurationDetail.configurationPresenter.isShared">
+              <h3 matLine>Owned by</h3>
+              <p matLine class="param-value">{{ configurationDetail.configurationPresenter.accountUsername }}</p>
+              </mat-list-item>
+              <mat-list-item *ngIf="configurationDetail.configurationPresenter.sharedWithTeamNames && configurationDetail.configurationPresenter.sharedWithTeamNames.length>0">
+                <h3 matLine>Included in teams</h3>
+                <p *ngFor="let teamName of configurationDetail.configurationPresenter.sharedWithTeamNames" matLine class="param-value">{{ teamName }}
+                  <button *ngIf="!configurationDetail.configurationPresenter.isShared" mat-icon-button color="warn" (click)="configurationDetail.unshare(teamName)">
+                    <mat-icon>highlight_off</mat-icon> 
+                  </button>
+              </p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
+                <h3 matLine>Cloud provider parameters</h3>
+                <p matLine class="param-value">{{ configurationDetail.configurationPresenter.cloudProviderParametersName }}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
+              <h3 matLine>SSH Public Key</h3>
+              <p matLine class="param-value">{{ configurationDetail.configurationPresenter.sshKey }}</p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon class="card-type-icon">settings_applications</mat-icon>
+                <h3 matLine>Parameters</h3>
+                <p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </cp-configuration-component>

@@ -6,10 +6,11 @@ import { HttpModule } from '@angular/http';
 import { ENV_TOKEN } from '../environment.base';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule, MdButtonModule, MdCardModule, MdCoreModule, MdSelectModule,
-  MdInputModule, MdMenuModule, MdSidenavModule, MdAutocompleteModule, MdDialogModule,
-  MdListModule, MdTabsModule, MdChipsModule, MdToolbarModule, MdIconModule,
-  MdProgressSpinnerModule, MdProgressBarModule, MdTooltipModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
+  MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
+  MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
+  MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule,
+  MatExpansionModule, MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 import 'hammerjs';
 import { JwtHelper } from 'angular2-jwt';
 
@@ -151,10 +152,11 @@ export function provideConfig() {
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MaterialModule, MdButtonModule, MdCardModule, MdCoreModule, MdSelectModule,
-    MdInputModule, MdMenuModule, MdSidenavModule, MdAutocompleteModule, MdDialogModule,
-    MdListModule, MdTabsModule, MdChipsModule, MdToolbarModule, MdIconModule,
-    MdProgressSpinnerModule, MdProgressBarModule, MdTooltipModule
+    MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
+    MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
+    MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
+    MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule,
+    MatExpansionModule
   ],
   entryComponents: [
     AddRepoDialog,
@@ -174,6 +176,7 @@ export function provideConfig() {
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
+    { provide: MATERIAL_COMPATIBILITY_MODE, useValue: true },
     TokenService,
     AuthService,
     CredentialService,

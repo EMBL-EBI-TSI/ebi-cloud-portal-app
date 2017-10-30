@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/startWith';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'add-cloud-provider-dialog',
@@ -14,7 +14,7 @@ export class AddCloudProviderDialog {
   cloudProviderNames: string[] = ['AWS','GCP','OSTACK', 'AZURE'];
 
   constructor(private fb: FormBuilder,
-              public dialogRef: MdDialogRef<AddCloudProviderDialog>) { 
+              public dialogRef: MatDialogRef<AddCloudProviderDialog>) { 
     this.cloudProviderParametersForm = this.fb.group({
       'name': ['', Validators.compose([
         Validators.required,

@@ -1,4 +1,4 @@
-<div class="content">
+<div [ngClass]="{'content': credentialService.getUsername(), 'content-out': !credentialService.getUsername()}">
   <img class="hero central-img" [src]="robby">
   <div *ngIf="tokenService.getToken()">
     <div class="hero hero-message">
@@ -17,18 +17,18 @@
       <span class="flex-container">
         <div style="padding-right: 3em;">
           <form id="login-form">
-            <div><md-input-container>
-              <input mdInput placeholder="Username" 
+            <div><mat-form-field>
+              <input matInput placeholder="Username" 
               [(ngModel)]="username"
               name="username" id="username">
-            </md-input-container></div>
-            <div><md-input-container>
-              <input mdInput type="password" mdInput placeholder="Password" 
+            </mat-form-field></div>
+            <div><mat-form-field>
+              <input matInput type="password" matInput placeholder="Password" 
               [(ngModel)]="password"
               name="password" id="password">
-            </md-input-container></div>
+            </mat-form-field></div>
             <div>
-              <button id="login-button" style="padding:0.5em;padding-right:0.5em;" md-raised-button
+              <button id="login-button" style="padding:0.5em;padding-right:0.5em;" mat-raised-button
               (click)="authenticate(username, password)">
                 Login
               </button>
@@ -41,7 +41,7 @@
             <h5>Or Single Sign On using your ELIXIR identity!</h5>
           </div>
           <div style="position: absolute; bottom: 0;">
-            <a style="padding:0.5em; padding-right:1em;" md-raised-button href="{{ssoLink()}}" target="_blank">
+            <a style="padding:0.5em; padding-right:1em;" mat-raised-button href="{{ssoLink()}}" target="_blank">
               <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
               SSO
             </a>

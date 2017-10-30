@@ -10,6 +10,7 @@ describe('Profile page', () => {
   beforeAll(() => {
     // clear token
     browser.executeScript('localStorage.removeItem("token");');
+    browser.executeScript('localStorage.removeItem("username");');
   })
 
   beforeEach(() => {
@@ -44,7 +45,7 @@ describe('Profile page', () => {
     let loginButton = loginPage.getLoginButton();
     loginButton.click();
     // expect to get welcome message
-    expect(loginPage.getMessageText()).toEqual('You are logged in as');
+    expect(loginPage.getWelcomeMessageText()).toEqual('You are logged in as');
 
     // navigate to profile
     profilePage.navigateTo();
