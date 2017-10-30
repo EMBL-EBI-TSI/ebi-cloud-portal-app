@@ -58,24 +58,14 @@
     <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
     <span class="ebi-header-link-container">
         <a class="ebi-header-link" *ngIf="!credentialService.getUsername()" [routerLink]=" ['./signon'] ">
-<<<<<<< HEAD
-          <md-icon class="ebi-header-link-icon" md-list-icon>vpn_key</md-icon>
-=======
           <mat-icon class="ebi-header-link-icon" mat-list-icon>vpn_key</mat-icon>
->>>>>>> dev
           <span class="ebi-header-link-text">Sign On</span>
         </a>
     </span>
   </div>
-<<<<<<< HEAD
-  <md-toolbar class="md-main-toolbar" *ngIf="credentialService.getUsername()">
-    <button class="md-main-toolbar-sidebar-button" md-icon-button (click)="sidenav.open()">
-      <md-icon>menu</md-icon>
-=======
   <mat-toolbar class="mat-main-toolbar" *ngIf="credentialService.getUsername()">
     <button class="mat-main-toolbar-sidebar-button" mat-icon-button (click)="sidenav.open()">
       <mat-icon>menu</mat-icon>
->>>>>>> dev
     </button>
     <a *ngFor="let breadcrumb of getBreadcrumb()" class="mat-main-toolbar-title" [routerLink]="breadcrumb.route">
         {{ breadcrumb.label }}

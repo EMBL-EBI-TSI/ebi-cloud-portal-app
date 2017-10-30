@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<div class="content">
-=======
 <div [ngClass]="{'content': credentialService.getUsername(), 'content-out': !credentialService.getUsername()}">
->>>>>>> dev
   <img class="hero central-img" [src]="robby">
   <div *ngIf="tokenService.getToken()">
     <div class="hero hero-message">
