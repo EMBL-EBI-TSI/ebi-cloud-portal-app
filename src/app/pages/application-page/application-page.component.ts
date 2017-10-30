@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ApplicationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
@@ -14,8 +15,13 @@ import { ApplicationInfoDialog } from './application-info-dialog.component';
 })
 export class ApplicationPageComponent implements OnInit {
 
+  configFormGroup: FormGroup;
+  sshKeyFormGroup: FormGroup;
+  inputsFormGroup: FormGroup;
+
   constructor(public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog, private _route: ActivatedRoute) {
+    public dialog: MatDialog, private _route: ActivatedRoute,
+    private _formBuilder: FormBuilder) {
 
   }
 
@@ -23,6 +29,15 @@ export class ApplicationPageComponent implements OnInit {
     let appName = this._route.snapshot.params['id'];
     this.breadcrumbService.breadcrumb.push({ label: 'Repository', route: 'repository' });
     this.breadcrumbService.breadcrumb.push({ label: appName, route: 'repository/' + appName });
+    this.configFormGroup = this._formBuilder.group({
+      configCtrl: ['', Validators.required]
+    });
+    this.sshKeyFormGroup = this._formBuilder.group({
+
+    });
+    this.inputsFormGroup = this._formBuilder.group({
+
+    });
   }
 
   ngOnDestroy() {
@@ -38,7 +53,7 @@ export class ApplicationPageComponent implements OnInit {
   }
 
   openInfoApplicationDialog(applicationDetail: ApplicationComponent) {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     config.data = [
       applicationDetail
     ];
@@ -46,7 +61,7 @@ export class ApplicationPageComponent implements OnInit {
   }
 
   openConfirmDeploymentDialog(applicationDetail: ApplicationComponent) {
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
     let extraInfo: string = '';
     if (applicationDetail.emptyAssigment) {
       extraInfo = extraInfo + 'Some deployment parameters remain unassigned.';

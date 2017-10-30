@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { VolumesComponent } from 'ng2-cloud-portal-presentation-lib';
 import { AddRepoDialog } from '../../dialogs/add-repo-dialog/add-repo-dialog.component';
@@ -13,7 +13,7 @@ import { AddRepoDialog } from '../../dialogs/add-repo-dialog/add-repo-dialog.com
 export class VolumesPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog) {  }
+    public dialog: MatDialog) {  }
 
   ngOnInit() {
     this.breadcrumbService.breadcrumb.push(

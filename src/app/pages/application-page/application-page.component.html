@@ -1,26 +1,26 @@
 <cp-application-component #applicationDetail>
   <div class="content">
     <div class="detail-card-container">
-      <md-card *ngIf="applicationDetail.applicationDeployer">
+      <mat-card *ngIf="applicationDetail.applicationDeployer">
         <span class="flex-container-wide">
           <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
           <!--Available providers-->
-          <md-chip-list selectable="false">
-            <md-chip *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+          <mat-chip-list selectable="false">
+            <mat-chip *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
               {{ cloudProvider.cloudProvider }}
-            </md-chip>
-          </md-chip-list>
+            </mat-chip>
+          </mat-chip-list>
           <span class="fill-remaining-space"></span>
           <!--Info, share, and remove controls-->
-          <button md-icon-button (click)="openInfoApplicationDialog(applicationDetail)">
-            <md-icon>info_outline</md-icon> 
+          <button mat-icon-button (click)="openInfoApplicationDialog(applicationDetail)">
+            <mat-icon>info_outline</mat-icon> 
           </button>
           <span *ngIf="!applicationDetail.applicationDeployer.isShared">
-            <button md-icon-button (click)="openShareApplicationDialog(applicationDetail)">
-              <md-icon>share</md-icon> 
+            <button mat-icon-button (click)="openShareApplicationDialog(applicationDetail)">
+              <mat-icon>share</mat-icon> 
             </button>
-            <button md-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
-              <md-icon>delete_forever</md-icon> 
+            <button mat-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
+              <mat-icon>delete_forever</mat-icon> 
             </button>
           </span>
           <span *ngIf="applicationDetail.applicationDeployer.isShared">
@@ -29,135 +29,187 @@
         </span>
 
         <!--Application data-->
-        <md-card-content>
-          <!-- Configs and Deployment inputs -->
-          <md-list>
-            <span>
-              
-              <p md-subheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
-                <md-icon md-list-icon>warning</md-icon>
-                The user account has no pre set configurations to assign deployment parameters.
-              </p>
+        <mat-card-content>
+          <mat-horizontal-stepper linear>
+            <!-- Configs and Deployment inputs -->
+            <mat-step [stepControl]="configFormGroup">
+              <form [formGroup]="configFormGroup">
+                <ng-template matStepLabel>Select configuration</ng-template>
+                <p matSubheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
+                  <mat-icon mat-list-icon>warning</mat-icon>
+                  The user account has no pre set configurations to assign deployment parameters.
+                </p>
+                
+                <mat-list>
+                  <mat-list-item>
+                    <mat-icon mat-list-icon>settings_applications</mat-icon>
+                    <mat-form-field class="input-full-width">
 
-              <md-list>
-                <md-list-item>
-                  <md-icon md-list-icon>settings_applications</md-icon>
-                   <div md-line class="input-full-width"> 
-                    <md-select class="input-full-width" placeholder="Select Configuration" 
-                      [(ngModel)]="selectedConfig"
-                      (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)">
-                      <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0">
-                      <md-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
+                        <mat-select class="input-full-width" placeholder="Select Configuration" 
+                          [(ngModel)]="selectedConfig"
+                          (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)"
+                          formControlName="configCtrl">
+                          <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0">
+                          <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
                               <span *ngIf="config !== undefined">
                                 {{ config.name }} | @({{ config.cloudProviderParametersName }})
                               </span> 
-                      </md-option>
-                      </span>
-                    </md-select>
-                   </div> 
-                </md-list-item>
-                <p md-subheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
-                  <button *ngIf="!applicationDetail.emptyAssigment" md-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                    <md-icon>visibility</md-icon>
-                  </button>
-                  <button *ngIf="applicationDetail.emptyAssigment" 
-                    md-icon-button color="warn" mdTooltip="Some deployment parameters remain unassigned"
-                    (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                    <md-icon>visibility</md-icon><md-icon>warning</md-icon>  
-                  </button>
-                </p>
+                          </mat-option>
+                          </span>
+                        </mat-select>
+    
+                    </mat-form-field>
+                  </mat-list-item>
 
-                <span *ngIf="applicationDetail.parametersShowing">
-                  <md-list-item *ngFor="let aDeploymentParameter of applicationDetail.applicationDeployer.deploymentParameters">
-                      <md-icon md-list-icon>extension</md-icon>
-                      <h4 md-line>{{ aDeploymentParameter }}</h4>
-                      <p md-line *ngIf="applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]" class="param-value">
-                        {{ applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter] }}
-                      </p>
-                      <p md-line *ngIf="!applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]">
-                        <em style="color: red;">Not assigned</em>
-                      </p>
-                  </md-list-item>
-                </span>
-              </md-list>
-            </span>
+                  <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
+                    <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" 
+                    (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+                        <mat-icon *ngIf="!applicationDetail.parametersShowing">keyboard_arrow_down</mat-icon> 
+                        <mat-icon *ngIf="applicationDetail.parametersShowing">keyboard_arrow_up</mat-icon>
+                    </button>
+                    <button *ngIf="applicationDetail.emptyAssigment" 
+                      mat-icon-button color="warn" matTooltip="Some deployment parameters remain unassigned"
+                      (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+                      <mat-icon *ngIf="!applicationDetail.parametersShowing" style="margin: 10px;">keyboard_arrow_down</mat-icon> 
+                      <mat-icon *ngIf="applicationDetail.parametersShowing" style="margin: 10px;">keyboard_arrow_up</mat-icon>
+                      <mat-icon>warning</mat-icon>  
+                    </button>
+                  </p>
+
+                  <span *ngIf="applicationDetail.parametersShowing">
+                    <mat-list-item *ngFor="let aDeploymentParameter of applicationDetail.applicationDeployer.deploymentParameters">
+                        <mat-icon mat-list-icon>extension</mat-icon>
+                        <h4 matLine>{{ aDeploymentParameter }}</h4>
+                        <p matLine *ngIf="applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]" class="param-value">
+                          {{ applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter] }}
+                        </p>
+                        <p matLine *ngIf="!applicationDetail.applicationDeployer.assignedParameters[aDeploymentParameter]">
+                          <em style="color: red;">Not assigned</em>
+                        </p>
+                    </mat-list-item>
+                  </span>
+                </mat-list>
+                <div>
+                  <button *ngIf="applicationDetail.selectedConfiguration" mat-button matStepperNext>Next</button>
+                  <button *ngIf="!applicationDetail.selectedConfiguration" mat-button matStepperNext disabled>Next</button>
+                </div>
+              </form>
+            </mat-step>
+
 
             <!--Optional SSH key-->
-            <span *ngIf="applicationDetail.selectedConfiguration">
-              <h3 md-header>User SSH key (optional)</h3>
-              <md-list-item>
-                <md-icon md-list-icon>vpn_key</md-icon>
-                <md-input-container md-line class="input-full-width">
-                  <input mdInput #sshkey placeholder="SSH key"
-                  (keyup.enter)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)"
-                  (blur)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)">
-                </md-input-container>
-              </md-list-item>
-            </span>
-            <!--Application required inputs-->
-            <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration">
-              <h3 md-header>Inputs</h3>
-              <md-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
-                <md-icon md-list-icon>keyboard_arrow_right</md-icon>
-                <md-input-container md-line class="input-full-width"><input mdInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
-                    (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
-                </md-input-container>
-              </md-list-item>
+            <mat-step [optional]="true" [stepControl]="sshKeyFormGroup">
+              <form [formGroup]="sshKeyFormGroup">
+                <ng-template matStepLabel>SSH Key</ng-template>
+                <mat-list>
+                  <mat-list-item>
+                    <mat-icon mat-list-icon>vpn_key</mat-icon>
+                    <mat-form-field matLine class="input-full-width">
+                      <input matInput #sshkey placeholder="SSH key"
+                      (keyup.enter)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)"
+                      (blur)="applicationDetail.assignUserSshKey(applicationDetail.applicationDeployer, $event.target.value)">
+                    </mat-form-field>
+                  </mat-list-item>
+                </mat-list>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
 
-              <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
-                <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
-                  <md-list-item *ngFor="let anInput of aCloudProvider.inputs">
-                    <md-icon md-list-icon>keyboard_arrow_right</md-icon>
-                    <md-input-container md-line class="input-full-width"><input mdInput #{{anInput}} placeholder="{{ anInput }}" 
-                      (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
-                      (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
-                    </md-input-container>
-                  </md-list-item>
+            <!--Application required inputs-->
+            <mat-step label="Inputs" [stepControl]="inputsFormGroup">
+              <form [formGroup]="inputsFormGroup">
+                <!-- <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration"> -->
+                <span>
+                  <mat-list>
+                    <mat-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
+                      <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                      <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+                          (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
+                      </mat-form-field>
+                    </mat-list-item>
+                  </mat-list>
+                  <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
+                    <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
+                      <mat-list>
+                        <mat-list-item *ngFor="let anInput of aCloudProvider.inputs">
+                          <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                          <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" 
+                            (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
+                            (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
+                          </mat-form-field>
+                        </mat-list-item>
+                      </mat-list>
+                    </span>
+                  </span>
                 </span>
-              </span>
-            </span>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
 
             <!--Application required volumes-->
-            <span *ngIf="!applicationDetail.applicationDeployer.volumes.length==0 && applicationDetail.selectedConfiguration">
-              <h3 md-header>Volumes</h3>
-              <md-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
-                <md-icon md-list-icon>storage</md-icon>
-                <md-select placeholder="{{ aVolume }}" md-line (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
-                  <!--<md-option value="null">None</md-option>-->
-                  <md-option *ngFor="let volumeInstance of applicationDetail.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</md-option>
-                </md-select>
-              </md-list-item>
-            </span>
-            
-          </md-list>
+            <mat-step *ngIf="!applicationDetail.applicationDeployer.volumes.length==0 && applicationDetail.selectedConfiguration" label="Set volumes">
+              <span *ngIf="!applicationDetail.applicationDeployer.volumes.length==0 && applicationDetail.selectedConfiguration">
+                <h3 mat-header>Volumes</h3>
+                <mat-list-item *ngFor="let aVolume of applicationDetail.applicationDeployer.volumes">
+                  <mat-icon mat-list-icon>storage</mat-icon>
+                  <mat-select placeholder="{{ aVolume }}" matLine (change)="applicationDetail.attachVolume(applicationDetail.applicationDeployer, aVolume, $event.target.value)">
+                    <!--<mat-option value="null">None</mat-option>-->
+                    <mat-option *ngFor="let volumeInstance of applicationDetail.volumeInstances" [value]="volumeInstance.reference">{{volumeInstance.reference}}</mat-option>
+                  </mat-select>
+                </mat-list-item>
+              </span>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </mat-step>
 
-        </md-card-content>
+            <mat-step>
+              <ng-template matStepLabel>Deploy</ng-template>
+              <mat-list>
+                <mat-list-item>
+                  Your application is now ready to deploy.
+                </mat-list-item>
+              </mat-list>
+              <!--A progress bar-->
+              <mat-progress-bar *ngIf="applicationDetail.applicationDeployer.deploying || applicationDetail.applicationDeployer.destroying"
+              mode="indeterminate"></mat-progress-bar>
 
-        <!--A progress bar-->
-        <md-progress-bar *ngIf="applicationDetail.applicationDeployer.deploying || applicationDetail.applicationDeployer.destroying"
-          mode="indeterminate"></md-progress-bar>
+              <!--Deploy button-->
+              <div *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
+                <button mat-button matStepperPrevious>Back</button>
+                <span *ngIf="!applicationDetail.selectedConfiguration"
+                  matTooltip="Please, select a valid configuration"
+                    matTooltipPosition="right" matTooltipHideDelay="1000">
+                  <button mat-button disabled>
+                      DEPLOY
+                  </button>
+                </span>
 
-        <!--These are the action controls-->
-        <md-card-actions *ngIf="!applicationDetail.applicationDeployer.deploying && !applicationDetail.applicationDeployer.destroying">
+                <span *ngIf="applicationDetail.selectedConfiguration" 
+                    matTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
+                    matTooltipPosition="right" matTooltipHideDelay="1000">
+                  <button mat-button color="primary" (click)="openConfirmDeploymentDialog(applicationDetail)">
+                      DEPLOY
+                  </button>
+                </span>
+
+              </div>
+            </mat-step>
+
+          </mat-horizontal-stepper>
+
+
+        </mat-card-content>
+
         
-          <span *ngIf="!applicationDetail.selectedConfiguration"
-            mdTooltip="Please, select a valid configuration"
-              mdTooltipPosition="right" mdTooltipHideDelay="1000">
-            <button md-raised-button disabled>
-                DEPLOY
-            </button>
-          </span>
-
-          <span *ngIf="applicationDetail.selectedConfiguration" 
-              mdTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
-              mdTooltipPosition="right" mdTooltipHideDelay="1000">
-            <button md-raised-button (click)="openConfirmDeploymentDialog(applicationDetail)">
-                DEPLOY
-            </button>
-          </span>
-
-        </md-card-actions>
-      </md-card>
+      </mat-card>
     </div>
   </div>
 </cp-application-component>

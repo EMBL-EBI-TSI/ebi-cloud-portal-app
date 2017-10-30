@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogRef} from '@angular/material';
+import { MatDialog, MatDialogRef} from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { EditDeploymentParametersDialog  } from '../../dialogs/edit-deployment-parameters-dialog/edit-deployment-parameters-dialog.component';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
@@ -14,7 +14,7 @@ import { DeploymentParametersComponent } from 'ng2-cloud-portal-presentation-lib
 export class DeploymentParametersPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog, private _route: ActivatedRoute) {
+    public dialog: MatDialog, private _route: ActivatedRoute) {
 
   }
 
@@ -37,7 +37,7 @@ export class DeploymentParametersPageComponent implements OnInit {
   }
 
   openEditDeploymentParametersDialog(deploymentParametersDetail: DeploymentParametersComponent ){
-    let dialogRef:MdDialogRef<EditDeploymentParametersDialog> = this.dialog.open(EditDeploymentParametersDialog);
+    let dialogRef:MatDialogRef<EditDeploymentParametersDialog> = this.dialog.open(EditDeploymentParametersDialog);
     dialogRef.componentInstance.setDeploymentParameters(deploymentParametersDetail.deploymentParametersPresenter);
     dialogRef.afterClosed().subscribe(
       deploymentParametersForm => {

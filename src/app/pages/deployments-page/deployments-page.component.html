@@ -1,76 +1,76 @@
 <cp-deployments-component #deploymentsComponent>
-	<md-toolbar>
-		<md-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
+	<mat-toolbar>
+		<mat-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
 			<p>Hide destroyed</p>
-		</md-checkbox>
-	</md-toolbar>
+		</mat-checkbox>
+	</mat-toolbar>
 
 	<div class="content" *ngIf="deploymentsComponent.deploymentInstances">
 
-		<md-card class="background-card" *ngIf="deploymentsComponent.deploymentInstances.length==0">
+		<mat-card class="background-card" *ngIf="deploymentsComponent.deploymentInstances.length==0">
 			No deployments for {{ deploymentsComponent.credentialService.getGivenName() }} yet
-		</md-card>
+		</mat-card>
 
 		<div class="wide-summary-card-container">
-			<md-card [routerLink]=" ['/deployments/', deploymentInstance.reference]" *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
-				<span class="md-toolbar flex-container-wide">
-					<md-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</md-icon> 
-					<md-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</md-icon> 
-					<!--<md-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</md-icon> -->
-					<md-progress-spinner *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></md-progress-spinner>
+			<mat-card [routerLink]=" ['/deployments/', deploymentInstance.reference]" *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
+				<span class="flex-container-wide">
+					<mat-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</mat-icon> 
+					<mat-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</mat-icon> 
+					<!--<mat-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</mat-icon> -->
+					<mat-progress-spinner *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></mat-progress-spinner>
 					
-					<md-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</md-icon> 
+					<mat-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</mat-icon> 
 					<h3>{{ deploymentInstance.applicationName }}</h3>
 					<span class="fill-remaining-space"></span>
 				</span>
-				<md-card-content>
+				<mat-card-content>
 					<!--Deployment meta-data-->
-					<md-list-item>
-						<p md-line>Reference</p>
-						<h3 md-line class="param-value">{{ deploymentInstance.reference }}</h3>
-					</md-list-item>
-					<md-list-item>
-						<p md-line>State</p>
-						<h3 md-line class="param-value">{{ deploymentInstance.status }}</h3>
-					</md-list-item>
-					<md-list-item>
-						<p md-line>Cloud Provider</p>
-						<h3 md-line class="param-value">{{ deploymentInstance.cloudProviderParametersCopy.name }}</h3>
-					</md-list-item>
-					<md-list-item>
-						<p md-line>Configuration</p>
-						<h3 md-line class="param-value">{{ deploymentInstance.configurationName }}</h3>
-					</md-list-item>
+					<mat-list-item>
+						<p matLine>Reference</p>
+						<h3 matLine class="param-value">{{ deploymentInstance.reference }}</h3>
+					</mat-list-item>
+					<mat-list-item>
+						<p matLine>State</p>
+						<h3 matLine class="param-value">{{ deploymentInstance.status }}</h3>
+					</mat-list-item>
+					<mat-list-item>
+						<p matLine>Cloud Provider</p>
+						<h3 matLine class="param-value">{{ deploymentInstance.cloudProviderParametersCopy.name }}</h3>
+					</mat-list-item>
+					<mat-list-item>
+						<p matLine>Configuration</p>
+						<h3 matLine class="param-value">{{ deploymentInstance.configurationName }}</h3>
+					</mat-list-item>
 					<!--List attached volumes
-					<h3 md-header>Volumes</h3>
-					<md-divider></md-divider>
-					<p md-subheader *ngIf="deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
-					<md-list-item *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
-						<h3 md-line>{{ attachedVolume.name }}</h3>
-						<p md-line class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</p>
-					</md-list-item>-->
+					<h3 mat-header>Volumes</h3>
+					<mat-divider></mat-divider>
+					<p matSubheader *ngIf="deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
+					<mat-list-item *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
+						<h3 matLine>{{ attachedVolume.name }}</h3>
+						<p matLine class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</p>
+					</mat-list-item>-->
 					<!--List assigned inputs-->
-					<md-list-item *ngFor="let assignedInput of deploymentInstance.assignedInputs">
-						<p md-line>{{ assignedInput.inputName }}</p>
-						<h3 md-line class="param-value">{{ assignedInput.assignedValue }}</h3>
-					</md-list-item>
+					<mat-list-item *ngFor="let assignedInput of deploymentInstance.assignedInputs">
+						<p matLine>{{ assignedInput.inputName }}</p>
+						<h3 matLine class="param-value">{{ assignedInput.assignedValue }}</h3>
+					</mat-list-item>
 					<!--List generated outputs-->
-					<md-list-item *ngFor="let generatedOutput of deploymentInstance.generatedOutputs">
-						<p md-line>{{ generatedOutput.outputName }}</p>
-						<h3 md-line class="param-value">{{ generatedOutput.generatedValue }}</h3>
-					</md-list-item>
-					<md-list-item *ngIf="deploymentInstance.status == 'STARTING'">
-						<p md-line class="param-value">Waiting for provider data...</p>
-					</md-list-item>
-					<!--<md-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
-						<p md-line class="param-value">There is no provider data</p>
-					</md-list-item>-->
-					<md-list-item *ngIf="deploymentInstance.accessIp">
-						<p md-line>Access IP</p>
-						<h3 md-line class="param-value">{{ deploymentInstance.accessIp }}</h3>
-					</md-list-item>
-				</md-card-content>
-			</md-card>
+					<mat-list-item *ngFor="let generatedOutput of deploymentInstance.generatedOutputs">
+						<p matLine>{{ generatedOutput.outputName }}</p>
+						<h3 matLine class="param-value">{{ generatedOutput.generatedValue }}</h3>
+					</mat-list-item>
+					<mat-list-item *ngIf="deploymentInstance.status == 'STARTING'">
+						<p matLine class="param-value">Waiting for provider data...</p>
+					</mat-list-item>
+					<!--<mat-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
+						<p matLine class="param-value">There is no provider data</p>
+					</mat-list-item>-->
+					<mat-list-item *ngIf="deploymentInstance.accessIp">
+						<p matLine>Access IP</p>
+						<h3 matLine class="param-value">{{ deploymentInstance.accessIp }}</h3>
+					</mat-list-item>
+				</mat-card-content>
+			</mat-card>
 		</div>
 	</div>
 

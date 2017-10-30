@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { Router } from '@angular/router';
-import { MD_DIALOG_DATA, MdDialog, MdDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'error-message-dialog',
@@ -12,8 +12,8 @@ export class ErrorMessageDialog {
   actionButtonMessage: string = 'OK';
 
   constructor(private _router: Router,
-              @Optional() @Inject(MD_DIALOG_DATA) private dialogData: any,
-              public dialogRef: MdDialogRef<ErrorMessageDialog>) { 
+              @Optional() @Inject(MAT_DIALOG_DATA) private dialogData: any,
+              public dialogRef: MatDialogRef<ErrorMessageDialog>) { 
     
   }
 

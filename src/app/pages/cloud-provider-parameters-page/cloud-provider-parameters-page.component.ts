@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { CloudProviderParametersComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
@@ -14,7 +14,7 @@ import { EditCloudProviderDialog } from '../../dialogs/edit-cloud-provider-dialo
 export class CloudProviderParametersPageComponent implements OnInit {
 
   constructor(public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog, private _route: ActivatedRoute) {
+    public dialog: MatDialog, private _route: ActivatedRoute) {
 
   }
 
@@ -37,7 +37,7 @@ export class CloudProviderParametersPageComponent implements OnInit {
   }
 
   openEditCloudProviderDialog(cloudProviderDetail: CloudProviderParametersComponent) {
-    let dialogRef:MdDialogRef<EditCloudProviderDialog>  = this.dialog.open(EditCloudProviderDialog);
+    let dialogRef:MatDialogRef<EditCloudProviderDialog>  = this.dialog.open(EditCloudProviderDialog);
     dialogRef.componentInstance.setCloudProviderParameters(cloudProviderDetail.cloudProviderParametersPresenter);
     dialogRef.afterClosed().subscribe(
       cloudProviderParametersForm => {

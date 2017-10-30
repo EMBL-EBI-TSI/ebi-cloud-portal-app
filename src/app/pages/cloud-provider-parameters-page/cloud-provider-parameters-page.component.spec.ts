@@ -8,9 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { CommonModule } from '@angular/common';
 import { 
-  MdChipsModule, MdIconModule, MdSelectModule,
-  MdInputModule, MdCoreModule, MdTooltipModule,
-  MdDialogModule } from '@angular/material';
+  MatChipsModule, MatIconModule, MatSelectModule,
+  MatInputModule, MatCoreModule, MatTooltipModule,
+  MatDialogModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { 
   TokenService, CredentialService, AccountService,
@@ -39,9 +39,9 @@ describe('CloudProviderParametersPageComponent', () => {
       imports: [ 
         CommonModule, RouterModule, FormsModule,
         RouterTestingModule,
-        MdChipsModule, MdIconModule, MdCoreModule,
-        MdSelectModule, MdInputModule, MdDialogModule,
-        MdTooltipModule 
+        MatChipsModule, MatIconModule, MatCoreModule,
+        MatSelectModule, MatInputModule, MatDialogModule,
+        MatTooltipModule 
       ],
       declarations: [ CloudProviderParametersPageComponent, MockCppComponent ],
       providers: [ 

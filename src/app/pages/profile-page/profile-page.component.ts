@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MdDialog, MdDialogConfig, MdTabGroup } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatTabGroup } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { AddCloudProviderDialog } from '../../dialogs/add-cloud-provider-dialog/add-cloud-provider-dialog.component';
 import { AddConfigurationDialog } from '../../dialogs/add-configuration-dialog/add-configuration-dialog.component';
@@ -18,7 +18,7 @@ import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest
 export class ProfilePageComponent implements OnInit {
 
   @ViewChild('profileComponent') profileComponent: ProfileComponent;
-  @ViewChild('configurationsTabGroup') configurationsTabGroup: MdTabGroup;
+  @ViewChild('configurationsTabGroup') configurationsTabGroup: MatTabGroup;
 
 
   constructor(
@@ -26,7 +26,7 @@ export class ProfilePageComponent implements OnInit {
     public credentialService: CredentialService,
     public tokenService: TokenService,
     public breadcrumbService: BreadcrumbService,
-    public dialog: MdDialog) { }
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.breadcrumbService.breadcrumb.push(
@@ -225,7 +225,7 @@ export class ProfilePageComponent implements OnInit {
 
   openSuggestAddCPPDialog(profileComponent: ProfileComponent, configurationsTabGroup, message: string, tab: number) {
     this.configurationsTabGroup.selectedIndex=tab;
-    const config = new MdDialogConfig();
+    const config = new MatDialogConfig();
 
     config.data = [
       message,

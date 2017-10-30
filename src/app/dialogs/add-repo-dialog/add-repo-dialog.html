@@ -1,23 +1,23 @@
-<div md-dialog-content>
+<div mat-dialog-content>
 <div>
   <img class="dialog-img" [src]="robby">
   <h2>Add from repo</h2>
 </div>
 <div>
-  <md-input-container class="input-full-width">
-    <input mdInput type="text" placeholder="Repo URI (required)" 
+  <mat-form-field class="input-full-width">
+    <input matInput type="text" placeholder="Repo URI (required)" 
     [formControl]="repoUriCtrl">
-  </md-input-container>
+  </mat-form-field>
 </div>
 </div>
-<div md-dialog-actions>
-  <button md-raised-button class="button-color-accent"
+<div mat-dialog-actions>
+  <button mat-raised-button class="button-color-accent"
   [disabled]="!repoUriCtrl.value || repoUriCtrl.value.length<=0"  
   (click)="dialogRef.close(repoUriCtrl.value)">
   ADD
   </button>
   <span class="fill-remaining-space"></span>
-  <button md-button
+  <button mat-button
   (click)="dialogRef.close()">
   CANCEL
   </button>

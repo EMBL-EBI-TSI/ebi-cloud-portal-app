@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { CommonModule } from '@angular/common';
-import { MdIconModule, MdCoreModule, MdCheckboxModule } from '@angular/material';
+import { MatIconModule, MatCoreModule, MatCheckboxModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { 
   TokenService, CredentialService, AccountService,
@@ -36,7 +36,7 @@ describe('DeploymentsPageComponent', () => {
       imports: [ 
         CommonModule, RouterModule,
         RouterTestingModule,
-        MdIconModule, MdCoreModule, MdCheckboxModule
+        MatIconModule, MatCoreModule, MatCheckboxModule
       ],
       declarations: [ DeploymentsPageComponent, MockDeploymentsComponent, DeploymentStatusFilterPipe ],
       providers: [ 

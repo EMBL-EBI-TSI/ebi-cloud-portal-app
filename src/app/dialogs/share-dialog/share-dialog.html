@@ -1,33 +1,33 @@
-<md-dialog-content>
+<mat-dialog-content>
 <div>
   <img class="dialog-img" [src]="robby">
   <h2>Share this</h2>
 </div>
 <div>
-  <md-input-container class="input-full-width">
-    <input mdInput type="text" placeholder="Share with (required)" 
-    [mdAutocomplete]="teamListAuto"
+  <mat-form-field class="input-full-width">
+    <input matInput type="text" placeholder="Share with (required)" 
+    [matAutocomplete]="teamListAuto"
     [formControl]="shareWithCtrl"
     tabindex="-1">
-  </md-input-container>
-  <md-autocomplete #teamListAuto="mdAutocomplete">
-    <md-option *ngFor="let team of filteredTeams | async" [value]="team">
+  </mat-form-field>
+  <mat-autocomplete #teamListAuto="matAutocomplete">
+    <mat-option *ngFor="let team of filteredTeams | async" [value]="team">
       {{ team }}
-    </md-option>
-  </md-autocomplete>
+    </mat-option>
+  </mat-autocomplete>
 </div>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button class="button-color-accent"
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button class="button-color-accent"
   [disabled]="!shareWithCtrl.value || shareWithCtrl.value.length<=0"  
   (click)="dialogRef.close(shareWithCtrl.value)">
   SHARE
   </button>
   <span class="fill-remaining-space"></span>
-  <button md-button
+  <button mat-button
   (click)="dialogRef.close()">
   CANCEL
   </button>
-</md-dialog-actions>
+</mat-dialog-actions>
 
 

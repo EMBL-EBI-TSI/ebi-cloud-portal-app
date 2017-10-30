@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/startWith';
 import { TeamService, TokenService, ErrorService } from 'ng2-cloud-portal-service-lib';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'share-dialog',
@@ -19,7 +19,7 @@ export class ShareDialog {
               public tokenService: TokenService,
               public errorService: ErrorService,
               private _router: Router,
-              public dialogRef: MdDialogRef<ShareDialog>) { 
+              public dialogRef: MatDialogRef<ShareDialog>) { 
     this.shareWithCtrl = new FormControl();
     this.teamService.getAllMember(this.tokenService.getToken())
       .subscribe(
