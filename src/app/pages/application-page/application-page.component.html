@@ -62,13 +62,17 @@
                   </mat-list-item>
 
                   <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
-                    <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                      <mat-icon style="margin: 10px;">visibility</mat-icon>
+                    <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" 
+                    (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
+                        <mat-icon *ngIf="!applicationDetail.parametersShowing">keyboard_arrow_down</mat-icon> 
+                        <mat-icon *ngIf="applicationDetail.parametersShowing">keyboard_arrow_up</mat-icon>
                     </button>
                     <button *ngIf="applicationDetail.emptyAssigment" 
                       mat-icon-button color="warn" matTooltip="Some deployment parameters remain unassigned"
                       (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                      <mat-icon style="margin: 10px;">visibility</mat-icon><mat-icon>warning</mat-icon>  
+                      <mat-icon *ngIf="!applicationDetail.parametersShowing" style="margin: 10px;">keyboard_arrow_down</mat-icon> 
+                      <mat-icon *ngIf="applicationDetail.parametersShowing" style="margin: 10px;">keyboard_arrow_up</mat-icon>
+                      <mat-icon>warning</mat-icon>  
                     </button>
                   </p>
 

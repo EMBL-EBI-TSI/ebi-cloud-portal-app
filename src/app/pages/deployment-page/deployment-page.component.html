@@ -67,19 +67,27 @@
               <h4 matLine class="param-value">{{ generatedOutput.generatedValue }}</h4>
             </mat-list-item>
             <!--List assigned parameters-->
-            <h3 mat-header>Deployment parameters</h3>
-            <p matSubheader *ngIf="deploymentDetail.deploymentInstance.assignedParameters.length==0">There are no assigned parameters for this deployment</p>
-            <mat-list-item *ngFor="let assignedParameter of deploymentDetail.deploymentInstance.assignedParameters">
-              <mat-icon *ngIf="!assignedParameter.parameterValue" mat-list-icon>warning</mat-icon>
-              <mat-icon *ngIf="assignedParameter.parameterValue" mat-list-icon>settings_applications</mat-icon>
-              <h3 matLine>{{ assignedParameter.parameterName }}</h3>
-              <h4 *ngIf="!assignedParameter.parameterValue" matLine class="param-value">Value not assigned</h4>
-              <h4 matLine class="param-value">{{ assignedParameter.parameterValue }}</h4>
-            </mat-list-item>
+            <h3 mat-header>Deployment parameters <button mat-icon-button color="primary" 
+              (click)="deploymentParametersShowing=!deploymentParametersShowing">
+                <mat-icon *ngIf="!deploymentParametersShowing">keyboard_arrow_down</mat-icon> 
+                <mat-icon *ngIf="deploymentParametersShowing">keyboard_arrow_up</mat-icon> 
+              </button>
+            </h3>
+            <span *ngIf="deploymentParametersShowing">
+              <p matSubheader *ngIf="deploymentDetail.deploymentInstance.assignedParameters.length==0">There are no assigned parameters for this deployment</p>
+              <mat-list-item *ngFor="let assignedParameter of deploymentDetail.deploymentInstance.assignedParameters">
+                <mat-icon *ngIf="!assignedParameter.parameterValue" mat-list-icon>warning</mat-icon>
+                <mat-icon *ngIf="assignedParameter.parameterValue" mat-list-icon>settings_applications</mat-icon>
+                <h3 matLine>{{ assignedParameter.parameterName }}</h3>
+                <h4 *ngIf="!assignedParameter.parameterValue" matLine class="param-value">Value not assigned</h4>
+                <h4 matLine class="param-value">{{ assignedParameter.parameterValue }}</h4>
+              </mat-list-item>
+            </span>
             <!--Logs-->
             <h3 mat-header>Deployment logs
               <button mat-icon-button color="primary" (click)="logsShowing=!logsShowing">
-              <mat-icon>visibility</mat-icon> 
+                  <mat-icon *ngIf="!logsShowing">keyboard_arrow_down</mat-icon> 
+                  <mat-icon *ngIf="logsShowing">keyboard_arrow_up</mat-icon> 
             </button>
             </h3>
             <span class="logs-text-area" matSubheader *ngIf="logsShowing"
@@ -89,7 +97,8 @@
             <span *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED' || deploymentDetail.deploymentInstance.status == 'DESTROYING'">
             <h3 mat-header>Deployment destroy logs
               <button mat-icon-button color="primary" (click)="destroylogsShowing=!destroylogsShowing">
-              <mat-icon>visibility</mat-icon> 
+                <mat-icon *ngIf="!destroylogsShowing">keyboard_arrow_down</mat-icon> 
+                <mat-icon *ngIf="destroylogsShowing">keyboard_arrow_up</mat-icon>
             </button>
             </h3>
             <span class="logs-text-area" matSubheader *ngIf="destroylogsShowing"
