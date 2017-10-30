@@ -13,8 +13,6 @@ import * as Convert from 'ansi-to-html';
 })
 export class DeploymentPageComponent implements OnInit {
 
-  @ViewChild('stepper') stepper;
-
   convert = new Convert({
     newline: true, 
     stream: true });
@@ -30,7 +28,7 @@ export class DeploymentPageComponent implements OnInit {
     let deploymentRef = this._route.snapshot.params['id'];
     this.breadcrumbService.breadcrumb.push( {label:'Deployments', route:'deployments'} );
     this.breadcrumbService.breadcrumb.push( {label:deploymentRef, route:'deployments/'+deploymentRef} );
-
+    
   }
 
   ngOnDestroy() {
