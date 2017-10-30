@@ -53,7 +53,8 @@
           <mat-list>
             <h3 mat-header>Parameters
             <button mat-icon-button color="primary" (click)="fieldsShowing=!fieldsShowing">
-              <mat-icon>visibility</mat-icon> 
+                <mat-icon *ngIf="!fieldsShowing">keyboard_arrow_down</mat-icon> 
+                <mat-icon *ngIf="fieldsShowing">keyboard_arrow_up</mat-icon> 
             </button></h3>
             <span *ngIf="fieldsShowing">
               <p matSubheader *ngIf="cloudProviderDetail.cloudProviderParametersPresenter.fields.length==0">This Cloud Provider defines no parameters</p>
