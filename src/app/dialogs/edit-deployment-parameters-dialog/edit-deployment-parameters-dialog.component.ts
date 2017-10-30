@@ -18,10 +18,11 @@ export class EditDeploymentParametersDialog {
     }
 
   public setDeploymentParameters(deploymentParameters: ConfigurationDeploymentParameters){
-    console.log('[EditDeploymentParametersDialog] editing deployment parameter field');
+    console.log('[EditDeploymentParametersDialog] editing deployment parameter field' + deploymentParameters.reference);
     this.deploymentParametersForm = this.fb.group({
       'name': [deploymentParameters.name, Validators.required],
-      'fields': this.fb.array([])
+      'fields': this.fb.array([]),
+      'reference':[deploymentParameters.reference]
     });
 
     deploymentParameters.fields.forEach(field =>{
