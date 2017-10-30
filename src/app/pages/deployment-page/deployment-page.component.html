@@ -14,12 +14,63 @@
         </span>
 
         <mat-card-content>
+          <mat-horizontal-stepper #stepper>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.startedTime" 
+              active="deploymentDetail.deploymentInstance.status=='STARTING'"
+              completed="false">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Started</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.startedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>
+            </mat-step>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.failedTime"
+              selected="(deploymentDetail.deploymentInstance.status=='STARTING_FAILED') || (deploymentDetail.deploymentInstance.status=='DESTROYING_FAILED')"
+              completed="false">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Failed</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.failedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>
+            </mat-step>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.deployedTime"
+              selected="deploymentDetail.deploymentInstance.status=='RUNNING'"
+              completed="false">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Deployed</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.deployedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>              
+            </mat-step>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
+              selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"
+              completed="false"
+              [ngClass]="{'currentStatus':deploymentDetail.deploymentInstance.status=='DESTROYED'}">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Destroyed</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.destroyedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>               
+            </mat-step>                  
+          </mat-horizontal-stepper>
           <mat-list>
             <!--Deployment meta-data-->
-            <mat-list-item>
+            <!-- <mat-list-item>
               <h3 matLine>State</h3>
               <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
-            </mat-list-item>
+            </mat-list-item> -->
             <mat-list-item>
               <h3 matLine>Cloud Provider</h3>
               <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.cloudProviderParametersCopy.name }}</p>

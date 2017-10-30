@@ -1,7 +1,7 @@
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { DeploymentComponent } from 'ng2-cloud-portal-presentation-lib';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import * as Convert from 'ansi-to-html';
@@ -13,6 +13,8 @@ import * as Convert from 'ansi-to-html';
 })
 export class DeploymentPageComponent implements OnInit {
 
+  @ViewChild('stepper') stepper;
+
   convert = new Convert({
     newline: true, 
     stream: true });
@@ -21,13 +23,14 @@ export class DeploymentPageComponent implements OnInit {
     public dialog: MatDialog,
     private _route: ActivatedRoute,
     private cdRef:ChangeDetectorRef) {
-    
+  
   }
 
   ngOnInit() {
     let deploymentRef = this._route.snapshot.params['id'];
     this.breadcrumbService.breadcrumb.push( {label:'Deployments', route:'deployments'} );
     this.breadcrumbService.breadcrumb.push( {label:deploymentRef, route:'deployments/'+deploymentRef} );
+
   }
 
   ngOnDestroy() {
@@ -72,4 +75,10 @@ export class DeploymentPageComponent implements OnInit {
     
   }
 
+  fromTimeStampToDateAndTime(timestamp: number) {
+    var t = new Date( timestamp );
+    var formatted = t.toISOString().replace("T"," ");
+
+    return formatted;
+  }
 }
