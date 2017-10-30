@@ -19,7 +19,7 @@
         <p matLine class="param-value">{{ applicationDetail.applicationDeployer.contact }}</p>
       </mat-list-item>
       <!--Application outputs-->
-      <h3 mat-header>Outputs</h3>
+      <h4 mat-header>Outputs</h4>
       <p matSubheader *ngIf="applicationDetail.applicationDeployer.outputs.length==0">This application generates no output</p>
       <mat-list-item *ngFor="let anOutput of applicationDetail.applicationDeployer.outputs">
         <mat-icon mat-list-icon>keyboard_arrow_left</mat-icon>
@@ -28,6 +28,7 @@
     </mat-list>
 
     <!--Sharing permisions-->
+    <h4 mat-header>Sharing details</h4>
     <mat-list>
       <span *ngIf="applicationDetail.applicationDeployer.isShared">
         <mat-list-item>
