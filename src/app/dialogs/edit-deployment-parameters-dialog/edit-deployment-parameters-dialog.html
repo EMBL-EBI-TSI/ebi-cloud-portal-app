@@ -7,7 +7,8 @@
     <form [formGroup]="deploymentParametersForm" autocomplete="off">
       <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Deployment parameters name (can't be changed)" [formControl]="deploymentParametersForm.controls['name']"
           [readonly]="true" disabled>
-      </mat-form-field>
+      </mat-form-field>   
+      <input matInput type="text" [formControl]="deploymentParametersForm.controls['reference']" [hidden]="true" >
       <!--Fields-->
       <h3>Parameters
         <button type="button" mat-icon-button color="primary" (click)="addNewDeploymentParametersFormField()">
