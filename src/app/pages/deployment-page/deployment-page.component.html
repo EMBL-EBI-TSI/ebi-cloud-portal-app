@@ -52,23 +52,22 @@
                   </mat-list-item>
                 </mat-list>
               </ng-template> 
-              <mat-list>
-                <mat-list-item>
-                  <span matLine>Running for {{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</span> 
-                </mat-list-item>
-                <mat-list-item>
-                  <span matLine>{{ deploymentDetail.deploymentInstance.instanceCount }} instances</span>
-                </mat-list-item>  
-                <mat-list-item>
-                  <span matLine>{{ deploymentDetail.deploymentInstance.totalVcpus }} virtual CPUs</span>
-                </mat-list-item>
-                <mat-list-item>
-                  <span matLine>{{ deploymentDetail.deploymentInstance.totalRamGb }} GB of RAM</span>
-                </mat-list-item>
-                <mat-list-item>
-                  <span matLine>{{ deploymentDetail.deploymentInstance.totalDiskGb }} GB of Disk (not including volumes)</span>
-                </mat-list-item>                
-              </mat-list>         
+              <table>
+                <tr>
+                  <th>Total running time</th>
+                  <th>Instances</th>
+                  <th>Total vCPUs</th>
+                  <th>Total RAM GB</th>
+                  <th>Total Diks GB</th>
+                </tr>
+                <tr>
+                  <td>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.instanceCount }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.totalVcpus }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.totalRamGb }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.totalDiskGb }}</td>
+                </tr>
+              </table>        
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
               selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"
