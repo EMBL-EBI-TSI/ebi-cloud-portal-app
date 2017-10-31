@@ -101,7 +101,7 @@ export class DeploymentPageComponent implements OnInit {
           hours = hours - (days * 24);
         }
         hoursChar = (hours >= 10) ? hours.toFixed(0) : "0" + hours.toFixed(0);
-        minutes = minutes - (hours * 60);
+        minutes = minutes - (days * 24 * 60) - (hours * 60);
         minutesChar = (minutes >= 10) ? minutes.toFixed(0) : "0" + minutes.toFixed(0);
     }
 
