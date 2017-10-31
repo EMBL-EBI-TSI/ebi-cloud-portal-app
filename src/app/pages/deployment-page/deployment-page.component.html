@@ -26,6 +26,7 @@
                   </mat-list-item>
                 </mat-list>
               </ng-template>
+              <p>The deployment request was received at {{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.startedTime) }}</p>
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.failedTime"
               selected="(deploymentDetail.deploymentInstance.status=='STARTING_FAILED') || (deploymentDetail.deploymentInstance.status=='DESTROYING_FAILED')"
