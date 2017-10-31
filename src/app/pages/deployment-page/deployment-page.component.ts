@@ -74,9 +74,9 @@ export class DeploymentPageComponent implements OnInit {
   }
 
   fromTimeStampToDateAndTime(timestamp: number) {
-    var t = new Date( timestamp );
-    var formatted = t.toISOString().replace("T"," ");
-
-    return formatted;
+    let t = new Date( timestamp );
+    let formatted = t.toISOString().replace("T"," ");
+    let res = formatted.substring(0,formatted.indexOf("."));
+    return res;
   }
 }
