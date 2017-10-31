@@ -52,7 +52,23 @@
                   </mat-list-item>
                 </mat-list>
               </ng-template> 
-              <p>Running for {{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</p>             
+              <mat-list>
+                <mat-list-item>
+                  <span matLine>Running for {{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</span> 
+                </mat-list-item>
+                <mat-list-item>
+                  <span matLine>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.instanceCount) }} instances</span>
+                </mat-list-item>  
+                <mat-list-item>
+                  <span matLine>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalVcpus) }} virtual CPUs</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <span matLine>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRamGb) }} GB of RAM</span>
+                </mat-list-item>
+                <mat-list-item>
+                  <span matLine>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalDiskGb) }} GB of Disk (not including volumes)</span>
+                </mat-list-item>                
+              </mat-list>         
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
               selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"
