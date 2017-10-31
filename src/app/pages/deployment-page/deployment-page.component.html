@@ -52,7 +52,7 @@
                   </mat-list-item>
                 </mat-list>
               </ng-template> 
-              <p>Running for {{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }} milliseconds</p>             
+              <p>Running for {{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</p>             
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
               selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"

@@ -82,24 +82,38 @@ export class DeploymentPageComponent implements OnInit {
 
   getTimeToDisplay(millisec: number) {
     let seconds: number = (millisec / 1000);
+    let secondsChar;
+    
     let minutes: number = Math.floor(seconds / 60);
+    let minutesChar: string;
+
     let hours: number = 0;
     let hoursChar: string;
-    let minutesChar: string;
+
+    let days: number = 0;
+    let daysChar: string;
 
     if (minutes > 59) {
         hours = Math.floor(minutes / 60);
+        if (hours>23) {
+          days = Math.floor(hours / 24);
+          daysChar = days.toFixed(0);
+          hours = hours - (days * 24);
+        }
         hoursChar = (hours >= 10) ? hours.toFixed(0) : "0" + hours.toFixed(0);
         minutes = minutes - (hours * 60);
         minutesChar = (minutes >= 10) ? minutes.toFixed(0) : "0" + minutes.toFixed(0);
     }
 
     seconds = Math.floor(seconds % 60);
-    let secondsChar = (seconds >= 10) ? seconds.toFixed(0) : "0" + seconds.toFixed(0);
-    if (hoursChar != "") {
-        return hoursChar + ":" + minutesChar + ":" + secondsChar;
+    secondsChar = (seconds >= 10) ? seconds.toFixed(0) : "0" + seconds.toFixed(0);
+    if (daysChar != "") {
+      return daysChar + " days, " + hoursChar + " hours, " + minutesChar + " minutes, and " + secondsChar +" seconds";
+    } else if (hoursChar != "") {
+      return hoursChar + " hours, " + minutesChar + " minutes, and " + secondsChar +" seconds";
+    } else {
+      return minutesChar + " minutes, and " + secondsChar +" seconds";
     }
-    return minutesChar + ":" + secondsChar;
   }
 
 }
