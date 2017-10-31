@@ -38,6 +38,7 @@
                   </mat-list-item>
                 </mat-list>
               </ng-template>
+              <p>This deployment failed because of '{{ deploymentDetail.deploymentInstance.errorCause }}'</p>
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.deployedTime"
               selected="deploymentDetail.deploymentInstance.status=='RUNNING'"
@@ -49,7 +50,8 @@
                     <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.deployedTime) }}</span>
                   </mat-list-item>
                 </mat-list>
-              </ng-template>              
+              </ng-template> 
+              <p>Running for {{ deploymentDetail.deploymentInstance.totalRunningTime }} milliseconds</p>             
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
               selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"

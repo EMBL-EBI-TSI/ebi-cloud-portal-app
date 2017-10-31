@@ -79,4 +79,27 @@ export class DeploymentPageComponent implements OnInit {
     let res = formatted.substring(0,formatted.indexOf("."));
     return res;
   }
+
+  getTimeToDisplay(millisec: number) {
+    let seconds: number = (millisec / 1000);
+    let minutes: number = Math.floor(seconds / 60);
+    let hours: number = 0;
+    let hoursChar: string;
+    let minutesChar: string;
+
+    if (minutes > 59) {
+        hours = Math.floor(minutes / 60);
+        hoursChar = (hours >= 10) ? hours.toFixed(0) : "0" + hours.toFixed(0);
+        minutes = minutes - (hours * 60);
+        minutesChar = (minutes >= 10) ? minutes.toFixed(0) : "0" + minutes.toFixed(0);
+    }
+
+    seconds = Math.floor(seconds % 60);
+    let secondsChar = (seconds >= 10) ? seconds.toFixed(0) : "0" + seconds.toFixed(0);
+    if (hoursChar != "") {
+        return hoursChar + ":" + minutesChar + ":" + secondsChar;
+    }
+    return minutesChar + ":" + secondsChar;
+  }
+
 }
