@@ -1,10 +1,10 @@
 <div 
 	[ngClass]="{'content': credentialService.getUsername(), 'content-out': !credentialService.getUsername()}">
-	<div style="display:flex; flex-wrap: nowrap; justify-content: center; margin: 0em 1em 2em 1em;">
-		<span style="flex-grow:0.5; flex-shrink:1.5; padding-right: 1em; padding-left: 1em;">
+	<div style="display:flex; flex-wrap: wrap; margin: 0em 1em 2em 1em; justify-content: center;">
+		<span style="padding-right: 1em; padding-left: 1em; min-width:300px; max-width:600px;">
 			<img style="width: 100%;" [src]="ecpMainInfographic">
 		</span>
-		<span style="flex-grow:0.5; flex-shrink:2;">
+		<span style=" min-width:300px; max-width:600px;">
 			<h1>A platform for better science</h1>
 			<p>The EMBL-EBI Cloud Portal has been developed by the 
 				<a href="https://www.ebi.ac.uk/about/people/steven-newhouse">Technology and Science Integration 
