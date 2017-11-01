@@ -29,7 +29,7 @@ app-root:empty + .loading {
   z-index: 100;
 }
 app-root:empty + .loading h1 {
-
+  margin-top: 50px;
   transform: translate(0, -100%);
 }
 
