@@ -11,12 +11,30 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <app-root></app-root>
-
-  <div class="loading"
-  style="height: 100%; display:flex; flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: center;">
-    <img style="max-width:300px;" src="assets/img/ecp_logo_black.png"/>
-    <h1>Loading...</h1>
-  </div>
+  <app-root>
+    <style>
+      @keyframes fade-in {
+        from { background-color: #389196; }
+        to { background-color: rgb(249,249,249); }
+      }
+      html, body {
+        animation-name: fade-in;
+        animation-duration: 1s;
+      }  
+      .rotating-logo {
+        -webkit-animation:spin 4s linear infinite;
+        -moz-animation:spin 4s linear infinite;
+        animation:spin 4s linear infinite;
+      }
+      @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+      @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+      @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+    </style>
+    <div
+    style="height: 100%; display:flex; flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: center;">
+      <img class="rotating-logo" style="max-width:300px;" src="assets/img/ecp_crank_black.png"/>
+      <h1>Loading...</h1>
+    </div>
+  </app-root>
 </body>
 </html>
