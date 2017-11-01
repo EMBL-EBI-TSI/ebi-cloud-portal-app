@@ -8,30 +8,6 @@
   --dark-color: #333333;
 }
 
-.loading {
-  opacity: 0;
-  transition: opacity .8s ease-in-out;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: var(--primary-color);
-  z-index: -1;
-}
-app-root:empty + .loading {
-  opacity: 1;
-  z-index: 100;
-}
-app-root:empty + .loading h1 {
-  color: #EEE;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  transform: translate(0, -50%);
-}
-
 html,body {
   height: 100%;
   min-height: 100%;
