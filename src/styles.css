@@ -213,7 +213,21 @@ mat-card .flex-container-wide {
 	margin-right: 35px;
 }
 .summary-card-container mat-card {
-  margin: 1em 1em 1em 1em;
+  margin: 10px;
+}
+
+.repo-summary-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.repo-summary-card-container:after {
+  content: "";
+  width: 470px;  
+}
+.repo-summary-card-container mat-card {
+  width: 400px;
+  height: 200px;
 }
 
 mat-progress-spinner {
@@ -221,7 +235,6 @@ mat-progress-spinner {
   max-height: 25px;
   position: relative;
   top: 20px;
-
 }
 mat-progress-spinner svg {
   max-width: 25px;
