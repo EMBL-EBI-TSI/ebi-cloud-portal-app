@@ -455,6 +455,8 @@ footer {
   min-height: 120px;
 }
 .logs-text-area {
+  display: flex;
+  flex-direction: column;
   min-height: 20em; 
   overflow: auto;
   background: var(--light-color);
