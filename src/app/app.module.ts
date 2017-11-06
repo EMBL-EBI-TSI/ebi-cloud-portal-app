@@ -10,7 +10,7 @@ import { MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
   MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
   MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
   MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule,
-  MatExpansionModule, MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
+  MatExpansionModule, MatFormFieldModule, MATERIAL_COMPATIBILITY_MODE } from '@angular/material';
 import 'hammerjs';
 import { JwtHelper } from 'angular2-jwt';
 
@@ -22,8 +22,12 @@ import { TokenService, AuthService, ConfigService,
 import { ProfileComponent, CloudProviderParametersComponent, RepositoryComponent,
         ApplicationComponent, ErrorComponent, ApplicationCloudProviderPipe,
         TeamComponent, DeploymentsComponent, DeploymentComponent,
-        VolumesComponent, TeamsComponent, DeploymentStatusPipe, ConfigurationFilterPipe } from 'ng2-cloud-portal-presentation-lib';
+        VolumesComponent, TeamsComponent, DeploymentStatusPipe,
+        ConfigurationFilterPipe, ConfigurationProviderTypePipe } from 'ng2-cloud-portal-presentation-lib';
 import { TeamNameFilterPipe } from './pages/teams-page/team-name-filter.pipe';
+import { TeamOwnerExcludeFilterPipe } from './pages/teams-page/team-owner-filter.pipe';
+import { TeamMemberExcludeFilterPipe } from './pages/teams-page/team-member-filter.pipe';
+import { TeamOtherExcludeFilterPipe } from './pages/teams-page/team-other-filter.pipe';
 
 import { AppComponent } from './app.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
@@ -126,8 +130,12 @@ export function provideConfig() {
     DocsPageComponent,
     ApplicationCloudProviderPipe,
     ConfigurationFilterPipe,
+    ConfigurationProviderTypePipe,
     DeploymentStatusPipe,
     TeamNameFilterPipe,
+    TeamOwnerExcludeFilterPipe,
+    TeamMemberExcludeFilterPipe,
+    TeamOtherExcludeFilterPipe,
     VolumeSetupPageComponent,
     VolumeInstancePageComponent,
     ShareDialog,
@@ -156,7 +164,7 @@ export function provideConfig() {
     MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
     MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
     MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule, MatFormFieldModule
   ],
   entryComponents: [
     AddRepoDialog,

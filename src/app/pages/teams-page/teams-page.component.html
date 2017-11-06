@@ -6,32 +6,50 @@
 
 	<div class="content">
 
-		<mat-toolbar>
-			<span class="fill-remaining-space"></span>
-			<mat-icon class="card-type-icon" style="color: gray">search</mat-icon>
-			<mat-form-field>
-				<input matInput #searchBox placeholder="Search">
-			</mat-form-field>
-		</mat-toolbar>
 
-		<mat-card class="background-card" *ngIf="!teamsComponent.teamPresenters || teamsComponent.teamPresenters.length==0">
-			No teams in this community
-		</mat-card>
+		<div style="display: flex; flex-flow: row wrap;">
 
-		<div class="mat-content" *ngIf="teamsComponent.teamPresenters">
-			<span class="wide-summary-card-container">
-			<mat-card [routerLink]=" ['/team/', teamPresenter.name]" *ngFor="let teamPresenter of teamsComponent.teamPresenters | teamName:searchBox.value" class="credentials-container">
-				<span class="flex-container-wide">
-					<mat-icon class="card-type-icon">group</mat-icon><h3>{{ teamPresenter.name }}</h3>
-					<span class="fill-remaining-space"></span>
-					<p *ngIf="teamPresenter.isOwner">OWNER</p>
-				</span>
-				<mat-card-content>
+			<div style="max-width: 300px; margin: 10px;" class="example-container">
+				<div>
+					<mat-icon class="card-type-icon" style="color: gray">search</mat-icon>
+					<mat-form-field>
+						<input matInput #searchBox placeholder="Search">
+					</mat-form-field>
+				</div>
+				<form class="example-container" [formGroup]="options">
+					<label>INCLUDED TEAMS</label>
+					<mat-checkbox formControlName="includeMyTeams">I am owner</mat-checkbox>
+					<mat-checkbox formControlName="includeMyMemberTeams">I am member</mat-checkbox>
+					<mat-checkbox formControlName="includeOtherTeams">Other teams</mat-checkbox>
+				</form>
+			</div>
 
-				</mat-card-content>
+			<mat-card class="background-card" *ngIf="!teamsComponent.teamPresenters || teamsComponent.teamPresenters.length==0">
+				No teams in this community
 			</mat-card>
-			</span>
-		</div> <!-- mat-content -->
+
+			<div *ngIf="teamsComponent.teamPresenters" class="mat-content"
+			style="flex-grow:1">
+				<span class="wide-summary-card-container">
+				<mat-card *ngFor="let teamPresenter of teamsComponent.teamPresenters 
+					| teamName:searchBox.value 
+					| teamOwnerExclude:!options.get('includeMyTeams').value
+					| teamMemberExclude:!options.get('includeMyMemberTeams').value
+					| teamOtherExclude:!options.get('includeOtherTeams').value" 
+				[routerLink]=" ['/team/', teamPresenter.name]" 
+				class="credentials-container">
+					<span class="flex-container-wide">
+						<mat-icon class="card-type-icon">group</mat-icon><h3>{{ teamPresenter.name }}</h3>
+						<span class="fill-remaining-space"></span>
+						<p *ngIf="teamPresenter.isOwner">OWNER</p>
+					</span>
+					<mat-card-content>
+
+					</mat-card-content>
+				</mat-card>
+				</span>
+			</div> <!-- mat-content -->
+		</div>
 	</div> <!-- content -->
 
 </cp-teams-component>
