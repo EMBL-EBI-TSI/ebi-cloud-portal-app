@@ -159,7 +159,7 @@
                   <mat-icon *ngIf="logsShowing">keyboard_arrow_up</mat-icon> 
             </button>
             </h3>
-            <span class="logs-text-area" matSubheader *ngIf="logsShowing"
+            <span class="logs-text-area" *ngIf="logsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.logs) }}">
             </span>
             <!-- Destroy Logs-->
@@ -170,7 +170,7 @@
                 <mat-icon *ngIf="destroylogsShowing">keyboard_arrow_up</mat-icon>
             </button>
             </h3>
-            <span class="logs-text-area" matSubheader *ngIf="destroylogsShowing"
+            <span class="logs-text-area" *ngIf="destroylogsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.destroylogs) }}">
             </span>
             </span>
