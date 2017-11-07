@@ -107,12 +107,15 @@ export class DeploymentPageComponent implements OnInit {
 
     seconds = Math.floor(seconds % 60);
     secondsChar = (seconds >= 10) ? seconds.toFixed(0) : "0" + seconds.toFixed(0);
-    if (daysChar != "") {
+    
+    if (days > 0) {
       return daysChar + " days " + hoursChar + "h " + minutesChar + "min " + secondsChar +"sec";
-    } else if (hoursChar != "") {
+    } else if (hours > 0) {
       return hoursChar + "h " + minutesChar + "min " + secondsChar +"sec";
-    } else {
+    } else if (hours > 0) {
       return minutesChar + "min " + secondsChar +"sec";
+    } else {
+      return secondsChar +"sec";
     }
   }
 
