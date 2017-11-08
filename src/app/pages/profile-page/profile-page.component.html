@@ -126,16 +126,16 @@
 							</span>
 							<mat-card-content>
 								<mat-list>
-									<span class="flex-container-wide">
+									<span>
 										<mat-list-item>
 											<h3 matLine>Provider</h3>
 											<p matLine class="param-value">{{ cloudProviderParametersPresenter.cloudProvider }}</p>
 										</mat-list-item>
 										<span class="fill-remaining-space"></span>
-									<mat-list-item>
-										<h3 matLine>Owner</h3>
-										<p matLine class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
-									</mat-list-item>
+										<mat-list-item>
+											<h3 matLine>Owner</h3>
+											<p matLine class="param-value">{{ cloudProviderParametersPresenter.accountEmail }}</p>
+										</mat-list-item>
 									</span>
 								</mat-list>
 							</mat-card-content>
@@ -176,7 +176,7 @@
 					</mat-card>
 
 					<mat-card  [routerLink]=" ['/configuration/deploymentparameters/shared/', deploymentParameterPresenter.name]" *ngFor="let deploymentParameterPresenter of profileComponent.sharedDeploymentParametersPresenters">
-						<span class="mat-toolbar flex-container-wide">
+						<span class="flex-container-wide">
 							<mat-icon class="card-type-icon">extension</mat-icon>
 							<h3>{{ deploymentParameterPresenter.name }}</h3>
 							<span class="fill-remaining-space"></span>
