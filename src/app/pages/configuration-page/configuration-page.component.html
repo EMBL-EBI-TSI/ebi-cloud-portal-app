@@ -25,7 +25,7 @@
           <mat-list>
             <mat-list-item *ngIf="configurationDetail.configurationPresenter.isShared">
               <h3 matLine>Owned by</h3>
-              <p matLine class="param-value">{{ configurationDetail.configurationPresenter.accountUsername }}</p>
+              <p matLine class="param-value">{{ configurationDetail.configurationPresenter.accountGivenName }}</p>
               </mat-list-item>
               <mat-list-item *ngIf="configurationDetail.configurationPresenter.sharedWithTeamNames && configurationDetail.configurationPresenter.sharedWithTeamNames.length>0">
                 <h3 matLine>Included in teams</h3>
