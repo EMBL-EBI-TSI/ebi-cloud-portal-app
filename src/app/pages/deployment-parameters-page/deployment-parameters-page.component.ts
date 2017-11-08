@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogRef} from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { EditDeploymentParametersDialog  } from '../../dialogs/edit-deployment-parameters-dialog/edit-deployment-parameters-dialog.component';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 import { DeploymentParametersComponent } from 'ng2-cloud-portal-presentation-lib';
+import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 
 @Component({
   selector: 'app-deployment-parameters-page',
@@ -46,4 +47,21 @@ export class DeploymentParametersPageComponent implements OnInit {
       }
     );
   }
+
+  openConfirmDeleteDialog(deploymentParametersDetail: DeploymentParametersComponent) {
+    const config = new MatDialogConfig();
+    config.data = [
+      'You are about to permanently delete the parameters \'' + deploymentParametersDetail.deploymentParametersPresenter.name +'\'',
+      'DELETE',
+      'Please confirm',
+      'That will also destroy all associated deployments'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DELETE')
+        deploymentParametersDetail.remove();
+    });
+    
+  }
+
 }

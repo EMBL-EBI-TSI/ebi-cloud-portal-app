@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { CloudProviderParametersComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 import { EditCloudProviderDialog } from '../../dialogs/edit-cloud-provider-dialog/edit-cloud-provider-dialog.component';
+import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 
 @Component({
   selector: 'cloud-provider-parameters-page',
@@ -46,4 +47,21 @@ export class CloudProviderParametersPageComponent implements OnInit {
       }
     );
   }
+
+  openConfirmDeleteDialog(cloudProviderDetail: CloudProviderParametersComponent) {
+    const config = new MatDialogConfig();
+    config.data = [
+      'You are about to permanently delete the cloud provider \'' + cloudProviderDetail.cloudProviderParametersPresenter.name +'\'',
+      'DELETE',
+      'Please confirm',
+      'That will also destroy all associated deployments'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DELETE')
+        cloudProviderDetail.remove();
+    });
+    
+  }
+
 }

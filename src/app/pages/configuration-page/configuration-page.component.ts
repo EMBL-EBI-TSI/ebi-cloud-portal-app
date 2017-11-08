@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ConfigurationComponent } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 import { EditConfigurationDialog } from '../../dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
+import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 
 @Component({
   selector: 'app-configuration-page',
@@ -47,4 +48,20 @@ export class ConfigurationPageComponent implements OnInit {
     );
   }
   
+  openConfirmDeleteDialog(configurationDetail: ConfigurationComponent) {
+    const config = new MatDialogConfig();
+    config.data = [
+      'You are about to permanently delete the configuration \'' + configurationDetail.configurationPresenter.name +'\'',
+      'DELETE',
+      'Please confirm',
+      'That will also destroy all associated deployments'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DELETE')
+      configurationDetail.remove();
+    });
+    
+  }
+
 }
