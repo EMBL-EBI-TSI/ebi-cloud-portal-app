@@ -50,9 +50,9 @@
                           (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)"
                           formControlName="configCtrl">
                           <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0">
-                          <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurations" [value]="config">
+                          <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurations | configurationProviderType: applicationDetail.applicationDeployer.cloudProviders" [value]="config">
                               <span *ngIf="config !== undefined">
-                                {{ config.name }} | @({{ config.cloudProviderParametersName }})
+                                {{ config.name }} | @({{ config.cloudProviderParametersName }}) {{ config.cloudProviderType }}
                               </span> 
                           </mat-option>
                           </span>

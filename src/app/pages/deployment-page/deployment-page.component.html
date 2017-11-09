@@ -14,6 +14,75 @@
         </span>
 
         <mat-card-content>
+          <mat-horizontal-stepper>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.startedTime" 
+              selected="deploymentDetail.deploymentInstance.status=='STARTING'"
+              completed="false">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Started</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.startedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>
+              <p>The deployment request was received at {{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.startedTime) }}</p>
+            </mat-step>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.failedTime"
+              selected="(deploymentDetail.deploymentInstance.status=='STARTING_FAILED') || (deploymentDetail.deploymentInstance.status=='DESTROYING_FAILED')"
+              completed="false">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Failed</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.failedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>
+              <p>This deployment failed because of '{{ deploymentDetail.deploymentInstance.errorCause }}'</p>
+            </mat-step>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.deployedTime"
+              selected="deploymentDetail.deploymentInstance.status=='RUNNING'"
+              completed="false">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Deployed</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.deployedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template> 
+              <table>
+                <tr>
+                  <th>Total running time</th>
+                  <th>Instances</th>
+                  <th>Total vCPUs</th>
+                  <th>Total RAM GB</th>
+                  <th>Total Disk GB</th>
+                </tr>
+                <tr>
+                  <td>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.instanceCount }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.totalVcpus }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.totalRamGb }}</td>
+                  <td>{{ deploymentDetail.deploymentInstance.totalDiskGb }}</td>
+                </tr>
+              </table>        
+            </mat-step>
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
+              selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"
+              completed="false"
+              [ngClass]="{'currentStatus':deploymentDetail.deploymentInstance.status=='DESTROYED'}">
+              <ng-template matStepLabel>
+                <mat-list>
+                  <mat-list-item>
+                    <span matLine>Destroyed</span>
+                    <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.destroyedTime) }}</span>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>               
+            </mat-step>                  
+          </mat-horizontal-stepper>
           <mat-list>
             <!--Deployment meta-data-->
             <mat-list-item>
@@ -90,7 +159,7 @@
                   <mat-icon *ngIf="logsShowing">keyboard_arrow_up</mat-icon> 
             </button>
             </h3>
-            <span class="logs-text-area" matSubheader *ngIf="logsShowing"
+            <span class="logs-text-area" *ngIf="logsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.logs) }}">
             </span>
             <!-- Destroy Logs-->
@@ -101,7 +170,7 @@
                 <mat-icon *ngIf="destroylogsShowing">keyboard_arrow_up</mat-icon>
             </button>
             </h3>
-            <span class="logs-text-area" matSubheader *ngIf="destroylogsShowing"
+            <span class="logs-text-area" *ngIf="destroylogsShowing"
             innerHTML="{{ansiToHtml(deploymentDetail.deploymentInstance.destroylogs) }}">
             </span>
             </span>

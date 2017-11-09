@@ -8,34 +8,10 @@
   --dark-color: #333333;
 }
 
-.loading {
-  opacity: 0;
-  transition: opacity .8s ease-in-out;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: var(--primary-color);
-  z-index: -1;
-}
-app-root:empty + .loading {
-  opacity: 1;
-  z-index: 100;
-}
-app-root:empty + .loading h1 {
-  color: #EEE;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  transform: translate(0, -50%);
-}
-
 html,body {
   height: 100%;
   min-height: 100%;
-  background: var(--light-color);
+  /* background: var(--primary-color); */
   margin: 0;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -237,7 +213,21 @@ mat-card .flex-container-wide {
 	margin-right: 35px;
 }
 .summary-card-container mat-card {
-  margin: 1em 1em 1em 1em;
+  margin: 10px;
+}
+
+.repo-summary-card-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.repo-summary-card-container:after {
+  content: "";
+  width: 470px;  
+}
+.repo-summary-card-container mat-card {
+  width: 400px;
+  height: 200px;
 }
 
 mat-progress-spinner {
@@ -245,7 +235,6 @@ mat-progress-spinner {
   max-height: 25px;
   position: relative;
   top: 20px;
-
 }
 mat-progress-spinner svg {
   max-width: 25px;
@@ -418,7 +407,10 @@ footer {
   margin-left: 37%;
   max-width: 280px;
 }
-
+.circular-login-img {
+  border-radius: 100%;
+  margin-top: 2em;
+}
 .dialog-img-center {
   margin-left: auto;
 	margin-right: auto;
@@ -463,6 +455,11 @@ footer {
   min-height: 120px;
 }
 .logs-text-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
   min-height: 20em; 
   overflow: auto;
   background: var(--light-color);

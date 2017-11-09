@@ -8,7 +8,7 @@ import { AddTeamDialog } from '../../dialogs/add-team-dialog/add-team-dialog.com
 import { TeamsComponent } from 'ng2-cloud-portal-presentation-lib';
 import { CloudProviderParametersService, TokenService, CredentialService } from 'ng2-cloud-portal-service-lib';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
-import { TeamNameFilterPipe } from './team-name-filter.pipe';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'teams-page',
@@ -19,11 +19,21 @@ export class TeamsPageComponent implements OnInit {
 
   @ViewChild('teamsComponent') teamsComponent: TeamsComponent;
 
+  options: FormGroup;
+
   constructor(
     public credentialService: CredentialService,
     public tokenService: TokenService,
     public breadcrumbService: BreadcrumbService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    fb: FormBuilder) { 
+
+    this.options = fb.group({
+      includeMyTeams: true,
+      includeMyMemberTeams: true,
+      includeOtherTeams: true
+    });
+  }
 
   ngOnInit() {
     this.breadcrumbService.breadcrumb.push(

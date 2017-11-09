@@ -34,12 +34,12 @@
 						<h3 matLine class="param-value">{{ deploymentInstance.status }}</h3>
 					</mat-list-item>
 					<mat-list-item>
-						<p matLine>Cloud Provider</p>
-						<h3 matLine class="param-value">{{ deploymentInstance.cloudProviderParametersCopy.name }}</h3>
-					</mat-list-item>
-					<mat-list-item>
 						<p matLine>Configuration</p>
 						<h3 matLine class="param-value">{{ deploymentInstance.configurationName }}</h3>
+					</mat-list-item>
+					<mat-list-item>
+						<p matLine>Cloud Provider</p>
+						<h3 matLine class="param-value">{{ deploymentInstance.cloudProviderParametersCopy.name }}</h3>
 					</mat-list-item>
 					<!--List attached volumes
 					<h3 mat-header>Volumes</h3>
@@ -65,10 +65,10 @@
 					<!--<mat-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
 						<p matLine class="param-value">There is no provider data</p>
 					</mat-list-item>-->
-					<mat-list-item *ngIf="deploymentInstance.accessIp">
+					<!-- <mat-list-item *ngIf="deploymentInstance.accessIp">
 						<p matLine>Access IP</p>
 						<h3 matLine class="param-value">{{ deploymentInstance.accessIp }}</h3>
-					</mat-list-item>
+					</mat-list-item> -->
 				</mat-card-content>
 			</mat-card>
 		</div>

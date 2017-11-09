@@ -7,9 +7,9 @@ import { TeamPresenter } from 'ng2-cloud-portal-presentation-lib';
 })
 @Injectable()
 export class TeamNameFilterPipe implements PipeTransform {
-    transform(items: TeamPresenter[], teamName: string): TeamPresenter[] {
+    transform(items: TeamPresenter[], searchTerm: string): TeamPresenter[] {
         return items.filter(item => {
-            return item.name.toLowerCase().indexOf(teamName.toLowerCase()) !== -1;
+            return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
         });
     }
 }
