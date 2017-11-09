@@ -7,21 +7,25 @@
       <a [routerLink]=" ['/profile']"><h3><em>{{ credentialService.getGivenName() }}</em></h3></a>
     </div>
 
-    <div class="hero hero-message">
-      <span class="flex-container">
-        <div>
-          <div>
-            <p>Single Sign On using your ELIXIR identity!</p>
-          </div>
-          <div>
-            <a style="padding:0.5em; padding-right:1em;" mat-raised-button href="{{ssoLink()}}" target="_blank">
-            <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
-              SSO
-            </a>
-          </div>
-        </div>
-      </span>
-    </div>
+    <div *ngIf="!tokenService.getToken()" 
+    style="display:flex; flex-direction: column; flex-wrap: nowrap; align-items: center;">
+      <h3>Access the EBI Cloud Portal</h3>
+      <p>Single Sign On using your ELIXIR identity!</p>
+      <a style="padding:0.5em; padding-right:1em; min-width: 150px;" mat-raised-button href="{{ssoLink()}}" target="_blank">
+        <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
+        SSO
+      </a>
+      <div style="max-width: 400px; margin: 10px;">
+        <p>The EBI Cloud Portal is offered as a service to ELIXIR and other communities. Users 
+          need a freely available <a href="https://www.elixir-europe.org/services/compute/aai">ELIXIR identity</a>
+          to access the portal.
+        </p>
+        <p>
+          Obtain your ELIXIR identity <a href="https://www.elixir-europe.org/register">here</a>.
+        </p>
+      </div>
 
+
+    </div>
   </div>
 </div>
