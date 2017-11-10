@@ -28,7 +28,10 @@ mat-sidenav-container {
 .ebi-header {
   background-color: var(--primary-color);
   padding: 0px 0px 0px 10px;
-  height: 60px;
+  min-height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .ebi-header-logo {
@@ -41,14 +44,12 @@ mat-sidenav-container {
   color: var(--light-color);;
   padding-left: 10px;
   position: relative;
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   text-rendering: optimizeLegibility;
   font-weight: 300;
 }
 .ebi-header-link-container {
-  float: right;
   padding-right: 15px;
-  padding-top: 8px;
   color: var(--light-color);
 }
 .ebi-header-link-container mat-select {
@@ -74,13 +75,13 @@ mat-sidenav-container {
 }
 
 .ebi-header-link-text {
-  position: relative;
-  top: 4px;
+  height: 50px;
+  padding-bottom: 10px;
 }
 
 .ebi-header-link-icon {
-  position: relative;
-  top: 8px;
+  height: 50px;
+  padding-bottom: 5px;
 }
 
 .ebi-header-avatar {
@@ -94,7 +95,7 @@ mat-sidenav-container {
 .mat-main-toolbar {
   background: var(--primary-color);
   color: var(--light-color);
-  height: 60px;
+  height: 40px;
   /*box-shadow: 0 2px 1px rgba(0,0,0,.4);*/
 }
 
@@ -137,7 +138,7 @@ mat-sidenav-container {
 .content {
   position: absolute;
   bottom: 60px;
-  top: 125px;
+  top: 115px;
   width: 100%;
   overflow-x: hidden;
 }
@@ -145,7 +146,7 @@ mat-sidenav-container {
 .content-out {
   position: absolute;
   bottom: 60px;
-  top: 60px;
+  top: 50px;
   width: 100%;
   overflow-x: hidden;
 }
