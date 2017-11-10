@@ -118,22 +118,6 @@
 
           <!-- Deployment inputs and co -->
           <mat-list>
-            <!--List attached volumes-->
-            <h3 mat-header>Volumes</h3>
-            <p matSubheader *ngIf="deploymentDetail.deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
-            <mat-list-item *ngFor="let attachedVolume of deploymentDetail.deploymentInstance.attachedVolumes">
-              <mat-icon mat-list-icon>storage</mat-icon>
-              <h3 matLine>{{ attachedVolume.name }}</h3>
-              <h4 matLine class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</h4>
-            </mat-list-item>
-            <!--List assigned inputs-->
-            <h3 mat-header>Inputs</h3>
-            <p matSubheader *ngIf="deploymentDetail.deploymentInstance.assignedInputs.length==0">There are no assigned inputs for this deployment</p>
-            <mat-list-item *ngFor="let assignedInput of deploymentDetail.deploymentInstance.assignedInputs">
-              <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
-              <h3 matLine>{{ assignedInput.inputName }}</h3>
-              <h4 matLine class="param-value">{{ assignedInput.assignedValue }}</h4>
-            </mat-list-item>
             <!--List generated outputs-->
             <h3 mat-header>Outputs</h3>
             <p matSubheader *ngIf="deploymentDetail.deploymentInstance.generatedOutputs.length==0">There are no generated outputs for this deployment</p>
@@ -141,7 +125,37 @@
               <mat-icon mat-list-icon>keyboard_arrow_left</mat-icon>
               <h3 matLine>{{ generatedOutput.outputName }}</h3>
               <h4 matLine class="param-value">{{ generatedOutput.generatedValue }}</h4>
-            </mat-list-item>
+            </mat-list-item>            
+            <!--List attached volumes-->
+            <h3 mat-header>Volumes <button mat-icon-button color="primary" 
+              (click)="volumesShowing=!volumesShowing">
+                <mat-icon *ngIf="!volumesShowing">keyboard_arrow_down</mat-icon> 
+                <mat-icon *ngIf="volumesShowing">keyboard_arrow_up</mat-icon> 
+              </button>
+            </h3>
+            <span *ngIf="volumesShowing">
+              <p matSubheader *ngIf="deploymentDetail.deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
+              <mat-list-item *ngFor="let attachedVolume of deploymentDetail.deploymentInstance.attachedVolumes">
+                <mat-icon mat-list-icon>storage</mat-icon>
+                <h3 matLine>{{ attachedVolume.name }}</h3>
+                <h4 matLine class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</h4>
+              </mat-list-item>
+            </span>
+            <!--List assigned inputs-->
+            <h3 mat-header>Inputs <button mat-icon-button color="primary" 
+              (click)="inputsShowing=!inputsShowing">
+                <mat-icon *ngIf="!inputsShowing">keyboard_arrow_down</mat-icon> 
+                <mat-icon *ngIf="inputsShowing">keyboard_arrow_up</mat-icon> 
+              </button>
+            </h3>
+            <span *ngIf="inputsShowing">
+              <p matSubheader *ngIf="deploymentDetail.deploymentInstance.assignedInputs.length==0">There are no assigned inputs for this deployment</p>
+              <mat-list-item *ngFor="let assignedInput of deploymentDetail.deploymentInstance.assignedInputs">
+                <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                <h3 matLine>{{ assignedInput.inputName }}</h3>
+                <h4 matLine class="param-value">{{ assignedInput.assignedValue }}</h4>
+              </mat-list-item>
+            </span>
             <!--List assigned parameters-->
             <h3 mat-header>Deployment parameters <button mat-icon-button color="primary" 
               (click)="deploymentParametersShowing=!deploymentParametersShowing">
