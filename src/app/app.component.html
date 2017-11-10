@@ -54,8 +54,10 @@
     </mat-nav-list>
   </mat-sidenav>
   <div class="ebi-header">
-    <a class="ebi-header-logo" [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
-    <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
+    <span>
+      <a class="ebi-header-logo" [href]="ebiUrl"><img [src]="ebiLogoWhite"></a>
+      <a class="ebi-header-title" router-active [routerLink]=" ['./welcome'] ">{{ name }}</a>
+    </span>
     <span class="ebi-header-link-container">
         <a class="ebi-header-link" *ngIf="!credentialService.getUsername()" [routerLink]=" ['./signon'] ">
           <mat-icon class="ebi-header-link-icon" mat-list-icon>vpn_key</mat-icon>
