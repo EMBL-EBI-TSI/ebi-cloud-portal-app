@@ -17,6 +17,10 @@ html,body {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
 mat-sidenav-container {
   height: 100%;
 }
@@ -24,12 +28,11 @@ mat-sidenav-container {
 .ebi-header {
   background-color: var(--primary-color);
   padding: 0px 0px 0px 10px;
-  height: 45px;
+  height: 60px;
 }
 
 .ebi-header-logo {
   position: relative;
-  top: 8px;
   left: 10px;
 }
 
@@ -38,11 +41,14 @@ mat-sidenav-container {
   color: var(--light-color);;
   padding-left: 10px;
   position: relative;
-  font-size: 1.4em;
+  font-size: 2.8rem;
+  text-rendering: optimizeLegibility;
+  font-weight: 300;
 }
 .ebi-header-link-container {
   float: right;
   padding-right: 15px;
+  padding-top: 8px;
   color: var(--light-color);
 }
 .ebi-header-link-container mat-select {
@@ -101,8 +107,9 @@ mat-sidenav-container {
   border-left: solid;
   border-width: 1px;
   border-color: var(--light-color);
-  font-weight: lighter;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  text-rendering: optimizeLegibility;
+  font-weight: 300;
 }
 
 .mat-main-toolbar-link {
@@ -130,7 +137,7 @@ mat-sidenav-container {
 .content {
   position: absolute;
   bottom: 60px;
-  top: 110px;
+  top: 125px;
   width: 100%;
   overflow-x: hidden;
 }
@@ -138,7 +145,7 @@ mat-sidenav-container {
 .content-out {
   position: absolute;
   bottom: 60px;
-  top: 45px;
+  top: 60px;
   width: 100%;
   overflow-x: hidden;
 }
@@ -194,19 +201,21 @@ button.active:hover{
 .wide-summary-card-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1em;
 }
+
 mat-card .flex-container-wide {
   background: white;
 }
 .wide-summary-card-container mat-card {
   margin: 1em 1em 0em 1em;
 }
-.wide-summary-card-container mat-card mat-card-content {
-  padding-top: 1em;
-  padding-left: 1em;
+.wide-summary-card-container mat-card mat-card-content mat-list {
 	display: flex;
   flex-flow: row wrap;
+}
+
+.wide-summary-card-container mat-card mat-card-content mat-list-item {
+  width: 180px;
 }
 
 .wide-summary-card-container mat-card mat-card-content h3 {
@@ -262,14 +271,20 @@ mat-progress-spinner svg {
   margin-left: 20px;
 }
 
+
+.flex-container-wide {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-container-wide mat-icon {
+  margin-top: 5px;
+}
 .flex-container-wide h3 {
   color: var(--dark-color);
-  font-weight: lighter;
-  margin-left: 25px;
+  margin-left: 15px;
 }
 .flex-container-wide p {
-  position: relative;
-  top: 12px;
+  margin-top: 5px;
   margin-left: 10px;
 }
 .flex-container-wide button {
@@ -319,11 +334,6 @@ mat-input {
   color: rgba(0,0,0,0.50);
 }
 
-
-.flex-container-wide mat-icon {
-  margin-top: 22px;
-}
-
 mat-card-subtitle.indented-subtitle {
   padding: 0px 0px 0px 36px;
 }
@@ -336,20 +346,38 @@ button.button-color-accent {
 mat-radio-button {
   padding-right: 10px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.4;
+  color: inherit;
+  text-rendering: optimizeLegibility;
+}
+body h1, body h2, body h3 {
+  font-weight: 300;
+}
 h1 {
-  font-size: 2.6em;
-  font-weight: lighter;
+  font-size: 3rem;
 }
 h2 {
-  font-size: 1.8em;
-  font-weight: lighter;
+  display: block;
+  font-size: 1.5em;
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: rgb(233,180,0);
 }
 h3 {
-  font-size: 1.4em;
-  color: var(--dark-color);
-  font-weight: lighter;
+    font-size: 1.5rem;
+    color: var(--dark-color);
 }
-
 p {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   line-height: 1.6;
@@ -367,11 +395,6 @@ p {
   margin: 0em 1em 2em 1em;
 }
 
-.flex-container-wide {
-  display: flex;
-  /*flex-flow: row grow;*/
-  justify-content: space-between;
-}
 
 .flex-container-left {
   display: flex;
@@ -418,9 +441,6 @@ footer {
 	display: block;
 }
 
-.dialog-img {
-
-}
 
 .dialog-img-large {
 

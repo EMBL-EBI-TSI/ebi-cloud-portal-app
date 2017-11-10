@@ -24,51 +24,53 @@
 					<span class="fill-remaining-space"></span>
 				</span>
 				<mat-card-content>
+						<mat-list>
 					<!--Deployment meta-data-->
 					<mat-list-item>
-						<p matLine>Reference</p>
-						<h3 matLine class="param-value">{{ deploymentInstance.reference }}</h3>
+						<div matLine>Reference</div>
+						<div matLine class="param-value">{{ deploymentInstance.reference }}</div>
 					</mat-list-item>
 					<mat-list-item>
-						<p matLine>State</p>
-						<h3 matLine class="param-value">{{ deploymentInstance.status }}</h3>
+						<div matLine>State</div>
+						<div matLine class="param-value">{{ deploymentInstance.status }}</div>
 					</mat-list-item>
 					<mat-list-item>
-						<p matLine>Configuration</p>
-						<h3 matLine class="param-value">{{ deploymentInstance.configurationName }}</h3>
+						<div matLine>Configuration</div>
+						<div matLine class="param-value">{{ deploymentInstance.configurationName }}</div>
 					</mat-list-item>
 					<mat-list-item>
-						<p matLine>Cloud Provider</p>
-						<h3 matLine class="param-value">{{ deploymentInstance.cloudProviderParametersCopy.name }}</h3>
+						<div matLine>Cloud Provider</div>
+						<div matLine class="param-value">{{ deploymentInstance.cloudProviderParametersCopy.name }}</div>
 					</mat-list-item>
 					<!--List attached volumes
 					<h3 mat-header>Volumes</h3>
 					<mat-divider></mat-divider>
 					<p matSubheader *ngIf="deploymentInstance.attachedVolumes.length==0">There are no attached volumes for this deployment</p>
 					<mat-list-item *ngFor="let attachedVolume of deploymentInstance.attachedVolumes">
-						<h3 matLine>{{ attachedVolume.name }}</h3>
+						<p matLine>{{ attachedVolume.name }}</p>
 						<p matLine class="param-value">attached to {{ attachedVolume.volumeInstanceReference }}</p>
 					</mat-list-item>-->
 					<!--List assigned inputs-->
 					<mat-list-item *ngFor="let assignedInput of deploymentInstance.assignedInputs">
-						<p matLine>{{ assignedInput.inputName }}</p>
-						<h3 matLine class="param-value">{{ assignedInput.assignedValue }}</h3>
+						<div matLine>{{ assignedInput.inputName }}</div>
+						<div matLine class="param-value">{{ assignedInput.assignedValue }}</div>
 					</mat-list-item>
 					<!--List generated outputs-->
 					<mat-list-item *ngFor="let generatedOutput of deploymentInstance.generatedOutputs">
-						<p matLine>{{ generatedOutput.outputName }}</p>
-						<h3 matLine class="param-value">{{ generatedOutput.generatedValue }}</h3>
+						<div matLine>{{ generatedOutput.outputName }}</div>
+						<div matLine class="param-value">{{ generatedOutput.generatedValue }}</div>
 					</mat-list-item>
 					<mat-list-item *ngIf="deploymentInstance.status == 'STARTING'">
-						<p matLine class="param-value">Waiting for provider data...</p>
+						<div matLine class="param-value">Waiting for provider data...</div>
 					</mat-list-item>
 					<!--<mat-list-item *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'">
 						<p matLine class="param-value">There is no provider data</p>
 					</mat-list-item>-->
 					<!-- <mat-list-item *ngIf="deploymentInstance.accessIp">
 						<p matLine>Access IP</p>
-						<h3 matLine class="param-value">{{ deploymentInstance.accessIp }}</h3>
+						<p matLine class="param-value">{{ deploymentInstance.accessIp }}</p>
 					</mat-list-item> -->
+					</mat-list>
 				</mat-card-content>
 			</mat-card>
 		</div>
