@@ -54,24 +54,24 @@
               </ng-template> 
               <mat-list style="display: flex;">
                 <mat-list-item>
-                  <div>Total running time</div>
-                  <div>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</div>
+                  <div matLine>Total running time</div>
+                  <div matLine class="param-value">{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</div>
                 </mat-list-item>
                 <mat-list-item>
-                  <div>Instances</div>
-                  <div>{{ deploymentDetail.deploymentInstance.instanceCount }}</div>
+                  <div matLine>Instances</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.instanceCount }}</div>
                 </mat-list-item>
                 <mat-list-item>
                   <div>Total vCPUs</div>
-                  <div>{{ deploymentDetail.deploymentInstance.totalVcpus }}</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.totalVcpus }}</div>
                 </mat-list-item>
                 <mat-list-item>
-                  <div>Total RAM GB</div>
-                  <div>{{ deploymentDetail.deploymentInstance.totalRamGb }}</div>
+                  <div matLine>Total RAM GB</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.totalRamGb }}</div>
                 </mat-list-item>
                 <mat-list-item>
-                  <div>Total Disk GB</div>
-                  <div>{{ deploymentDetail.deploymentInstance.TotalDiskGB }}</div>
+                  <div matLine>Total Disk GB</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.TotalDiskGB }}</div>
                 </mat-list-item>                
               </mat-list>        
             </mat-step>

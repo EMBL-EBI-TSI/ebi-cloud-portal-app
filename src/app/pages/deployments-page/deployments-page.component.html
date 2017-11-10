@@ -33,7 +33,7 @@
 						<mat-list-item>
 							<div matLine>State</div>
 							<div matLine class="param-value">{{ deploymentInstance.status }}</div>
-						</mat-list-item>
+						</mat-list-item>						
 						<mat-list-item>
 							<div matLine>Configuration</div>
 							<div matLine class="param-value">{{ deploymentInstance.configurationName }}</div>
@@ -70,6 +70,10 @@
 							<p matLine>Access IP</p>
 							<p matLine class="param-value">{{ deploymentInstance.accessIp }}</p>
 						</mat-list-item> -->
+						<mat-list-item *ngIf="deploymentInstance.status=='RUNNING'">
+							<div matLine>Running time</div>
+							<div matLine class="param-value">{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</div>
+						</mat-list-item>
 					</mat-list>
 				</mat-card-content>
 			</mat-card>
