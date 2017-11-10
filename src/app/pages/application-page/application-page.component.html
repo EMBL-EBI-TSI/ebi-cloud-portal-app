@@ -5,7 +5,7 @@
         <span class="flex-container-wide">
           <h3>{{ applicationDetail.applicationDeployer.name }}</h3>
           <!--Available providers-->
-          <mat-chip-list selectable="false">
+          <mat-chip-list style="position: relative; top:-15px;" selectable="false">
             <mat-chip *ngFor="let cloudProvider of applicationDetail.applicationDeployer.cloudProviders">
               {{ cloudProvider.cloudProvider }}
             </mat-chip>

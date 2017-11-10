@@ -35,4 +35,11 @@ export class DeploymentsPageComponent implements OnInit {
     } 
   }
 
+  fromTimeStampToDateAndTime(timestamp: number) {
+    let t = new Date( timestamp );
+    let formatted = t.toISOString().replace("T"," ");
+    let res = formatted.substring(0,formatted.indexOf("."));
+    return res;
+  }
+  
 }

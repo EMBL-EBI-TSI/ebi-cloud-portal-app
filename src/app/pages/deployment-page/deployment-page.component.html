@@ -39,7 +39,7 @@
                   </mat-list-item>
                 </mat-list>
               </ng-template>
-              <p>This deployment failed because of '{{ deploymentDetail.deploymentInstance.errorCause }}'</p>
+              <p>The deploymentfailed at {{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.failedTime) }}. Cause: <em>{{ deploymentDetail.deploymentInstance.errorCause }}</em></p>
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.deployedTime"
               selected="deploymentDetail.deploymentInstance.status=='RUNNING'"
@@ -52,22 +52,28 @@
                   </mat-list-item>
                 </mat-list>
               </ng-template> 
-              <table>
-                <tr>
-                  <th>Total running time</th>
-                  <th>Instances</th>
-                  <th>Total vCPUs</th>
-                  <th>Total RAM GB</th>
-                  <th>Total Disk GB</th>
-                </tr>
-                <tr>
-                  <td>{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</td>
-                  <td>{{ deploymentDetail.deploymentInstance.instanceCount }}</td>
-                  <td>{{ deploymentDetail.deploymentInstance.totalVcpus }}</td>
-                  <td>{{ deploymentDetail.deploymentInstance.totalRamGb }}</td>
-                  <td>{{ deploymentDetail.deploymentInstance.totalDiskGb }}</td>
-                </tr>
-              </table>        
+              <mat-list style="display: flex; flex-wrap: wrap;">
+                <mat-list-item>
+                  <div matLine>Total running time</div>
+                  <div matLine class="param-value">{{ getTimeToDisplay(deploymentDetail.deploymentInstance.totalRunningTime) }}</div>
+                </mat-list-item>
+                <mat-list-item>
+                  <div matLine>Instances</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.instanceCount }}</div>
+                </mat-list-item>
+                <mat-list-item>
+                  <div matLine>Total vCPUs</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.totalVcpus }}</div>
+                </mat-list-item>
+                <mat-list-item>
+                  <div matLine>Total RAM GB</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.totalRamGb }}</div>
+                </mat-list-item>
+                <mat-list-item>
+                  <div matLine>Total Disk GB</div>
+                  <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.totalDiskGb }}</div>
+                </mat-list-item>                
+              </mat-list>        
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
               selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"
@@ -80,7 +86,8 @@
                     <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.destroyedTime) }}</span>
                   </mat-list-item>
                 </mat-list>
-              </ng-template>               
+              </ng-template>   
+              <p>The deployment was destroyed at {{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.destroyedTime) }}</p>            
             </mat-step>                  
           </mat-horizontal-stepper>
           <mat-list>
