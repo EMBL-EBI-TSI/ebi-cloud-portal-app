@@ -72,7 +72,7 @@
 						</mat-list-item> -->
 						<mat-list-item *ngIf="deploymentInstance.startedTime">
 							<div matLine>Started time</div>
-							<div matLine class="param-value">{{ deploymentInstance.startedTime }}</div>
+							<div matLine class="param-value">{{ fromTimeStampToDateAndTime(deploymentInstance.startedTime) }}</div>
 						</mat-list-item>
 					</mat-list>
 				</mat-card-content>
