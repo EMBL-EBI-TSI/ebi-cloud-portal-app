@@ -1,12 +1,10 @@
 <cp-deployments-component #deploymentsComponent>
-	<mat-toolbar>
-		<mat-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
-			<p>Hide destroyed</p>
-		</mat-checkbox>
-	</mat-toolbar>
-
 	<div class="content" *ngIf="deploymentsComponent.deploymentInstances">
-
+		<mat-toolbar>
+			<mat-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
+				Hide destroyed
+			</mat-checkbox>
+		</mat-toolbar>
 		<mat-card class="background-card" *ngIf="deploymentsComponent.deploymentInstances.length==0">
 			No deployments for {{ deploymentsComponent.credentialService.getGivenName() }} yet
 		</mat-card>
@@ -71,7 +69,7 @@
 							<p matLine class="param-value">{{ deploymentInstance.accessIp }}</p>
 						</mat-list-item> -->
 						<mat-list-item *ngIf="deploymentInstance.startedTime">
-							<div matLine>Started time</div>
+							<div matLine>Started</div>
 							<div matLine class="param-value">{{ fromTimeStampToDateAndTime(deploymentInstance.startedTime) }}</div>
 						</mat-list-item>
 					</mat-list>
