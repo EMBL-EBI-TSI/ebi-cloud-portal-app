@@ -6,6 +6,6 @@ export class AboutPage {
   }
 
   getTitleText() {
-    return element(by.css('h1')).getText();
+    return element(by.css('h2')).getText();
   }
 }
