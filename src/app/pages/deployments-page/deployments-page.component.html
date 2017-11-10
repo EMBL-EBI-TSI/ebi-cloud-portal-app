@@ -53,6 +53,11 @@
 							<div matLine>{{ assignedInput.inputName }}</div>
 							<div matLine class="param-value">{{ assignedInput.assignedValue }}</div>
 						</mat-list-item>
+						<!-- Started time -->
+						<mat-list-item *ngIf="deploymentInstance.startedTime">
+							<div matLine>Started</div>
+							<div matLine class="param-value">{{ fromTimeStampToDateAndTime(deploymentInstance.startedTime) }}</div>
+						</mat-list-item>
 						<!--List generated outputs-->
 						<mat-list-item *ngFor="let generatedOutput of deploymentInstance.generatedOutputs">
 							<div matLine>{{ generatedOutput.outputName }}</div>
@@ -68,10 +73,7 @@
 							<p matLine>Access IP</p>
 							<p matLine class="param-value">{{ deploymentInstance.accessIp }}</p>
 						</mat-list-item> -->
-						<mat-list-item *ngIf="deploymentInstance.startedTime">
-							<div matLine>Started</div>
-							<div matLine class="param-value">{{ fromTimeStampToDateAndTime(deploymentInstance.startedTime) }}</div>
-						</mat-list-item>
+
 					</mat-list>
 				</mat-card-content>
 			</mat-card>
