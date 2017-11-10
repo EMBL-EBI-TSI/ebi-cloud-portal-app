@@ -70,9 +70,9 @@
 							<p matLine>Access IP</p>
 							<p matLine class="param-value">{{ deploymentInstance.accessIp }}</p>
 						</mat-list-item> -->
-						<mat-list-item *ngIf="deploymentInstance.deployedTime">
-							<div matLine>Running time</div>
-							<div matLine class="param-value">{{ getTimeToDisplay(deploymentInstance.totalRunningTime) }}</div>
+						<mat-list-item *ngIf="deploymentInstance.startedTime">
+							<div matLine>Started time</div>
+							<div matLine class="param-value">{{ deploymentInstance.startedTime }}</div>
 						</mat-list-item>
 					</mat-list>
 				</mat-card-content>
