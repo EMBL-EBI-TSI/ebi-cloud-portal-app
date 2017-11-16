@@ -54,6 +54,14 @@
             <mat-list-item *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
                 <mat-list *ngIf="deploymentInstance.deployedTime" style="display: flex; flex-wrap: wrap;">
                     <mat-list-item>
+                      <div matLine>Reference</div>
+                      <div matLine class="param-value">{{ deploymentInstance.reference }}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <div matLine>Owner</div>
+                      <div matLine class="param-value">{{ deploymentInstance.accountGivenName }}</div>
+                    </mat-list-item>
+                    <mat-list-item>
                       <div matLine>Total running time</div>
                       <div matLine class="param-value">{{ getTimeToDisplay(deploymentInstance.totalRunningTime) }}</div>
                     </mat-list-item>
