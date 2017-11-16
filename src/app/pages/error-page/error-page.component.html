@@ -2,9 +2,9 @@
 	<div class="content">
 		<img class="hero central-img" [src]="robby">
 		<div class="hero hero-message">
-			<h2><em>There is a problem...</em></h2>
-			<h3 *ngIf="errorComponent.getErrorMessage()"><em>{{ errorComponent.getErrorMessage() }}</em></h3>
-			<h3 *ngIf="!errorComponent.getErrorMessage()"><em>The exact problem cannot be determined</em></h3>
+			<h3><em>There is a problem...</em></h3>
+			<p *ngIf="errorComponent.getErrorMessage()"><em>{{ errorComponent.getErrorMessage() }}</em></p>
+			<p *ngIf="!errorComponent.getErrorMessage()"><em>The exact problem cannot be determined</em></p>
 		</div>
 	</div>
 </cp-error-component>
