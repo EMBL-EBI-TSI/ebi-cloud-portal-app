@@ -24,7 +24,7 @@ export class LoginPage {
     return element(by.tagName('cp-error-component'))
             .element(by.css('.content'))
             .element(by.css('.hero-message'))
-            .element(by.tagName('h2'))
+            .element(by.tagName('h3'))
             .getText();
   }
 
