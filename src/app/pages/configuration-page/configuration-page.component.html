@@ -51,7 +51,7 @@
                 <p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
             </mat-list-item>
             
-            <h3 matLine *ngIf="!configurationDetail.isShared">Associated deployments</h3>
+            <h3 matLine *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances.length>0">Associated deployments</h3>
             <mat-list-item *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
                 <mat-list *ngIf="deploymentInstance.deployedTime" style="display: flex; flex-wrap: wrap;">
                     <mat-list-item>
