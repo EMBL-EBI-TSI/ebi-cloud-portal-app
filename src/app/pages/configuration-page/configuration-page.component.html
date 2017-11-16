@@ -50,6 +50,31 @@
                 <h3 matLine>Parameters</h3>
                 <p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
             </mat-list-item>
+            <h3 matLine>Running deployments</h3>
+            <mat-list-item *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
+                <mat-list *ngIf="deploymentInstance.deployedTime" style="display: flex; flex-wrap: wrap;">
+                    <mat-list-item>
+                      <div matLine>Total running time</div>
+                      <div matLine class="param-value">{{ getTimeToDisplay(deploymentInstance.totalRunningTime) }}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <div matLine>Instances</div>
+                      <div matLine class="param-value">{{ deploymentInstance.instanceCount }}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <div matLine>Total vCPUs</div>
+                      <div matLine class="param-value">{{ deploymentInstance.totalVcpus }}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <div matLine>Total RAM GB</div>
+                      <div matLine class="param-value">{{ deploymentInstance.totalRamGb }}</div>
+                    </mat-list-item>
+                    <mat-list-item>
+                      <div matLine>Total Disk GB</div>
+                      <div matLine class="param-value">{{ deploymentInstance.totalDiskGb }}</div>
+                    </mat-list-item>                
+                  </mat-list> 
+            </mat-list-item>
           </mat-list>
         </mat-card-content>
       </mat-card>
