@@ -53,44 +53,44 @@
             <h3 *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">Associated deployments</h3>
             <mat-list-item *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">
               <div style="display: flex;">
-                <div style="width: 100px">
+                <div style="width: 120px">
                     <div matLine>Reference</div>
                 </div>
                 <div style="width: 100px">
                     <div matLine>Status</div>
                 </div>
-                <div style="width: 100px">
+                <div style="width: 120px">
                     <div matLine>Owner</div>
                 </div>
-                <div style="width: 100px; text-align: right;">
-                  <div matLine>Total running time</div>
+                <div style="width: 120px; text-align: right;">
+                  <div matLine>Running time</div>
                 </div>
                 <div style="width: 100px; text-align: right;">
                   <div matLine>Instances</div>
                 </div>
                 <div style="width: 100px; text-align: right;">
-                  <div matLine>Total vCPUs</div>
+                  <div matLine>vCPUs</div>
                 </div>
                 <div style="width: 100px; text-align: right;">
-                  <div matLine>Total RAM GB</div>
+                  <div matLine>RAM GB</div>
                 </div>
                 <div style="width: 100px; text-align: right;">
-                  <div matLine>Total Disk GB</div>
+                  <div matLine>Disk GB</div>
                 </div>
               </div> 
             </mat-list-item>
             <mat-list-item *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
               <div *ngIf="deploymentInstance.deployedTime" style="display: flex;">
-                <div style="width: 100px">
+                <div style="width: 120px">
                   <p matLine class="param-value">{{ deploymentInstance.reference }}</p>
                 </div>
                 <div style="width: 100px">
                   <p matLine class="param-value">{{ deploymentInstance.status }}</p>
                 </div>
-                <div style="width: 100px">
+                <div style="width: 120px">
                   <p matLine class="param-value">{{ deploymentInstance.accountGivenName }}</p>
                 </div>
-                <div style="width: 100px; text-align: right;">
+                <div style="width: 120px; text-align: right;">
                   <p matLine class="param-value">{{ getTimeToDisplay(deploymentInstance.totalRunningTime) }}</p>
                 </div>
                 <div style="width: 100px; text-align: right;">
