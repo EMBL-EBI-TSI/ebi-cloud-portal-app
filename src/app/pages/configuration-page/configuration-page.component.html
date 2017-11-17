@@ -53,56 +53,56 @@
             <h3 *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">Associated deployments</h3>
             <mat-list-item *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">
               <div style="display: flex;">
-                <div style="max-width: 150px">
+                <div style="width: 100px">
                     <div matLine>Reference</div>
                 </div>
-                <div style="max-width: 150px">
+                <div style="width: 100px">
                     <div matLine>Status</div>
                 </div>
-                <div style="max-width: 150px">
+                <div style="width: 100px">
                     <div matLine>Owner</div>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <div matLine>Total running time</div>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <div matLine>Instances</div>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <div matLine>Total vCPUs</div>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <div matLine>Total RAM GB</div>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <div matLine>Total Disk GB</div>
                 </div>
               </div> 
             </mat-list-item>
             <mat-list-item *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
               <div *ngIf="deploymentInstance.deployedTime" style="display: flex;">
-                <div style="max-width: 150px">
+                <div style="width: 100px">
                   <p matLine class="param-value">{{ deploymentInstance.reference }}</p>
                 </div>
-                <div style="max-width: 150px">
+                <div style="width: 100px">
                   <p matLine class="param-value">{{ deploymentInstance.status }}</p>
                 </div>
-                <div style="max-width: 150px">
+                <div style="width: 100px">
                   <p matLine class="param-value">{{ deploymentInstance.accountGivenName }}</p>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <p matLine class="param-value">{{ getTimeToDisplay(deploymentInstance.totalRunningTime) }}</p>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <p matLine class="param-value">{{ deploymentInstance.instanceCount }}</p>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <p matLine class="param-value">{{ deploymentInstance.totalVcpus }}</p>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <p matLine class="param-value">{{ deploymentInstance.totalRamGb }}</p>
                 </div>
-                <div style="max-width: 150px; text-align: right;">
+                <div style="width: 100px; text-align: right;">
                   <p matLine class="param-value">{{ deploymentInstance.totalDiskGb }}</p>
                 </div>  
               </div>              
