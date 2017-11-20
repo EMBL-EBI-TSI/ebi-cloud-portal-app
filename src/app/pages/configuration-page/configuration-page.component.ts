@@ -35,23 +35,25 @@ export class ConfigurationPageComponent implements OnInit {
 
     configurationDetail.deploymentInstances.forEach(
       deploymentInstance => {
+        
         // account for resource consumption
-        let theDeploymentDate = new Date(deploymentInstance.startedTime); // TODO: change to deployed time
-        let newValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
+        let consumptionValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
+        let theDeploymentDate = new Date(deploymentInstance.deployedTime);
         if (deployed.has(theDeploymentDate)) {
           let currentValue = deployed.get(theDeploymentDate);
-          newValue = newValue + currentValue;
+          consumptionValue = consumptionValue + currentValue;
         }
-        deployed.set(theDeploymentDate, newValue);
+        deployed.set(theDeploymentDate, consumptionValue);
 
         // account for resource release, if needed
+        let releasedValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
         if (deploymentInstance.destroyedTime) {
           let theReleaseDate = new Date(deploymentInstance.destroyedTime);
           if (released.has(theReleaseDate)) {
             let currentValue = released.get(theReleaseDate);
-            newValue = newValue + currentValue;
+            releasedValue = releasedValue + currentValue;
           }
-          released.set(theReleaseDate, newValue);
+          released.set(theReleaseDate, releasedValue);
         }
       }
     );
