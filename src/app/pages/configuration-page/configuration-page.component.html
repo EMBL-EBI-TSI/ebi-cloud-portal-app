@@ -50,7 +50,13 @@
                 <h3 matLine>Parameters</h3>
                 <p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
             </mat-list-item>
-            <h3 *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">Associated deployments</h3>
+
+            <h3 *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">Associated deployments
+              <button mat-icon-button
+                (click)="generateStats(configurationDetail);">
+                <mat-icon>assessment</mat-icon> 
+              </button>
+            </h3>
             <mat-list-item *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">
               <div style="display: flex;">
                 <div style="width: 150px">
@@ -108,8 +114,12 @@
               </div>              
             </mat-list-item>
           </mat-list>
+
         </mat-card-content>
       </mat-card>
+
     </div>
+
   </div>
+
 </cp-configuration-component>

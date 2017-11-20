@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
-import { ConfigurationComponent } from 'ng2-cloud-portal-presentation-lib';
+import { ConfigurationComponent, DeploymentInstance } from 'ng2-cloud-portal-presentation-lib';
 import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 import { EditConfigurationDialog } from '../../dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
+import { ShowTimelineDialog } from '../../dialogs/show-timeline-dialog/show-timeline-dialog.component';
 
 @Component({
   selector: 'app-configuration-page',
@@ -23,6 +24,67 @@ export class ConfigurationPageComponent implements OnInit {
     let configurationName = this._route.snapshot.params['id'];
     this.breadcrumbService.breadcrumb.push({ label: 'Profile', route: 'profile' });
     this.breadcrumbService.breadcrumb.push({ label: configurationName, route: 'configuration/' + configurationName });
+  }
+
+  generateStats(configurationDetail: ConfigurationComponent) {
+    
+    let deployed = new Map();
+    let released = new Map();
+    let dates = [];
+    let data = [];
+
+    configurationDetail.deploymentInstances.forEach(
+      deploymentInstance => {
+        // account for resource consumption
+        let theDeploymentDate = new Date(deploymentInstance.startedTime); // TODO: change to deployed time
+        let newValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
+        if (deployed.has(theDeploymentDate)) {
+          let currentValue = deployed.get(theDeploymentDate);
+          newValue = newValue + currentValue;
+        }
+        deployed.set(theDeploymentDate, newValue+10);
+
+        // account for resource release, if needed
+        if (deploymentInstance.destroyedTime) {
+          let theReleaseDate = new Date(deploymentInstance.destroyedTime);
+          if (released.has(theReleaseDate)) {
+            let currentValue = released.get(theReleaseDate);
+            newValue = newValue + currentValue;
+          }
+          released.set(theReleaseDate, newValue);
+        }
+      }
+    );
+    let cummulativeConsuption = 0;
+    deployed.forEach(function(value, key, map) {
+      // keep data
+      dates.push(key);
+      // keep consumption for that date
+      let releasedConsumption = 0;
+      if (released.has(key)) {
+        releasedConsumption = released.get(key);
+      }
+      cummulativeConsuption = cummulativeConsuption + value - releasedConsumption;
+      data.push(cummulativeConsuption);
+    });
+    console.log("Deployed: %O", deployed);
+    console.log("Released: %O", released);
+    console.log("Dates: %O", dates);
+    console.log("Data: %O", data);
+
+    const config = new MatDialogConfig();
+    config.data = [
+      'Usage timeline',
+      'CLOSE',
+      '',
+      data,
+      dates
+    ];
+    config.width = '440px';
+    let dialogRef = this.dialog.open(ShowTimelineDialog, config);
+    dialogRef.afterClosed().subscribe(shareWith => {
+      
+    });
   }
 
   ngOnDestroy() {

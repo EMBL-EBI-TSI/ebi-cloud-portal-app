@@ -1,0 +1,17 @@
+<mat-dialog-content>
+  <div>
+    <h3>{{ chartTitle }}</h3>
+  </div>
+  <div>
+      {{ chartSubtitle }}
+  </div>
+  <br/>
+  <div style="width: 380px; height: 300px; overflow-y:hidden;" id="chart"></div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button class="button-color-accent"
+  (click)="dialogRef.close(actionButtonMessage)">
+  {{ actionButtonMessage }}
+  </button>
+  <span class="fill-remaining-space"></span>
+</mat-dialog-actions>
