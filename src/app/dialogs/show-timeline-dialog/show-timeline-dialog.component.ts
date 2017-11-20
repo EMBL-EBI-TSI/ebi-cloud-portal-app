@@ -15,6 +15,7 @@ export class ShowTimelineDialog {
   actionTaken: string = 'close';
   data = [];
   dates = []
+  timeScale = '%Y-%m-%d %Hh';
   chart;
 
   constructor(private _router: Router,
@@ -46,7 +47,31 @@ export class ShowTimelineDialog {
             x: {
                 type: 'timeseries',
                 tick: {
-                    format: '%Y-%m-%d'
+                    format: this.timeScale
+                }
+            }
+        }
+    });
+  }
+
+  updateTimeFormat() {
+    this.chart = c3.generate({
+      bindto: '#chart',
+        data: {
+          x: 'x',
+          columns: [
+            ["x"].concat(this.dates),
+            ["Consumption"].concat(this.data)
+          ],
+          types: {
+            Consumption: 'area'
+          }
+        },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: this.timeScale
                 }
             }
         }

@@ -35,25 +35,26 @@ export class ConfigurationPageComponent implements OnInit {
 
     configurationDetail.deploymentInstances.forEach(
       deploymentInstance => {
-        
-        // account for resource consumption
-        let consumptionValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
-        let theDeploymentDate = new Date(deploymentInstance.deployedTime);
-        if (deployed.has(theDeploymentDate)) {
-          let currentValue = deployed.get(theDeploymentDate);
-          consumptionValue = consumptionValue + currentValue;
-        }
-        deployed.set(theDeploymentDate, consumptionValue);
-
-        // account for resource release, if needed
-        let releasedValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
-        if (deploymentInstance.destroyedTime) {
-          let theReleaseDate = new Date(deploymentInstance.destroyedTime);
-          if (released.has(theReleaseDate)) {
-            let currentValue = released.get(theReleaseDate);
-            releasedValue = releasedValue + currentValue;
+        if (deploymentInstance.deploymentTime) {
+          // account for resource consumption
+          let consumptionValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
+          let theDeploymentDate = new Date(deploymentInstance.deploymentTime);
+          if (deployed.has(theDeploymentDate)) {
+            let currentValue = deployed.get(theDeploymentDate);
+            consumptionValue = consumptionValue + currentValue;
           }
-          released.set(theReleaseDate, releasedValue);
+          deployed.set(theDeploymentDate, consumptionValue);
+
+          // account for resource release, if needed
+          let releasedValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
+          if (deploymentInstance.destroyedTime) {
+            let theReleaseDate = new Date(deploymentInstance.destroyedTime);
+            if (released.has(theReleaseDate)) {
+              let currentValue = released.get(theReleaseDate);
+              releasedValue = releasedValue + currentValue;
+            }
+            released.set(theReleaseDate, releasedValue);
+          }
         }
       }
     );
