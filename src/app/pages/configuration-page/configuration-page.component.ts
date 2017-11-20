@@ -42,7 +42,7 @@ export class ConfigurationPageComponent implements OnInit {
           let currentValue = deployed.get(theDeploymentDate);
           newValue = newValue + currentValue;
         }
-        deployed.set(theDeploymentDate, newValue+10);
+        deployed.set(theDeploymentDate, newValue);
 
         // account for resource release, if needed
         if (deploymentInstance.destroyedTime) {
@@ -55,7 +55,8 @@ export class ConfigurationPageComponent implements OnInit {
         }
       }
     );
-    let cummulativeConsuption = 0;
+    let currentConsuption = 0;
+    let lastConsumption = 0;
     deployed.forEach(function(value, key, map) {
       // keep data
       dates.push(key);
@@ -64,8 +65,10 @@ export class ConfigurationPageComponent implements OnInit {
       if (released.has(key)) {
         releasedConsumption = released.get(key);
       }
-      cummulativeConsuption = cummulativeConsuption + value - releasedConsumption;
-      data.push(cummulativeConsuption);
+      currentConsuption = currentConsuption + value - releasedConsumption;
+      let newConsumption = currentConsuption + lastConsumption;
+      data.push(newConsumption);
+      lastConsumption = newConsumption;
     });
     console.log("Deployed: %O", deployed);
     console.log("Released: %O", released);
