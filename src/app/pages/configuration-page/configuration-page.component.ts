@@ -35,10 +35,10 @@ export class ConfigurationPageComponent implements OnInit {
 
     configurationDetail.deploymentInstances.forEach(
       deploymentInstance => {
-        if (deploymentInstance.deploymentTime) {
+        if (deploymentInstance.deployedTime) {
           // account for resource consumption
           let consumptionValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
-          let theDeploymentDate = new Date(deploymentInstance.deploymentTime);
+          let theDeploymentDate = new Date(deploymentInstance.deployedTime);
           if (deployed.has(theDeploymentDate)) {
             let currentValue = deployed.get(theDeploymentDate);
             consumptionValue = consumptionValue + currentValue;
