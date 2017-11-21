@@ -33,7 +33,17 @@ export class ConfigurationPageComponent implements OnInit {
     let dates = [];
     let data = [];
 
-    configurationDetail.deploymentInstances.forEach(
+    let sortedDeploymentInstances = [...configurationDetail.deploymentInstances].sort(
+      function(a,b) {
+        let aDate = new Date(a.deployedTime);
+        let bDate = new Date(b.deployedTime);
+        if (aDate < bDate) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+    sortedDeploymentInstances.forEach(
       deploymentInstance => {
         if (deploymentInstance.deployedTime) {
           // account for resource consumption
