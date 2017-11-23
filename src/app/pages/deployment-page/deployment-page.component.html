@@ -204,9 +204,9 @@
           <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
             FORCE DESTROY
           </button>
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+          <!-- <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
             FORCE DELETE
-          </button>
+          </button> -->
           <button mat-raised-button class="button-color-accent">
             RE-DEPLOY
           </button>
@@ -217,15 +217,15 @@
             DESTROY
           </button>
           <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
-            DELETE
-          </button>           
+            <!-- DELETE
+          </button>            -->
           <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
             FORCE DESTROY
           </button>
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
+          <!-- <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
             FORCE DELETE
-          </button>      
-          <button mat-raised-button class="button-color-accent">
+          </button>       -->
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" mat-raised-button class="button-color-accent">
             RE-DEPLOY
           </button>    
         </mat-card-actions>
