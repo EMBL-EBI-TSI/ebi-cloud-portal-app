@@ -71,7 +71,16 @@ export class ConfigurationPageComponent implements OnInit {
     let currentConsuption = 0;
     let lastConsumption = 0;
     deployed.forEach(function(value, key, map) {
-      // keep data
+      // add intermediate dates if needed
+      if (dates.length > 0) {
+        let nextDate =  dates[dates.length-1];
+        while (key > (nextDate.getDate()+1)) {
+          dates.push(new Date(nextDate.getDate() + 1));
+          data.push(lastConsumption);
+          nextDate =  dates[dates.length-1];
+        }
+      }
+      // keep date
       dates.push(key);
       // keep consumption for that date
       let releasedConsumption = 0;
