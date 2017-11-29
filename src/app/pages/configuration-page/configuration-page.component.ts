@@ -51,6 +51,10 @@ export class ConfigurationPageComponent implements OnInit {
           // account for resource consumption
           let consumptionValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
           let theDeploymentDate = new Date(deploymentInstance.deployedTime);
+          // theDeploymentDate.setHours(0);
+          // theDeploymentDate.setMinutes(0);
+          // theDeploymentDate.setSeconds(0);
+          // theDeploymentDate.setMilliseconds(0);
           if (consumptions.has(theDeploymentDate)) {
             let currentValue = consumptions.get(theDeploymentDate);
             consumptionValue = consumptionValue + currentValue;
@@ -58,12 +62,16 @@ export class ConfigurationPageComponent implements OnInit {
           consumptions.set(theDeploymentDate, consumptionValue);
 
           // account for resource release, if needed
-          let releasedValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
+          let releasedValue = - (deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2);
           if (deploymentInstance.destroyedTime) {
             let theReleaseDate = new Date(deploymentInstance.destroyedTime);
+            // theReleaseDate.setHours(0);
+            // theReleaseDate.setMinutes(0);
+            // theReleaseDate.setSeconds(0);
+            // theReleaseDate.setMilliseconds(0);
             if (consumptions.has(theReleaseDate)) {
               let currentValue = consumptions.get(theReleaseDate);
-              releasedValue = currentValue - releasedValue;
+              releasedValue = currentValue + releasedValue;
             }
             consumptions.set(theReleaseDate, releasedValue);
           }
