@@ -73,11 +73,14 @@ export class ConfigurationPageComponent implements OnInit {
     deployed.forEach(function(value, key, map) {
       // add intermediate dates if needed
       if (dates.length > 0) {
-        let nextDate =  dates[dates.length-1];
-        while (key > (nextDate.getDate()+1)) {
-          dates.push(new Date(nextDate.getDate() + 1));
+        let lastDate =  dates[dates.length-1];
+        let nextDate = new Date(key);
+        while (nextDate > lastDate) {
+          let newDate = lastDate;
+          newDate.setDate(newDate.getDate + 1);
+          dates.push(newDate);
           data.push(lastConsumption);
-          nextDate =  dates[dates.length-1];
+          lastDate =  newDate;
         }
       }
       // keep date
