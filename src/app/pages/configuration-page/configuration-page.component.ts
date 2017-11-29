@@ -90,23 +90,28 @@ export class ConfigurationPageComponent implements OnInit {
     }));
     
     // Finally, we iterate through the consumption records and create a list of dates and a list of accummulated consumptions
-    let lastConsumption = 0; 
+    let lastConsumptionRate = 0; 
+    let lastConsumption = 0;
     let lastDate = new Date();
     consumptions.forEach(function(value, key, map) {
-      // the newly deployed consumption for the current date
-      let newConsumption = value; 
-      let newDate = new Date(key.valueOf());
       // register the new date date
-      dates.push(key);
+      let newDate = new Date(key.valueOf());
+      dates.push(newDate);
+
       // calculate number of days passed since the last recorded date
       let numberOfDays = newDate.getDate() - lastDate.getDate();
-      // calculate the new current consumption based on the rate, number of days, and new deployments
-      let currentConsumption = (1+numberOfDays)*lastConsumption;
-      currentConsumption = currentConsumption + newConsumption; 
+
+      // calculate the new current consumption based on the rate, number of days
+      let currentConsumption = lastConsumption + (1+numberOfDays)*lastConsumptionRate;
 
       data.push(currentConsumption);
       lastConsumption = currentConsumption;
       lastDate = key;
+
+      // the newly deployed consumption for the current date updates the current rate (up or down)
+      // and will apply the next period
+      let newConsumption = value; 
+      lastConsumptionRate = lastConsumptionRate + newConsumption;
     });
     
     console.log("Consumptions: %O", consumptions);
