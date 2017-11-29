@@ -49,7 +49,7 @@ export class ConfigurationPageComponent implements OnInit {
       deploymentInstance => {
         if (deploymentInstance.deployedTime) {
           // account for resource consumption
-          let consumptionValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
+          let consumptionValue = (deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2) * 24; // consumption per whole 24h period
           let theDeploymentDate = new Date(deploymentInstance.deployedTime);
           // theDeploymentDate.setHours(0);
           // theDeploymentDate.setMinutes(0);
@@ -62,7 +62,7 @@ export class ConfigurationPageComponent implements OnInit {
           consumptions.set(theDeploymentDate, consumptionValue);
 
           // account for resource release, if needed
-          let releasedValue = - (deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2);
+          let releasedValue = - (deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2) * 24; // consumption per whole 24h period
           if (deploymentInstance.destroyedTime) {
             let theReleaseDate = new Date(deploymentInstance.destroyedTime);
             // theReleaseDate.setHours(0);
