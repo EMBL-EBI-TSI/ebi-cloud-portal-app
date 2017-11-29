@@ -28,11 +28,11 @@ export class ConfigurationPageComponent implements OnInit {
 
   generateStats(configurationDetail: ConfigurationComponent) {
     
-    let deployed = new Map();
-    let released = new Map();
+    let consumptions = new Map();
     let dates = [];
     let data = [];
 
+    // First, we sort deployments by deployment date
     let sortedDeploymentInstances = [...configurationDetail.deploymentInstances].sort(
       function(a,b) {
         let aDate = new Date(a.deployedTime);
@@ -43,63 +43,54 @@ export class ConfigurationPageComponent implements OnInit {
           return 1;
         }
       });
+    // Second, we iterate through all the deployments accounting for the used and released consumptions
+    // in the dates where they were allocated and released (they might be the same and they will cancel out)
     sortedDeploymentInstances.forEach(
       deploymentInstance => {
         if (deploymentInstance.deployedTime) {
           // account for resource consumption
           let consumptionValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
           let theDeploymentDate = new Date(deploymentInstance.deployedTime);
-          if (deployed.has(theDeploymentDate)) {
-            let currentValue = deployed.get(theDeploymentDate);
+          if (consumptions.has(theDeploymentDate)) {
+            let currentValue = consumptions.get(theDeploymentDate);
             consumptionValue = consumptionValue + currentValue;
           }
-          deployed.set(theDeploymentDate, consumptionValue);
+          consumptions.set(theDeploymentDate, consumptionValue);
 
           // account for resource release, if needed
           let releasedValue = deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2;
           if (deploymentInstance.destroyedTime) {
             let theReleaseDate = new Date(deploymentInstance.destroyedTime);
-            if (released.has(theReleaseDate)) {
-              let currentValue = released.get(theReleaseDate);
-              releasedValue = releasedValue + currentValue;
+            if (consumptions.has(theReleaseDate)) {
+              let currentValue = consumptions.get(theReleaseDate);
+              releasedValue = currentValue - releasedValue;
             }
-            released.set(theReleaseDate, releasedValue);
+            consumptions.set(theReleaseDate, releasedValue);
           }
         }
       }
     );
-    let currentConsuption = 0;
-    let lastConsumption = 0;
-    deployed.forEach(function(value, key, map) {
-      // add intermediate dates if needed
-      if (dates.length > 0) {
-        let lastDate =  dates[dates.length-1];
-        let nextDate = new Date(key.valueOf());
-        while (nextDate.getFullYear()!=lastDate.getFullYear() 
-            && nextDate.getMonth()!=lastDate.getMonth()
-            && nextDate.getDate()!=lastDate.getDate() 
-            && nextDate > lastDate) {
-          let newDate = new Date(lastDate.valueOf());
-          newDate.setDate(newDate.getDate() + 1);
-          dates.push(newDate);
-          data.push(lastConsumption);
-          lastDate =  newDate;
-        }
-      }
-      // keep date
+    // Third, we iterate through the consumption records and create a list of dates and a list of accummulated consumptions
+    let lastConsumption = 0; 
+    let lastDate = new Date();
+    consumptions.forEach(function(value, key, map) {
+      // the newly deployed consumption for the current date
+      let newConsumption = value; 
+      let newDate = key.valueOf();
+      // register the new date date
       dates.push(key);
-      // keep consumption for that date
-      let releasedConsumption = 0;
-      if (released.has(key)) {
-        releasedConsumption = released.get(key);
-      }
-      currentConsuption = currentConsuption + value - releasedConsumption;
-      let newConsumption = currentConsuption + lastConsumption;
-      data.push(newConsumption);
-      lastConsumption = newConsumption;
+      // calculate number of days passed since the last recorded date
+      let numberOfDays = newDate.getDate() - lastDate.getDate();
+      // calculate the new current consumption based on the rate, number of days, and new deployments
+      let currentConsumption = (1+numberOfDays)*lastConsumption;
+      currentConsumption = currentConsumption + newConsumption; 
+
+      data.push(currentConsumption);
+      lastConsumption = currentConsumption;
+      lastDate = key;
     });
-    console.log("Deployed: %O", deployed);
-    console.log("Released: %O", released);
+    
+    console.log("Consumptions: %O", consumptions);
     console.log("Dates: %O", dates);
     console.log("Data: %O", data);
 
