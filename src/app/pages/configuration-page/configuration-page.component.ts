@@ -74,10 +74,10 @@ export class ConfigurationPageComponent implements OnInit {
       // add intermediate dates if needed
       if (dates.length > 0) {
         let lastDate =  dates[dates.length-1];
-        let nextDate = new Date(key);
+        let nextDate = new Date(key.valueOf());
         while (nextDate > lastDate) {
-          let newDate = lastDate;
-          newDate.setDate(newDate.getDate + 1);
+          let newDate = new Date(lastDate.valueOf());
+          newDate.setDate(newDate.getDate() + 1);
           dates.push(newDate);
           data.push(lastConsumption);
           lastDate =  newDate;
