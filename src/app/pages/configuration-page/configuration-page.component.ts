@@ -75,7 +75,10 @@ export class ConfigurationPageComponent implements OnInit {
       if (dates.length > 0) {
         let lastDate =  dates[dates.length-1];
         let nextDate = new Date(key.valueOf());
-        while (nextDate > lastDate) {
+        while (nextDate.getFullYear()!=lastDate.getFullYear() 
+            && nextDate.getMonth()!=lastDate.getMonth()
+            && nextDate.getDate()!=lastDate.getDate() 
+            && nextDate > lastDate) {
           let newDate = new Date(lastDate.valueOf());
           newDate.setDate(newDate.getDate() + 1);
           dates.push(newDate);
