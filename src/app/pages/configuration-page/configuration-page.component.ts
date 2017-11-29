@@ -102,7 +102,7 @@ export class ConfigurationPageComponent implements OnInit {
       let numberOfDays = newDate.getDate() - lastDate.getDate();
 
       // calculate the new current consumption based on the rate, number of days
-      let currentConsumption = lastConsumption + (1+numberOfDays)*lastConsumptionRate;
+      let currentConsumption = lastConsumption + numberOfDays*lastConsumptionRate;
 
       data.push(currentConsumption);
       lastConsumption = currentConsumption;
