@@ -76,7 +76,7 @@ export class ConfigurationPageComponent implements OnInit {
     consumptions.forEach(function(value, key, map) {
       // the newly deployed consumption for the current date
       let newConsumption = value; 
-      let newDate = key.valueOf();
+      let newDate = new Date(key.valueOf());
       // register the new date date
       dates.push(key);
       // calculate number of days passed since the last recorded date
