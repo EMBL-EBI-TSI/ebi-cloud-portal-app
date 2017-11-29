@@ -79,7 +79,15 @@ export class ConfigurationPageComponent implements OnInit {
       }
     );
     // Third, we need to sort the map by dates (keys)
-    consumptions = new Map(Array.from(consumptions.entries()).sort());
+    consumptions = new Map(Array.from(consumptions.entries()).sort(function(a,b) {
+      let aDate = new Date(a[0]);
+      let bDate = new Date(b[0]);
+      if (aDate < bDate) {
+        return -1;
+      } else {
+        return 1;
+      }
+    }));
     
     // Finally, we iterate through the consumption records and create a list of dates and a list of accummulated consumptions
     let lastConsumption = 0; 
