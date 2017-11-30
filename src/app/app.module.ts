@@ -65,7 +65,7 @@ import { EditDeploymentParametersDialog } from './dialogs/edit-deployment-parame
 import { ApplicationInfoDialog } from './pages/application-page/application-info-dialog.component';
 import { TeamInfoDialog } from './pages/team-page/team-info-dialog.component';
 import { AddMemberDialog } from './pages/team-page/add-member-dialog.component';
-
+import { ShowTimelineDialog } from './dialogs/show-timeline-dialog/show-timeline-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -148,6 +148,7 @@ export function provideConfig() {
     EditConfigurationDialog,
     AddDeploymentParametersDialog,
     EditDeploymentParametersDialog,
+    ShowTimelineDialog,
     AddTeamDialog,
     ApplicationInfoDialog,
     TeamInfoDialog,
@@ -180,7 +181,8 @@ export function provideConfig() {
     AddTeamDialog,
     ApplicationInfoDialog,
     TeamInfoDialog,
-    AddMemberDialog
+    AddMemberDialog,
+    ShowTimelineDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
