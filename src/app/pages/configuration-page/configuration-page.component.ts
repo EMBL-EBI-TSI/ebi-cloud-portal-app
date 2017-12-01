@@ -112,6 +112,8 @@ export class ConfigurationPageComponent implements OnInit {
       // and will apply the next period
       let newConsumption = value; 
       lastConsumptionRate = lastConsumptionRate + newConsumption;
+      console.log("New last consumption is %O", lastConsumption);
+      console.log("New last consumption rate is %O", lastConsumptionRate);
     });
     
     console.log("Consumptions: %O", consumptions);
