@@ -99,7 +99,8 @@ export class ConfigurationPageComponent implements OnInit {
       dates.push(newDate);
 
       // calculate number of days passed since the last recorded date
-      let numberOfDays = newDate.getDate() - lastDate.getDate();
+      let timeDiff = Math.abs(newDate.getTime() - lastDate.getTime());
+      let numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 
       // calculate the new current consumption based on the rate, number of days
       let currentConsumption = lastConsumption + numberOfDays*lastConsumptionRate;
