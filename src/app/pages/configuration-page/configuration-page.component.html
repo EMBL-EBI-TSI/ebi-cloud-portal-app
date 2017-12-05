@@ -37,8 +37,13 @@
             </mat-list-item>
             <mat-list-item>
                 <mat-icon mat-list-icon class="card-type-icon">vpn_key</mat-icon>
-                <h3 matLine>Cloud provider parameters</h3>
+                <h3 matLine>Cloud provider</h3>
                 <p matLine class="param-value">{{ configurationDetail.configurationPresenter.cloudProviderParametersName }}</p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon mat-list-icon class="card-type-icon">settings_applications</mat-icon>
+                <h3 matLine>Parameters</h3>
+                <p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
             </mat-list-item>
             <mat-list-item>
               <mat-icon mat-list-icon class="card-type-icon">lock_open</mat-icon>
@@ -46,11 +51,12 @@
               <p matLine class="param-value">{{ configurationDetail.configurationPresenter.sshKey }}</p>
             </mat-list-item>
             <mat-list-item>
-                <mat-icon mat-list-icon class="card-type-icon">settings_applications</mat-icon>
-                <h3 matLine>Parameters</h3>
-                <p matLine class="param-value">{{ configurationDetail.configurationPresenter.deploymentParametersName }}</p>
-            </mat-list-item>
-
+                <mat-icon mat-list-icon class="card-type-icon">pan_tool</mat-icon>
+                <h3 matLine>Usage limits</h3>
+                <p *ngIf="!(configurationDetail.configurationPresenter.softUsageLimit || configurationDetail.configurationPresenter.softUsageLimit)" matLine class="param-value">No usage limits for this configuration</p>
+                <p *ngIf="configurationDetail.configurationPresenter.softUsageLimit" matLine class="param-value">Soft: {{ configurationDetail.configurationPresenter.softUsageLimit }}</p>
+                <p *ngIf="configurationDetail.configurationPresenter.hardUsageLimit" matLine class="param-value">Hard: {{ configurationDetail.configurationPresenter.hardUsageLimit }}</p>
+              </mat-list-item>
             <h3 *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">Associated deployments
               <button mat-icon-button
                 (click)="generateStats(configurationDetail);">
