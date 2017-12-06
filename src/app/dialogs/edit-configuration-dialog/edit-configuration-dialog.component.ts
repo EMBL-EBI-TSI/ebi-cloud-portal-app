@@ -82,6 +82,8 @@ export class EditConfigurationDialog {
       'name': [configuration.name, Validators.required],
       'cloudProviderParametersName': [configuration.cloudProviderParametersName, Validators.required],
       'sshKey': [configuration.sshKey, Validators.required],
+      'softUsageLimit': [configuration.softUsageLimit],
+      'hardUsageLimit': [configuration.hardUsageLimit],
       'deploymentParametersName': [configuration.deploymentParametersName, Validators.required],
     });
   }
