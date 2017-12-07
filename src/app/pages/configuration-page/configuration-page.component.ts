@@ -138,7 +138,8 @@ export class ConfigurationPageComponent implements OnInit {
       data,
       dates,
       configurationDetail.configurationPresenter.hardUsageLimit,
-      configurationDetail.configurationPresenter.softUsageLimit
+      configurationDetail.configurationPresenter.softUsageLimit,
+      Math.max(configurationDetail.configurationPresenter.hardUsageLimit, configurationDetail.configurationPresenter.softUsageLimit, data[data.length-1])
     ];
     config.width = '440px';
     let dialogRef = this.dialog.open(ShowTimelineDialog, config);

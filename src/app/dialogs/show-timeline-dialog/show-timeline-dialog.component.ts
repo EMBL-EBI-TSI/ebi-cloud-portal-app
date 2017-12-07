@@ -15,6 +15,7 @@ export class ShowTimelineDialog {
   actionTaken: string = 'close';
   hardUsageLimit: 0.0;
   softUsageLimit: 0.0;
+  maxYValue = 0.0;
 
   data = [];
   dates = []
@@ -35,7 +36,8 @@ export class ShowTimelineDialog {
     this.dates = this.dialogData[4];
     this.hardUsageLimit = this.dialogData[5];
     this.softUsageLimit = this.dialogData[6];
-
+    this.maxYValue = this.dialogData[7];
+    
     this.chart = c3.generate({
       bindto: '#chart',
         data: {
@@ -56,6 +58,9 @@ export class ShowTimelineDialog {
                     rotate: 45,
                     multiline: true
                 }
+            },
+            y: {
+              max: this.maxYValue
             }
         },
         grid: {
