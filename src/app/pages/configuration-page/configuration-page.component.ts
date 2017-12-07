@@ -132,7 +132,7 @@ export class ConfigurationPageComponent implements OnInit {
 
     const config = new MatDialogConfig();
     config.data = [
-      'Usage timeline',
+      configurationDetail.configurationPresenter.name + ' usage',
       'CLOSE',
       '',
       data,

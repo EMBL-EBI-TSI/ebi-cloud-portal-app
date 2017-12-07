@@ -18,7 +18,7 @@ export class ShowTimelineDialog {
 
   data = [];
   dates = []
-  timeScale = '%Y-%m-%d %Hh';
+  timeScale = '%Hh %e %b %y';
   chart;
 
   constructor(private _router: Router,
@@ -52,7 +52,9 @@ export class ShowTimelineDialog {
             x: {
                 type: 'timeseries',
                 tick: {
-                    format: this.timeScale
+                    format: this.timeScale,
+                    rotate: 45,
+                    multiline: true
                 }
             }
         },
@@ -63,39 +65,14 @@ export class ShowTimelineDialog {
                     {value: this.softUsageLimit, text: 'Soft Usage Limit ' + this.softUsageLimit}
                 ]
             }
+        },
+        zoom: {
+            enabled: true
+        },
+        legend: {
+            show: false
         }
     });
   }
 
-  updateTimeFormat() {
-    this.chart = c3.generate({
-      bindto: '#chart',
-        data: {
-          x: 'x',
-          columns: [
-            ["x"].concat(this.dates),
-            ["Consumption"].concat(this.data)
-          ],
-          types: {
-            Consumption: 'area'
-          }
-        },
-        axis: {
-            x: {
-                type: 'timeseries',
-                tick: {
-                    format: this.timeScale
-                }
-            }
-        },
-        grid: {
-            y: {
-                lines: [
-                    {value: this.hardUsageLimit, text: 'Hard Usage limit ' + this.hardUsageLimit},
-                    {value: this.softUsageLimit, text: 'Soft Usage Limit ' + this.softUsageLimit}
-                ]
-            }
-        }
-    });
-  }
 }

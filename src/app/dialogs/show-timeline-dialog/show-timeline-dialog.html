@@ -2,31 +2,11 @@
   <div>
     <h3>{{ chartTitle }}</h3>
   </div>
-  <div>
-      {{ chartSubtitle }}
-  </div>
-  <br/>
   <div style="width: 380px; height: 300px; overflow-y:hidden;" id="chart"></div>
-  <mat-select placeholder="Scale" [(value)]="timeScale">
-      <mat-option (click)="updateTimeFormat()" value="%Y-%m-%d %Hh">
-        Hourly
-      </mat-option>
-      <mat-option (click)="updateTimeFormat()" value="%Y-%m-%d">
-        Daily
-      </mat-option>
-      <mat-option (click)="updateTimeFormat()" value="%Y-%m">
-        Monthly
-      </mat-option>
-      <mat-option (click)="updateTimeFormat()" value="%Y">
-        Yearly
-      </mat-option>
-    </mat-select>
-</mat-dialog-content>
+</mat-dialog-content> 
 <mat-dialog-actions style="display: flex; justify-items: space-between;">
   <button mat-raised-button class="button-color-accent"
   (click)="dialogRef.close(actionButtonMessage)">
   {{ actionButtonMessage }}
   </button>
-
-  
 </mat-dialog-actions>
