@@ -19,7 +19,7 @@ export class ShowTimelineDialog {
 
   data = [];
   dates = []
-  timeScale = '%Hh %e %b %y';
+  timeFormat = '%Hh %e %b %y';
   chart;
 
   constructor(private _router: Router,
@@ -37,7 +37,7 @@ export class ShowTimelineDialog {
     this.hardUsageLimit = this.dialogData[5];
     this.softUsageLimit = this.dialogData[6];
     this.maxYValue = this.dialogData[7];
-    
+
     this.chart = c3.generate({
       bindto: '#chart',
         data: {
@@ -54,9 +54,8 @@ export class ShowTimelineDialog {
             x: {
                 type: 'timeseries',
                 tick: {
-                    format: this.timeScale,
-                    rotate: 45,
-                    multiline: true
+                    format: this.timeFormat,
+                    count: 3
                 }
             },
             y: {
