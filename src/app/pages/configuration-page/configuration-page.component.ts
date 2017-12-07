@@ -49,12 +49,8 @@ export class ConfigurationPageComponent implements OnInit {
       deploymentInstance => {
         if (deploymentInstance.deployedTime) {
           // account for resource consumption
-          let consumptionValue = ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25) * 24; // consumption per whole 24h period
+          let consumptionValue = ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25); // consumption per h
           let theDeploymentDate = new Date(deploymentInstance.deployedTime);
-          // theDeploymentDate.setHours(0);
-          // theDeploymentDate.setMinutes(0);
-          // theDeploymentDate.setSeconds(0);
-          // theDeploymentDate.setMilliseconds(0);
           if (consumptions.has(theDeploymentDate)) {
             let currentValue = consumptions.get(theDeploymentDate);
             consumptionValue = consumptionValue + currentValue;
@@ -62,13 +58,9 @@ export class ConfigurationPageComponent implements OnInit {
           consumptions.set(theDeploymentDate, consumptionValue);
 
           // account for resource release, if needed
-          let releasedValue = - ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25) * 24; // consumption per whole 24h period
+          let releasedValue = - ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25); // consumption per h
           if (deploymentInstance.destroyedTime) {
             let theReleaseDate = new Date(deploymentInstance.destroyedTime);
-            // theReleaseDate.setHours(0);
-            // theReleaseDate.setMinutes(0);
-            // theReleaseDate.setSeconds(0);
-            // theReleaseDate.setMilliseconds(0);
             if (consumptions.has(theReleaseDate)) {
               let currentValue = consumptions.get(theReleaseDate);
               releasedValue = currentValue + releasedValue;
@@ -98,12 +90,12 @@ export class ConfigurationPageComponent implements OnInit {
       let newDate = new Date(key.valueOf());
       dates.push(newDate);
 
-      // calculate number of days passed since the last recorded date
+      // calculate number of hours passed since the last recorded date
       let timeDiff = Math.abs(newDate.getTime() - lastDate.getTime());
-      let numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
 
-      // calculate the new current consumption based on the rate, number of days
-      let currentConsumption = lastConsumption + numberOfDays*lastConsumptionRate;
+      // calculate the new current consumption based on the rate, number of hours
+      let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
 
       data.push(currentConsumption);
       lastConsumption = currentConsumption;
@@ -119,18 +111,18 @@ export class ConfigurationPageComponent implements OnInit {
     
     // We need to add current date if not present
     let currentDate = new Date();
-    let m = currentDate.getMonth();
-    let d = currentDate.getDate();
-    let y = currentDate.getFullYear();
-    currentDate = new Date(y,m,d);
+    // let m = currentDate.getMonth();
+    // let d = currentDate.getDate();
+    // let y = currentDate.getFullYear();
+    // currentDate = new Date(y,m,d);
 
     if (lastDate < currentDate) {
       dates.push(currentDate);
-      // calculate number of days passed since the last recorded date
+      // calculate number of hours passed since the last recorded date
       let timeDiff = Math.abs(currentDate.getTime() - lastDate.getTime());
-      let numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
       // calculate the new current consumption based on the rate, number of days
-      let currentConsumption = lastConsumption + numberOfDays*lastConsumptionRate;
+      let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
       data.push(currentConsumption);
     }
 
