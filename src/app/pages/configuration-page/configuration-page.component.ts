@@ -117,6 +117,23 @@ export class ConfigurationPageComponent implements OnInit {
       console.log("New last consumption rate is %O", lastConsumptionRate);
     });
     
+    // We need to add current date if not present
+    let currentDate = new Date();
+    let m = currentDate.getMonth();
+    let d = currentDate.getDate();
+    let y = currentDate.getFullYear();
+    currentDate = new Date(y,m,d);
+
+    if (lastDate < currentDate) {
+      dates.push(currentDate);
+      // calculate number of days passed since the last recorded date
+      let timeDiff = Math.abs(currentDate.getTime() - lastDate.getTime());
+      let numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+      // calculate the new current consumption based on the rate, number of days
+      let currentConsumption = lastConsumption + numberOfDays*lastConsumptionRate;
+      data.push(currentConsumption);
+    }
+
     console.log("Consumptions: %O", consumptions);
     console.log("Dates: %O", dates);
     console.log("Data: %O", data);
