@@ -136,7 +136,9 @@ export class ConfigurationPageComponent implements OnInit {
       'CLOSE',
       '',
       data,
-      dates
+      dates,
+      configurationDetail.configurationPresenter.hardUsageLimit,
+      configurationDetail.configurationPresenter.softUsageLimit
     ];
     config.width = '440px';
     let dialogRef = this.dialog.open(ShowTimelineDialog, config);

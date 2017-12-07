@@ -13,6 +13,9 @@ export class ShowTimelineDialog {
   chartSubtitle: string = 'Time period';
   actionButtonMessage: string = 'CLOSE';
   actionTaken: string = 'close';
+  hardUsageLimit: 0.0;
+  softUsageLimit: 0.0;
+
   data = [];
   dates = []
   timeScale = '%Y-%m-%d %Hh';
@@ -30,6 +33,8 @@ export class ShowTimelineDialog {
     this.chartSubtitle = this.dialogData[2];
     this.data = this.dialogData[3];
     this.dates = this.dialogData[4];
+    this.hardUsageLimit = this.dialogData[5];
+    this.softUsageLimit = this.dialogData[6];
 
     this.chart = c3.generate({
       bindto: '#chart',
@@ -49,6 +54,14 @@ export class ShowTimelineDialog {
                 tick: {
                     format: this.timeScale
                 }
+            }
+        },
+        grid: {
+            y: {
+                lines: [
+                    {value: this.hardUsageLimit, text: 'Hard Usage limit ' + this.hardUsageLimit},
+                    {value: this.softUsageLimit, text: 'Soft Usage Limit ' + this.softUsageLimit}
+                ]
             }
         }
     });
@@ -73,6 +86,14 @@ export class ShowTimelineDialog {
                 tick: {
                     format: this.timeScale
                 }
+            }
+        },
+        grid: {
+            y: {
+                lines: [
+                    {value: this.hardUsageLimit, text: 'Hard Usage limit ' + this.hardUsageLimit},
+                    {value: this.softUsageLimit, text: 'Soft Usage Limit ' + this.softUsageLimit}
+                ]
             }
         }
     });
