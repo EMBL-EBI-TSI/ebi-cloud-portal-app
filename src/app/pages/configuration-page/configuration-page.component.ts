@@ -123,7 +123,7 @@ export class ConfigurationPageComponent implements OnInit {
       let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
       // calculate the new current consumption based on the rate, number of days
       // let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
-      let currentConsumption = configurationDetail.configurationPresenter.totalUsage;
+      let currentConsumption = configurationDetail.configurationPresenter.totalUsage.toFixed(2);;
       data.push(currentConsumption);
     }
 
