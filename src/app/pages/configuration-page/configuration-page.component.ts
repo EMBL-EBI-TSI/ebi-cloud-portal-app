@@ -97,7 +97,7 @@ export class ConfigurationPageComponent implements OnInit {
       // calculate the new current consumption based on the rate, number of hours
       let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
 
-      data.push(currentConsumption);
+      data.push(Math.min(currentConsumption, configurationDetail.configurationPresenter.totalUsage));
       lastConsumption = currentConsumption;
       lastDate = key;
 
@@ -122,7 +122,8 @@ export class ConfigurationPageComponent implements OnInit {
       let timeDiff = Math.abs(currentDate.getTime() - lastDate.getTime());
       let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
       // calculate the new current consumption based on the rate, number of days
-      let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
+      // let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
+      let currentConsumption = configurationDetail.configurationPresenter.totalUsage;
       data.push(currentConsumption);
     }
 
