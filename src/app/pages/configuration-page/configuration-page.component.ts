@@ -50,22 +50,40 @@ export class ConfigurationPageComponent implements OnInit {
         if (deploymentInstance.deployedTime) {
           // account for resource consumption
           let consumptionValue = ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25); // consumption per h
-          let theDeploymentDate = new Date(deploymentInstance.deployedTime);
-          if (consumptions.has(theDeploymentDate)) {
-            let currentValue = consumptions.get(theDeploymentDate);
+
+          // get deployment date by the hour
+          let deploymentDateByHour = new Date(deploymentInstance.deployedTime);;
+          deploymentDateByHour.setMinutes(0);
+          deploymentDateByHour.setSeconds(0);
+          deploymentDateByHour.setMilliseconds(0);
+          if (consumptions.has(deploymentDateByHour)) {
+            let currentValue = consumptions.get(deploymentDateByHour);
             consumptionValue = consumptionValue + currentValue;
           }
-          consumptions.set(theDeploymentDate, consumptionValue);
+          consumptions.set(deploymentDateByHour, consumptionValue);
 
-          // account for resource release, if needed
-          let releasedValue = - ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25); // consumption per h
+          // compute resource release
           if (deploymentInstance.destroyedTime) {
-            let theReleaseDate = new Date(deploymentInstance.destroyedTime);
-            if (consumptions.has(theReleaseDate)) {
-              let currentValue = consumptions.get(theReleaseDate);
+            // account for resource release, if needed
+            let releasedValue = - ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25); // consumption per h
+             // get destroy date by the hour
+            let theReleaseDateByHour = new Date(deploymentInstance.destroyedTime);
+            theReleaseDateByHour.setMinutes(0);
+            theReleaseDateByHour.setSeconds(0);
+            theReleaseDateByHour.setMilliseconds(0);
+            if (consumptions.has(theReleaseDateByHour)) {
+              let currentValue = consumptions.get(theReleaseDateByHour);
+              // We need to fraction the released value for deployments that started and got destroyed 
+              // during the same hour
+              if (deploymentDateByHour == theReleaseDateByHour) {
+                let deployedDate = new Date(deploymentInstance.deployedTime);
+                let destroyedDate = new Date(deploymentInstance.destroyedTime);
+                let totalLeftInHour = Math.abs(destroyedDate.getTime() - deployedDate.getTime()) / 3600000;
+                releasedValue = releasedValue + releasedValue*totalLeftInHour;
+              }
               releasedValue = currentValue + releasedValue;
             }
-            consumptions.set(theReleaseDate, releasedValue);
+            consumptions.set(theReleaseDateByHour, releasedValue);
           }
         }
       }
