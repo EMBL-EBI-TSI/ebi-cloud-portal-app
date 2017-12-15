@@ -103,6 +103,9 @@ export class ConfigurationPageComponent implements OnInit {
     let lastConsumptionRate = 0; 
     let lastConsumption = 0;
     let lastDate = new Date();
+    lastDate.setMinutes(0);
+    lastDate.setSeconds(0);
+    lastDate.setMilliseconds(0);
     consumptions.forEach(function(value, key, map) {
       // register the new date date
       let newDate = new Date(key.valueOf());
