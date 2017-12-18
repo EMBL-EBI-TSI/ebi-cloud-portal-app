@@ -54,9 +54,9 @@
                 <mat-icon mat-list-icon class="card-type-icon">pan_tool</mat-icon>
                 <h3 matLine>Usage limits</h3>
                 <p matLine class="param-value">Total usage: {{ configurationDetail.configurationPresenter.totalUsage | number : '1.2-2'}}</p>
-                <p *ngIf="!(configurationDetail.configurationPresenter.softUsageLimit || configurationDetail.configurationPresenter.softUsageLimit)" matLine class="param-value">No usage limits for this configuration</p>
-                <p *ngIf="configurationDetail.configurationPresenter.softUsageLimit" matLine class="param-value">Soft limit: {{ configurationDetail.configurationPresenter.softUsageLimit }}</p>
-                <p *ngIf="configurationDetail.configurationPresenter.hardUsageLimit" matLine class="param-value">Hard limit: {{ configurationDetail.configurationPresenter.hardUsageLimit }}</p>
+                <p *ngIf="!(configurationDetail.configurationPresenter.softUsageLimit>=0.0 || configurationDetail.configurationPresenter.softUsageLimit>=0.0)" matLine class="param-value">No usage limits for this configuration</p>
+                <p *ngIf="configurationDetail.configurationPresenter.softUsageLimit>=0.0" matLine class="param-value">Soft limit: {{ configurationDetail.configurationPresenter.softUsageLimit }}</p>
+                <p *ngIf="configurationDetail.configurationPresenter.hardUsageLimit>=0.0" matLine class="param-value">Hard limit: {{ configurationDetail.configurationPresenter.hardUsageLimit }}</p>
               </mat-list-item>
             <h3 *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">Associated deployments
               <button mat-icon-button
