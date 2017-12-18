@@ -23,9 +23,7 @@
           {{ aCloudProvider }}
         </mat-option>
       </mat-autocomplete>
-      <!--The SSH key-->
-      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="SSH public key" [formControl]="configurationForm.controls['sshKey']" autofocus>
-      </mat-form-field>
+
       <!--The deployment params-->
       <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Deployment Parameters Name (required)" [formControl]="configurationForm.controls['deploymentParametersName']"
           [matAutocomplete]="deploymentParametersAuto">
@@ -35,6 +33,16 @@
           {{ aDeploymentParameters }}
         </mat-option>
       </mat-autocomplete>
+
+      <!--The SSH key-->
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="SSH public key" [formControl]="configurationForm.controls['sshKey']" autofocus>
+      </mat-form-field>
+
+      <!--The usage limits-->
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Soft usage limit (optional)" [formControl]="configurationForm.controls['softUsageLimit']" autofocus>
+      </mat-form-field>
+      <mat-form-field class="input-full-width"><input matInput type="text" placeholder="Hard usage limit (optional)" [formControl]="configurationForm.controls['hardUsageLimit']" autofocus>
+      </mat-form-field>
     </form>
   </div>
 </mat-dialog-content>

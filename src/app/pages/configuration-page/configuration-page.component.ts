@@ -49,31 +49,41 @@ export class ConfigurationPageComponent implements OnInit {
       deploymentInstance => {
         if (deploymentInstance.deployedTime) {
           // account for resource consumption
-          let consumptionValue = ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25) * 24; // consumption per whole 24h period
-          let theDeploymentDate = new Date(deploymentInstance.deployedTime);
-          // theDeploymentDate.setHours(0);
-          // theDeploymentDate.setMinutes(0);
-          // theDeploymentDate.setSeconds(0);
-          // theDeploymentDate.setMilliseconds(0);
-          if (consumptions.has(theDeploymentDate)) {
-            let currentValue = consumptions.get(theDeploymentDate);
+          let consumptionValue = ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25); // consumption per h
+
+          // get deployment date by the hour
+          let deploymentDateByHour = new Date(deploymentInstance.deployedTime);;
+          deploymentDateByHour.setMinutes(0);
+          deploymentDateByHour.setSeconds(0);
+          deploymentDateByHour.setMilliseconds(0);
+          if (consumptions.has(deploymentDateByHour)) {
+            let currentValue = consumptions.get(deploymentDateByHour);
             consumptionValue = consumptionValue + currentValue;
           }
-          consumptions.set(theDeploymentDate, consumptionValue);
+          consumptions.set(deploymentDateByHour, consumptionValue);
 
-          // account for resource release, if needed
-          let releasedValue = - ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25) * 24; // consumption per whole 24h period
+          // compute resource release
           if (deploymentInstance.destroyedTime) {
-            let theReleaseDate = new Date(deploymentInstance.destroyedTime);
-            // theReleaseDate.setHours(0);
-            // theReleaseDate.setMinutes(0);
-            // theReleaseDate.setSeconds(0);
-            // theReleaseDate.setMilliseconds(0);
-            if (consumptions.has(theReleaseDate)) {
-              let currentValue = consumptions.get(theReleaseDate);
+            // account for resource release, if needed
+            let releasedValue = - ((deploymentInstance.totalVcpus + deploymentInstance.totalRamGb/2)*0.25); // consumption per h
+             // get destroy date by the hour
+            let theReleaseDateByHour = new Date(deploymentInstance.destroyedTime);
+            theReleaseDateByHour.setMinutes(0);
+            theReleaseDateByHour.setSeconds(0);
+            theReleaseDateByHour.setMilliseconds(0);
+            if (consumptions.has(theReleaseDateByHour)) {
+              let currentValue = consumptions.get(theReleaseDateByHour);
+              // We need to fraction the released value for deployments that started and got destroyed 
+              // during the same hour
+              if (deploymentDateByHour == theReleaseDateByHour) {
+                let deployedDate = new Date(deploymentInstance.deployedTime);
+                let destroyedDate = new Date(deploymentInstance.destroyedTime);
+                let totalLeftInHour = Math.abs(destroyedDate.getTime() - deployedDate.getTime()) / 3600000;
+                releasedValue = releasedValue + releasedValue*totalLeftInHour;
+              }
               releasedValue = currentValue + releasedValue;
             }
-            consumptions.set(theReleaseDate, releasedValue);
+            consumptions.set(theReleaseDateByHour, releasedValue);
           }
         }
       }
@@ -93,19 +103,22 @@ export class ConfigurationPageComponent implements OnInit {
     let lastConsumptionRate = 0; 
     let lastConsumption = 0;
     let lastDate = new Date();
+    lastDate.setMinutes(0);
+    lastDate.setSeconds(0);
+    lastDate.setMilliseconds(0);
     consumptions.forEach(function(value, key, map) {
       // register the new date date
       let newDate = new Date(key.valueOf());
       dates.push(newDate);
 
-      // calculate number of days passed since the last recorded date
+      // calculate number of hours passed since the last recorded date
       let timeDiff = Math.abs(newDate.getTime() - lastDate.getTime());
-      let numberOfDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
 
-      // calculate the new current consumption based on the rate, number of days
-      let currentConsumption = lastConsumption + numberOfDays*lastConsumptionRate;
+      // calculate the new current consumption based on the rate, number of hours
+      let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
 
-      data.push(currentConsumption);
+      data.push(Math.min(currentConsumption, configurationDetail.configurationPresenter.totalUsage));
       lastConsumption = currentConsumption;
       lastDate = key;
 
@@ -117,17 +130,38 @@ export class ConfigurationPageComponent implements OnInit {
       console.log("New last consumption rate is %O", lastConsumptionRate);
     });
     
+    // We need to add current date if not present
+    let currentDate = new Date();
+    // let m = currentDate.getMonth();
+    // let d = currentDate.getDate();
+    // let y = currentDate.getFullYear();
+    // currentDate = new Date(y,m,d);
+
+    if (lastDate < currentDate) {
+      dates.push(currentDate);
+      // calculate number of hours passed since the last recorded date
+      let timeDiff = Math.abs(currentDate.getTime() - lastDate.getTime());
+      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
+      // calculate the new current consumption based on the rate, number of days
+      // let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
+      let currentConsumption = configurationDetail.configurationPresenter.totalUsage.toFixed(2);;
+      data.push(currentConsumption);
+    }
+
     console.log("Consumptions: %O", consumptions);
     console.log("Dates: %O", dates);
     console.log("Data: %O", data);
 
     const config = new MatDialogConfig();
     config.data = [
-      'Usage timeline',
+      'Usage history',
       'CLOSE',
       '',
       data,
-      dates
+      dates,
+      configurationDetail.configurationPresenter.hardUsageLimit,
+      configurationDetail.configurationPresenter.softUsageLimit,
+      Math.max(configurationDetail.configurationPresenter.hardUsageLimit, configurationDetail.configurationPresenter.softUsageLimit, data[data.length-1])
     ];
     config.width = '440px';
     let dialogRef = this.dialog.open(ShowTimelineDialog, config);

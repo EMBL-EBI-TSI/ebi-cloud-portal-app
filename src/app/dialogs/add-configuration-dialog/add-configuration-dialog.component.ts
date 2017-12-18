@@ -37,6 +37,8 @@ export class AddConfigurationDialog {
       'cloudProviderParametersName': ['', Validators.required],
       'sshKey': ['', Validators.required],
       'deploymentParametersName': ['', Validators.required],
+      'softUsageLimit': [''],
+      'hardUsageLimit':['']
     });
 
     this.cloudProviderParametersService.getOwnedAndSharedCloudProviders(this.credentialService.getUsername(), this.tokenService.getToken())

@@ -13,9 +13,13 @@ export class ShowTimelineDialog {
   chartSubtitle: string = 'Time period';
   actionButtonMessage: string = 'CLOSE';
   actionTaken: string = 'close';
+  hardUsageLimit: 0.0;
+  softUsageLimit: 0.0;
+  maxYValue = 0.0;
+
   data = [];
   dates = []
-  timeScale = '%Y-%m-%d %Hh';
+  timeFormat = '%Hh %e %b %y';
   chart;
 
   constructor(private _router: Router,
@@ -30,6 +34,9 @@ export class ShowTimelineDialog {
     this.chartSubtitle = this.dialogData[2];
     this.data = this.dialogData[3];
     this.dates = this.dialogData[4];
+    this.hardUsageLimit = this.dialogData[5];
+    this.softUsageLimit = this.dialogData[6];
+    this.maxYValue = this.dialogData[7];
 
     this.chart = c3.generate({
       bindto: '#chart',
@@ -47,34 +54,29 @@ export class ShowTimelineDialog {
             x: {
                 type: 'timeseries',
                 tick: {
-                    format: this.timeScale
+                    format: this.timeFormat,
+                    count: 3
                 }
+            },
+            y: {
+              max: this.maxYValue
             }
+        },
+        grid: {
+            y: {
+                lines: [
+                    {value: this.hardUsageLimit, text: 'Hard Usage limit ' + this.hardUsageLimit},
+                    {value: this.softUsageLimit, text: 'Soft Usage Limit ' + this.softUsageLimit}
+                ]
+            }
+        },
+        zoom: {
+            enabled: true
+        },
+        legend: {
+            show: false
         }
     });
   }
 
-  updateTimeFormat() {
-    this.chart = c3.generate({
-      bindto: '#chart',
-        data: {
-          x: 'x',
-          columns: [
-            ["x"].concat(this.dates),
-            ["Consumption"].concat(this.data)
-          ],
-          types: {
-            Consumption: 'area'
-          }
-        },
-        axis: {
-            x: {
-                type: 'timeseries',
-                tick: {
-                    format: this.timeScale
-                }
-            }
-        }
-    });
-  }
 }
