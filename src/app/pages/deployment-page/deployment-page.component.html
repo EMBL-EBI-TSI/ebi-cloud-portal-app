@@ -198,7 +198,7 @@
           </mat-list>
         </mat-card-content>
 
-        <mat-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'"
+        <mat-progress-bar *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING' || deploymentDetail.deploymentInstance.replicating"
           mode="indeterminate"></mat-progress-bar>
         <mat-card-actions style="display: flex; justify-content: space-between;" *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING' || deploymentDetail.deploymentInstance.status == 'STARTING'">
           <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
@@ -207,7 +207,8 @@
           <!-- <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
             FORCE DELETE
           </button> -->
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" mat-raised-button class="button-color-accent">
+          <span class="fill-remaining-space"></span>
+          <button mat-raised-button class="button-color-accent" (click)="openConfirmDeploymentDialog(deploymentDetail)">
             REPLICATE
           </button>
         </mat-card-actions>
@@ -225,7 +226,8 @@
           <!-- <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'" mat-raised-button (click)="openConfirmDeleteDialog(deploymentDetail)">
             FORCE DELETE
           </button>       -->
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED'" mat-raised-button class="button-color-accent">
+          <span class="fill-remaining-space"></span>
+          <button mat-raised-button class="button-color-accent" (click)="openConfirmDeploymentDialog(deploymentDetail)">
             REPLICATE
           </button>    
         </mat-card-actions>

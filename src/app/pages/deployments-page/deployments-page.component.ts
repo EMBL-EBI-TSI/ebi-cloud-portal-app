@@ -8,7 +8,7 @@ import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service'
 })
 export class DeploymentsPageComponent implements OnInit {
 
-  statusFilters: string[] = ['DESTROYED'];
+  statusFilters: string[] = ['DESTROYED', 'DESTROYING_FAILED'];
   hideDestroyed: boolean = true;
 
   constructor(public breadcrumbService: BreadcrumbService) {
@@ -31,7 +31,7 @@ export class DeploymentsPageComponent implements OnInit {
   updateFilters() {
     this.statusFilters = [];
     if (this.hideDestroyed) {
-      this.statusFilters.push('DESTROYED');
+      this.statusFilters.push('DESTROYED', 'DESTROYING_FAILED');
     } 
   }
 

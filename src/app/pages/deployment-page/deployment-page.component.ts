@@ -73,6 +73,24 @@ export class DeploymentPageComponent implements OnInit {
     
   }
 
+  openConfirmDeploymentDialog(deploymentDetail: DeploymentComponent) {
+    const config = new MatDialogConfig();
+    let extraInfo: string = '';
+
+    config.data = [
+      'You are about to deploy \'' + deploymentDetail.deploymentInstance.applicationName + '\' using \'' + deploymentDetail.deploymentInstance.configurationName +'\'. ',
+      'DEPLOY',
+      'Please confirm',
+      extraInfo
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DEPLOY')
+      deploymentDetail.replicateDeployment(deploymentDetail.deploymentInstance)
+    });
+    
+  }
+
   fromTimeStampToDateAndTime(timestamp: number) {
     let t = new Date( timestamp );
     let formatted = t.toISOString().replace("T"," ");
