@@ -30,9 +30,7 @@
 						<mat-card [routerLink]=" ['/configuration/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.configurationPresenters">
 							<span class="flex-container-wide">
 								<mat-icon class="card-type-icon">settings_applications</mat-icon>
-								<h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
-									It is advisable to delete this."
-												matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
+								<h3>{{configurationPresenter.name}}</h3>
 									<span class="fill-remaining-space"></span>
 							</span>
 							<mat-card-content>
@@ -59,9 +57,7 @@
 						<mat-card [routerLink]=" ['/configuration/shared/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.sharedConfigurationPresenters">
 							<span class="flex-container-wide">
 								<mat-icon class="card-type-icon">settings_applications</mat-icon>
-									<h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
-									It is advisable to delete this."
-												matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
+									<h3>{{configurationPresenter.name}}</h3>
 									<span class="fill-remaining-space"></span>
 									<p>SHARED</p>
 							</span>
