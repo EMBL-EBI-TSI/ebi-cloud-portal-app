@@ -16,6 +16,7 @@ export class SignonPageComponent implements OnInit, OnDestroy {
   account: Account;
   removeMessageListener: Function;
   elixirLogo = 'assets/img/elixir_logo.png';
+  emblLogo = 'assets/img/embl_logo_only.png';
   
   constructor(
     private router: Router,
