@@ -214,7 +214,7 @@
           <button *ngIf="deploymentDetail.deploymentInstance.status == 'RUNNING'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
             DESTROY
           </button>
-          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED' || deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
+          <button *ngIf="deploymentDetail.deploymentInstance.status == 'STARTING_FAILED' || deploymentDetail.deploymentInstance.status == 'DESTROYING_FAILED' || deploymentDetail.deploymentInstance.status == 'RUNNING_FAILED'" mat-raised-button (click)="openConfirmDestroyDialog(deploymentDetail)">
             FORCE DESTROY
           </button>
           <span class="fill-remaining-space"></span>
