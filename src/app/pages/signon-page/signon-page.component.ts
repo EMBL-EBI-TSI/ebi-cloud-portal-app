@@ -45,6 +45,10 @@ export class SignonPageComponent implements OnInit, OnDestroy {
     return this.authService.ssoLink();
   }
 
+  emblSsoLink() {
+    return this.authService.emblSsoLink();
+  }
+
   ngOnInit() {
     this.breadcrumbService.breadcrumb.push( {label:'Login', route:'login'} );
   }
