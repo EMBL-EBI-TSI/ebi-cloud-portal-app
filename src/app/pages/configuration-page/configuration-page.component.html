@@ -92,34 +92,36 @@
                 </div>
               </div> 
             </mat-list-item>
-            <mat-list-item *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
-              <div *ngIf="deploymentInstance.deployedTime" style="display: flex;">
-                <div style="width: 150px">
-                  <p matLine class="param-value">{{ deploymentInstance.reference }}</p>
-                </div>
-                <div style="width: 100px">
-                  <p matLine class="param-value">{{ deploymentInstance.status }}</p>
-                </div>
-                <div style="width: 150px">
-                  <p matLine class="param-value">{{ deploymentInstance.accountGivenName }}</p>
-                </div>
-                <div style="width: 150px; text-align: right;">
-                  <p matLine class="param-value">{{ getTimeToDisplay(deploymentInstance.totalRunningTime) }}</p>
-                </div>
-                <div style="width: 100px; text-align: right;">
-                  <p matLine class="param-value">{{ deploymentInstance.instanceCount }}</p>
-                </div>
-                <div style="width: 100px; text-align: right;">
-                  <p matLine class="param-value">{{ deploymentInstance.totalVcpus }}</p>
-                </div>
-                <div style="width: 100px; text-align: right;">
-                  <p matLine class="param-value">{{ deploymentInstance.totalRamGb }}</p>
-                </div>
-                <div style="width: 100px; text-align: right;">
-                  <p matLine class="param-value">{{ deploymentInstance.totalDiskGb }}</p>
-                </div>  
-              </div>              
-            </mat-list-item>
+            <span *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
+              <mat-list-item *ngIf="deploymentInstance.deployedTime">
+                <div *ngIf="deploymentInstance.deployedTime" style="display: flex;">
+                  <div style="width: 150px">
+                    <p matLine class="param-value">{{ deploymentInstance.reference }}</p>
+                  </div>
+                  <div style="width: 100px">
+                    <p matLine class="param-value">{{ deploymentInstance.status }}</p>
+                  </div>
+                  <div style="width: 150px">
+                    <p matLine class="param-value">{{ deploymentInstance.accountGivenName }}</p>
+                  </div>
+                  <div style="width: 150px; text-align: right;">
+                    <p matLine class="param-value">{{ getTimeToDisplay(deploymentInstance.totalRunningTime) }}</p>
+                  </div>
+                  <div style="width: 100px; text-align: right;">
+                    <p matLine class="param-value">{{ deploymentInstance.instanceCount }}</p>
+                  </div>
+                  <div style="width: 100px; text-align: right;">
+                    <p matLine class="param-value">{{ deploymentInstance.totalVcpus }}</p>
+                  </div>
+                  <div style="width: 100px; text-align: right;">
+                    <p matLine class="param-value">{{ deploymentInstance.totalRamGb }}</p>
+                  </div>
+                  <div style="width: 100px; text-align: right;">
+                    <p matLine class="param-value">{{ deploymentInstance.totalDiskGb }}</p>
+                  </div>  
+                </div>         
+              </mat-list-item>     
+            </span>
           </mat-list>
 
         </mat-card-content>
