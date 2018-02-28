@@ -10,7 +10,7 @@
     <div *ngIf="!tokenService.getToken()" 
     style="display:flex; flex-direction: column; flex-wrap: nowrap; align-items: center;">
       <h3>Access the EBI Cloud Portal</h3>
-      <p>Single Sign On using your ELIXIR identity! (EMBL identity back soon <mat-icon title="This has been temporarily disabled on 28 Feb while we investigate an integration issue. Please contact us at sdo@ebi.ac.uk if you have any questions.">help_outline</mat-icon>)</p>
+      <p>Single Sign On using your ELIXIR identity! (EMBL identity back soon <mat-icon style="vertical-align: bottom" title="This has been temporarily disabled on 28 Feb while we investigate an integration issue. Please contact us at sdo@ebi.ac.uk if you have any questions.">error_outline</mat-icon>)</p>
       <div>
         <a style="padding:0.5em; padding-right:1em; min-width: 150px;" mat-raised-button href="{{ssoLink()}}" target="_blank">
           <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
