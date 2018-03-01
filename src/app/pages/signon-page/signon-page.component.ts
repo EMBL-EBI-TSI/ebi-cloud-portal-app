@@ -49,6 +49,10 @@ export class SignonPageComponent implements OnInit, OnDestroy {
     return this.authService.emblSsoLink();
   }
 
+  emblExplanation() {
+    return "This has been temporarily disabled on 28 Feb while we investigate an integration issue. Please contact us at sdo@ebi.ac.uk if you have any questions.";
+  }
+
   ngOnInit() {
     this.breadcrumbService.breadcrumb.push( {label:'Login', route:'login'} );
   }
