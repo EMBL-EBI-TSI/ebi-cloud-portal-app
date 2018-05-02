@@ -10,13 +10,13 @@
     <div *ngIf="!tokenService.getToken()" 
     style="display:flex; flex-direction: column; flex-wrap: nowrap; align-items: center;">
       <h3>Access the EBI Cloud Portal</h3>
-      <p>Single Sign On using your ELIXIR identity! <span title="{{emblExplanation()}}">(EMBL identity back soon <mat-icon style="vertical-align: bottom" >error_outline</mat-icon>)</span></p>
+      <p>Single Sign On using your ELIXIR identity!</p>
       <div>
         <a style="padding:0.5em; padding-right:1em; min-width: 150px;" mat-raised-button href="{{ssoLink()}}" target="_blank">
           <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
           SSO
         </a>
-        <a style="padding:0.5em; padding-right:1em; min-width: 150px;" mat-raised-button disabled="true" title="{{emblExplanation()}}">
+        <a style="padding:0.5em; padding-right:1em; min-width: 150px;" mat-raised-button href="{{emblSsoLink()}}" target="_blank">
           <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="emblLogo">
           SSO
         </a>
