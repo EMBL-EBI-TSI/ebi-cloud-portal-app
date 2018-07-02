@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { ENV_TOKEN } from '../environment.base';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
+import { MatSnackBarModule, MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
   MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
   MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
   MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule,
@@ -37,7 +37,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { TeamsPageComponent } from './pages/teams-page/teams-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { RepositoryPageComponent } from './pages/repository-page/repository-page.component';
-import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+import { WelcomePageComponent, GdprAnnouncementComponent } from './pages/welcome-page/welcome-page.component';
 import { DeploymentsPageComponent } from './pages/deployments-page/deployments-page.component';
 import { VolumesPageComponent } from './pages/volumes-page/volumes-page.component';
 import { DeploymentPageComponent } from './pages/deployment-page/deployment-page.component';
@@ -152,7 +152,8 @@ export function provideConfig() {
     AddTeamDialog,
     ApplicationInfoDialog,
     TeamInfoDialog,
-    AddMemberDialog
+    AddMemberDialog,
+    GdprAnnouncementComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -161,7 +162,7 @@ export function provideConfig() {
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
+    MatSnackBarModule, MatButtonModule, MatCardModule, MatSelectModule, MatCheckboxModule,
     MatInputModule, MatMenuModule, MatSidenavModule, MatAutocompleteModule, MatDialogModule,
     MatListModule, MatTabsModule, MatChipsModule, MatToolbarModule, MatIconModule,
     MatProgressSpinnerModule, MatProgressBarModule, MatTooltipModule, MatStepperModule,
@@ -182,7 +183,8 @@ export function provideConfig() {
     ApplicationInfoDialog,
     TeamInfoDialog,
     AddMemberDialog,
-    ShowTimelineDialog
+    ShowTimelineDialog,
+    GdprAnnouncementComponent
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },
