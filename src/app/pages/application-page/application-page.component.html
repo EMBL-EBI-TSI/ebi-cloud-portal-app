@@ -35,13 +35,13 @@
             <mat-step [stepControl]="configFormGroup">
               <form [formGroup]="configFormGroup">
                 <ng-template matStepLabel>Select configuration</ng-template>
-                <p matSubheader *ngIf="applicationDetail.applicationDeployer.configurationsPresenter.length==0">
+                <p matSubheader *ngIf="applicationDetail.applicationDeployer.configurations.length==0">
                   <mat-icon mat-list-icon>warning</mat-icon>
                   The user account has no pre set configurations to assign deployment parameters.
                 </p>
                 
                 <mat-list>
-                  <mat-list-item>
+         		 <mat-list-item>
                     <mat-icon mat-list-icon>settings_applications</mat-icon>
                     <mat-form-field class="input-full-width">
 
@@ -49,20 +49,17 @@
                           [(ngModel)]="selectedConfig"
                           (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)"
                           formControlName="configCtrl">
-                          <span *ngIf="applicationDetail.applicationDeployer.configurationsPresenter.length>0">
-                          <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurationsPresenter" [value]="config">
-                              <span *ngIf="config !== undefined && config.team !== undefined">
-                                {{ config.configuration.name }} | @({{ config.configuration.cloudProviderParametersName }}) {{ config.configuration.cloudProviderType }} @team {{ config.team.name}}
-                              </span> 
-                              <span *ngIf="config !== undefined && config.team === undefined">
-                                {{ config.configuration.name }} | @({{ config.configuration.cloudProviderParametersName }}) {{ config.configuration.cloudProviderType }} 
+                          <span *ngIf="applicationDetail.applicationDeployer.configurations.length>0">
+                          <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurations | configurationProviderType: applicationDetail.applicationDeployer.cloudProviders" [value]="config">
+                              <span *ngIf="config !== undefined">
+                                {{ config.name }} | @({{ config.cloudProviderParametersName }}) {{ config.cloudProviderType }}
                               </span> 
                           </mat-option>
                           </span>
-                        </mat-select> 
+                        </mat-select>
                     </mat-form-field>
                   </mat-list-item>
-
+                  
                   <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
                     <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" 
                     (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
