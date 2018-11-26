@@ -41,7 +41,7 @@
                 </p>
                 
                 <mat-list>
-                  <mat-list-item>
+         		 <mat-list-item>
                     <mat-icon mat-list-icon>settings_applications</mat-icon>
                     <mat-form-field class="input-full-width">
 
@@ -57,10 +57,9 @@
                           </mat-option>
                           </span>
                         </mat-select>
-    
                     </mat-form-field>
                   </mat-list-item>
-
+                  
                   <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
                     <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" 
                     (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
