@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Renderer} from '@angular/core';
 import { TokenService, CredentialService, CloudProviderParameters,
-  CloudProviderParametersService, ErrorService, AccountService } from 'ng2-cloud-portal-service-lib';
+  CloudProviderParametersService, ErrorService, AccountService, AuthService } from 'ng2-cloud-portal-service-lib';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from './services/breadcrumb/breadcrumb.service';
 
@@ -28,7 +28,9 @@ export class AppComponent {
         public cloudProviderParametersService: CloudProviderParametersService,
         public errorService: ErrorService,
         public router: Router,
-        public breadcrumbService: BreadcrumbService) {
+        public breadcrumbService: BreadcrumbService,
+        public authService: AuthService,
+                renderer: Renderer) {
         if (tokenService.getToken()) {
             this.accountService.getAccount(
                 this.credentialService.getUsername(),
@@ -39,12 +41,24 @@ export class AppComponent {
                 }
             );
         }
+
+      renderer.listenGlobal('window', 'message', (event: MessageEvent) => {
+        if (!this.authService.canAcceptMessage(event)) {
+          console.log("received unacceptable message! Ignoring...", event);
+          return;
+        }
+        if(event.data == "logout")
+          event.source.close();
+      });
+
     }
 
+
     logOut() {
-        this.credentialService.clearCredentials();
-        this.tokenService.clearToken();
-        this.router.navigateByUrl('/welcome');
+      this.credentialService.clearCredentials();
+      this.tokenService.clearToken();
+      window.open(`${this.authService.samlLogoutUrL()}`);
+      this.router.navigateByUrl('/welcome');
     }
 
 
