@@ -44,6 +44,13 @@ export class ApplicationPageComponent implements OnInit {
     this.breadcrumbService.breadcrumb = [];
   }
 
+  addInput(applicationDetail: ApplicationComponent, inputName: string, inputValue: string) {
+    if (inputValue.length > 0)
+      applicationDetail.assignInput(applicationDetail.applicationDeployer, inputName, inputValue);
+    else
+      applicationDetail.removeInput(applicationDetail.applicationDeployer, inputName, inputValue);
+  }
+
   openShareApplicationDialog(applicationDetail: ApplicationComponent) {
     let dialogRef = this.dialog.open(ShareDialog);
     dialogRef.afterClosed().subscribe(shareWith => {
@@ -77,6 +84,6 @@ export class ApplicationPageComponent implements OnInit {
       if (actionTaken == 'DEPLOY')
         applicationDetail.deployApplication(applicationDetail.applicationDeployer)
     });
-    
+
   }
 }

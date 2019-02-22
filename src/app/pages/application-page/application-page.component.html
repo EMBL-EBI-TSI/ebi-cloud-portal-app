@@ -13,14 +13,14 @@
           <span class="fill-remaining-space"></span>
           <!--Info, share, and remove controls-->
           <button mat-icon-button (click)="openInfoApplicationDialog(applicationDetail)">
-            <mat-icon>info_outline</mat-icon> 
+            <mat-icon>info_outline</mat-icon>
           </button>
           <span *ngIf="!applicationDetail.applicationDeployer.isShared">
             <button mat-icon-button (click)="openShareApplicationDialog(applicationDetail)">
-              <mat-icon>share</mat-icon> 
+              <mat-icon>share</mat-icon>
             </button>
             <button mat-icon-button color="warn" (click)="applicationDetail.removeApplication(applicationDetail.applicationDeployer)">
-              <mat-icon>delete_forever</mat-icon> 
+              <mat-icon>delete_forever</mat-icon>
             </button>
           </span>
           <span *ngIf="applicationDetail.applicationDeployer.isShared">
@@ -39,13 +39,13 @@
                   <mat-icon mat-list-icon>warning</mat-icon>
                   The user account has no pre set configurations to assign deployment parameters.
                 </p>
-                
+
                 <mat-list>
          		 <mat-list-item>
                     <mat-icon mat-list-icon>settings_applications</mat-icon>
                     <mat-form-field class="input-full-width">
 
-                        <mat-select class="input-full-width" placeholder="Select Configuration" 
+                        <mat-select class="input-full-width" placeholder="Select Configuration"
                           [(ngModel)]="selectedConfig"
                           (change)="applicationDetail.addConfiguration(applicationDetail.applicationDeployer, selectedConfig)"
                           formControlName="configCtrl">
@@ -53,25 +53,25 @@
                           <mat-option *ngFor="let config of applicationDetail.applicationDeployer.configurations | configurationProviderType: applicationDetail.applicationDeployer.cloudProviders" [value]="config">
                               <span *ngIf="config !== undefined">
                                 {{ config.name }} | @({{ config.cloudProviderParametersName }}) {{ config.cloudProviderType }}
-                              </span> 
+                              </span>
                           </mat-option>
                           </span>
                         </mat-select>
                     </mat-form-field>
                   </mat-list-item>
-                  
+
                   <p matSubheader *ngIf="applicationDetail.applicationDeployer.deploymentParameters.length>0">Deployment parameters
-                    <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary" 
+                    <button *ngIf="!applicationDetail.emptyAssigment" mat-icon-button color="primary"
                     (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                        <mat-icon *ngIf="!applicationDetail.parametersShowing">keyboard_arrow_down</mat-icon> 
+                        <mat-icon *ngIf="!applicationDetail.parametersShowing">keyboard_arrow_down</mat-icon>
                         <mat-icon *ngIf="applicationDetail.parametersShowing">keyboard_arrow_up</mat-icon>
                     </button>
-                    <button *ngIf="applicationDetail.emptyAssigment" 
+                    <button *ngIf="applicationDetail.emptyAssigment"
                       mat-icon-button color="warn" matTooltip="Some deployment parameters remain unassigned"
                       (click)="applicationDetail.parametersShowing=!applicationDetail.parametersShowing">
-                      <mat-icon *ngIf="!applicationDetail.parametersShowing" style="margin: 10px;">keyboard_arrow_down</mat-icon> 
+                      <mat-icon *ngIf="!applicationDetail.parametersShowing" style="margin: 10px;">keyboard_arrow_down</mat-icon>
                       <mat-icon *ngIf="applicationDetail.parametersShowing" style="margin: 10px;">keyboard_arrow_up</mat-icon>
-                      <mat-icon>warning</mat-icon>  
+                      <mat-icon>warning</mat-icon>
                     </button>
                   </p>
 
@@ -125,8 +125,8 @@
                   <mat-list>
                     <mat-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
                       <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
-                      <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
-                          (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
+                      <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="addInput(applicationDeployer, anInput, $event.target.value)"
+                          (blur)="addInput(applicationDetail, anInput, $event.target.value)">
                       </mat-form-field>
                     </mat-list-item>
                   </mat-list>
@@ -135,7 +135,7 @@
                       <mat-list>
                         <mat-list-item *ngFor="let anInput of aCloudProvider.inputs">
                           <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
-                          <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" 
+                          <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}"
                             (keyup.enter)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)"
                             (blur)="applicationDetail.assignInput(applicationDetail.applicationDeployer, anInput, $event.target.value)">
                           </mat-form-field>
@@ -191,7 +191,7 @@
                   </button>
                 </span>
 
-                <span *ngIf="applicationDetail.selectedConfiguration" 
+                <span *ngIf="applicationDetail.selectedConfiguration"
                     matTooltip="This application will be deployed to {{ applicationDetail.selectedConfiguration.cloudProviderParametersName }}"
                     matTooltipPosition="right" matTooltipHideDelay="1000">
                   <button mat-button color="primary" (click)="openConfirmDeploymentDialog(applicationDetail)">
@@ -207,7 +207,7 @@
 
         </mat-card-content>
 
-        
+
       </mat-card>
     </div>
   </div>
