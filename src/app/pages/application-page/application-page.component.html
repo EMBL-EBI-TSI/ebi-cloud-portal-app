@@ -122,14 +122,14 @@
               <form [formGroup]="inputsFormGroup">
                 <!-- <span *ngIf="!applicationDetail.applicationDeployer.inputs.length==0 && applicationDetail.selectedConfiguration"> -->
                 <span>
-                  <mat-list>
+                  <!-- <mat-list>
                     <mat-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
                       <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
                       <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="addInput(applicationDeployer, anInput, $event.target.value)"
                           (blur)="addInput(applicationDetail, anInput, $event.target.value)">
                       </mat-form-field>
                     </mat-list-item>
-                  </mat-list>
+                  </mat-list> -->
                   <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
                     <span *ngIf="applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters && aCloudProvider.cloudProvider==applicationDetail.cloudProviderParametersService.currentlySelectedCloudProviderParameters.cloudProvider">
                       <mat-list>
