@@ -124,10 +124,20 @@
                 <span>
                   <mat-list>
                     <mat-list-item *ngFor="let anInput of applicationDetail.applicationDeployer.inputs">
-                      <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
-                      <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput }}" (keyup.enter)="addInput(applicationDeployer, anInput, $event.target.value)"
-                          (blur)="addInput(applicationDetail, anInput, $event.target.value)">
-                      </mat-form-field>
+                        <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                        <span *ngIf="anInput.values != undefined">
+                            <mat-form-field>
+                                <mat-select (change)="addInput(applicationDetail, anInput.name, $event.value)" >
+                                  <mat-option disabled>{{anInput.name}}</mat-option>
+                                  <mat-option *ngFor="let value of anInput.values" [value]="value">{{value}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </span>
+                        <span *ngIf="anInput.values == undefined">
+                          <mat-form-field matLine class="input-full-width"><input matInput #{{anInput}} placeholder="{{ anInput.name }}" (keyup.enter)="addInput(applicationDeployer, anInput.name, $event.target.value)"
+                          (blur)="addInput(applicationDetail, anInput.name, $event.target.value)">
+                        </mat-form-field>
+                      </span>
                     </mat-list-item>
                   </mat-list>
                   <span *ngFor="let aCloudProvider of applicationDetail.applicationDeployer.cloudProviders">
