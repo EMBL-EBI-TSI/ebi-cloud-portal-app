@@ -19,7 +19,7 @@
         (click)="sidenav.close()">
         <mat-icon mat-list-icon>cloud_done</mat-icon>
         <span matLine>Cloud Deployments</span>
-      </a>      
+      </a>
       <a mat-list-item *ngIf="tokenService.getToken()" [routerLinkActive]="['router-active']" [routerLink]=" ['./volumes'] " (click)="sidenav.close()">
         <mat-icon mat-list-icon>storage</mat-icon>
         <span matLine>Data Volumes</span>
@@ -49,7 +49,7 @@
       <a mat-list-item [routerLinkActive]="['router-active']" [routerLink]=" ['./about'] " (click)="sidenav.close()">
         <mat-icon mat-list-icon>info</mat-icon>
         <span matLine>About</span>
-        <span matLine>Information about the TSI Cloud Portal</span>
+        <span matLine>Information about the EBI Cloud Portal</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
