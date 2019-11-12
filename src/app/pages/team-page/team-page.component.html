@@ -10,7 +10,7 @@
           <button mat-icon-button (click)="openInfoTeamDialog()">
             <mat-icon>info_outline</mat-icon> 
           </button>
-          <span *ngIf="teamDetail.teamPresenter.isOwner">
+          <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager ">
             <button mat-icon-button (click)="openAddMemberDialog()">
               <mat-icon>group_add</mat-icon> 
             </button>
@@ -31,7 +31,8 @@
               </mat-list>
             </span> <!-- metadata span -->
 
-            <span *ngIf="!teamDetail.teamPresenter.isOwner && !teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())">
+            <span *ngIf="!teamDetail.teamPresenter.isOwner && !teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())
+            && !teamDetail.teamPresenter.isManager">
               <p>Join <em>{{ teamDetail.teamPresenter.name }}</em> and get access to the team resources</p>
             </span>
 
