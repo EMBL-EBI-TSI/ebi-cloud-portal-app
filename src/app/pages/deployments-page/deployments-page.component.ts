@@ -36,10 +36,10 @@ export class DeploymentsPageComponent implements OnInit {
     if (this.hideDestroyed) {
       this.statusFilters.push('DESTROYED', 'DESTROYING_FAILED');
       deploymentsComponent.hideDestroyed = true;
-      deploymentsComponent.ngOnInit();
+      deploymentsComponent.loadDeployments();
     }else{
       deploymentsComponent.hideDestroyed = false;
-      deploymentsComponent.ngOnInit();
+      deploymentsComponent.loadDeployments();
     }
   }
 
