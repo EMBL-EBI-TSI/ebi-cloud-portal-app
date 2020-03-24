@@ -35,12 +35,9 @@ export class DeploymentsPageComponent implements OnInit {
     this.statusFilters = [];
     if (this.hideDestroyed) {
       this.statusFilters.push('DESTROYED', 'DESTROYING_FAILED');
-      deploymentsComponent.hideDestroyed = true;
-      deploymentsComponent.loadDeployments();
-    }else{
-      deploymentsComponent.hideDestroyed = false;
-      deploymentsComponent.loadDeployments();
     }
+    deploymentsComponent.hideDestroyed = this.hideDestroyed;
+    deploymentsComponent.loadDeployments();
   }
 
   fromTimeStampToDateAndTime(timestamp: number) {
