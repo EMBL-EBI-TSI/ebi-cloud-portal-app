@@ -27,7 +27,6 @@ export class DeploymentsPageComponent implements OnInit {
 
   switchDestroyed(deploymentsComponent: DeploymentsComponent) {
     this.hideDestroyed = !this.hideDestroyed;
-    console.log("Hide Destroyed is " + this.hideDestroyed)
     this.updateFilters(deploymentsComponent);
   }
 
