@@ -1,7 +1,7 @@
 <cp-deployments-component #deploymentsComponent>
 	<div class="content" *ngIf="deploymentsComponent.deploymentInstances">
 		<mat-toolbar>
-			<mat-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed()">
+			<mat-checkbox class="inner-toolbar-checkbox" [checked]="hideDestroyed" (change)="switchDestroyed(deploymentsComponent)">
 				Hide destroyed
 			</mat-checkbox>
 		</mat-toolbar>
@@ -11,15 +11,15 @@
 
 		<div class="wide-summary-card-container">
 			<span *ngFor="let deploymentInstance of (deploymentsComponent.deploymentInstances | deploymentStatus:statusFilters)">
-			<mat-card  *ngIf="!(hideDestroyed && (deploymentInstance.destroyedTime || deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'DESTROYING_FAILED'))" 
+			<mat-card  *ngIf="!(hideDestroyed && (deploymentInstance.destroyedTime || deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'DESTROYING_FAILED'))"
 			[routerLink]=" ['/deployments/', deploymentInstance.reference]" >
 				<span class="flex-container-wide">
-					<mat-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</mat-icon> 
-					<mat-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</mat-icon> 
+					<mat-icon *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED'" class="card-type-icon">error</mat-icon>
+					<mat-icon *ngIf="deploymentInstance.status == 'DESTROYED'" class="card-type-icon">cloud_off</mat-icon>
 					<!--<mat-icon *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" class="card-type-icon">cloud_queue</mat-icon> -->
 					<mat-progress-spinner *ngIf="deploymentInstance.status == 'DESTROYING' || deploymentInstance.status == 'STARTING'" mode="indeterminate"></mat-progress-spinner>
-					
-					<mat-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</mat-icon> 
+
+					<mat-icon *ngIf="deploymentInstance.status == 'RUNNING'" class="card-type-icon">cloud_done</mat-icon>
 					<h3>{{ deploymentInstance.applicationName }}</h3>
 					<span class="fill-remaining-space"></span>
 				</span>
@@ -33,7 +33,7 @@
 						<mat-list-item>
 							<div matLine>State</div>
 							<div matLine class="param-value">{{ deploymentInstance.status }}</div>
-						</mat-list-item>						
+						</mat-list-item>
 						<mat-list-item>
 							<div matLine>Configuration</div>
 							<div matLine class="param-value">{{ deploymentInstance.configurationName }}</div>

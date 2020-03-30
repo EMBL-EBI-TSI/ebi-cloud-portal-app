@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiAddress: 'https://dev.api.portal.tsi.ebi.ac.uk/',
+  apiAddress: 'https://localhost:8080/',
   authAddress: 'https://api.aai.ebi.ac.uk/'
 };

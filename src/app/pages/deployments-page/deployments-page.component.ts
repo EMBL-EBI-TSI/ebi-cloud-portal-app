@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
+import { DeploymentsComponent } from 'ng2-cloud-portal-presentation-lib/dist';
 
 @Component({
   selector: 'deployments-page',
@@ -12,7 +13,7 @@ export class DeploymentsPageComponent implements OnInit {
   hideDestroyed: boolean = true;
 
   constructor(public breadcrumbService: BreadcrumbService) {
-    
+
   }
 
   ngOnInit() {
@@ -23,16 +24,18 @@ export class DeploymentsPageComponent implements OnInit {
     this.breadcrumbService.breadcrumb = [];
   }
 
-  switchDestroyed() {
+  switchDestroyed(deploymentsComponent: DeploymentsComponent) {
     this.hideDestroyed = !this.hideDestroyed;
-    this.updateFilters();
+    this.updateFilters(deploymentsComponent);
   }
 
-  updateFilters() {
+  updateFilters(deploymentsComponent: DeploymentsComponent) {
     this.statusFilters = [];
     if (this.hideDestroyed) {
       this.statusFilters.push('DESTROYED', 'DESTROYING_FAILED');
-    } 
+    }
+    deploymentsComponent.hideDestroyed = this.hideDestroyed;
+    deploymentsComponent.loadDeployments();
   }
 
   fromTimeStampToDateAndTime(timestamp: number) {
@@ -41,5 +44,5 @@ export class DeploymentsPageComponent implements OnInit {
     let res = formatted.substring(0,formatted.indexOf("."));
     return res;
   }
-  
+
 }
