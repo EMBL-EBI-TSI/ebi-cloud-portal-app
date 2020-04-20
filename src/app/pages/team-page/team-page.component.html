@@ -2,20 +2,20 @@
   <div class="content">
     <div class="detail-card-container">
       <mat-card *ngIf="teamDetail.teamPresenter">
-        
+
         <span class="flex-container-wide">
           <mat-icon class="card-type-icon">group</mat-icon>
           <h3>{{ teamDetail.teamPresenter.name }}</h3>
           <span class="fill-remaining-space"></span>
           <button mat-icon-button (click)="openInfoTeamDialog()">
-            <mat-icon>info_outline</mat-icon> 
+            <mat-icon>info_outline</mat-icon>
           </button>
           <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager ">
             <button mat-icon-button (click)="openAddMemberDialog()">
-              <mat-icon>group_add</mat-icon> 
+              <mat-icon>group_add</mat-icon>
             </button>
             <button mat-icon-button color="warn" (click)="teamDetail.remove('/teams','/error')">
-              <mat-icon>delete_forever</mat-icon> 
+              <mat-icon>delete_forever</mat-icon>
             </button>
           </span>
         </span>
@@ -41,7 +41,7 @@
                 <span class="flex-container-left">
                   <div *ngIf="(!teamDetail.teamPresenter.applicationNames ||  teamDetail.teamPresenter.applicationNames.length==0) && (!teamDetail.teamPresenter.cloudProviderParameterNames || teamDetail.teamPresenter.cloudProviderParameterNames.length==0)">
                     <h3 mat-header>Resources</h3>
-                    <mat-icon>sentiment_neutral</mat-icon> 
+                    <mat-icon>sentiment_neutral</mat-icon>
                     <p>Nothing is shared in within this team...</p>
                   </div>
 
@@ -59,7 +59,7 @@
                       </mat-card>
                     </span>
                   </span>
-                  
+
                   <!-- Configurations -->
                   <span class="resource-summary-column-bigger" *ngIf="teamDetail.teamPresenter.configurationNames && teamDetail.teamPresenter.configurationNames.length>0">
                     <h3>Configurations</h3>
@@ -109,22 +109,22 @@
             </mat-list> <!-- Resources list -->
           </span> <!-- Resources span -->
 
-          <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())"> <!-- members span -->
+          <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager || teamDetail.teamPresenter.memberAccountEmails.includes(teamDetail.credentialService.getEmail())"> <!-- members span -->
             <h3>Members</h3>
             <span *ngIf="(!teamDetail.teamPresenter.memberAccountEmails ||  teamDetail.teamPresenter.memberAccountEmails.length==0)">
-              <mat-icon>sentiment_neutral</mat-icon> 
+              <mat-icon>sentiment_neutral</mat-icon>
               <p>There are no additional members in this team...</p>
             </span>
             <mat-card *ngFor="let accountEmail of teamDetail.teamPresenter.memberAccountEmails">
-              <p>{{ accountEmail }}<button *ngIf="teamDetail.teamPresenter.isOwner" 
+              <p>{{ accountEmail }}<button *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager"
                 mat-icon-button color="warn" (click)="teamDetail.removeMember(accountEmail, '/error')">
-                <mat-icon>highlight_off</mat-icon> 
+                <mat-icon>highlight_off</mat-icon>
               </button></p>
             </mat-card>
           </span> <!-- members span -->
-          
+
         </span> <!-- card content span -->
-        
+
       </mat-card-content>
 
       <!--These are the action controls-->
