@@ -8,13 +8,13 @@
           <span class="fill-remaining-space"></span>
           <span *ngIf="!configurationDetail.configurationPresenter.isShared">
             <button mat-icon-button (click)="openEditConfigurationDialog(configurationDetail)">
-            <mat-icon>edit</mat-icon> 
-            </button> 
+            <mat-icon>edit</mat-icon>
+            </button>
             <button mat-icon-button (click)="openShareConfigurationDialog(configurationDetail)">
-                <mat-icon>share</mat-icon> 
+                <mat-icon>share</mat-icon>
               </button>
             <button mat-icon-button color="warn" (click)="openConfirmDeleteDialog(configurationDetail)">
-                <mat-icon>delete_forever</mat-icon> 
+                <mat-icon>delete_forever</mat-icon>
             </button>
           </span>
           <span *ngIf="configurationDetail.configurationPresenter.isShared">
@@ -31,7 +31,7 @@
                 <h3 matLine>Included in teams</h3>
                 <p *ngFor="let teamName of configurationDetail.configurationPresenter.sharedWithTeamNames" matLine class="param-value">{{ teamName }}
                   <button *ngIf="!configurationDetail.configurationPresenter.isShared" mat-icon-button color="warn" (click)="configurationDetail.unshare(teamName)">
-                    <mat-icon>highlight_off</mat-icon> 
+                    <mat-icon>highlight_off</mat-icon>
                   </button>
               </p>
             </mat-list-item>
@@ -61,7 +61,7 @@
             <h3 *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">Associated deployments
               <button mat-icon-button
                 (click)="generateStats(configurationDetail);">
-                <mat-icon>timeline</mat-icon> 
+                <mat-icon>timeline</mat-icon>
               </button>
             </h3>
             <mat-list-item *ngIf="!configurationDetail.isShared && configurationDetail.deploymentInstances && configurationDetail.deploymentInstances.length>0">
@@ -90,13 +90,13 @@
                 <div style="width: 100px; text-align: right;">
                   <div matLine>Disk GB</div>
                 </div>
-              </div> 
+              </div>
             </mat-list-item>
             <span *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
               <mat-list-item *ngIf="deploymentInstance.deployedTime">
                 <div *ngIf="deploymentInstance.deployedTime" style="display: flex;">
                   <div style="width: 150px">
-                    <p matLine class="param-value">{{ deploymentInstance.reference }}</p>
+                    <p matLine class="param-value"><a href="./deployments/{{deploymentInstance.reference }}" target="_blank">{{ deploymentInstance.reference }}</a></p>
                   </div>
                   <div style="width: 100px">
                     <p matLine class="param-value">{{ deploymentInstance.status }}</p>
@@ -118,9 +118,9 @@
                   </div>
                   <div style="width: 100px; text-align: right;">
                     <p matLine class="param-value">{{ deploymentInstance.totalDiskGb }}</p>
-                  </div>  
-                </div>         
-              </mat-list-item>     
+                  </div>
+                </div>
+              </mat-list-item>
             </span>
           </mat-list>
 
