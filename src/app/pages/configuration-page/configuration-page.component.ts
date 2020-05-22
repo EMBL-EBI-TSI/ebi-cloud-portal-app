@@ -7,6 +7,7 @@ import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 import { EditConfigurationDialog } from '../../dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 import { ShowTimelineDialog } from '../../dialogs/show-timeline-dialog/show-timeline-dialog.component';
+import {DeploymentService} from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'app-configuration-page',
@@ -174,7 +175,7 @@ export class ConfigurationPageComponent implements OnInit {
     this.breadcrumbService.breadcrumb = [];
   }
 
-  openConfirmDestroyDialog(deploymentInstance: DeploymentInstance) {
+  openConfirmDestroyDialog(configurationDetail: ConfigurationComponent, deploymentInstance: DeploymentInstance) {
     const config = new MatDialogConfig();
     config.data = [
       'You are about to destroy the deployment \'' + deploymentInstance.reference +'\' (' + deploymentInstance.applicationName + ')',
@@ -183,8 +184,9 @@ export class ConfigurationPageComponent implements OnInit {
     ];
     let dialogRef = this.dialog.open(SuggestActionDialog, config);
     dialogRef.afterClosed().subscribe(actionTaken => {
-      if (actionTaken == 'DESTROY')
-        deploymentInstance.destroyDeployment(deploymentInstance);
+      if (actionTaken == 'DESTROY'){
+        configurationDetail.destroyDeployment(deploymentInstance);
+      }
     });
 
   }

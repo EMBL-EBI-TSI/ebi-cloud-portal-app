@@ -90,8 +90,8 @@
                 <div style="width: 100px; text-align: right;">
                   <div matLine>Disk GB</div>
                 </div>
-                <div style="width: 100px; text-align: right;">
-                  <div matLine>Destroy</div>
+                <div style="...">
+                  <div matLine></div>
                 </div>
               </div>
             </mat-list-item>
@@ -123,19 +123,17 @@
                     <p matLine class="param-value">{{ deploymentInstance.totalDiskGb }}</p>
                   </div>
                 </div>
-                <div style="width: 100px; text-align: right;">
-                  <button *ngIf="deploymentInstance.status == 'RUNNING'" mat-raised-button class="button-color-accent"  (click)="openConfirmDestroyDialog(deploymentInstance)">
-                    <p matLine class="param-value"> DESTROY </p>
-                  </button>
-                  <button *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED' || deploymentInstance.status == 'RUNNING_FAILED'" mat-raised-button class="button-color-accent"  (click)="openConfirmDestroyDialog(deploymentInstance)">
+                <div mat-dialog-actions>
+                    <button mat-dialog-actions *ngIf="deploymentInstance.status == 'RUNNING' || deploymentInstance.status == 'STARTING'" mat-raised-button class="button-color-accent"  (click)="openConfirmDestroyDialog(configurationDetail, deploymentInstance )">
+                     DESTROY
+                    </button>
+                    <button mat-dialog-actions *ngIf="deploymentInstance.status == 'STARTING_FAILED' || deploymentInstance.status == 'DESTROYING_FAILED' || deploymentInstance.status == 'RUNNING_FAILED'" mat-raised-button class="button-color-accent"  (click)="openConfirmDestroyDialog(configurationDetail, deploymentInstance )">
                     FORCE DESTROY
-                  </button>
-                  </p>
+                    </button>
                 </div>
               </mat-list-item>
             </span>
           </mat-list>
-
         </mat-card-content>
       </mat-card>
 
