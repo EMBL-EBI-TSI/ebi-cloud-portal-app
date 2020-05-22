@@ -15,7 +15,7 @@
 
         <mat-card-content>
           <mat-horizontal-stepper>
-            <mat-step *ngIf="deploymentDetail.deploymentInstance.startedTime" 
+            <mat-step *ngIf="deploymentDetail.deploymentInstance.startedTime"
               selected="deploymentDetail.deploymentInstance.status=='STARTING'"
               completed="false">
               <ng-template matStepLabel>
@@ -51,7 +51,7 @@
                     <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.deployedTime) }}</span>
                   </mat-list-item>
                 </mat-list>
-              </ng-template> 
+              </ng-template>
               <mat-list style="display: flex; flex-wrap: wrap;">
                 <mat-list-item>
                   <div matLine>Total running time</div>
@@ -72,8 +72,8 @@
                 <mat-list-item>
                   <div matLine>Total Disk GB</div>
                   <div matLine class="param-value">{{ deploymentDetail.deploymentInstance.totalDiskGb }}</div>
-                </mat-list-item>                
-              </mat-list>        
+                </mat-list-item>
+              </mat-list>
             </mat-step>
             <mat-step *ngIf="deploymentDetail.deploymentInstance.destroyedTime"
               selected="deploymentDetail.deploymentInstance.status=='DESTROYED'"
@@ -86,15 +86,19 @@
                     <span matLine>{{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.destroyedTime) }}</span>
                   </mat-list-item>
                 </mat-list>
-              </ng-template>   
-              <p>The deployment was destroyed at {{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.destroyedTime) }}</p>            
-            </mat-step>                  
+              </ng-template>
+              <p>The deployment was destroyed at {{ fromTimeStampToDateAndTime(deploymentDetail.deploymentInstance.destroyedTime) }}</p>
+            </mat-step>
           </mat-horizontal-stepper>
           <mat-list>
             <!--Deployment meta-data-->
             <mat-list-item>
               <h3 matLine>State</h3>
               <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.status }}</p>
+            </mat-list-item>
+            <mat-list-item>
+              <h3 matLine>User</h3>
+              <p matLine class="param-value">{{ deploymentDetail.deploymentInstance.accountEmail }}</p>
             </mat-list-item>
             <mat-list-item>
               <h3 matLine>Cloud Provider</h3>
@@ -125,12 +129,12 @@
               <mat-icon mat-list-icon>keyboard_arrow_left</mat-icon>
               <h3 matLine>{{ generatedOutput.outputName }}</h3>
               <h4 matLine class="param-value">{{ generatedOutput.generatedValue }}</h4>
-            </mat-list-item>            
+            </mat-list-item>
             <!--List attached volumes-->
-            <h3 mat-header>Volumes <button mat-icon-button color="primary" 
+            <h3 mat-header>Volumes <button mat-icon-button color="primary"
               (click)="volumesShowing=!volumesShowing">
-                <mat-icon *ngIf="!volumesShowing">keyboard_arrow_down</mat-icon> 
-                <mat-icon *ngIf="volumesShowing">keyboard_arrow_up</mat-icon> 
+                <mat-icon *ngIf="!volumesShowing">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="volumesShowing">keyboard_arrow_up</mat-icon>
               </button>
             </h3>
             <span *ngIf="volumesShowing">
@@ -142,10 +146,10 @@
               </mat-list-item>
             </span>
             <!--List assigned inputs-->
-            <h3 mat-header>Inputs <button mat-icon-button color="primary" 
+            <h3 mat-header>Inputs <button mat-icon-button color="primary"
               (click)="inputsShowing=!inputsShowing">
-                <mat-icon *ngIf="!inputsShowing">keyboard_arrow_down</mat-icon> 
-                <mat-icon *ngIf="inputsShowing">keyboard_arrow_up</mat-icon> 
+                <mat-icon *ngIf="!inputsShowing">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="inputsShowing">keyboard_arrow_up</mat-icon>
               </button>
             </h3>
             <span *ngIf="inputsShowing">
@@ -157,10 +161,10 @@
               </mat-list-item>
             </span>
             <!--List assigned parameters-->
-            <h3 mat-header>Deployment parameters <button mat-icon-button color="primary" 
+            <h3 mat-header>Deployment parameters <button mat-icon-button color="primary"
               (click)="deploymentParametersShowing=!deploymentParametersShowing">
-                <mat-icon *ngIf="!deploymentParametersShowing">keyboard_arrow_down</mat-icon> 
-                <mat-icon *ngIf="deploymentParametersShowing">keyboard_arrow_up</mat-icon> 
+                <mat-icon *ngIf="!deploymentParametersShowing">keyboard_arrow_down</mat-icon>
+                <mat-icon *ngIf="deploymentParametersShowing">keyboard_arrow_up</mat-icon>
               </button>
             </h3>
             <span *ngIf="deploymentParametersShowing">
@@ -176,8 +180,8 @@
             <!--Logs-->
             <h3 mat-header>Deployment logs
               <button mat-icon-button color="primary" (click)="logsShowing=!logsShowing">
-                  <mat-icon *ngIf="!logsShowing">keyboard_arrow_down</mat-icon> 
-                  <mat-icon *ngIf="logsShowing">keyboard_arrow_up</mat-icon> 
+                  <mat-icon *ngIf="!logsShowing">keyboard_arrow_down</mat-icon>
+                  <mat-icon *ngIf="logsShowing">keyboard_arrow_up</mat-icon>
             </button>
             </h3>
             <span class="logs-text-area" *ngIf="logsShowing"
@@ -187,7 +191,7 @@
             <span *ngIf="deploymentDetail.deploymentInstance.status == 'DESTROYED' || deploymentDetail.deploymentInstance.status == 'DESTROYING'">
             <h3 mat-header>Deployment destroy logs
               <button mat-icon-button color="primary" (click)="destroylogsShowing=!destroylogsShowing">
-                <mat-icon *ngIf="!destroylogsShowing">keyboard_arrow_down</mat-icon> 
+                <mat-icon *ngIf="!destroylogsShowing">keyboard_arrow_down</mat-icon>
                 <mat-icon *ngIf="destroylogsShowing">keyboard_arrow_up</mat-icon>
             </button>
             </h3>
@@ -220,7 +224,7 @@
           <span class="fill-remaining-space"></span>
           <button mat-raised-button class="button-color-accent" (click)="openConfirmDeploymentDialog(deploymentDetail)">
             REPLICATE
-          </button>    
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>
