@@ -188,7 +188,6 @@ export class ConfigurationPageComponent implements OnInit {
         configurationDetail.destroyDeployment(deploymentInstance);
       }
     });
-    window.location.reload();
   }
 
   openShareConfigurationDialog(configurationDetail: ConfigurationComponent) {
