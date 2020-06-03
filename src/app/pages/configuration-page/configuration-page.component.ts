@@ -7,6 +7,7 @@ import { ShareDialog } from '../../dialogs/share-dialog/share-dialog.component';
 import { EditConfigurationDialog } from '../../dialogs/edit-configuration-dialog/edit-configuration-dialog.component';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 import { ShowTimelineDialog } from '../../dialogs/show-timeline-dialog/show-timeline-dialog.component';
+import {DeploymentService} from 'ng2-cloud-portal-service-lib';
 
 @Component({
   selector: 'app-configuration-page',
@@ -27,7 +28,7 @@ export class ConfigurationPageComponent implements OnInit {
   }
 
   generateStats(configurationDetail: ConfigurationComponent) {
-    
+
     let consumptions = new Map();
     let dates = [];
     let data = [];
@@ -73,7 +74,7 @@ export class ConfigurationPageComponent implements OnInit {
             theReleaseDateByHour.setMilliseconds(0);
             if (consumptions.has(theReleaseDateByHour)) {
               let currentValue = consumptions.get(theReleaseDateByHour);
-              // We need to fraction the released value for deployments that started and got destroyed 
+              // We need to fraction the released value for deployments that started and got destroyed
               // during the same hour
               if (deploymentDateByHour == theReleaseDateByHour) {
                 let deployedDate = new Date(deploymentInstance.deployedTime);
@@ -98,9 +99,9 @@ export class ConfigurationPageComponent implements OnInit {
         return 1;
       }
     }));
-    
+
     // Finally, we iterate through the consumption records and create a list of dates and a list of accummulated consumptions
-    let lastConsumptionRate = 0; 
+    let lastConsumptionRate = 0;
     let lastConsumption = 0;
     let lastDate = new Date();
     lastDate.setMinutes(0);
@@ -113,7 +114,7 @@ export class ConfigurationPageComponent implements OnInit {
 
       // calculate number of hours passed since the last recorded date
       let timeDiff = Math.abs(newDate.getTime() - lastDate.getTime());
-      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
+      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600));
 
       // calculate the new current consumption based on the rate, number of hours
       let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
@@ -124,12 +125,12 @@ export class ConfigurationPageComponent implements OnInit {
 
       // the newly deployed consumption for the current date updates the current rate (up or down)
       // and will apply the next period
-      let newConsumption = value; 
+      let newConsumption = value;
       lastConsumptionRate = lastConsumptionRate + newConsumption;
       console.log("New last consumption is %O", lastConsumption);
       console.log("New last consumption rate is %O", lastConsumptionRate);
     });
-    
+
     // We need to add current date if not present
     let currentDate = new Date();
     // let m = currentDate.getMonth();
@@ -141,7 +142,7 @@ export class ConfigurationPageComponent implements OnInit {
       dates.push(currentDate);
       // calculate number of hours passed since the last recorded date
       let timeDiff = Math.abs(currentDate.getTime() - lastDate.getTime());
-      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600)); 
+      let numberOfHours = Math.ceil(timeDiff / (1000 * 3600));
       // calculate the new current consumption based on the rate, number of days
       // let currentConsumption = lastConsumption + numberOfHours*lastConsumptionRate;
       let currentConsumption = configurationDetail.configurationPresenter.totalUsage.toFixed(2);;
@@ -166,12 +167,28 @@ export class ConfigurationPageComponent implements OnInit {
     config.width = '440px';
     let dialogRef = this.dialog.open(ShowTimelineDialog, config);
     dialogRef.afterClosed().subscribe(shareWith => {
-      
+
     });
   }
 
   ngOnDestroy() {
     this.breadcrumbService.breadcrumb = [];
+  }
+
+  openConfirmDestroyDialog(configurationDetail: ConfigurationComponent, deploymentInstance: DeploymentInstance) {
+    const config = new MatDialogConfig();
+    config.data = [
+      'You are about to destroy the deployment \'' + deploymentInstance.reference +'\' (' + deploymentInstance.applicationName + ')',
+      'DESTROY',
+      'Please confirm'
+    ];
+    let dialogRef = this.dialog.open(SuggestActionDialog, config);
+    dialogRef.afterClosed().subscribe(actionTaken => {
+      if (actionTaken == 'DESTROY'){
+        configurationDetail.destroyDeployment(deploymentInstance);
+      }
+    });
+    window.location.reload();
   }
 
   openShareConfigurationDialog(configurationDetail: ConfigurationComponent) {
@@ -192,7 +209,7 @@ export class ConfigurationPageComponent implements OnInit {
       }
     );
   }
-  
+
   openConfirmDeleteDialog(configurationDetail: ConfigurationComponent) {
     const config = new MatDialogConfig();
     config.data = [
@@ -206,7 +223,7 @@ export class ConfigurationPageComponent implements OnInit {
       if (actionTaken == 'DELETE')
       configurationDetail.remove();
     });
-    
+
   }
 
   fromTimeStampToDateAndTime(timestamp: number) {
@@ -219,7 +236,7 @@ export class ConfigurationPageComponent implements OnInit {
   getTimeToDisplay(millisec: number) {
     let seconds: number = (millisec / 1000);
     let secondsChar;
-    
+
     let minutes: number = Math.floor(seconds / 60);
     let minutesChar: string;
 
