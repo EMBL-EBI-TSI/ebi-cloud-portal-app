@@ -519,14 +519,6 @@ footer {
   max-height: 2.5em;
 }
 
-.mat-dialog-actions {
-  border-radius: .5em;
-  padding: 35px;
-  display: flex;
-  flex-direction: row;
-  direction: rtl;
-}
-
 select {
   border: 0px;
   color: var(--light-color);
