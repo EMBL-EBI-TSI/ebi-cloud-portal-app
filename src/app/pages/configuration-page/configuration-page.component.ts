@@ -8,6 +8,7 @@ import { EditConfigurationDialog } from '../../dialogs/edit-configuration-dialog
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 import { ShowTimelineDialog } from '../../dialogs/show-timeline-dialog/show-timeline-dialog.component';
 import {DeploymentService} from 'ng2-cloud-portal-service-lib';
+import {DeploymentsComponent} from 'ng2-cloud-portal-presentation-lib/dist';
 
 @Component({
   selector: 'app-configuration-page',
@@ -15,6 +16,9 @@ import {DeploymentService} from 'ng2-cloud-portal-service-lib';
   styleUrls: ['./configuration-page.component.css']
 })
 export class ConfigurationPageComponent implements OnInit {
+
+  statusFilters: string[] = ['DESTROYED', 'DESTROYING_FAILED'];
+  hideDestroyed: boolean = true;
 
   constructor(public breadcrumbService: BreadcrumbService,
     public dialog: MatDialog, private _route: ActivatedRoute) {
@@ -25,6 +29,20 @@ export class ConfigurationPageComponent implements OnInit {
     let configurationName = this._route.snapshot.params['id'];
     this.breadcrumbService.breadcrumb.push({ label: 'Profile', route: 'profile' });
     this.breadcrumbService.breadcrumb.push({ label: configurationName, route: 'configuration/' + configurationName });
+  }
+
+  switchDestroyed(configurationComponent: ConfigurationComponent) {
+    this.hideDestroyed = !this.hideDestroyed;
+    this.updateFilters(configurationComponent);
+  }
+
+  updateFilters(configurationComponent: ConfigurationComponent) {
+    this.statusFilters = [];
+    if (this.hideDestroyed) {
+      this.statusFilters.push('DESTROYED', 'DESTROYING_FAILED');
+    }
+    configurationComponent.hideDestroyed = this.hideDestroyed;
+    configurationComponent.loadDeployments();
   }
 
   generateStats(configurationDetail: ConfigurationComponent) {
