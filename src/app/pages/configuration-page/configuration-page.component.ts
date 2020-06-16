@@ -17,7 +17,6 @@ import {DeploymentsComponent} from 'ng2-cloud-portal-presentation-lib/dist';
 })
 export class ConfigurationPageComponent implements OnInit {
 
-  statusFilters: string[] = ['DESTROYED', 'DESTROYING_FAILED'];
   hideDestroyed: boolean = true;
 
   constructor(public breadcrumbService: BreadcrumbService,
@@ -33,14 +32,6 @@ export class ConfigurationPageComponent implements OnInit {
 
   switchDestroyed(configurationComponent: ConfigurationComponent) {
     this.hideDestroyed = !this.hideDestroyed;
-    this.updateFilters(configurationComponent);
-  }
-
-  updateFilters(configurationComponent: ConfigurationComponent) {
-    this.statusFilters = [];
-    if (this.hideDestroyed) {
-      this.statusFilters.push('DESTROYED', 'DESTROYING_FAILED');
-    }
     configurationComponent.hideDestroyed = this.hideDestroyed;
     configurationComponent.loadDeployments();
   }

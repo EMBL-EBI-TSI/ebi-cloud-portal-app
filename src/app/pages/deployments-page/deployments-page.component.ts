@@ -25,6 +25,7 @@ export class DeploymentsPageComponent implements OnInit {
   }
 
   switchDestroyed(deploymentsComponent: DeploymentsComponent) {
+    console.log("Hide Destroye in app switch destroyed" + this.hideDestroyed);
     this.hideDestroyed = !this.hideDestroyed;
     this.updateFilters(deploymentsComponent);
   }
@@ -35,6 +36,7 @@ export class DeploymentsPageComponent implements OnInit {
       this.statusFilters.push('DESTROYED', 'DESTROYING_FAILED');
     }
     deploymentsComponent.hideDestroyed = this.hideDestroyed;
+    console.log("Hide Destroye in app load deployments" + this.hideDestroyed);
     deploymentsComponent.loadDeployments();
   }
 

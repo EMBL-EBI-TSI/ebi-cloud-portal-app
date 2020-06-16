@@ -98,7 +98,7 @@
                 </div>
                 </div>
             </mat-list-item>
-            <span *ngFor="let deploymentInstance of ( configurationDetail.deploymentInstances | deploymentStatus:statusFilters )">
+              <span *ngFor="let deploymentInstance of configurationDetail.deploymentInstances">
               <mat-list-item *ngIf="deploymentInstance.deployedTime">
                 <div *ngIf="deploymentInstance.deployedTime" style="display: flex;">
                   <div style="width: 150px">
@@ -135,13 +135,12 @@
                   </div>
                 </div>
               </mat-list-item>
-            </span>
+              </span>
+            </div>
           </mat-list>
         </mat-card-content>
       </mat-card>
-
     </div>
-
   </div>
 
 </cp-configuration-component>
