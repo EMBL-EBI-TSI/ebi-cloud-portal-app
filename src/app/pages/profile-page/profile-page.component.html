@@ -19,7 +19,7 @@
 		<mat-tab-group (selectedIndexChange)="profileComponent.addFormShowing=false;" #configurationsTabGroup>
 
 			<mat-tab label="Configurations">
-				
+
 				<mat-card class="background-card" *ngIf="((!profileComponent.configurationPresenters || profileComponent.configurationPresenters.length==0)
 				&& (!profileComponent.sharedConfigurationPresenters || profileComponent.sharedConfigurationPresenters.length==0) )">
 						No configurations registered/shared yet
@@ -30,7 +30,9 @@
 						<mat-card [routerLink]=" ['/configuration/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.configurationPresenters">
 							<span class="flex-container-wide">
 								<mat-icon class="card-type-icon">settings_applications</mat-icon>
-								<h3>{{configurationPresenter.name}}</h3>
+                <h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="This configuration is obsolete. No associated credential or deployment parameters found.
+									It is advisable to delete this."
+                              matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
 									<span class="fill-remaining-space"></span>
 							</span>
 							<mat-card-content>
@@ -57,7 +59,8 @@
 						<mat-card [routerLink]=" ['/configuration/shared/', configurationPresenter.name]" *ngFor="let configurationPresenter of profileComponent.sharedConfigurationPresenters">
 							<span class="flex-container-wide">
 								<mat-icon class="card-type-icon">settings_applications</mat-icon>
-									<h3>{{configurationPresenter.name}}</h3>
+									<h3><mat-icon *ngIf="configurationPresenter.obsolete" matTooltip="The owner has made this configuration obsolete or the cloud credential has not been share with you."
+                                matTooltipPosition="right" matTooltipHideDelay="1000">not_interested</mat-icon>{{configurationPresenter.name}}</h3>
 									<span class="fill-remaining-space"></span>
 									<p>SHARED</p>
 							</span>
@@ -91,7 +94,7 @@
 				&& (!profileComponent.sharedCloudProviderParametersPresenters || profileComponent.sharedCloudProviderParametersPresenters.length==0) )">
 						No credentials registered/shared yet
 				</mat-card>
-				
+
 
 				<div class="mat-content" *ngIf="profileComponent.cloudProviderParametersPresenters">
 					<div class="summary-card-container">
@@ -133,7 +136,7 @@
 						</mat-card>
 						<!--Get all the sahred credentials from each team the user is a member of??-->
 						<span *ngFor="let teamPresenter of profileComponent.teamPresenters">
-							
+
 						</span>
 					</div>
 				</div>
