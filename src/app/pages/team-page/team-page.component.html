@@ -123,6 +123,19 @@
             </mat-card>
           </span> <!-- members span -->
 
+          <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager"> <!-- managers span -->
+            <h3>Managers</h3>
+            <span *ngIf="(!teamDetail.teamPresenter.managerEmails ||  teamDetail.teamPresenter.managerEmails.length==0)">
+              <mat-icon>sentiment_neutral</mat-icon>
+              <p>There are no additional managers in this team...</p>
+            </span>
+            <mat-card *ngFor="let managerEmail of teamDetail.teamPresenter.managerEmails">
+              <p>{{ managerEmail }}</p>
+            </mat-card>
+          </span> <!-- managers span -->
+          <span>
+
+          </span>
         </span> <!-- card content span -->
 
       </mat-card-content>
