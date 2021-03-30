@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/startWith';
+import 'rxjs/Rx';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import {
   TeamService, TokenService, ErrorService,
@@ -52,7 +53,7 @@ export class EditConfigurationDialog {
       }
       );
 
-     
+
 
     this.configurationService.getOwnedAndSharedDeploymentParameters(this.credentialService.getUsername(), this.tokenService.getToken())
       .subscribe(

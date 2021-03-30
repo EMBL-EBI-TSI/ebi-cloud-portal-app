@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/startWith';
+import 'rxjs/Rx';
 import { TeamService, TokenService, ErrorService } from 'ng2-cloud-portal-service-lib';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -19,7 +20,7 @@ export class ShareDialog {
               public tokenService: TokenService,
               public errorService: ErrorService,
               private _router: Router,
-              public dialogRef: MatDialogRef<ShareDialog>) { 
+              public dialogRef: MatDialogRef<ShareDialog>) {
     this.shareWithCtrl = new FormControl();
     this.teamService.getAllMember(this.tokenService.getToken())
       .subscribe(
@@ -42,7 +43,7 @@ export class ShareDialog {
           console.log('[ShareDialog] Shared Cloud provider parameters data retrieval complete');
       }
     );
-    
+
   }
 
   filterTeams(val: string) {

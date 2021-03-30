@@ -6,7 +6,7 @@ import { TokenService, ErrorService } from 'ng2-cloud-portal-service-lib';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Component({
-  selector: 'add-manager-email-dialog',
+  selector: 'add-team-contact-email-dialog',
   templateUrl: './add-team-contact-email-dialog.html',
 })
 export class AddTeamContactEmailDialog {
