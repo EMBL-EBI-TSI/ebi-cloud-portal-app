@@ -66,6 +66,7 @@ import { ApplicationInfoDialog } from './pages/application-page/application-info
 import { TeamInfoDialog } from './pages/team-page/team-info-dialog.component';
 import { AddMemberDialog } from './pages/team-page/add-member-dialog.component';
 import { ShowTimelineDialog } from './dialogs/show-timeline-dialog/show-timeline-dialog.component';
+import { AddTeamContactEmailDialog } from './pages/team-page/add-team-contact-email-dialog.component';
 
 const appRoutes: Routes = [
     { path: '', component: WelcomePageComponent },
@@ -87,7 +88,7 @@ const appRoutes: Routes = [
     { path: 'error', component: ErrorPageComponent },
     { path: 'about', component: AboutPageComponent },
     { path: 'login', component: LoginPageComponent },
-    { path: 'signon', component: SignonPageComponent },    
+    { path: 'signon', component: SignonPageComponent },
     { path: 'docs', component: DocsPageComponent },
     { path: '**', component: WelcomePageComponent },
 ];
@@ -114,17 +115,17 @@ export function provideConfig() {
     RepositoryComponent,
     WelcomePageComponent,
     DeploymentsPageComponent,
-    DeploymentsComponent,    
+    DeploymentsComponent,
     VolumesPageComponent,
     VolumesComponent,
     DeploymentPageComponent,
-    DeploymentComponent,    
+    DeploymentComponent,
     ApplicationPageComponent,
     ApplicationComponent,
     CloudProviderParametersPageComponent,
     CloudProviderParametersComponent,
     ConfigurationPageComponent,
-    ConfigurationComponent, 
+    ConfigurationComponent,
     DeploymentParametersComponent,
     DeploymentParametersPageComponent,
     DocsPageComponent,
@@ -143,7 +144,7 @@ export function provideConfig() {
     SuggestActionDialog,
     ErrorMessageDialog,
     AddCloudProviderDialog,
-    EditCloudProviderDialog,    
+    EditCloudProviderDialog,
     AddConfigurationDialog,
     EditConfigurationDialog,
     AddDeploymentParametersDialog,
@@ -153,7 +154,8 @@ export function provideConfig() {
     ApplicationInfoDialog,
     TeamInfoDialog,
     AddMemberDialog,
-    GdprAnnouncementComponent
+    GdprAnnouncementComponent,
+    AddTeamContactEmailDialog
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -174,7 +176,7 @@ export function provideConfig() {
     ErrorMessageDialog,
     ShareDialog,
     AddCloudProviderDialog,
-    EditCloudProviderDialog,    
+    EditCloudProviderDialog,
     AddConfigurationDialog,
     EditConfigurationDialog,
     AddDeploymentParametersDialog,
@@ -184,7 +186,8 @@ export function provideConfig() {
     TeamInfoDialog,
     AddMemberDialog,
     ShowTimelineDialog,
-    GdprAnnouncementComponent
+    GdprAnnouncementComponent,
+    AddTeamContactEmailDialog
   ],
   providers: [
     { provide: ConfigService, useFactory: provideConfig },

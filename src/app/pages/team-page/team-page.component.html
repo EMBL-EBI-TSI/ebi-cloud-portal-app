@@ -10,7 +10,12 @@
           <button mat-icon-button (click)="openInfoTeamDialog()">
             <mat-icon>info_outline</mat-icon>
           </button>
-          <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager ">
+          <span *ngIf="teamDetail.teamPresenter.isOwner">
+            <button mat-icon-button (click)="openAddTeamContactEmailDialog()">
+              <mat-icon>supervised_user_circle</mat-icon>
+            </button>
+          </span>
+          <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager">
             <button mat-icon-button (click)="openAddMemberDialog()">
               <mat-icon>group_add</mat-icon>
             </button>
@@ -122,6 +127,19 @@
               </button></p>
             </mat-card>
           </span> <!-- members span -->
+          <span *ngIf="teamDetail.teamPresenter.isOwner">
+            <h3>Team Contacts</h3>
+            <span *ngIf="(!teamDetail.teamPresenter.teamContactEmails ||  teamDetail.teamPresenter.teamContactEmails.length==0)">
+              <mat-icon>sentiment_neutral</mat-icon>
+              <p>There are no other team contacts other than team owner...</p>
+            </span>
+            <mat-card *ngFor="let accountEmail of teamDetail.teamPresenter.teamContactEmails">
+              <p>{{ accountEmail }}<button
+                mat-icon-button color="warn" (click)="teamDetail.removeTeamContactEmail(accountEmail, '/error')">
+                <mat-icon>highlight_off</mat-icon>
+              </button></p>
+            </mat-card>
+          </span> <!-- team contact span -->
 
           <span *ngIf="teamDetail.teamPresenter.isOwner || teamDetail.teamPresenter.isManager"> <!-- managers span -->
             <h3>Managers</h3>

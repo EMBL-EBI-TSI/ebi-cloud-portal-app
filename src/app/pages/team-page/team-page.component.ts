@@ -6,6 +6,7 @@ import { TeamComponent } from 'ng2-cloud-portal-presentation-lib';
 import { SuggestActionDialog } from '../../dialogs/suggest-action-dialog/suggest-action-dialog.component';
 import { TeamInfoDialog } from './team-info-dialog.component';
 import { AddMemberDialog } from './add-member-dialog.component';
+import { AddTeamContactEmailDialog} from './add-team-contact-email-dialog.component';
 
 @Component({
   selector: 'app-team-page',
@@ -19,7 +20,7 @@ export class TeamPageComponent implements OnInit {
   constructor(public breadcrumbService: BreadcrumbService,
     private _route: ActivatedRoute,
     public dialog: MatDialog) {
-    
+
   }
 
   ngOnInit() {
@@ -51,9 +52,9 @@ export class TeamPageComponent implements OnInit {
         );
       }
     });
-    
+
   }
-    
+
   public leaveTeam() {
     // Show dialog
     const config = new MatDialogConfig();
@@ -73,7 +74,7 @@ export class TeamPageComponent implements OnInit {
         );
       }
     });
-    
+
   }
 
   openAddMemberDialog() {
@@ -92,4 +93,11 @@ export class TeamPageComponent implements OnInit {
     let dialogRef = this.dialog.open(TeamInfoDialog, config);
   }
 
+  openAddTeamContactEmailDialog() {
+    let dialogRef = this.dialog.open(AddTeamContactEmailDialog);
+    dialogRef.afterClosed().subscribe(teamContactEmails => {
+      if (teamContactEmails)
+        this.teamDetail.addTeamContactEmails(teamContactEmails, '/error');
+    });
+  }
 }
