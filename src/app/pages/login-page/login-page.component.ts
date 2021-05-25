@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { CredentialService, TokenService,
-        AuthService, JwtToken, Account } from 'ng2-cloud-portal-service-lib';
+import {
+  CredentialService, TokenService,
+  AuthService, JwtToken, Account, ApplicationService
+} from 'ng2-cloud-portal-service-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ErrorService, Error } from 'ng2-cloud-portal-service-lib';
 
@@ -16,7 +18,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   account: Account;
   removeMessageListener: Function;
   elixirLogo = 'assets/img/elixir_logo.png';
-  
+
   constructor(
     private router: Router,
     public authService: AuthService,
@@ -24,6 +26,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     public tokenService: TokenService,
     public errorService: ErrorService,
     public breadcrumbService: BreadcrumbService,
+    public applicationService: ApplicationService,
     renderer: Renderer) {
 
     // We cache the function "listenGlobal" returns, as it's one that allows to cleanly unregister the event listener
@@ -54,6 +57,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       },
       () => {}
     );
+    this.applicationService.addToDefaultTeam(this.credentialService.getUsername(),
+      this.tokenService.getToken());
   }
 
   ssoLink() {
