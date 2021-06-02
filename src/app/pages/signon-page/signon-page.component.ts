@@ -1,7 +1,9 @@
 import { Component, OnInit, Renderer, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { CredentialService, TokenService,
-        AuthService, JwtToken, Account } from 'ng2-cloud-portal-service-lib';
+import {
+  CredentialService, TokenService,
+  AuthService, JwtToken, Account, TeamService, ApplicationService
+} from 'ng2-cloud-portal-service-lib';
 import { BreadcrumbService } from '../../services/breadcrumb/breadcrumb.service';
 import { ErrorService, Error } from 'ng2-cloud-portal-service-lib';
 
@@ -17,7 +19,7 @@ export class SignonPageComponent implements OnInit, OnDestroy {
   removeMessageListener: Function;
   elixirLogo = 'assets/img/elixir_logo.png';
   emblLogo = 'assets/img/embl_logo_only.png';
-  
+
   constructor(
     private router: Router,
     public authService: AuthService,
@@ -25,7 +27,10 @@ export class SignonPageComponent implements OnInit, OnDestroy {
     public tokenService: TokenService,
     public errorService: ErrorService,
     public breadcrumbService: BreadcrumbService,
-    renderer: Renderer) {
+    renderer: Renderer,
+    public teamService: TeamService,
+    public applicationService: ApplicationService
+  ) {
 
     // We cache the function "listenGlobal" returns, as it's one that allows to cleanly unregister the event listener
     this.removeMessageListener = renderer.listenGlobal('window', 'message', (event: MessageEvent) => {
@@ -36,10 +41,15 @@ export class SignonPageComponent implements OnInit, OnDestroy {
       this.authService.processToken(event.data);
       event.source.close();
       if (tokenService.getToken()) {
+        this.teamService.addToDefaultTeam(credentialService.getUsername(),
+          tokenService.getToken()).subscribe(
+          () => { console.log('Added user to default team'); },
+          error => { console.log('Error in adding user to default team'); }
+        );
         this.router.navigateByUrl('/');
       }
     });
-  }
+   }
 
   ssoLink() {
     return this.authService.ssoLink();
