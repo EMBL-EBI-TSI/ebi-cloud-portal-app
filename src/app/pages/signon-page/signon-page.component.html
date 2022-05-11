@@ -9,11 +9,11 @@
 
     <div *ngIf="!tokenService.getToken()"
     style="display:flex; flex-direction: column; flex-wrap: nowrap; align-items: center;">
-      <h3>Access the EBI Cloud Portal</h3>
-      <p>Single Sign On using your ELIXIR or EMBL identity!</p>
+      <h3>Access the <abbr title="European Bioinformatics Institute">EBI</abbr> Cloud Portal</h3>
+      <p>Single Sign On using your <abbr title="Life Science">LS</abbr> or <abbr title="European Molecular Biology Laboratory">EMBL</abbr> identity!</p>
       <div>
         <a style="padding:0.5em; padding-right:1em; min-width: 150px;" mat-raised-button href="{{ssoLink()}}" target="_blank" rel="opener">
-          <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="elixirLogo">
+          <img style="height: 2em; position:relative;padding-right:0.5em;padding-left:1em;" [src]="lsLoginLogo">
           SSO
         </a>
         <a style="padding:0.5em; padding-right:1em; min-width: 150px;" mat-raised-button href="{{emblSsoLink()}}" target="_blank" rel="opener">
@@ -22,12 +22,12 @@
         </a>
       </div>
       <div style="max-width: 400px; margin: 10px;">
-        <p>The EBI Cloud Portal is offered as a service to ELIXIR and other communities. Users
-          need a freely available <a href="https://www.elixir-europe.org/services/compute/aai">ELIXIR identity</a>
+        <p>The EBI Cloud Portal is offered as a service to LS and other communities. Users
+          need a freely available <a href="https://lifescience-ri.eu/ls-login/users/how-to-get-and-use-life-science-id.html" target="_blank" rel="noopener noreferrer">LS identity</a>
           to access the portal.
         </p>
         <p>
-          Obtain your ELIXIR identity <a href="https://www.elixir-europe.org/register">here</a>.
+          Obtain your LS identity <a href="https://lifescience-ri.eu/ls-login/users/how-to-get-and-use-life-science-id.html" target="_blank" rel="noopener noreferrer">here</a>.
         </p>
       </div>
 
