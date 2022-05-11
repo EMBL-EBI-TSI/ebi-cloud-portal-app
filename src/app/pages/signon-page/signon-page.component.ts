@@ -17,7 +17,7 @@ export class SignonPageComponent implements OnInit, OnDestroy {
   robby = 'assets/img/Robby_form0.5x.png';
   account: Account;
   removeMessageListener: Function;
-  elixirLogo = 'assets/img/elixir_logo.png';
+  lsLoginLogo = 'assets/img/login-grey-wide.jpg.png';
   emblLogo = 'assets/img/embl_logo_only.png';
 
   constructor(
